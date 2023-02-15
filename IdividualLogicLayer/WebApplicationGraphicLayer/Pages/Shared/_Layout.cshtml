@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplicationGraphicLayer</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplicationGraphicLayer.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="main-layout">
+    <header>
+        <nav>
+            <a href="/Index"><img src="images/logo.jpg" alt="Logo" class="logo"></a>
+
+            <ul>
+                <li><a href="page1.html">Anime</a></li>
+                <li><a href="page2.html">Manga</a></li>
+                <li><a href="page3.html">Characters</a></li>
+                <li><a href="page4.html">Community</a></li>
+                <li><a href="page5.html">Profile</a></li>
+            </ul>
+            <ul style="padding-left: 5em">
+                <li><a href="pageLogin.html">log in</a></li>
+                <li><a href="pageRegister.html">sign up</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="myfooter">
+        <div class="container">
+            &copy; 2023 - Ciuperca Diana-Valentina - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

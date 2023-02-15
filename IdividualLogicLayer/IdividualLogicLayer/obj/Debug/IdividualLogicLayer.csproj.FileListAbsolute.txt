@@ -1,0 +1,6 @@
+D:\FONTYS\Advanced phase\OOD\IdividualLogicLayer\IdividualLogicLayer\bin\Debug\IdividualLogicLayer.dll
+D:\FONTYS\Advanced phase\OOD\IdividualLogicLayer\IdividualLogicLayer\bin\Debug\IdividualLogicLayer.pdb
+D:\FONTYS\Advanced phase\OOD\IdividualLogicLayer\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.csproj.AssemblyReference.cache
+D:\FONTYS\Advanced phase\OOD\IdividualLogicLayer\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.csproj.CoreCompileInputs.cache
+D:\FONTYS\Advanced phase\OOD\IdividualLogicLayer\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.dll
+D:\FONTYS\Advanced phase\OOD\IdividualLogicLayer\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.pdb

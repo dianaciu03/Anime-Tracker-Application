@@ -1,0 +1,22 @@
+.backgroundImg {
+    background-image: url('/images/homepage1.jpg');
+    background-size: 100% 100%;
+    height: 20em;
+    background-position: center;
+}
+
+.masthead-heading {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+}
+
+.main-title{
+    padding-top: 69px;
+    font-size: 46px;
+}
+
+.sub-title {
+    padding-top: 15px;
+    font-size: 32px;
+}
