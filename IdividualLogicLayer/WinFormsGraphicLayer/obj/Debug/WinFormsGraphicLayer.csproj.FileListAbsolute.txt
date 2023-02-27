@@ -1,0 +1,11 @@
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\bin\Debug\WinFormsGraphicLayer.exe.config
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\bin\Debug\WinFormsGraphicLayer.exe
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\bin\Debug\WinFormsGraphicLayer.pdb
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.csproj.AssemblyReference.cache
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.csproj.SuggestedBindingRedirects.cache
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.LoginForm.resources
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.Properties.Resources.resources
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.csproj.GenerateResource.cache
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.csproj.CoreCompileInputs.cache
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.exe
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\WinFormsGraphicLayer\obj\Debug\WinFormsGraphicLayer.pdb
