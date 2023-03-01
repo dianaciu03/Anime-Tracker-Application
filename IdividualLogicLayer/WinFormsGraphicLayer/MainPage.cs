@@ -15,6 +15,12 @@ namespace WinFormsGraphicLayer
         public MainPage()
         {
             InitializeComponent();
+            InitializeForm();
+        }
+
+        public void InitializeForm()
+        {
+            this.BackgroundImageLayout = ImageLayout.Stretch;
         }
     }
 }
