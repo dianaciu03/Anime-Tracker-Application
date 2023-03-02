@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace IdividualLogicLayer
 {
-    public class Class1
+    public enum Season
     {
+        Spring,
+        Summer,
+        Autumn,
+        Winter
     }
 }
