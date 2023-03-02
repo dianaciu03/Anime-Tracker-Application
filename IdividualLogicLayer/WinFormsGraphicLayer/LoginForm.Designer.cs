@@ -44,9 +44,9 @@
             this.loginLabelBox.BackColor = System.Drawing.Color.Thistle;
             this.loginLabelBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.loginLabelBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginLabelBox.Location = new System.Drawing.Point(496, 177);
+            this.loginLabelBox.Location = new System.Drawing.Point(542, 197);
             this.loginLabelBox.Name = "loginLabelBox";
-            this.loginLabelBox.Size = new System.Drawing.Size(517, 450);
+            this.loginLabelBox.Size = new System.Drawing.Size(443, 335);
             this.loginLabelBox.TabIndex = 0;
             // 
             // labelTitle
@@ -54,7 +54,7 @@
             this.labelTitle.AutoSize = true;
             this.labelTitle.BackColor = System.Drawing.Color.Thistle;
             this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(692, 201);
+            this.labelTitle.Location = new System.Drawing.Point(698, 214);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(135, 46);
             this.labelTitle.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             this.labelEmail.AutoSize = true;
             this.labelEmail.BackColor = System.Drawing.Color.Thistle;
-            this.labelEmail.Location = new System.Drawing.Point(535, 287);
+            this.labelEmail.Location = new System.Drawing.Point(557, 287);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(80, 29);
             this.labelEmail.TabIndex = 2;
@@ -74,7 +74,7 @@
             // 
             this.labelPassword.AutoSize = true;
             this.labelPassword.BackColor = System.Drawing.Color.Thistle;
-            this.labelPassword.Location = new System.Drawing.Point(535, 370);
+            this.labelPassword.Location = new System.Drawing.Point(557, 340);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(126, 29);
             this.labelPassword.TabIndex = 3;
@@ -82,14 +82,14 @@
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(667, 284);
+            this.tbEmail.Location = new System.Drawing.Point(672, 284);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(299, 34);
             this.tbEmail.TabIndex = 4;
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(667, 367);
+            this.tbPassword.Location = new System.Drawing.Point(672, 337);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '●';
             this.tbPassword.Size = new System.Drawing.Size(299, 34);
@@ -100,7 +100,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.MediumPurple;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(684, 474);
+            this.btnLogin.Location = new System.Drawing.Point(690, 409);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(143, 53);
             this.btnLogin.TabIndex = 6;
@@ -114,7 +114,7 @@
             this.labelErorrMessage.BackColor = System.Drawing.Color.Thistle;
             this.labelErorrMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelErorrMessage.ForeColor = System.Drawing.Color.Red;
-            this.labelErorrMessage.Location = new System.Drawing.Point(535, 567);
+            this.labelErorrMessage.Location = new System.Drawing.Point(588, 490);
             this.labelErorrMessage.Name = "labelErorrMessage";
             this.labelErorrMessage.Size = new System.Drawing.Size(442, 29);
             this.labelErorrMessage.TabIndex = 7;
@@ -126,7 +126,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WinFormsGraphicLayer.Properties.Resources.loginbg1;
-            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.ClientSize = new System.Drawing.Size(1516, 1033);
             this.Controls.Add(this.labelErorrMessage);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbPassword);

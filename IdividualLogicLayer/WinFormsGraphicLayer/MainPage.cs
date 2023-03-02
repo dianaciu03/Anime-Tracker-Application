@@ -22,5 +22,10 @@ namespace WinFormsGraphicLayer
         {
             this.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
