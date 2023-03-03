@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,8 @@ namespace IdividualLogicLayer
         private int nrEpisodes;
         private string studio;
 
-        public Anime(int id, string name, string description, int rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio)
-            : base(id, name, description, rating, releaseYear, imageURL)
+        public Anime(string name, string description, double rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
+            : base(name, description, rating, releaseYear, genres, imageURL)
         {
             this.season = season;
             this.nrEpisodes = nrEpisodes;

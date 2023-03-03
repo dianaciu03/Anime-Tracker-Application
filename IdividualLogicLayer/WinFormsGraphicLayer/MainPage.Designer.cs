@@ -32,10 +32,29 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabAnime = new System.Windows.Forms.TabPage();
             this.groupBoxAllAnime = new System.Windows.Forms.GroupBox();
+            this.numRatingSearchAnime = new System.Windows.Forms.NumericUpDown();
+            this.labelRatingSearchAnime = new System.Windows.Forms.Label();
+            this.cbxSeasonSearchAnime = new System.Windows.Forms.ComboBox();
+            this.labelReleaseSeasonSearchAnime = new System.Windows.Forms.Label();
+            this.btnSearchAnime = new System.Windows.Forms.Button();
+            this.btnDisplayAllAnime = new System.Windows.Forms.Button();
+            this.cbxGenreSearchAnime = new System.Windows.Forms.ComboBox();
+            this.labelGenreSearchAnime = new System.Windows.Forms.Label();
+            this.numYearSearchAnime = new System.Windows.Forms.NumericUpDown();
+            this.labelYearSearchAnime = new System.Windows.Forms.Label();
+            this.numNrEpisodesToSearchAnime = new System.Windows.Forms.NumericUpDown();
+            this.labelNrEpisodesToSearchAnime = new System.Windows.Forms.Label();
+            this.numNrEpisodesFromSearchAnime = new System.Windows.Forms.NumericUpDown();
+            this.labelNrEpisodesFromSearchAnime = new System.Windows.Forms.Label();
+            this.tbxStudioSearchAnime = new System.Windows.Forms.TextBox();
+            this.labelStudioSearchAnime = new System.Windows.Forms.Label();
             this.tbxNameSearchAnime = new System.Windows.Forms.TextBox();
             this.labelNameSearchAnime = new System.Windows.Forms.Label();
             this.lbxAnime = new System.Windows.Forms.ListBox();
             this.groupBoxAnimeDetails = new System.Windows.Forms.GroupBox();
+            this.btnBrowseImgAnime = new System.Windows.Forms.Button();
+            this.labelImageAnime = new System.Windows.Forms.Label();
+            this.btnEditAnime = new System.Windows.Forms.Button();
             this.btnAddAnime = new System.Windows.Forms.Button();
             this.cbSportsGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbSliceOfLifeGenreAnime = new System.Windows.Forms.CheckBox();
@@ -50,7 +69,7 @@
             this.cbComedyGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbDramaGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbFantasyGenreAnime = new System.Windows.Forms.CheckBox();
-            this.cbAdventure = new System.Windows.Forms.CheckBox();
+            this.cbAdventureGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbActionGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbShoujoGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbShounenGenreAnime = new System.Windows.Forms.CheckBox();
@@ -59,7 +78,7 @@
             this.labelDescriptionAnime = new System.Windows.Forms.Label();
             this.numRatingAnime = new System.Windows.Forms.NumericUpDown();
             this.labelRatingAnime = new System.Windows.Forms.Label();
-            this.cbReleaseSeasonAnime = new System.Windows.Forms.ComboBox();
+            this.cbxReleaseSeasonAnime = new System.Windows.Forms.ComboBox();
             this.numReleaseYearAnime = new System.Windows.Forms.NumericUpDown();
             this.labelReleaseSeasonAnime = new System.Windows.Forms.Label();
             this.labelReleaseYearAnime = new System.Windows.Forms.Label();
@@ -71,37 +90,20 @@
             this.labelNameAnime = new System.Windows.Forms.Label();
             this.tabManga = new System.Windows.Forms.TabPage();
             this.tabCharacters = new System.Windows.Forms.TabPage();
-            this.btnEditAnime = new System.Windows.Forms.Button();
-            this.tbxStudioSearchAnime = new System.Windows.Forms.TextBox();
-            this.labelStudioSearchAnime = new System.Windows.Forms.Label();
-            this.labelNrEpisodesFromSearchAnime = new System.Windows.Forms.Label();
-            this.numNrEpisodesFromSearchAnime = new System.Windows.Forms.NumericUpDown();
-            this.labelNrEpisodesToSearchAnime = new System.Windows.Forms.Label();
-            this.numNrEpisodesToSearchAnime = new System.Windows.Forms.NumericUpDown();
-            this.numYearSearchAnime = new System.Windows.Forms.NumericUpDown();
-            this.labelYearSearchAnime = new System.Windows.Forms.Label();
-            this.labelGenreSearchAnime = new System.Windows.Forms.Label();
-            this.cbxGenreSearchAnime = new System.Windows.Forms.ComboBox();
-            this.btnDisplayAllAnime = new System.Windows.Forms.Button();
-            this.btnSearchAnime = new System.Windows.Forms.Button();
-            this.cbxSeasonSearchAnime = new System.Windows.Forms.ComboBox();
-            this.labelReleaseSeasonSearchAnime = new System.Windows.Forms.Label();
-            this.numRatingSearchAnime = new System.Windows.Forms.NumericUpDown();
-            this.labelRatingSearchAnime = new System.Windows.Forms.Label();
-            this.labelImageAnime = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.btnBrowseImgAnime = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.groupBoxAllAnime.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numYearSearchAnime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).BeginInit();
             this.groupBoxAnimeDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numReleaseYearAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesAnime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numYearSearchAnime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -169,7 +171,153 @@
             this.groupBoxAllAnime.TabIndex = 2;
             this.groupBoxAllAnime.TabStop = false;
             this.groupBoxAllAnime.Text = "All anime";
-            this.groupBoxAllAnime.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // numRatingSearchAnime
+            // 
+            this.numRatingSearchAnime.DecimalPlaces = 1;
+            this.numRatingSearchAnime.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numRatingSearchAnime.Location = new System.Drawing.Point(390, 150);
+            this.numRatingSearchAnime.Name = "numRatingSearchAnime";
+            this.numRatingSearchAnime.Size = new System.Drawing.Size(111, 32);
+            this.numRatingSearchAnime.TabIndex = 42;
+            // 
+            // labelRatingSearchAnime
+            // 
+            this.labelRatingSearchAnime.AutoSize = true;
+            this.labelRatingSearchAnime.Location = new System.Drawing.Point(327, 152);
+            this.labelRatingSearchAnime.Name = "labelRatingSearchAnime";
+            this.labelRatingSearchAnime.Size = new System.Drawing.Size(81, 26);
+            this.labelRatingSearchAnime.TabIndex = 41;
+            this.labelRatingSearchAnime.Text = "Rating:";
+            // 
+            // cbxSeasonSearchAnime
+            // 
+            this.cbxSeasonSearchAnime.FormattingEnabled = true;
+            this.cbxSeasonSearchAnime.ItemHeight = 26;
+            this.cbxSeasonSearchAnime.Location = new System.Drawing.Point(473, 109);
+            this.cbxSeasonSearchAnime.Name = "cbxSeasonSearchAnime";
+            this.cbxSeasonSearchAnime.Size = new System.Drawing.Size(230, 34);
+            this.cbxSeasonSearchAnime.TabIndex = 40;
+            // 
+            // labelReleaseSeasonSearchAnime
+            // 
+            this.labelReleaseSeasonSearchAnime.AutoSize = true;
+            this.labelReleaseSeasonSearchAnime.Location = new System.Drawing.Point(327, 112);
+            this.labelReleaseSeasonSearchAnime.Name = "labelReleaseSeasonSearchAnime";
+            this.labelReleaseSeasonSearchAnime.Size = new System.Drawing.Size(174, 26);
+            this.labelReleaseSeasonSearchAnime.TabIndex = 39;
+            this.labelReleaseSeasonSearchAnime.Text = "Release season:";
+            // 
+            // btnSearchAnime
+            // 
+            this.btnSearchAnime.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnSearchAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchAnime.ForeColor = System.Drawing.Color.Black;
+            this.btnSearchAnime.Location = new System.Drawing.Point(245, 193);
+            this.btnSearchAnime.Name = "btnSearchAnime";
+            this.btnSearchAnime.Size = new System.Drawing.Size(151, 43);
+            this.btnSearchAnime.TabIndex = 38;
+            this.btnSearchAnime.Text = "Search";
+            this.btnSearchAnime.UseVisualStyleBackColor = false;
+            // 
+            // btnDisplayAllAnime
+            // 
+            this.btnDisplayAllAnime.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnDisplayAllAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDisplayAllAnime.ForeColor = System.Drawing.Color.Black;
+            this.btnDisplayAllAnime.Location = new System.Drawing.Point(77, 193);
+            this.btnDisplayAllAnime.Name = "btnDisplayAllAnime";
+            this.btnDisplayAllAnime.Size = new System.Drawing.Size(151, 43);
+            this.btnDisplayAllAnime.TabIndex = 37;
+            this.btnDisplayAllAnime.Text = "Display all";
+            this.btnDisplayAllAnime.UseVisualStyleBackColor = false;
+            this.btnDisplayAllAnime.Click += new System.EventHandler(this.btnDisplayAllAnime_Click);
+            // 
+            // cbxGenreSearchAnime
+            // 
+            this.cbxGenreSearchAnime.FormattingEnabled = true;
+            this.cbxGenreSearchAnime.ItemHeight = 26;
+            this.cbxGenreSearchAnime.Location = new System.Drawing.Point(71, 149);
+            this.cbxGenreSearchAnime.Name = "cbxGenreSearchAnime";
+            this.cbxGenreSearchAnime.Size = new System.Drawing.Size(218, 34);
+            this.cbxGenreSearchAnime.TabIndex = 20;
+            // 
+            // labelGenreSearchAnime
+            // 
+            this.labelGenreSearchAnime.AutoSize = true;
+            this.labelGenreSearchAnime.Location = new System.Drawing.Point(6, 152);
+            this.labelGenreSearchAnime.Name = "labelGenreSearchAnime";
+            this.labelGenreSearchAnime.Size = new System.Drawing.Size(78, 26);
+            this.labelGenreSearchAnime.TabIndex = 19;
+            this.labelGenreSearchAnime.Text = "Genre:";
+            // 
+            // numYearSearchAnime
+            // 
+            this.numYearSearchAnime.Location = new System.Drawing.Point(129, 110);
+            this.numYearSearchAnime.Name = "numYearSearchAnime";
+            this.numYearSearchAnime.Size = new System.Drawing.Size(160, 32);
+            this.numYearSearchAnime.TabIndex = 14;
+            // 
+            // labelYearSearchAnime
+            // 
+            this.labelYearSearchAnime.AutoSize = true;
+            this.labelYearSearchAnime.Location = new System.Drawing.Point(6, 112);
+            this.labelYearSearchAnime.Name = "labelYearSearchAnime";
+            this.labelYearSearchAnime.Size = new System.Drawing.Size(146, 26);
+            this.labelYearSearchAnime.TabIndex = 13;
+            this.labelYearSearchAnime.Text = "Release year:";
+            // 
+            // numNrEpisodesToSearchAnime
+            // 
+            this.numNrEpisodesToSearchAnime.Location = new System.Drawing.Point(365, 70);
+            this.numNrEpisodesToSearchAnime.Name = "numNrEpisodesToSearchAnime";
+            this.numNrEpisodesToSearchAnime.Size = new System.Drawing.Size(111, 32);
+            this.numNrEpisodesToSearchAnime.TabIndex = 12;
+            // 
+            // labelNrEpisodesToSearchAnime
+            // 
+            this.labelNrEpisodesToSearchAnime.AutoSize = true;
+            this.labelNrEpisodesToSearchAnime.Location = new System.Drawing.Point(327, 73);
+            this.labelNrEpisodesToSearchAnime.Name = "labelNrEpisodesToSearchAnime";
+            this.labelNrEpisodesToSearchAnime.Size = new System.Drawing.Size(42, 26);
+            this.labelNrEpisodesToSearchAnime.TabIndex = 11;
+            this.labelNrEpisodesToSearchAnime.Text = "To:";
+            // 
+            // numNrEpisodesFromSearchAnime
+            // 
+            this.numNrEpisodesFromSearchAnime.Location = new System.Drawing.Point(178, 70);
+            this.numNrEpisodesFromSearchAnime.Name = "numNrEpisodesFromSearchAnime";
+            this.numNrEpisodesFromSearchAnime.Size = new System.Drawing.Size(111, 32);
+            this.numNrEpisodesFromSearchAnime.TabIndex = 10;
+            // 
+            // labelNrEpisodesFromSearchAnime
+            // 
+            this.labelNrEpisodesFromSearchAnime.AutoSize = true;
+            this.labelNrEpisodesFromSearchAnime.Location = new System.Drawing.Point(6, 73);
+            this.labelNrEpisodesFromSearchAnime.Name = "labelNrEpisodesFromSearchAnime";
+            this.labelNrEpisodesFromSearchAnime.Size = new System.Drawing.Size(208, 26);
+            this.labelNrEpisodesFromSearchAnime.TabIndex = 7;
+            this.labelNrEpisodesFromSearchAnime.Text = "Nr of episodes from:";
+            // 
+            // tbxStudioSearchAnime
+            // 
+            this.tbxStudioSearchAnime.Location = new System.Drawing.Point(435, 32);
+            this.tbxStudioSearchAnime.Name = "tbxStudioSearchAnime";
+            this.tbxStudioSearchAnime.Size = new System.Drawing.Size(268, 32);
+            this.tbxStudioSearchAnime.TabIndex = 6;
+            // 
+            // labelStudioSearchAnime
+            // 
+            this.labelStudioSearchAnime.AutoSize = true;
+            this.labelStudioSearchAnime.Location = new System.Drawing.Point(369, 34);
+            this.labelStudioSearchAnime.Name = "labelStudioSearchAnime";
+            this.labelStudioSearchAnime.Size = new System.Drawing.Size(80, 26);
+            this.labelStudioSearchAnime.TabIndex = 5;
+            this.labelStudioSearchAnime.Text = "Studio:";
             // 
             // tbxNameSearchAnime
             // 
@@ -216,7 +364,7 @@
             this.groupBoxAnimeDetails.Controls.Add(this.cbComedyGenreAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbDramaGenreAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbFantasyGenreAnime);
-            this.groupBoxAnimeDetails.Controls.Add(this.cbAdventure);
+            this.groupBoxAnimeDetails.Controls.Add(this.cbAdventureGenreAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbActionGenreAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbShoujoGenreAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbShounenGenreAnime);
@@ -225,7 +373,7 @@
             this.groupBoxAnimeDetails.Controls.Add(this.labelDescriptionAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.numRatingAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelRatingAnime);
-            this.groupBoxAnimeDetails.Controls.Add(this.cbReleaseSeasonAnime);
+            this.groupBoxAnimeDetails.Controls.Add(this.cbxReleaseSeasonAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.numReleaseYearAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelReleaseSeasonAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelReleaseYearAnime);
@@ -243,6 +391,40 @@
             this.groupBoxAnimeDetails.TabStop = false;
             this.groupBoxAnimeDetails.Text = "Anime details";
             // 
+            // btnBrowseImgAnime
+            // 
+            this.btnBrowseImgAnime.BackColor = System.Drawing.Color.Thistle;
+            this.btnBrowseImgAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowseImgAnime.ForeColor = System.Drawing.Color.Black;
+            this.btnBrowseImgAnime.Location = new System.Drawing.Point(161, 556);
+            this.btnBrowseImgAnime.Name = "btnBrowseImgAnime";
+            this.btnBrowseImgAnime.Size = new System.Drawing.Size(151, 35);
+            this.btnBrowseImgAnime.TabIndex = 39;
+            this.btnBrowseImgAnime.Text = "Browse...";
+            this.btnBrowseImgAnime.UseVisualStyleBackColor = false;
+            this.btnBrowseImgAnime.Click += new System.EventHandler(this.btnBrowseImgAnime_Click);
+            // 
+            // labelImageAnime
+            // 
+            this.labelImageAnime.AutoSize = true;
+            this.labelImageAnime.Location = new System.Drawing.Point(82, 560);
+            this.labelImageAnime.Name = "labelImageAnime";
+            this.labelImageAnime.Size = new System.Drawing.Size(79, 26);
+            this.labelImageAnime.TabIndex = 38;
+            this.labelImageAnime.Text = "Image:";
+            // 
+            // btnEditAnime
+            // 
+            this.btnEditAnime.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnEditAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditAnime.ForeColor = System.Drawing.Color.Black;
+            this.btnEditAnime.Location = new System.Drawing.Point(326, 611);
+            this.btnEditAnime.Name = "btnEditAnime";
+            this.btnEditAnime.Size = new System.Drawing.Size(151, 43);
+            this.btnEditAnime.TabIndex = 37;
+            this.btnEditAnime.Text = "Edit Anime";
+            this.btnEditAnime.UseVisualStyleBackColor = false;
+            // 
             // btnAddAnime
             // 
             this.btnAddAnime.BackColor = System.Drawing.Color.MediumPurple;
@@ -254,6 +436,7 @@
             this.btnAddAnime.TabIndex = 36;
             this.btnAddAnime.Text = "Add Anime";
             this.btnAddAnime.UseVisualStyleBackColor = false;
+            this.btnAddAnime.Click += new System.EventHandler(this.btnAddAnime_Click);
             // 
             // cbSportsGenreAnime
             // 
@@ -358,7 +541,7 @@
             // cbComedyGenreAnime
             // 
             this.cbComedyGenreAnime.AutoSize = true;
-            this.cbComedyGenreAnime.Location = new System.Drawing.Point(460, 446);
+            this.cbComedyGenreAnime.Location = new System.Drawing.Point(367, 446);
             this.cbComedyGenreAnime.Name = "cbComedyGenreAnime";
             this.cbComedyGenreAnime.Size = new System.Drawing.Size(116, 30);
             this.cbComedyGenreAnime.TabIndex = 25;
@@ -368,7 +551,7 @@
             // cbDramaGenreAnime
             // 
             this.cbDramaGenreAnime.AutoSize = true;
-            this.cbDramaGenreAnime.Location = new System.Drawing.Point(370, 445);
+            this.cbDramaGenreAnime.Location = new System.Drawing.Point(474, 446);
             this.cbDramaGenreAnime.Name = "cbDramaGenreAnime";
             this.cbDramaGenreAnime.Size = new System.Drawing.Size(100, 30);
             this.cbDramaGenreAnime.TabIndex = 24;
@@ -385,15 +568,15 @@
             this.cbFantasyGenreAnime.Text = "Fantasy";
             this.cbFantasyGenreAnime.UseVisualStyleBackColor = true;
             // 
-            // cbAdventure
+            // cbAdventureGenreAnime
             // 
-            this.cbAdventure.AutoSize = true;
-            this.cbAdventure.Location = new System.Drawing.Point(246, 445);
-            this.cbAdventure.Name = "cbAdventure";
-            this.cbAdventure.Size = new System.Drawing.Size(133, 30);
-            this.cbAdventure.TabIndex = 22;
-            this.cbAdventure.Text = "Adventure";
-            this.cbAdventure.UseVisualStyleBackColor = true;
+            this.cbAdventureGenreAnime.AutoSize = true;
+            this.cbAdventureGenreAnime.Location = new System.Drawing.Point(246, 445);
+            this.cbAdventureGenreAnime.Name = "cbAdventureGenreAnime";
+            this.cbAdventureGenreAnime.Size = new System.Drawing.Size(133, 30);
+            this.cbAdventureGenreAnime.TabIndex = 22;
+            this.cbAdventureGenreAnime.Text = "Adventure";
+            this.cbAdventureGenreAnime.UseVisualStyleBackColor = true;
             // 
             // cbActionGenreAnime
             // 
@@ -473,14 +656,14 @@
             this.labelRatingAnime.TabIndex = 14;
             this.labelRatingAnime.Text = "Rating:";
             // 
-            // cbReleaseSeasonAnime
+            // cbxReleaseSeasonAnime
             // 
-            this.cbReleaseSeasonAnime.FormattingEnabled = true;
-            this.cbReleaseSeasonAnime.ItemHeight = 26;
-            this.cbReleaseSeasonAnime.Location = new System.Drawing.Point(161, 190);
-            this.cbReleaseSeasonAnime.Name = "cbReleaseSeasonAnime";
-            this.cbReleaseSeasonAnime.Size = new System.Drawing.Size(234, 34);
-            this.cbReleaseSeasonAnime.TabIndex = 13;
+            this.cbxReleaseSeasonAnime.FormattingEnabled = true;
+            this.cbxReleaseSeasonAnime.ItemHeight = 26;
+            this.cbxReleaseSeasonAnime.Location = new System.Drawing.Point(161, 190);
+            this.cbxReleaseSeasonAnime.Name = "cbxReleaseSeasonAnime";
+            this.cbxReleaseSeasonAnime.Size = new System.Drawing.Size(234, 34);
+            this.cbxReleaseSeasonAnime.TabIndex = 13;
             // 
             // numReleaseYearAnime
             // 
@@ -575,188 +758,17 @@
             this.tabCharacters.TabIndex = 2;
             this.tabCharacters.Text = "Characters";
             // 
-            // btnEditAnime
-            // 
-            this.btnEditAnime.BackColor = System.Drawing.Color.MediumPurple;
-            this.btnEditAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditAnime.ForeColor = System.Drawing.Color.Black;
-            this.btnEditAnime.Location = new System.Drawing.Point(326, 611);
-            this.btnEditAnime.Name = "btnEditAnime";
-            this.btnEditAnime.Size = new System.Drawing.Size(151, 43);
-            this.btnEditAnime.TabIndex = 37;
-            this.btnEditAnime.Text = "Edit Anime";
-            this.btnEditAnime.UseVisualStyleBackColor = false;
-            // 
-            // tbxStudioSearchAnime
-            // 
-            this.tbxStudioSearchAnime.Location = new System.Drawing.Point(435, 32);
-            this.tbxStudioSearchAnime.Name = "tbxStudioSearchAnime";
-            this.tbxStudioSearchAnime.Size = new System.Drawing.Size(268, 32);
-            this.tbxStudioSearchAnime.TabIndex = 6;
-            // 
-            // labelStudioSearchAnime
-            // 
-            this.labelStudioSearchAnime.AutoSize = true;
-            this.labelStudioSearchAnime.Location = new System.Drawing.Point(369, 34);
-            this.labelStudioSearchAnime.Name = "labelStudioSearchAnime";
-            this.labelStudioSearchAnime.Size = new System.Drawing.Size(80, 26);
-            this.labelStudioSearchAnime.TabIndex = 5;
-            this.labelStudioSearchAnime.Text = "Studio:";
-            // 
-            // labelNrEpisodesFromSearchAnime
-            // 
-            this.labelNrEpisodesFromSearchAnime.AutoSize = true;
-            this.labelNrEpisodesFromSearchAnime.Location = new System.Drawing.Point(6, 73);
-            this.labelNrEpisodesFromSearchAnime.Name = "labelNrEpisodesFromSearchAnime";
-            this.labelNrEpisodesFromSearchAnime.Size = new System.Drawing.Size(208, 26);
-            this.labelNrEpisodesFromSearchAnime.TabIndex = 7;
-            this.labelNrEpisodesFromSearchAnime.Text = "Nr of episodes from:";
-            // 
-            // numNrEpisodesFromSearchAnime
-            // 
-            this.numNrEpisodesFromSearchAnime.Location = new System.Drawing.Point(178, 70);
-            this.numNrEpisodesFromSearchAnime.Name = "numNrEpisodesFromSearchAnime";
-            this.numNrEpisodesFromSearchAnime.Size = new System.Drawing.Size(111, 32);
-            this.numNrEpisodesFromSearchAnime.TabIndex = 10;
-            // 
-            // labelNrEpisodesToSearchAnime
-            // 
-            this.labelNrEpisodesToSearchAnime.AutoSize = true;
-            this.labelNrEpisodesToSearchAnime.Location = new System.Drawing.Point(327, 73);
-            this.labelNrEpisodesToSearchAnime.Name = "labelNrEpisodesToSearchAnime";
-            this.labelNrEpisodesToSearchAnime.Size = new System.Drawing.Size(42, 26);
-            this.labelNrEpisodesToSearchAnime.TabIndex = 11;
-            this.labelNrEpisodesToSearchAnime.Text = "To:";
-            // 
-            // numNrEpisodesToSearchAnime
-            // 
-            this.numNrEpisodesToSearchAnime.Location = new System.Drawing.Point(365, 70);
-            this.numNrEpisodesToSearchAnime.Name = "numNrEpisodesToSearchAnime";
-            this.numNrEpisodesToSearchAnime.Size = new System.Drawing.Size(111, 32);
-            this.numNrEpisodesToSearchAnime.TabIndex = 12;
-            // 
-            // numYearSearchAnime
-            // 
-            this.numYearSearchAnime.Location = new System.Drawing.Point(129, 110);
-            this.numYearSearchAnime.Name = "numYearSearchAnime";
-            this.numYearSearchAnime.Size = new System.Drawing.Size(160, 32);
-            this.numYearSearchAnime.TabIndex = 14;
-            // 
-            // labelYearSearchAnime
-            // 
-            this.labelYearSearchAnime.AutoSize = true;
-            this.labelYearSearchAnime.Location = new System.Drawing.Point(6, 112);
-            this.labelYearSearchAnime.Name = "labelYearSearchAnime";
-            this.labelYearSearchAnime.Size = new System.Drawing.Size(146, 26);
-            this.labelYearSearchAnime.TabIndex = 13;
-            this.labelYearSearchAnime.Text = "Release year:";
-            // 
-            // labelGenreSearchAnime
-            // 
-            this.labelGenreSearchAnime.AutoSize = true;
-            this.labelGenreSearchAnime.Location = new System.Drawing.Point(6, 152);
-            this.labelGenreSearchAnime.Name = "labelGenreSearchAnime";
-            this.labelGenreSearchAnime.Size = new System.Drawing.Size(78, 26);
-            this.labelGenreSearchAnime.TabIndex = 19;
-            this.labelGenreSearchAnime.Text = "Genre:";
-            // 
-            // cbxGenreSearchAnime
-            // 
-            this.cbxGenreSearchAnime.FormattingEnabled = true;
-            this.cbxGenreSearchAnime.ItemHeight = 26;
-            this.cbxGenreSearchAnime.Location = new System.Drawing.Point(71, 149);
-            this.cbxGenreSearchAnime.Name = "cbxGenreSearchAnime";
-            this.cbxGenreSearchAnime.Size = new System.Drawing.Size(218, 34);
-            this.cbxGenreSearchAnime.TabIndex = 20;
-            // 
-            // btnDisplayAllAnime
-            // 
-            this.btnDisplayAllAnime.BackColor = System.Drawing.Color.MediumPurple;
-            this.btnDisplayAllAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisplayAllAnime.ForeColor = System.Drawing.Color.Black;
-            this.btnDisplayAllAnime.Location = new System.Drawing.Point(77, 193);
-            this.btnDisplayAllAnime.Name = "btnDisplayAllAnime";
-            this.btnDisplayAllAnime.Size = new System.Drawing.Size(151, 43);
-            this.btnDisplayAllAnime.TabIndex = 37;
-            this.btnDisplayAllAnime.Text = "Display all";
-            this.btnDisplayAllAnime.UseVisualStyleBackColor = false;
-            // 
-            // btnSearchAnime
-            // 
-            this.btnSearchAnime.BackColor = System.Drawing.Color.MediumPurple;
-            this.btnSearchAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchAnime.ForeColor = System.Drawing.Color.Black;
-            this.btnSearchAnime.Location = new System.Drawing.Point(245, 193);
-            this.btnSearchAnime.Name = "btnSearchAnime";
-            this.btnSearchAnime.Size = new System.Drawing.Size(151, 43);
-            this.btnSearchAnime.TabIndex = 38;
-            this.btnSearchAnime.Text = "Search";
-            this.btnSearchAnime.UseVisualStyleBackColor = false;
-            // 
-            // cbxSeasonSearchAnime
-            // 
-            this.cbxSeasonSearchAnime.FormattingEnabled = true;
-            this.cbxSeasonSearchAnime.ItemHeight = 26;
-            this.cbxSeasonSearchAnime.Location = new System.Drawing.Point(473, 109);
-            this.cbxSeasonSearchAnime.Name = "cbxSeasonSearchAnime";
-            this.cbxSeasonSearchAnime.Size = new System.Drawing.Size(230, 34);
-            this.cbxSeasonSearchAnime.TabIndex = 40;
-            // 
-            // labelReleaseSeasonSearchAnime
-            // 
-            this.labelReleaseSeasonSearchAnime.AutoSize = true;
-            this.labelReleaseSeasonSearchAnime.Location = new System.Drawing.Point(327, 112);
-            this.labelReleaseSeasonSearchAnime.Name = "labelReleaseSeasonSearchAnime";
-            this.labelReleaseSeasonSearchAnime.Size = new System.Drawing.Size(174, 26);
-            this.labelReleaseSeasonSearchAnime.TabIndex = 39;
-            this.labelReleaseSeasonSearchAnime.Text = "Release season:";
-            // 
-            // numRatingSearchAnime
-            // 
-            this.numRatingSearchAnime.DecimalPlaces = 1;
-            this.numRatingSearchAnime.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numRatingSearchAnime.Location = new System.Drawing.Point(390, 150);
-            this.numRatingSearchAnime.Name = "numRatingSearchAnime";
-            this.numRatingSearchAnime.Size = new System.Drawing.Size(111, 32);
-            this.numRatingSearchAnime.TabIndex = 42;
-            // 
-            // labelRatingSearchAnime
-            // 
-            this.labelRatingSearchAnime.AutoSize = true;
-            this.labelRatingSearchAnime.Location = new System.Drawing.Point(327, 152);
-            this.labelRatingSearchAnime.Name = "labelRatingSearchAnime";
-            this.labelRatingSearchAnime.Size = new System.Drawing.Size(81, 26);
-            this.labelRatingSearchAnime.TabIndex = 41;
-            this.labelRatingSearchAnime.Text = "Rating:";
-            // 
-            // labelImageAnime
-            // 
-            this.labelImageAnime.AutoSize = true;
-            this.labelImageAnime.Location = new System.Drawing.Point(82, 560);
-            this.labelImageAnime.Name = "labelImageAnime";
-            this.labelImageAnime.Size = new System.Drawing.Size(79, 26);
-            this.labelImageAnime.TabIndex = 38;
-            this.labelImageAnime.Text = "Image:";
-            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
-            // btnBrowseImgAnime
+            // pictureBox
             // 
-            this.btnBrowseImgAnime.BackColor = System.Drawing.Color.Thistle;
-            this.btnBrowseImgAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowseImgAnime.ForeColor = System.Drawing.Color.Black;
-            this.btnBrowseImgAnime.Location = new System.Drawing.Point(161, 556);
-            this.btnBrowseImgAnime.Name = "btnBrowseImgAnime";
-            this.btnBrowseImgAnime.Size = new System.Drawing.Size(151, 35);
-            this.btnBrowseImgAnime.TabIndex = 39;
-            this.btnBrowseImgAnime.Text = "Browse...";
-            this.btnBrowseImgAnime.UseVisualStyleBackColor = false;
+            this.pictureBox.Location = new System.Drawing.Point(1281, 12);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(191, 100);
+            this.pictureBox.TabIndex = 2;
+            this.pictureBox.TabStop = false;
             // 
             // MainPage
             // 
@@ -764,6 +776,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WinFormsGraphicLayer.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.labelTitleWorldOfAnime);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -774,15 +787,16 @@
             this.tabAnime.ResumeLayout(false);
             this.groupBoxAllAnime.ResumeLayout(false);
             this.groupBoxAllAnime.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numYearSearchAnime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).EndInit();
             this.groupBoxAnimeDetails.ResumeLayout(false);
             this.groupBoxAnimeDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numReleaseYearAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesAnime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numYearSearchAnime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -800,7 +814,7 @@
         private System.Windows.Forms.Label labelDescriptionAnime;
         private System.Windows.Forms.NumericUpDown numRatingAnime;
         private System.Windows.Forms.Label labelRatingAnime;
-        private System.Windows.Forms.ComboBox cbReleaseSeasonAnime;
+        private System.Windows.Forms.ComboBox cbxReleaseSeasonAnime;
         private System.Windows.Forms.NumericUpDown numReleaseYearAnime;
         private System.Windows.Forms.Label labelReleaseSeasonAnime;
         private System.Windows.Forms.Label labelReleaseYearAnime;
@@ -822,7 +836,7 @@
         private System.Windows.Forms.CheckBox cbComedyGenreAnime;
         private System.Windows.Forms.CheckBox cbDramaGenreAnime;
         private System.Windows.Forms.CheckBox cbFantasyGenreAnime;
-        private System.Windows.Forms.CheckBox cbAdventure;
+        private System.Windows.Forms.CheckBox cbAdventureGenreAnime;
         private System.Windows.Forms.CheckBox cbActionGenreAnime;
         private System.Windows.Forms.CheckBox cbShoujoGenreAnime;
         private System.Windows.Forms.CheckBox cbShounenGenreAnime;
@@ -852,5 +866,6 @@
         private System.Windows.Forms.Label labelImageAnime;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button btnBrowseImgAnime;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

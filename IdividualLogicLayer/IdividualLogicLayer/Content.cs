@@ -11,31 +11,164 @@ namespace IdividualLogicLayer
         protected string name;
         protected string description;
         protected int id;
-        protected int rating;
+        protected double rating;
         protected int releaseYear;
         protected string imageURL;
+        private bool isAdminOrMaintainer;
+        protected List<Genre> genres = new List<Genre>();
 
-        public Content(int id, string name, string description, int rating, int releaseYear, string imageURL)
+        public Content(string name, string description, double rating, int releaseYear, List<Genre> genres, string imageURL)
         {
-            this.id = id;
             this.name = name;
             this.description = description;
             this.rating = rating;
             this.releaseYear = releaseYear;
+            this.genres = genres;
             this.imageURL = imageURL;
         }
 
-        public string Name { get { return name; } set { this.name = value; } }
+        public bool IsAdmin { get { return isAdminOrMaintainer; } set { this.isAdminOrMaintainer = value; } }
 
-        public string Description { get { return description; } set { this.description = value; } }
+        public string Name 
+        { 
+            get { return name; } 
+            set 
+            {
+                if (isAdminOrMaintainer == true) //check for security level
+                {
+                    if (!string.IsNullOrEmpty(value)) //check for valid name
+                    {
+                        name = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("You need to add a name!");
+                    }
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to modify the name!");
+                }    
+            }
+        }
 
-        public int Id { get { return id; } set { this.id = value; } }
+        public string Description 
+        { 
+            get { return description; }
+            set
+            {
+                if (isAdminOrMaintainer == true) //check for security level
+                {
+                    if (!string.IsNullOrEmpty(value)) //check for valid name
+                    {
+                        description = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("You need to add a description!");
+                    }
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to modify the name!");
+                }
+            }
+        }
 
-        public int Rating { get { return rating; } set { this.rating = value; } }
+        public int Id 
+        { 
+            get { return id; }
+            set
+            {
+                if (isAdminOrMaintainer == true) //check for security level
+                {
+                    id = value;
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to modify the id!");
+                }
+            }
+        }
 
-        public int ReleaseYear { get { return releaseYear; } set { this.releaseYear = value; } }
+        public double Rating 
+        { 
+            get { return rating; }
+            set
+            {
+                if (isAdminOrMaintainer == true) //check for security level
+                {
+                    if (!string.IsNullOrEmpty(value.ToString())) //check for valid rating
+                    {
+                        if (value >= 1 && value <= 5) //check if it has a correct value
+                        {
+                            rating = value;
+                        }
+                        else
+                        {
+                            throw new Exception("The rating must be between 1 and 5!");
+                        }
+                    }
+                    else
+                    {
+                        throw new ArgumentException("You need to add a rating!");
+                    }
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to change the rating!");
+                }
+            }
+        }
 
-        public string ImageURL { get { return imageURL; } set { this.imageURL = value; } }
+        public int ReleaseYear 
+        { 
+            get { return releaseYear; }
+            set
+            {
+                if (isAdminOrMaintainer == true) //check for security level
+                {
+                    if (!string.IsNullOrEmpty(value.ToString())) //check for valid release year
+                    {
+                        releaseYear = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("You need to add a release year!");
+                    }
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to modify the release year!");
+                }
+            }
+        }
+
+        public string ImageURL 
+        { 
+            get { return imageURL; }
+            set
+            {
+                if (isAdminOrMaintainer == true) //check for security level
+                {
+                    imageURL = value;
+                }
+                else
+                {
+                    throw new Exception("You do not have permission to modify the image!");
+                }
+            }
+        }
+
+        public List<Genre> GetGenres()
+        { 
+            return genres;
+        }
+
+        public void AddGenre(Genre genre)
+        {
+            genres.Add(genre);
+        }
 
         public virtual string GetInfoDisplay()
         {

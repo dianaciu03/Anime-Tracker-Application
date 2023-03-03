@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Anime.cs" />
     <Compile Include="Content.cs" />
+    <Compile Include="ContentManager.cs" />
+    <Compile Include="Genre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Season.cs" />
     <Compile Include="User.cs" />
