@@ -40,7 +40,6 @@
             this.btnDisplayAllAnime = new System.Windows.Forms.Button();
             this.cbxGenreSearchAnime = new System.Windows.Forms.ComboBox();
             this.labelGenreSearchAnime = new System.Windows.Forms.Label();
-            this.numYearSearchAnime = new System.Windows.Forms.NumericUpDown();
             this.labelYearSearchAnime = new System.Windows.Forms.Label();
             this.numNrEpisodesToSearchAnime = new System.Windows.Forms.NumericUpDown();
             this.labelNrEpisodesToSearchAnime = new System.Windows.Forms.Label();
@@ -79,7 +78,6 @@
             this.numRatingAnime = new System.Windows.Forms.NumericUpDown();
             this.labelRatingAnime = new System.Windows.Forms.Label();
             this.cbxReleaseSeasonAnime = new System.Windows.Forms.ComboBox();
-            this.numReleaseYearAnime = new System.Windows.Forms.NumericUpDown();
             this.labelReleaseSeasonAnime = new System.Windows.Forms.Label();
             this.labelReleaseYearAnime = new System.Windows.Forms.Label();
             this.numNrEpisodesAnime = new System.Windows.Forms.NumericUpDown();
@@ -92,16 +90,16 @@
             this.tabCharacters = new System.Windows.Forms.TabPage();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.tbxReleaseYearAnime = new System.Windows.Forms.TextBox();
+            this.tbxReleaseYearSearchAnime = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.groupBoxAllAnime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numYearSearchAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).BeginInit();
             this.groupBoxAnimeDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingAnime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numReleaseYearAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -146,6 +144,7 @@
             // 
             // groupBoxAllAnime
             // 
+            this.groupBoxAllAnime.Controls.Add(this.tbxReleaseYearSearchAnime);
             this.groupBoxAllAnime.Controls.Add(this.numRatingSearchAnime);
             this.groupBoxAllAnime.Controls.Add(this.labelRatingSearchAnime);
             this.groupBoxAllAnime.Controls.Add(this.cbxSeasonSearchAnime);
@@ -154,7 +153,6 @@
             this.groupBoxAllAnime.Controls.Add(this.btnDisplayAllAnime);
             this.groupBoxAllAnime.Controls.Add(this.cbxGenreSearchAnime);
             this.groupBoxAllAnime.Controls.Add(this.labelGenreSearchAnime);
-            this.groupBoxAllAnime.Controls.Add(this.numYearSearchAnime);
             this.groupBoxAllAnime.Controls.Add(this.labelYearSearchAnime);
             this.groupBoxAllAnime.Controls.Add(this.numNrEpisodesToSearchAnime);
             this.groupBoxAllAnime.Controls.Add(this.labelNrEpisodesToSearchAnime);
@@ -181,9 +179,19 @@
             0,
             65536});
             this.numRatingSearchAnime.Location = new System.Drawing.Point(390, 150);
+            this.numRatingSearchAnime.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numRatingSearchAnime.Name = "numRatingSearchAnime";
             this.numRatingSearchAnime.Size = new System.Drawing.Size(111, 32);
             this.numRatingSearchAnime.TabIndex = 42;
+            this.numRatingSearchAnime.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // labelRatingSearchAnime
             // 
@@ -254,13 +262,6 @@
             this.labelGenreSearchAnime.Size = new System.Drawing.Size(78, 26);
             this.labelGenreSearchAnime.TabIndex = 19;
             this.labelGenreSearchAnime.Text = "Genre:";
-            // 
-            // numYearSearchAnime
-            // 
-            this.numYearSearchAnime.Location = new System.Drawing.Point(129, 110);
-            this.numYearSearchAnime.Name = "numYearSearchAnime";
-            this.numYearSearchAnime.Size = new System.Drawing.Size(160, 32);
-            this.numYearSearchAnime.TabIndex = 14;
             // 
             // labelYearSearchAnime
             // 
@@ -344,9 +345,11 @@
             this.lbxAnime.Name = "lbxAnime";
             this.lbxAnime.Size = new System.Drawing.Size(692, 394);
             this.lbxAnime.TabIndex = 0;
+            this.lbxAnime.DoubleClick += new System.EventHandler(this.lbxAnime_DoubleClick);
             // 
             // groupBoxAnimeDetails
             // 
+            this.groupBoxAnimeDetails.Controls.Add(this.tbxReleaseYearAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.btnBrowseImgAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelImageAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.btnEditAnime);
@@ -374,7 +377,6 @@
             this.groupBoxAnimeDetails.Controls.Add(this.numRatingAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelRatingAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbxReleaseSeasonAnime);
-            this.groupBoxAnimeDetails.Controls.Add(this.numReleaseYearAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelReleaseSeasonAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelReleaseYearAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.numNrEpisodesAnime);
@@ -643,9 +645,19 @@
             0,
             65536});
             this.numRatingAnime.Location = new System.Drawing.Point(161, 232);
+            this.numRatingAnime.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numRatingAnime.Name = "numRatingAnime";
-            this.numRatingAnime.Size = new System.Drawing.Size(234, 32);
+            this.numRatingAnime.Size = new System.Drawing.Size(196, 32);
             this.numRatingAnime.TabIndex = 15;
+            this.numRatingAnime.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // labelRatingAnime
             // 
@@ -662,15 +674,8 @@
             this.cbxReleaseSeasonAnime.ItemHeight = 26;
             this.cbxReleaseSeasonAnime.Location = new System.Drawing.Point(161, 190);
             this.cbxReleaseSeasonAnime.Name = "cbxReleaseSeasonAnime";
-            this.cbxReleaseSeasonAnime.Size = new System.Drawing.Size(234, 34);
+            this.cbxReleaseSeasonAnime.Size = new System.Drawing.Size(196, 34);
             this.cbxReleaseSeasonAnime.TabIndex = 13;
-            // 
-            // numReleaseYearAnime
-            // 
-            this.numReleaseYearAnime.Location = new System.Drawing.Point(161, 150);
-            this.numReleaseYearAnime.Name = "numReleaseYearAnime";
-            this.numReleaseYearAnime.Size = new System.Drawing.Size(234, 32);
-            this.numReleaseYearAnime.TabIndex = 12;
             // 
             // labelReleaseSeasonAnime
             // 
@@ -694,7 +699,7 @@
             // 
             this.numNrEpisodesAnime.Location = new System.Drawing.Point(161, 110);
             this.numNrEpisodesAnime.Name = "numNrEpisodesAnime";
-            this.numNrEpisodesAnime.Size = new System.Drawing.Size(234, 32);
+            this.numNrEpisodesAnime.Size = new System.Drawing.Size(196, 32);
             this.numNrEpisodesAnime.TabIndex = 9;
             // 
             // tbxStudioAnime
@@ -767,8 +772,23 @@
             this.pictureBox.Location = new System.Drawing.Point(1281, 12);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(191, 100);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 2;
             this.pictureBox.TabStop = false;
+            // 
+            // tbxReleaseYearAnime
+            // 
+            this.tbxReleaseYearAnime.Location = new System.Drawing.Point(161, 151);
+            this.tbxReleaseYearAnime.Name = "tbxReleaseYearAnime";
+            this.tbxReleaseYearAnime.Size = new System.Drawing.Size(196, 32);
+            this.tbxReleaseYearAnime.TabIndex = 40;
+            // 
+            // tbxReleaseYearSearchAnime
+            // 
+            this.tbxReleaseYearSearchAnime.Location = new System.Drawing.Point(140, 109);
+            this.tbxReleaseYearSearchAnime.Name = "tbxReleaseYearSearchAnime";
+            this.tbxReleaseYearSearchAnime.Size = new System.Drawing.Size(149, 32);
+            this.tbxReleaseYearSearchAnime.TabIndex = 43;
             // 
             // MainPage
             // 
@@ -788,13 +808,11 @@
             this.groupBoxAllAnime.ResumeLayout(false);
             this.groupBoxAllAnime.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numYearSearchAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).EndInit();
             this.groupBoxAnimeDetails.ResumeLayout(false);
             this.groupBoxAnimeDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingAnime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numReleaseYearAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -815,7 +833,6 @@
         private System.Windows.Forms.NumericUpDown numRatingAnime;
         private System.Windows.Forms.Label labelRatingAnime;
         private System.Windows.Forms.ComboBox cbxReleaseSeasonAnime;
-        private System.Windows.Forms.NumericUpDown numReleaseYearAnime;
         private System.Windows.Forms.Label labelReleaseSeasonAnime;
         private System.Windows.Forms.Label labelReleaseYearAnime;
         private System.Windows.Forms.NumericUpDown numNrEpisodesAnime;
@@ -855,7 +872,6 @@
         private System.Windows.Forms.Button btnDisplayAllAnime;
         private System.Windows.Forms.ComboBox cbxGenreSearchAnime;
         private System.Windows.Forms.Label labelGenreSearchAnime;
-        private System.Windows.Forms.NumericUpDown numYearSearchAnime;
         private System.Windows.Forms.Label labelYearSearchAnime;
         private System.Windows.Forms.NumericUpDown numNrEpisodesToSearchAnime;
         private System.Windows.Forms.Label labelNrEpisodesToSearchAnime;
@@ -867,5 +883,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button btnBrowseImgAnime;
         private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.TextBox tbxReleaseYearSearchAnime;
+        private System.Windows.Forms.TextBox tbxReleaseYearAnime;
     }
 }

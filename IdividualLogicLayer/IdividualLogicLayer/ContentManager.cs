@@ -15,6 +15,13 @@ namespace IdividualLogicLayer
 
         }
 
+        public List<Content> ContentApplication { get { return contentApplication; } }
+
+        public void AddContentToList(Content content)
+        {
+            contentApplication.Add(content);
+        }
+
         public void SetAnimeId(Anime content)
         {
             int id;

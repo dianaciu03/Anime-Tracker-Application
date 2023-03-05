@@ -170,11 +170,17 @@ namespace IdividualLogicLayer
             genres.Add(genre);
         }
 
-        public virtual string GetInfoDisplay()
+        public virtual string GetInfoDetailed()
+        {
+            string genresString = string.Join(", ", genres.Select(genre => genre.ToString()));
+            string info = $"{this.id}.{this.name}\nRelease year: {this.releaseYear}\nRating: {this.rating}/5\n\nDescription:\n{this.description}\n\nGenres: {genresString}\nImage URL: {this.imageURL}";
+            return info;
+        }
+
+        public override string ToString()
         {
             return $"{this.name} - Rating {this.rating}/5";
         }
-
 
     }
 }

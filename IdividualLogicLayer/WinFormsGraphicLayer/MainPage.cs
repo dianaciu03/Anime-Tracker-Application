@@ -14,8 +14,9 @@ namespace WinFormsGraphicLayer
 {
     public partial class MainPage : Form
     {
-        string filename = "";
-        string loggedUser = "admin";
+        //declare (and initialize) variables
+        string filename = String.Empty;
+        string loggedUser = "admin"; //hardcoded
         List<CheckBox> animeGenre;
         ContentManager contentManager = new ContentManager();
 
@@ -27,11 +28,14 @@ namespace WinFormsGraphicLayer
 
         public void InitializeForm()
         {
+            //fix background image
             this.BackgroundImageLayout = ImageLayout.Stretch;
 
+            //create list of genre textboxes
             animeGenre = new List<CheckBox>
             { cbActionGenreAnime, cbAdventureGenreAnime, cbComedyGenreAnime, cbDramaGenreAnime, cbEcchiGenreAnime, cbFantasyGenreAnime, cbHorrorGenreAnime, cbIsekaiGenreAnime, cbMechaGenreAnime, cbMisteryGenreAnime, cbPsychologicalGenreAnime, cbRomanceGenreAnime, cbSciFiGenreAnime, cbShoujoGenreAnime, cbShounenGenreAnime, cbSliceOfLifeGenreAnime, cbSportsGenreAnime };
 
+            //fill combobox with data
             cbxReleaseSeasonAnime.DataSource = Enum.GetValues(typeof(Season));
         }
 
@@ -40,14 +44,14 @@ namespace WinFormsGraphicLayer
         {
             try
             {
-                if(loggedUser == "admin")
+                if(loggedUser == "admin") //hardcoded
                 {
                     string name = tbxNameAnime.Text;
                     string studio = tbxStudioAnime.Text;
                     string description = tbxDescriptionAnime.Text;
                     int nrEpisodes = Convert.ToInt32(numNrEpisodesAnime.Text);
                     double rating = Convert.ToDouble(numRatingAnime.Text);
-                    int releaseYear = Convert.ToInt32(numReleaseYearAnime.Text);
+                    int releaseYear = Convert.ToInt32(tbxReleaseYearAnime.Text);
                     Season releaseSeason = (Season)cbxReleaseSeasonAnime.SelectedItem;
                     List<Genre> genres = new List<Genre>();
                     
@@ -60,16 +64,43 @@ namespace WinFormsGraphicLayer
                         }
                     }
 
-                    Content anime = new Anime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
-                    contentManager.SetAnimeId((Anime)anime);
-                    lbxAnime.Items.Add(anime.GetInfoDisplay());
+                    //create anime object bases on all the inputted data
+                    if(!String.IsNullOrEmpty(filename))
+                    {
+                        Content anime = new Anime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
+                        contentManager.SetAnimeId((Anime)anime);
+                        contentManager.AddContentToList(anime);
+                        filename = String.Empty;
+                    }
+                    UpdateAnimeListBox();
                 }
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show("The year should only be composed of numbers!");
+                return;
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
+        }
+
+        private void UpdateAnimeListBox()
+        {
+            try
+            {
+                contentManager.ContentApplication
+                .Where(content => content is Anime)
+                .ToList()
+                .ForEach(anime => lbxAnime.Items.Add((Anime)anime));
+            }
+            catch(ArgumentNullException)
+            {
+                MessageBox.Show("There is no anime data to show.");
+            }
+            
         }
 
         private void btnBrowseImgAnime_Click(object sender, EventArgs e)
@@ -87,7 +118,20 @@ namespace WinFormsGraphicLayer
 
         private void btnDisplayAllAnime_Click(object sender, EventArgs e)
         {
+            UpdateAnimeListBox();
+        }
 
+        private void lbxAnime_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Anime tempAnime = lbxAnime.SelectedItem as Anime;
+                MessageBox.Show(tempAnime.GetInfoDetailed());
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

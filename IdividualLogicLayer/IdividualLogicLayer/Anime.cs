@@ -27,9 +27,16 @@ namespace IdividualLogicLayer
 
         public string Studio { get { return studio; } set { this.studio = value; } }
 
-        public override string GetInfoDisplay()
+        public override string ToString()
         {
             return $"{Name} - {this.nrEpisodes} episodes - Rating {Rating}/5";
+        }
+
+        public override string GetInfoDetailed()
+        {
+            string genresString = string.Join(", ", genres.Select(genre => genre.ToString()));
+            string info = $"{Id}.{Name} - {this.nrEpisodes} episodes\nRelease date: {this.season}, {ReleaseYear}\nStudio: {this.studio}\nRating: {Rating}/5\n\nDescription:\n{Description}\n\nGenres: {genresString}\nImage URL: {ImageURL}";
+            return info;
         }
     }
 }
