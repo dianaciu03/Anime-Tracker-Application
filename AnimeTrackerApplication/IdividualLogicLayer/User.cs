@@ -27,7 +27,7 @@ namespace IdividualLogicLayer
 
         protected string Password { get { return password; } set { this.password = value; } }
 
-        public virtual string GetInfo()
+        public override string ToString()
         {
             return $"{this.Name}";
         }
