@@ -7,7 +7,7 @@ html[b-ny4f1boial] {
 
 .mynavbar[b-ny4f1boial] {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 3fr;
     background-color: #6544f3;
     margin: 0em;
     padding: 0em 5em 0em 5em;
@@ -25,10 +25,16 @@ html[b-ny4f1boial] {
     padding: 0px 25px 0px 25px;
 }
 
+.a:hover[b-ny4f1boial] {
+    text-decoration: underline;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
 .navbar-nav .nav-link[b-ny4f1boial] {
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Comfortaa', cursive;
     font-weight: 500;
 }
@@ -36,7 +42,9 @@ html[b-ny4f1boial] {
 .navbar-nav .nav-link:hover[b-ny4f1boial] {
     text-decoration: underline;
     color: white;
+    border-bottom: 2px solid white;
 }
+
 
 .navbar-brand[b-ny4f1boial] {
     padding-top: 0rem;
@@ -59,14 +67,15 @@ html[b-ny4f1boial] {
     margin-right: 5em;
 }
 
-.footer[b-ny4f1boial] {
+.myfooter[b-ny4f1boial] {
     position: absolute;
     bottom: 0;
     width: 100%;
     background-color: #6544f3;
-    color: #6544f3;
+    color: white;
     white-space: nowrap;
-    line-height: 60px;
+    line-height: initial;
+    padding: 0px 0px 7px 20px;
 }
 
 

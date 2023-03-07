@@ -10,8 +10,4 @@
     <ProjectReference Include="..\IdividualLogicLayer\IdividualLogicLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
 </Project>

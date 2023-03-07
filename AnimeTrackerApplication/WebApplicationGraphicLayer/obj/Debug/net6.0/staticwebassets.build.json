@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6eNeFMTSSsY8O34c380RZUicp94CIA98iHmWMQ2eRPg=",
+  "Hash": "6Ygqnkjp/7hiWsTQ+bPMAoxlIihVL7yDokkWU0I/Yvk=",
   "Source": "WebApplicationGraphicLayer",
   "BasePath": "_content/WebApplicationGraphicLayer",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\homepage1.jpg"
+    },
+    {
+      "Identity": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\wwwroot\\images\\loginbg.png",
+      "SourceId": "WebApplicationGraphicLayer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\wwwroot\\",
+      "BasePath": "_content/WebApplicationGraphicLayer",
+      "RelativePath": "images/loginbg.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\loginbg.png"
     },
     {
       "Identity": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\wwwroot\\images\\logo.jpg",

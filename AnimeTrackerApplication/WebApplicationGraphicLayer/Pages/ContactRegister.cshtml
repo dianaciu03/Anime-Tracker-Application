@@ -1,9 +1,40 @@
 ﻿@page
 @model WebApplicationGraphicLayer.Pages.ContactRegisterModel
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer ViewLocalizer
 @{
 }
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 rounded">
+                <h2 class="text-center mb-4">Register</h2>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="inputName">Name</label>
+                        <input type="text" class="form-control rounded-pill" id="inputName" name="inputName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control rounded-pill" id="inputEmail" name="inputEmail" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control rounded-pill" id="inputPassword" name="inputPassword" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputConfirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control rounded-pill" id="inputConfirmPassword" name="inputConfirmPassword" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary rounded-pill mt-4">Register</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/login">If you already have an account, login here.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 @section Scripts {

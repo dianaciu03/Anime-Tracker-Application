@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
 </head>
-<body class="main-layout">
+<body class="main-layout background-img-login">
     <header>
         <nav class="navbar navbar-expand-lg mynavbar">
             <a class="navbar-brand" asp-page="/Index"><img src="images/logo.jpg" alt="Logo" class="logo"></a>
@@ -22,72 +22,62 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto myul">
                     <li class="nav-item dropdown myli">
-                        <a class="nav-link dropdown-toggle" href="page1.html" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white hover-underline dropdown-toggle" asp-page="/Anime" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Anime
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <a class="dropdown-item" href="#">Sub-Element 1</a>
-                            <a class="dropdown-item" href="#">Sub-Element 2</a>
-                            <a class="dropdown-item" href="#">Sub-Element 3</a>
+                            <a class="dropdown-item" asp-page="#">New releases</a>
+                            <a class="dropdown-item" asp-page="#">Top anime</a>
+                            <a class="dropdown-item" asp-page="#">For you</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown myli">
-                        <a class="nav-link dropdown-toggle" href="page2.html" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white hover-underline dropdown-toggle" asp-page="/Manga" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Manga
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                            <a class="dropdown-item" href="#">Sub-Element 1</a>
-                            <a class="dropdown-item" href="#">Sub-Element 2</a>
-                            <a class="dropdown-item" href="#">Sub-Element 3</a>
+                            <a class="dropdown-item" asp-page="#">New releases</a>
+                            <a class="dropdown-item" asp-page="#">Top manga</a>
+                            <a class="dropdown-item" asp-page="#">For you</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown myli">
-                        <a class="nav-link dropdown-toggle" href="page3.html" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white hover-underline dropdown-toggle" asp-page="page3.html" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Characters
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                            <a class="dropdown-item" href="#">Sub-Element 1</a>
-                            <a class="dropdown-item" href="#">Sub-Element 2</a>
-                            <a class="dropdown-item" href="#">Sub-Element 3</a>
+                            <a class="dropdown-item" asp-page="#">Favourite characters</a>
+                            <a class="dropdown-item" asp-page="#">Hated characters</a>
+                            <a class="dropdown-item" asp-page="#">Voice actors</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown myli">
-                        <a class="nav-link dropdown-toggle" href="page4.html" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link text-white hover-underline dropdown-toggle" asp-page="page4.html" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Community
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                            <a class="dropdown-item" href="#">Sub-Element 1</a>
-                            <a class="dropdown-item" href="#">Sub-Element 2</a>
-                            <a class="dropdown-item" href="#">Sub-Element 3</a>
+                            <a class="dropdown-item" href="#">Anime reviews</a>
+                            <a class="dropdown-item" href="#">Manga reviws</a>
+                            <a class="dropdown-item" href="#">About us</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown myli">
-                        <a class="nav-link dropdown-toggle" href="page5.html" id="navbarDropdown5" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item myli">
+                        <a class="nav-link text-white" asp-page="./ContactLogin" id="navbarProfile" role="button">
                             Profile
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown5">
-                            <a class="dropdown-item" href="#">Sub-Element 1</a>
-                            <a class="dropdown-item" href="#">Sub-Element 2</a>
-                            <a class="dropdown-item" href="#">Sub-Element 3</a>
-                        </div>
                     </li>
                 </ul>
-
             </div>
-            <ul class="navbar-nav mr-auto myul" style="padding-left: 5em">
-                <li class="myli"><a class="nav-link" asp-page="./ContactLogin">log in</a></li>
-                <li class="myli"><a class="nav-link" asp-page="./ContactRegister">sign up</a></li>
-            </ul>
         </nav>
     </header>
-    <div>
+    <div >
         <main role="main">
             @RenderBody()
         </main>
     </div>
 
     <footer class="myfooter">
-        <div class="container">
+        <div>
             &copy; 2023 - Ciuperca Diana-Valentina - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
