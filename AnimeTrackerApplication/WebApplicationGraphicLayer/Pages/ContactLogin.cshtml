@@ -1,0 +1,29 @@
+﻿@page
+@model WebApplicationGraphicLayer.Pages.ContactLoginModel
+@{
+    Layout = "_LayoutLoginRegister";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 rounded">
+                <h2 class="text-center mb-4">Login</h2>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control rounded-pill" id="inputEmail" name="inputEmail" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control rounded-pill" id="inputPassword" name="inputPassword" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary rounded-pill mt-4">Login</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a asp-page="/ContactRegister">Don't have an account? Register here.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

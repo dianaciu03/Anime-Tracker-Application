@@ -25,7 +25,7 @@ namespace IdividualLogicLayer
 
         public string Email { get { return email; } set { this.email = value; } }
 
-        protected string Password { get { return password; } set { this.password = value; } }
+        protected string Password { get { return password; } }
 
         public override string ToString()
         {

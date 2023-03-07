@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - WebApplicationGraphicLayer</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login_register.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebApplicationGraphicLayer.styles.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,8 +75,8 @@
 
             </div>
             <ul class="navbar-nav mr-auto myul" style="padding-left: 5em">
-                <li class="myli"><a class="nav-link" href="pageLogin.html">log in</a></li>
-                <li class="myli"><a class="nav-link" href="pageRegister.html">sign up</a></li>
+                <li class="myli"><a class="nav-link" asp-page="./ContactLogin">log in</a></li>
+                <li class="myli"><a class="nav-link" asp-page="./ContactRegister">sign up</a></li>
             </ul>
         </nav>
     </header>
