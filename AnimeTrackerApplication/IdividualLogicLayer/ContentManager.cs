@@ -22,14 +22,18 @@ namespace IdividualLogicLayer
             contentApplication.Add(content);
         }
 
-        public void SetAnimeId(Anime content)
+        public void SetAnimeId(Anime anime)
         {
-            int id;
+            int idNr;
             while (true)
             {
-                id = GiveRandomId();
+                idNr = GiveRandomId();
+                string id = "A" + idNr;
                 if (!contentApplication.Select(x => x.Id).Contains(id))
+                {
+                    anime.Id = id;
                     break;
+                }    
             }
         }
 

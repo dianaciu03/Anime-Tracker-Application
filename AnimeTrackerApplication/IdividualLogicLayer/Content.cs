@@ -10,7 +10,7 @@ namespace IdividualLogicLayer
     {
         protected string name;
         protected string description;
-        protected int id;
+        protected string id;
         protected double rating;
         protected int releaseYear;
         protected string imageURL;
@@ -27,28 +27,15 @@ namespace IdividualLogicLayer
             this.imageURL = imageURL;
         }
 
-        public bool IsAdmin { get { return isAdminOrMaintainer; } set { this.isAdminOrMaintainer = value; } }
-
         public string Name 
         { 
             get { return name; } 
             set 
             {
-                if (isAdminOrMaintainer == true) //check for security level
-                {
-                    if (!string.IsNullOrEmpty(value)) //check for valid name
-                    {
-                        name = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("You need to add a name!");
-                    }
-                }
+                if (!String.IsNullOrEmpty(value)) //check for valid name
+                    name = value;
                 else
-                {
-                    throw new Exception("You do not have permission to modify the name!");
-                }    
+                    throw new ArgumentException("You need to add a name!");   
             }
         }
 
@@ -57,38 +44,17 @@ namespace IdividualLogicLayer
             get { return description; }
             set
             {
-                if (isAdminOrMaintainer == true) //check for security level
-                {
-                    if (!string.IsNullOrEmpty(value)) //check for valid name
-                    {
-                        description = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("You need to add a description!");
-                    }
-                }
+                if (!string.IsNullOrEmpty(value)) //check for valid description
+                    description = value;
                 else
-                {
-                    throw new Exception("You do not have permission to modify the name!");
-                }
+                    throw new ArgumentException("You need to add a description!");
             }
         }
 
-        public int Id 
+        public string Id 
         { 
             get { return id; }
-            set
-            {
-                if (isAdminOrMaintainer == true) //check for security level
-                {
-                    id = value;
-                }
-                else
-                {
-                    throw new Exception("You do not have permission to modify the id!");
-                }
-            }
+            set { id = value; }
         }
 
         public double Rating 
@@ -96,27 +62,20 @@ namespace IdividualLogicLayer
             get { return rating; }
             set
             {
-                if (isAdminOrMaintainer == true) //check for security level
+                if (!String.IsNullOrEmpty(value.ToString())) //check for valid rating
                 {
-                    if (!string.IsNullOrEmpty(value.ToString())) //check for valid rating
+                    if (value >= 1 && value <= 5) //check if it has a correct value
                     {
-                        if (value >= 1 && value <= 5) //check if it has a correct value
-                        {
-                            rating = value;
-                        }
-                        else
-                        {
-                            throw new Exception("The rating must be between 1 and 5!");
-                        }
+                        rating = value;
                     }
                     else
                     {
-                        throw new ArgumentException("You need to add a rating!");
+                        throw new Exception("The rating must be between 1 and 5!");
                     }
                 }
                 else
                 {
-                    throw new Exception("You do not have permission to change the rating!");
+                    throw new ArgumentException("You need to add a rating!");
                 }
             }
         }
@@ -126,20 +85,13 @@ namespace IdividualLogicLayer
             get { return releaseYear; }
             set
             {
-                if (isAdminOrMaintainer == true) //check for security level
+                if (!String.IsNullOrEmpty(value.ToString())) //check for valid release year
                 {
-                    if (!string.IsNullOrEmpty(value.ToString())) //check for valid release year
-                    {
-                        releaseYear = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("You need to add a release year!");
-                    }
+                    releaseYear = value;
                 }
                 else
                 {
-                    throw new Exception("You do not have permission to modify the release year!");
+                    throw new ArgumentException("You need to add a release year!");
                 }
             }
         }

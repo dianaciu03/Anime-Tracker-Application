@@ -10,3 +10,9 @@ D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicL
 D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.csproj.CoreCompileInputs.cache
 D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.dll
 D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\IdividualLogicLayer\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.pdb
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\bin\Debug\IdividualLogicLayer.dll
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\bin\Debug\IdividualLogicLayer.pdb
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.csproj.AssemblyReference.cache
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.csproj.CoreCompileInputs.cache
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.dll
+D:\FONTYS\Semester 2\Individual\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.pdb

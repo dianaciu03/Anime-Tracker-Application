@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplicationGraphicLayer"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsGraphicLayer", "WinFormsGraphicLayer\WinFormsGraphicLayer.csproj", "{2F61BEF7-FBB2-42B8-977E-DF14026F0A7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndividualDAL", "IndividualDAL\IndividualDAL.csproj", "{6A712301-C2A3-43FE-88C1-71615F389D28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2F61BEF7-FBB2-42B8-977E-DF14026F0A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F61BEF7-FBB2-42B8-977E-DF14026F0A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F61BEF7-FBB2-42B8-977E-DF14026F0A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A712301-C2A3-43FE-88C1-71615F389D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A712301-C2A3-43FE-88C1-71615F389D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A712301-C2A3-43FE-88C1-71615F389D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A712301-C2A3-43FE-88C1-71615F389D28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

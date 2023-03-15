@@ -8,6 +8,22 @@ namespace IdividualLogicLayer
 {
     public enum Genre
     {
-        Adventure
+        Action,
+        Adventure,
+        Comedy,
+        Drama,
+        Ecchi,
+        Fantasy,
+        Horror,
+        Isekai,
+        Mecha,
+        Mistery,
+        Psychological,
+        Romance,
+        SciFi,
+        Shoujo,
+        Shounen,
+        SliceOfLife,
+        Sports
     }
 }

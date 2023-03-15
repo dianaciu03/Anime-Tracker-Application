@@ -31,11 +31,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\IdividualLogicLayer\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
+      "projectUniqueName": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
       "projectName": "WebApplicationGraphicLayer",
-      "projectPath": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\IdividualLogicLayer\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
+      "projectPath": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
       "packagesPath": "C:\\Users\\Silvia\\.nuget\\packages\\",
-      "outputPath": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\IdividualLogicLayer\\WebApplicationGraphicLayer\\obj\\",
+      "outputPath": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Silvia\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,8 +52,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\IdividualLogicLayer\\IdividualLogicLayer\\IdividualLogicLayer.csproj": {
-              "projectPath": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\IdividualLogicLayer\\IdividualLogicLayer\\IdividualLogicLayer.csproj"
+            "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\IdividualLogicLayer\\IdividualLogicLayer.csproj": {
+              "projectPath": "D:\\FONTYS\\Semester 2\\Individual\\individual-assignment-semester-2\\AnimeTrackerApplication\\IdividualLogicLayer\\IdividualLogicLayer.csproj"
             }
           }
         }
