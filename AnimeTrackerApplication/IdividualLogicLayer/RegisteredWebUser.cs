@@ -8,9 +8,12 @@ namespace IdividualLogicLayer
 {
     public class RegisteredWebUser : User
     {
-        public RegisteredWebUser(string name, string email, string password, DateTime joinDate) : base(name, email, password, joinDate)
-        {
+        private string username;
+        private string passwordConfirm;
 
+        public RegisteredWebUser(string name, string email, string password, DateTime joinDate, string username) : base(name, email, password, joinDate)
+        {
+            this.username = username;
         }
 
         public RegisteredWebUser()
@@ -18,9 +21,14 @@ namespace IdividualLogicLayer
 
         }
 
+        public string Username { get { return username; } set { this.username = value; } }
+
+        public string PasswordConfirm { get { return passwordConfirm; } set { this.passwordConfirm = value; } }
+
+
         public override string ToString()
         {
-            return $"{this.Name}";
+            return $"{this.username}";
         }
     }
 }

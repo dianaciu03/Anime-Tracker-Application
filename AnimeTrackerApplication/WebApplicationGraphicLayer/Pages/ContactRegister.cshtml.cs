@@ -14,7 +14,7 @@ namespace WebApplicationGraphicLayer.Pages
     public class ContactRegisterModel : PageModel
     {
         [BindProperty]
-        public User RegistrationFormUser { get; set; } = new RegisteredWebUser();
+        public RegisteredWebUser RegistrationFormUser { get; set; } = new RegisteredWebUser();
 
 
         [BindProperty]
@@ -22,14 +22,19 @@ namespace WebApplicationGraphicLayer.Pages
          MinLength(6, ErrorMessage = "Your password need to be at least 6 characters")]
         public string Password { get; set; } = String.Empty;
 
+        [BindProperty]
+        public string PasswordConfirm { get; set; } = String.Empty;
 
         [BindProperty]
         [Required(ErrorMessage = "A name is required")]
         public string Name { get; set; } = String.Empty;
 
+        [BindProperty]
+        [Required(ErrorMessage = "A username is required")]
+        public string Username { get; set; } = String.Empty;
 
         [BindProperty]
-        [Required(ErrorMessage = "A name is required"),
+        [Required(ErrorMessage = "An email is required"),
          EmailAddress(ErrorMessage = "Your email must be a valid one")]
         public string Email { get; set; } = String.Empty;
 
@@ -45,9 +50,12 @@ namespace WebApplicationGraphicLayer.Pages
             {
                 return Page();
             }
-            User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.UtcNow);
-            TempData["WebUser"] = JsonSerializer.Serialize(webUser);
 
+            if(RegistrationFormUser.Password == RegistrationFormUser.PasswordConfirm)
+            {
+                RegisteredWebUser webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.UtcNow, RegistrationFormUser.Username);
+                TempData["WebUser"] = JsonSerializer.Serialize(webUser);
+            }
             return RedirectToPage("Index");
         }
     }
