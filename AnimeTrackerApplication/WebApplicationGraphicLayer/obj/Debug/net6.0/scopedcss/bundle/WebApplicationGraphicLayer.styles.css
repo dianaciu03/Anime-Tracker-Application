@@ -8,7 +8,7 @@ html[b-ny4f1boial] {
 
 .mynavbar[b-ny4f1boial] {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 3fr 1fr;
     background-color: #6544f3;
     margin: 0em;
     padding: 0em 5em 0em 5em;

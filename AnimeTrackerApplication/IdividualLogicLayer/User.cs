@@ -21,6 +21,11 @@ namespace IdividualLogicLayer
             this.joinDate = joinDate;
         }
 
+        public User()
+        {
+
+        }
+
         public string Name { get { return name; } set { this.name = value; } }
 
         public string Email { get { return email; } set { this.email = value; } }

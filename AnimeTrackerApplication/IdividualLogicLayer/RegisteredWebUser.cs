@@ -13,6 +13,11 @@ namespace IdividualLogicLayer
 
         }
 
+        public RegisteredWebUser()
+        {
+
+        }
+
         public override string ToString()
         {
             return $"{this.Name}";

@@ -11,7 +11,7 @@ namespace WebApplicationGraphicLayer.Pages
         {
             if (TempData.ContainsKey("Admin"))
             {
-                Admin admin = JsonSerializer.Deserialize<Admin>((string)TempData["Admin"])!;
+                RegisteredWebUser webUser = JsonSerializer.Deserialize<RegisteredWebUser>((string)TempData["WebUser"])!;
                 
             }
         }

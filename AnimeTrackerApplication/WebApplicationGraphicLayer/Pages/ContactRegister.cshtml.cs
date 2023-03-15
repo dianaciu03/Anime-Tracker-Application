@@ -14,7 +14,7 @@ namespace WebApplicationGraphicLayer.Pages
     public class ContactRegisterModel : PageModel
     {
         [BindProperty]
-        public Admin RegisterForm { get; set; } = new Admin();
+        public User RegistrationFormUser { get; set; } = new RegisteredWebUser();
 
 
         [BindProperty]
@@ -45,8 +45,8 @@ namespace WebApplicationGraphicLayer.Pages
             {
                 return Page();
             }
-            Admin admin = new Admin(RegisterForm.Name, RegisterForm.Email, RegisterForm.Password, DateTime.UtcNow);
-            TempData["Admin"] = JsonSerializer.Serialize(admin);
+            User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.UtcNow);
+            TempData["WebUser"] = JsonSerializer.Serialize(webUser);
 
             return RedirectToPage("Index");
         }
