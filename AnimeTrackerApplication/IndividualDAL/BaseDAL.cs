@@ -8,6 +8,6 @@ namespace IndividualDAL
 {
     public class BaseDAL
     {
-        string? value = "da";
+        //string? value = "da";
     }
 }
