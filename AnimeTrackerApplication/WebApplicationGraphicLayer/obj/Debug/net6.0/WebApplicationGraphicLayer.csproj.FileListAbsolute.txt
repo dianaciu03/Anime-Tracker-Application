@@ -115,3 +115,4 @@ D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerA
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.genruntimeconfig.cache
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\ref\WebApplicationGraphicLayer.dll
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\scopedcss\Pages\Shared\_LayoutLoginRegister.cshtml.rz.scp.css
+D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\IdividualLogicLayer.dll.config

@@ -7,13 +7,21 @@ namespace WebApplicationGraphicLayer.Pages
 {
     public class ContactLoginModel : PageModel
     {
+        private static UserManager _userManager = new UserManager();
+        private List<User> users = _userManager.GetUsers();
+
         public void OnGet()
         {
-            if (TempData.ContainsKey("Admin"))
+            if (TempData.ContainsKey("WebUser"))
             {
-                RegisteredWebUser webUser = JsonSerializer.Deserialize<RegisteredWebUser>((string)TempData["WebUser"])!;
-                
+                //RegisteredWebUser webUser = JsonSerializer.Deserialize<RegisteredWebUser>((string)TempData["WebUser"])!;
             }
+        }
+
+        public IActionResult OnPost()
+        {
+
+            return RedirectToPage("Index");
         }
     }
 }
