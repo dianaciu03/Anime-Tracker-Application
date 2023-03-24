@@ -1,0 +1,86 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+html {
+    background-color: #6544f3;
+}
+
+.mynavbar {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    background-color: #6544f3;
+    margin: 0em;
+    padding: 0em 5em 0em 5em;
+    align-items: center;
+}
+
+.myul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.myli {
+    padding: 0px 25px 0px 25px;
+}
+
+.a:hover {
+    text-decoration: underline;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.navbar-nav .nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+    text-decoration: underline;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+
+.navbar-brand {
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    margin-right: 8rem;
+}
+
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+    background-color: #C8B8FC;
+}
+
+.logo {
+    width: 130px;
+    height: 65px
+}
+
+.nopadding {
+    padding: 0em;
+    margin-right: 5em;
+}
+
+.myfooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #6544f3;
+    color: white;
+    white-space: nowrap;
+    line-height: initial;
+    padding: 0px 0px 7px 20px;
+}
+
+
+
+
+
+
+

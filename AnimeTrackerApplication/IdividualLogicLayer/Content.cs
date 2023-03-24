@@ -14,7 +14,6 @@ namespace IdividualLogicLayer
         protected double rating;
         protected int releaseYear;
         protected string imageURL;
-        private bool isAdminOrMaintainer;
         protected List<Genre> genres = new List<Genre>();
 
         public Content(string name, string description, double rating, int releaseYear, List<Genre> genres, string imageURL)
@@ -99,17 +98,7 @@ namespace IdividualLogicLayer
         public string ImageURL 
         { 
             get { return imageURL; }
-            set
-            {
-                if (isAdminOrMaintainer == true) //check for security level
-                {
-                    imageURL = value;
-                }
-                else
-                {
-                    throw new Exception("You do not have permission to modify the image!");
-                }
-            }
+            set { imageURL = value; }
         }
 
         public List<Genre> GetGenres()
