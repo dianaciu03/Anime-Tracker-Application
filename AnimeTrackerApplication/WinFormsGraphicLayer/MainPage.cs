@@ -17,7 +17,7 @@ namespace WinFormsGraphicLayer
         //declare (and initialize) variables
         string filename = String.Empty;
         List<CheckBox> animeGenre;
-        ContentManager contentManager = new ContentManager();
+        AnimeManager animeManager = new AnimeManager();
 
         public MainPage()
         {
@@ -64,9 +64,10 @@ namespace WinFormsGraphicLayer
                 //create anime object bases on all the inputted data
                 if(!String.IsNullOrEmpty(filename))
                 {
-                    Content anime = new Anime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
-                    contentManager.SetAnimeId((Anime)anime);
-                    contentManager.AddContentToList(anime);
+                    //Content anime = new Anime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
+                    //Anime
+                    //contentManager.AddContentToList(anime);
+                    //IAnime anime1 = (IAnime)anime;
                     filename = String.Empty;
                 }
                 UpdateAnimeListBox();

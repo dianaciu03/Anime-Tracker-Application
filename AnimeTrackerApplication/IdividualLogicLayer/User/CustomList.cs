@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IdividualLogicLayer
 {
-    internal class CustomList
+    public class CustomList
     {
     }
 }

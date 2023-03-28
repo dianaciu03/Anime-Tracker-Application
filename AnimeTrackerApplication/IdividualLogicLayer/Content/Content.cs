@@ -16,8 +16,9 @@ namespace IdividualLogicLayer
         protected string imageURL;
         protected List<Genre> genres = new List<Genre>();
 
-        public Content(string name, string description, double rating, int releaseYear, List<Genre> genres, string imageURL)
+        public Content(string id, string name, string description, double rating, int releaseYear, List<Genre> genres, string imageURL)
         {
+            this.id = id;
             this.name = name;
             this.description = description;
             this.rating = rating;
@@ -53,7 +54,6 @@ namespace IdividualLogicLayer
         public string Id 
         { 
             get { return id; }
-            set { id = value; }
         }
 
         public double Rating 

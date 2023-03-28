@@ -6,15 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using IdividualLogicLayer;
 using System.Reflection.Metadata;
+using System.Drawing;
+using System.Transactions;
 
 namespace IndividualDAL
 {
-    public class AnimeDAL : BaseDAL
+    public class AnimeDAL : BaseDAL, IAnime
     {
 
-        public List<Content> GetAllAnime()
+        public List<Anime> GetAllAnime()
         {
-            List<Content> listAnime = new List<Content>();
+            List<Anime> listAnime = new List<Anime>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(Connection))
@@ -34,6 +36,7 @@ namespace IndividualDAL
 
                         while (reader.Read())
                         {
+                            string animeId = reader.GetString(reader.GetOrdinal("AnimeId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
                             string studio = reader.GetString(reader.GetOrdinal("Studio"));
                             int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
@@ -45,34 +48,133 @@ namespace IndividualDAL
 
                             Season season = (Season)Enum.Parse(typeof(Season), releaseSeason);
 
-                            Content anime = new Anime(name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, new List<Genre>());
-                            listAnime.Add(anime);
+                            Content anime = new Anime(animeId, name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, new List<Genre>());
+                            listAnime.Add((Anime)anime);
                         }
                     }
                 }
             }
             catch (Exception)
             {
-                throw new Exception("There are no anime at the moment");
+                throw new Exception("There are no animes at the moment");
             }
             return listAnime;
         }
-            
-            
 
         public void AddAnime(Anime anime)
         {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
 
+                    try
+                    {
+                        string query = @"INSERT INTO Anime VALUES (@AnimeId,@Name,@Studio,@NrEpisodes,@ReleaseYear,@ReleaseSeason,@Rating,@Description,@Image)";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@AnimeId", anime.Id);
+                            command.Parameters.AddWithValue("@Name", anime.Name);
+                            command.Parameters.AddWithValue("@Studio", anime.Studio);
+                            command.Parameters.AddWithValue("@NrEpisodes", anime.NrEpisodes);
+                            command.Parameters.AddWithValue("@ReleaseSeason", anime.SeasonAnime.ToString());
+                            command.Parameters.AddWithValue("@Rating", anime.Rating);
+                            command.Parameters.AddWithValue("@Description", anime.Description);
+                            command.Parameters.AddWithValue("@Image", anime.ImageURL);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Anime couldn't be added: {ex.Message}");
+                    }
+                    conn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"An error occurred: {ex.Message}");
+            }
         }
 
-        public void UpdateAnime(Anime anime)
+        public void UpdateAnime(string id, string name, string studio, int nrEpisodes, int releaseYear, Season releaseSeason, double rating, string description, string imageURL)
         {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
 
+                    try
+                    {
+                        string query = @"UPDATE Anime SET Name=@Name, Studio=@Studio, NrEpisodes=@NrEpisodes, ReleaseYear=@ReleaseYear, ReleaseSeason=@ReleaseSeason, Rating=@Rating, Description=@Description, Image=@Image WHERE AnimeId=@AnimeId";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            //command.Parameters.AddWithValue("@AnimeId", id);
+                            command.Parameters.AddWithValue("@Name", name);
+                            command.Parameters.AddWithValue("@Studio", studio);
+                            command.Parameters.AddWithValue("@NrEpisodes", nrEpisodes);
+                            command.Parameters.AddWithValue("@ReleaseYear", releaseYear);
+                            command.Parameters.AddWithValue("@ReleaseSeason", releaseSeason.ToString());
+                            command.Parameters.AddWithValue("@Rating", rating);
+                            command.Parameters.AddWithValue("@Description", description);
+                            command.Parameters.AddWithValue("@Image", imageURL);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Anime couldn't be updated: {ex.Message}");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred: {ex.Message}");
+            }
         }
 
-        public void DeleteAnime(Anime anime)
+
+        public void DeleteAnime(string animeId)
         {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
 
+                    try
+                    {
+                        string query = @"DELETE FROM Anime WHERE AnimeId=@AnimeId";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@AnimeId", animeId);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"An error occurred: {ex.Message}");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred: {ex.Message}");
+            }
         }
+
     }
 }
