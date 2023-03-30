@@ -1,0 +1,51 @@
+﻿@page
+@model WebAppGraphic.Pages.RegisterModel
+@{
+    Layout = "_LayoutLoginRegister";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 rounded">
+                <h2 class="text-center mb-4">Register</h2>
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group mb-3">
+                        <label asp-for="RegistrationFormUser.Name" class="text-white">Name</label>
+                        <input asp-for="RegistrationFormUser.Name" type="text" class="form-control rounded-pill" placeholder="Your name..." />
+                        <span asp-validation-for="RegistrationFormUser.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="RegistrationFormUser.Username" class="text-white">Username</label>
+                        <input asp-for="RegistrationFormUser.Username" type="text" class="form-control rounded-pill" placeholder="Your username..." />
+                        <span asp-validation-for="RegistrationFormUser.Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="RegistrationFormUser.Email" class="text-white">Email</label>
+                        <input asp-for="RegistrationFormUser.Email" type="text" class="form-control rounded-pill" placeholder="Your email..." />
+                        <span asp-validation-for="RegistrationFormUser.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="RegistrationFormUser.Password" class="text-white">Password</label>
+                        <input asp-for="RegistrationFormUser.Password" type="password" class="form-control rounded-pill" placeholder="Your password..." />
+                        <span asp-validation-for="RegistrationFormUser.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="RegistrationFormUser.PasswordConfirm" class="text-white">Confirm password</label>
+                        <input asp-for="RegistrationFormUser.PasswordConfirm" type="password" class="form-control rounded-pill" placeholder="Confirm password..." />
+                        <span asp-validation-for="RegistrationFormUser.PasswordConfirm" class="text-danger"></span>
+                    </div>
+                    <button type="submit" style="padding: 2px 20px 3px 20px; font-size: 20px" class="btn btn-primary rounded-pill mt-4 d-flex mx-auto">Register</button>
+                </form>
+                <div class="text-center mt-3 text-white">
+                    If you already have an account, login <a asp-page="/ContactLogin" id="redirectLogin" role="button">here.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
