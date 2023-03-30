@@ -115,3 +115,39 @@ D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerA
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.genruntimeconfig.cache
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\ref\WebApplicationGraphicLayer.dll
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\scopedcss\Pages\Shared\_LayoutLoginRegister.cshtml.rz.scp.css
+D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\IdividualLogicLayer.dll.config
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\appsettings.Development.json
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\appsettings.json
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\WebApplicationGraphicLayer.staticwebassets.runtime.json
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\WebApplicationGraphicLayer.exe
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\WebApplicationGraphicLayer.deps.json
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\WebApplicationGraphicLayer.runtimeconfig.json
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\WebApplicationGraphicLayer.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\WebApplicationGraphicLayer.pdb
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\IdividualLogicLayer.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\IdividualLogicLayer.pdb
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\bin\Debug\net6.0\IdividualLogicLayer.dll.config
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.csproj.AssemblyReference.cache
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.AssemblyInfoInputs.cache
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.AssemblyInfo.cs
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.csproj.CoreCompileInputs.cache
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.MvcApplicationPartsAssemblyInfo.cache
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.RazorAssemblyInfo.cache
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.RazorAssemblyInfo.cs
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\staticwebassets.build.json
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\staticwebassets.development.json
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\scopedcss\Pages\Shared\_LayoutLoginRegister.cshtml.rz.scp.css
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\scopedcss\bundle\WebApplicationGraphicLayer.styles.css
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\scopedcss\projectbundle\WebApplicationGraphicLayer.bundle.scp.css
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.csproj.CopyComplete
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\refint\WebApplicationGraphicLayer.dll
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.pdb
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\WebApplicationGraphicLayer.genruntimeconfig.cache
+D:\FONTYS\Semester_2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\WebApplicationGraphicLayer\obj\Debug\net6.0\ref\WebApplicationGraphicLayer.dll

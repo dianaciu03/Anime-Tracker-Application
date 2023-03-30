@@ -16,9 +16,8 @@ namespace WinFormsGraphicLayer
     {
         //declare (and initialize) variables
         string filename = String.Empty;
-        string loggedUser = "admin"; //hardcoded
         List<CheckBox> animeGenre;
-        ContentManager contentManager = new ContentManager();
+        AnimeManager animeManager = new AnimeManager();
 
         public MainPage()
         {
@@ -44,36 +43,35 @@ namespace WinFormsGraphicLayer
         {
             try
             {
-                if(loggedUser == "admin") //hardcoded
-                {
-                    string name = tbxNameAnime.Text;
-                    string studio = tbxStudioAnime.Text;
-                    string description = tbxDescriptionAnime.Text;
-                    int nrEpisodes = Convert.ToInt32(numNrEpisodesAnime.Text);
-                    double rating = Convert.ToDouble(numRatingAnime.Text);
-                    int releaseYear = Convert.ToInt32(tbxReleaseYearAnime.Text);
-                    Season releaseSeason = (Season)cbxReleaseSeasonAnime.SelectedItem;
-                    List<Genre> genres = new List<Genre>();
+                string name = tbxNameAnime.Text;
+                string studio = tbxStudioAnime.Text;
+                string description = tbxDescriptionAnime.Text;
+                int nrEpisodes = Convert.ToInt32(numNrEpisodesAnime.Text);
+                double rating = Convert.ToDouble(numRatingAnime.Text);
+                int releaseYear = Convert.ToInt32(tbxReleaseYearAnime.Text);
+                Season releaseSeason = (Season)cbxReleaseSeasonAnime.SelectedItem;
+                List<Genre> genres = new List<Genre>();
                     
-                    //check all cboxes 
-                    foreach(CheckBox cb in animeGenre)
+                //check all cboxes 
+                foreach(CheckBox cb in animeGenre)
+                {
+                    if(cb.Checked)
                     {
-                        if(cb.Checked)
-                        {
-                            genres.Add((Genre)Enum.Parse(typeof(Genre), cb.Text));
-                        }
+                        genres.Add((Genre)Enum.Parse(typeof(Genre), cb.Text));
                     }
-
-                    //create anime object bases on all the inputted data
-                    if(!String.IsNullOrEmpty(filename))
-                    {
-                        Content anime = new Anime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
-                        contentManager.SetAnimeId((Anime)anime);
-                        contentManager.AddContentToList(anime);
-                        filename = String.Empty;
-                    }
-                    UpdateAnimeListBox();
                 }
+
+                //create anime object bases on all the inputted data
+                if(!String.IsNullOrEmpty(filename))
+                {
+                    //Content anime = new Anime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
+                    //Anime
+                    //contentManager.AddContentToList(anime);
+                    //IAnime anime1 = (IAnime)anime;
+                    filename = String.Empty;
+                }
+                UpdateAnimeListBox();
+
             }
             catch(FormatException)
             {

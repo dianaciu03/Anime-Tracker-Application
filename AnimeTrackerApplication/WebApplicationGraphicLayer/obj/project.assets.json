@@ -2,8 +2,91 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Microsoft.AspNetCore.JsonPatch/6.0.15": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.15": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.JsonPatch": "6.0.15",
+          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Microsoft.CSharp/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers/0.4.410601": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.props": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "IdividualLogicLayer/1.0.0": {
         "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
           "bin/placeholder/IdividualLogicLayer.dll": {}
         },
@@ -14,6 +97,181 @@
     }
   },
   "libraries": {
+    "Microsoft.AspNetCore.JsonPatch/6.0.15": {
+      "sha512": "uhF/d+Op30RFLS+q40pnS7xPfwsZQnBhG9SHEiFUnJVeqDLiHnKbmeqkIh0RsaZtTO1+MuTGtOu7v1JhagwYLg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.jsonpatch/6.0.15",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.JsonPatch.dll",
+        "lib/net461/Microsoft.AspNetCore.JsonPatch.xml",
+        "lib/net6.0/Microsoft.AspNetCore.JsonPatch.dll",
+        "lib/net6.0/Microsoft.AspNetCore.JsonPatch.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.xml",
+        "microsoft.aspnetcore.jsonpatch.6.0.15.nupkg.sha512",
+        "microsoft.aspnetcore.jsonpatch.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/6.0.15": {
+      "sha512": "nyxCEb+mGFuc+O3TdltHj5HXeswV9BLCtBvotNEypkdSynV6rlRKT1wHgfyXDYvrI4ubII/2ov3YrtEdhK+9uw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/6.0.15",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.xml",
+        "microsoft.aspnetcore.mvc.newtonsoftjson.6.0.15.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.newtonsoftjson.nuspec"
+      ]
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "type": "package",
+      "path": "microsoft.csharp/4.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/Microsoft.CSharp.dll",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.3/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.xml",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/uap10.0.16299/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "microsoft.csharp.4.7.0.nupkg.sha512",
+        "microsoft.csharp.nuspec",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/Microsoft.CSharp.dll",
+        "ref/netcore50/Microsoft.CSharp.xml",
+        "ref/netcore50/de/Microsoft.CSharp.xml",
+        "ref/netcore50/es/Microsoft.CSharp.xml",
+        "ref/netcore50/fr/Microsoft.CSharp.xml",
+        "ref/netcore50/it/Microsoft.CSharp.xml",
+        "ref/netcore50/ja/Microsoft.CSharp.xml",
+        "ref/netcore50/ko/Microsoft.CSharp.xml",
+        "ref/netcore50/ru/Microsoft.CSharp.xml",
+        "ref/netcore50/zh-hans/Microsoft.CSharp.xml",
+        "ref/netcore50/zh-hant/Microsoft.CSharp.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.0/Microsoft.CSharp.dll",
+        "ref/netstandard1.0/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/de/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/es/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/fr/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/it/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ja/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ko/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ru/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/zh-hans/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/zh-hant/Microsoft.CSharp.xml",
+        "ref/netstandard2.0/Microsoft.CSharp.dll",
+        "ref/netstandard2.0/Microsoft.CSharp.xml",
+        "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/uap10.0.16299/_._",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers/0.4.410601": {
+      "sha512": "ZFc3Pqiox/AcJECaYHXZtdB8XF12pJKvlrIxavL01z7VpW8Oy1d4tAgcnZfgburH5eVtAH4Bi2QKTHnN8va0ug==",
+      "type": "package",
+      "path": "microsoft.dotnet.upgradeassistant.extensions.default.analyzers/0.4.410601",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.Common.dll",
+        "analyzers/dotnet/cs/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.dll",
+        "analyzers/dotnet/cs/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.CodeFixes.dll",
+        "analyzers/dotnet/vb/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.Common.dll",
+        "analyzers/dotnet/vb/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.dll",
+        "analyzers/dotnet/vb/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.CodeFixes.dll",
+        "build/Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers.props",
+        "build/TypeMaps.props",
+        "build/WebTypeReplacements.typemap",
+        "icon.png",
+        "microsoft.dotnet.upgradeassistant.extensions.default.analyzers.0.4.410601.nupkg.sha512",
+        "microsoft.dotnet.upgradeassistant.extensions.default.analyzers.nuspec",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
+    "Newtonsoft.Json.Bson/1.0.2": {
+      "sha512": "QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+      "type": "package",
+      "path": "newtonsoft.json.bson/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net45/Newtonsoft.Json.Bson.dll",
+        "lib/net45/Newtonsoft.Json.Bson.pdb",
+        "lib/net45/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
+        "newtonsoft.json.bson.1.0.2.nupkg.sha512",
+        "newtonsoft.json.bson.nuspec"
+      ]
+    },
     "IdividualLogicLayer/1.0.0": {
       "type": "project",
       "path": "../IdividualLogicLayer/IdividualLogicLayer.csproj",
@@ -22,7 +280,9 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "IdividualLogicLayer >= 1.0.0"
+      "IdividualLogicLayer >= 1.0.0",
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 6.0.15",
+      "Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers >= 0.4.410601"
     ]
   },
   "packageFolders": {
@@ -31,11 +291,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FONTYS\\Semester 2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
+      "projectUniqueName": "D:\\FONTYS\\Semester_2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
       "projectName": "WebApplicationGraphicLayer",
-      "projectPath": "D:\\FONTYS\\Semester 2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
+      "projectPath": "D:\\FONTYS\\Semester_2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\WebApplicationGraphicLayer.csproj",
       "packagesPath": "C:\\Users\\Silvia\\.nuget\\packages\\",
-      "outputPath": "D:\\FONTYS\\Semester 2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\obj\\",
+      "outputPath": "D:\\FONTYS\\Semester_2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\WebApplicationGraphicLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Silvia\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,8 +312,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\FONTYS\\Semester 2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\IdividualLogicLayer\\IdividualLogicLayer.csproj": {
-              "projectPath": "D:\\FONTYS\\Semester 2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\IdividualLogicLayer\\IdividualLogicLayer.csproj"
+            "D:\\FONTYS\\Semester_2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\IdividualLogicLayer\\IdividualLogicLayer.csproj": {
+              "projectPath": "D:\\FONTYS\\Semester_2\\AnimeTracker\\individual-assignment-semester-2\\AnimeTrackerApplication\\IdividualLogicLayer\\IdividualLogicLayer.csproj"
             }
           }
         }
@@ -67,6 +327,17 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+            "target": "Package",
+            "version": "[6.0.15, )"
+          },
+          "Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[0.4.410601, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

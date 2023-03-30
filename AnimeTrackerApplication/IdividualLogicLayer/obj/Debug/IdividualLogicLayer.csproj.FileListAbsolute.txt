@@ -77,3 +77,5 @@ D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerA
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.csproj.CopyComplete
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.dll
 D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\obj\Debug\IdividualLogicLayer.pdb
+D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\bin\Debug\IdividualLogicLayer.dll.config
+D:\FONTYS\Semester 2\AnimeTracker\individual-assignment-semester-2\AnimeTrackerApplication\IdividualLogicLayer\bin\Debug\System.ComponentModel.Annotations.dll
