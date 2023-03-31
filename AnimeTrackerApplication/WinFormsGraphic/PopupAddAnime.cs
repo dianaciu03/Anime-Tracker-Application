@@ -46,16 +46,8 @@ namespace WinFormsGraphic
         {
             try
             {
-                string name = tbxNameAnime.Text;
-                string studio = tbxStudioAnime.Text;
-                string description = tbxDescriptionAnime.Text;
-                int nrEpisodes = Convert.ToInt32(tbxNrEpisodes.Text);
-                double rating = Convert.ToDouble(numRatingAnime.Text);
-                int releaseYear = Convert.ToInt32(tbxReleaseYearAnime.Text);
-                Season releaseSeason = (Season)cbxReleaseSeasonAnime.SelectedItem;
-                string filename = tbxImageURL.Text;
+                AnimeDataValidator adv = new AnimeDataValidator();
                 List<Genre> genres = new List<Genre>();
-
                 //check all cboxes 
                 foreach (CheckBox cb in animeGenre)
                 {
@@ -64,12 +56,13 @@ namespace WinFormsGraphic
                         genres.Add((Genre)Enum.Parse(typeof(Genre), cb.Text));
                     }
                 }
+                if (adv.IsNameValid(tbxNameAnime.Text) && adv.IsStudioValid(tbxStudioAnime.Text) && adv.IsDescriptionValid(tbxDescriptionAnime.Text) && adv.IsNrEpisodesValid(tbxNrEpisodes.Text) && adv.IsRatingValid(numRatingAnime.Text) && adv.IsYearValid(tbxReleaseYearAnime.Text) && adv.IsSeasonValid((Season)cbxReleaseSeasonAnime.SelectedItem) && adv.IsPathValid(tbxImageURL.Text))
+
+                
 
                 //create anime object bases on all the inputted data
-                if (!String.IsNullOrEmpty(filename))
-                {
-                    animeManager.AddAnime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
-                }
+                //animeManager.AddAnime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
+
                 this.Close();
             }
             catch (Exception ex)

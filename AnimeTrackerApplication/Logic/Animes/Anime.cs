@@ -22,47 +22,12 @@ namespace Logic.Animes
             this.studio = studio;
         }
 
-        public Season SeasonAnime { get { return season; } set { season = value; } }
+        public Season SeasonAnime { get; set; }
 
-        public int NrEpisodes
-        {
-            get { return nrEpisodes; }
-            set
-            {
-                if (!String.IsNullOrEmpty(value.ToString()))
-                {
-                    if (value > 0)
-                    {
-                        nrEpisodes = value;
-                    }
-                    else
-                    {
-                        throw new Exception("You need to add a valid number of episodes!");
-                    }
-                }
-                else
-                {
-                    throw new Exception("You need to add a number for episodes!");
-                }
-            }
-        }
-
-        public string Studio
-        {
-            get { return studio; }
-            set
-            {
-                if (!String.IsNullOrEmpty(value))
-                {
-                    studio = value;
-                }
-                else
-                {
-                    throw new Exception("You need to add a studio!");
-                }
-            }
-        }
-
+        public int NrEpisodes { get; set; }
+        
+        public string Studio { get; set; }
+        
         public override string ToString()
         {
             return $"{Name} - {nrEpisodes} episodes - Rating {Rating}/5";

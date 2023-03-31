@@ -28,87 +28,17 @@ namespace Logic.Contents
             this.imageURL = imageURL;
         }
 
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                if (!String.IsNullOrEmpty(value)) //check for valid name
-                    name = value;
-                else
-                    throw new Exception("You need to add a name!");
-            }
-        }
+        public string Name { get; set; }
 
-        public string Description
-        {
-            get { return description; }
-            set
-            {
-                if (!string.IsNullOrEmpty(value)) //check for valid description
-                    description = value;
-                else
-                    throw new Exception("You need to add a description!");
-            }
-        }
+        public string Description { get; set; }
+        
+        public string Id { get; }
 
-        public string Id
-        {
-            get { return id; }
-        }
+        public double Rating { get; set; }
 
-        public double Rating
-        {
-            get { return rating; }
-            set
-            {
-                if (!String.IsNullOrEmpty(value.ToString())) //check for valid rating
-                {
-                    if (value >= 1 && value <= 5) //check if it has a correct value
-                    {
-                        rating = value;
-                    }
-                    else
-                    {
-                        throw new Exception("The rating must be between 1 and 5!");
-                    }
-                }
-                else
-                {
-                    throw new Exception("You need to add a rating!");
-                }
-            }
-        }
-
-        public int ReleaseYear
-        {
-            get { return releaseYear; }
-            set
-            {
-                if (!String.IsNullOrEmpty(value.ToString())) //check for valid release year
-                {
-                    if (value > 1900 && value < (DateTime.Now.Year + 10))
-                    {
-                        releaseYear = value;
-                    }
-                    else
-                    {
-                        throw new Exception("Release year is invalid!");
-                    }
-
-                }
-                else
-                {
-                    throw new Exception("You need to add a release year!");
-                }
-            }
-        }
-
-        public string ImageURL
-        {
-            get { return imageURL; }
-            set { imageURL = value; }
-        }
+        public int ReleaseYear { get; set; }
+        
+        public string ImageURL { get; set; }
 
         public List<Genre> GetGenres()
         {

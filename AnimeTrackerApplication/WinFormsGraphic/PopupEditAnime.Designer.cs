@@ -1,6 +1,6 @@
 ﻿namespace WinFormsGraphic
 {
-    partial class PopupAddAnime
+    partial class PopupEditAnime
     {
         /// <summary>
         /// Required designer variable.
@@ -114,30 +114,29 @@
             this.groupBoxAnimeDetails.Margin = new System.Windows.Forms.Padding(5);
             this.groupBoxAnimeDetails.Name = "groupBoxAnimeDetails";
             this.groupBoxAnimeDetails.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBoxAnimeDetails.Size = new System.Drawing.Size(1122, 639);
-            this.groupBoxAnimeDetails.TabIndex = 4;
+            this.groupBoxAnimeDetails.Size = new System.Drawing.Size(1117, 639);
+            this.groupBoxAnimeDetails.TabIndex = 5;
             this.groupBoxAnimeDetails.TabStop = false;
             this.groupBoxAnimeDetails.Text = "Anime details";
             // 
             // btnCancelAnimeAddition
             // 
             this.btnCancelAnimeAddition.BackColor = System.Drawing.Color.Plum;
-            this.btnCancelAnimeAddition.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelAnimeAddition.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCancelAnimeAddition.ForeColor = System.Drawing.Color.Black;
-            this.btnCancelAnimeAddition.Location = new System.Drawing.Point(876, 533);
+            this.btnCancelAnimeAddition.Location = new System.Drawing.Point(829, 533);
             this.btnCancelAnimeAddition.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancelAnimeAddition.Name = "btnCancelAnimeAddition";
             this.btnCancelAnimeAddition.Size = new System.Drawing.Size(221, 72);
             this.btnCancelAnimeAddition.TabIndex = 44;
             this.btnCancelAnimeAddition.Text = "Cancel";
             this.btnCancelAnimeAddition.UseVisualStyleBackColor = false;
-            this.btnCancelAnimeAddition.Click += new System.EventHandler(this.btnCancelAnimeAddition_Click);
             // 
             // labelNote
             // 
             this.labelNote.AutoSize = true;
             this.labelNote.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.labelNote.Location = new System.Drawing.Point(570, 374);
+            this.labelNote.Location = new System.Drawing.Point(572, 376);
             this.labelNote.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelNote.Name = "labelNote";
             this.labelNote.Size = new System.Drawing.Size(355, 25);
@@ -149,7 +148,7 @@
             this.tbxImageURL.Location = new System.Drawing.Point(570, 333);
             this.tbxImageURL.Margin = new System.Windows.Forms.Padding(5);
             this.tbxImageURL.Name = "tbxImageURL";
-            this.tbxImageURL.Size = new System.Drawing.Size(527, 36);
+            this.tbxImageURL.Size = new System.Drawing.Size(480, 36);
             this.tbxImageURL.TabIndex = 42;
             // 
             // tbxNrEpisodes
@@ -171,7 +170,7 @@
             // labelImageAnime
             // 
             this.labelImageAnime.AutoSize = true;
-            this.labelImageAnime.Location = new System.Drawing.Point(570, 298);
+            this.labelImageAnime.Location = new System.Drawing.Point(572, 300);
             this.labelImageAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelImageAnime.Name = "labelImageAnime";
             this.labelImageAnime.Size = new System.Drawing.Size(79, 30);
@@ -181,21 +180,20 @@
             // btnAddAnime
             // 
             this.btnAddAnime.BackColor = System.Drawing.Color.Plum;
-            this.btnAddAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAddAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAddAnime.ForeColor = System.Drawing.Color.Black;
             this.btnAddAnime.Location = new System.Drawing.Point(570, 533);
             this.btnAddAnime.Margin = new System.Windows.Forms.Padding(5);
             this.btnAddAnime.Name = "btnAddAnime";
             this.btnAddAnime.Size = new System.Drawing.Size(221, 72);
             this.btnAddAnime.TabIndex = 36;
-            this.btnAddAnime.Text = "Add Anime";
+            this.btnAddAnime.Text = "Edit Anime";
             this.btnAddAnime.UseVisualStyleBackColor = false;
-            this.btnAddAnime.Click += new System.EventHandler(this.btnAddAnime_Click);
             // 
             // cbSportsGenreAnime
             // 
             this.cbSportsGenreAnime.AutoSize = true;
-            this.cbSportsGenreAnime.Location = new System.Drawing.Point(812, 239);
+            this.cbSportsGenreAnime.Location = new System.Drawing.Point(814, 241);
             this.cbSportsGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbSportsGenreAnime.Name = "cbSportsGenreAnime";
             this.cbSportsGenreAnime.Size = new System.Drawing.Size(94, 34);
@@ -206,7 +204,7 @@
             // cbSliceOfLifeGenreAnime
             // 
             this.cbSliceOfLifeGenreAnime.AutoSize = true;
-            this.cbSliceOfLifeGenreAnime.Location = new System.Drawing.Point(659, 239);
+            this.cbSliceOfLifeGenreAnime.Location = new System.Drawing.Point(661, 241);
             this.cbSliceOfLifeGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbSliceOfLifeGenreAnime.Name = "cbSliceOfLifeGenreAnime";
             this.cbSliceOfLifeGenreAnime.Size = new System.Drawing.Size(143, 34);
@@ -217,7 +215,7 @@
             // cbSciFiGenreAnime
             // 
             this.cbSciFiGenreAnime.AutoSize = true;
-            this.cbSciFiGenreAnime.Location = new System.Drawing.Point(659, 200);
+            this.cbSciFiGenreAnime.Location = new System.Drawing.Point(661, 202);
             this.cbSciFiGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbSciFiGenreAnime.Name = "cbSciFiGenreAnime";
             this.cbSciFiGenreAnime.Size = new System.Drawing.Size(84, 34);
@@ -228,7 +226,7 @@
             // cbRomanceGenreAnime
             // 
             this.cbRomanceGenreAnime.AutoSize = true;
-            this.cbRomanceGenreAnime.Location = new System.Drawing.Point(983, 161);
+            this.cbRomanceGenreAnime.Location = new System.Drawing.Point(985, 163);
             this.cbRomanceGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbRomanceGenreAnime.Name = "cbRomanceGenreAnime";
             this.cbRomanceGenreAnime.Size = new System.Drawing.Size(121, 34);
@@ -239,7 +237,7 @@
             // cbPsychologicalGenreAnime
             // 
             this.cbPsychologicalGenreAnime.AutoSize = true;
-            this.cbPsychologicalGenreAnime.Location = new System.Drawing.Point(812, 161);
+            this.cbPsychologicalGenreAnime.Location = new System.Drawing.Point(814, 163);
             this.cbPsychologicalGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbPsychologicalGenreAnime.Name = "cbPsychologicalGenreAnime";
             this.cbPsychologicalGenreAnime.Size = new System.Drawing.Size(161, 34);
@@ -250,7 +248,7 @@
             // cbMisteryGenreAnime
             // 
             this.cbMisteryGenreAnime.AutoSize = true;
-            this.cbMisteryGenreAnime.Location = new System.Drawing.Point(659, 161);
+            this.cbMisteryGenreAnime.Location = new System.Drawing.Point(661, 163);
             this.cbMisteryGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbMisteryGenreAnime.Name = "cbMisteryGenreAnime";
             this.cbMisteryGenreAnime.Size = new System.Drawing.Size(104, 34);
@@ -261,7 +259,7 @@
             // cbMechaGenreAnime
             // 
             this.cbMechaGenreAnime.AutoSize = true;
-            this.cbMechaGenreAnime.Location = new System.Drawing.Point(983, 122);
+            this.cbMechaGenreAnime.Location = new System.Drawing.Point(985, 124);
             this.cbMechaGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbMechaGenreAnime.Name = "cbMechaGenreAnime";
             this.cbMechaGenreAnime.Size = new System.Drawing.Size(97, 34);
@@ -272,7 +270,7 @@
             // cbEcchiGenreAnime
             // 
             this.cbEcchiGenreAnime.AutoSize = true;
-            this.cbEcchiGenreAnime.Location = new System.Drawing.Point(812, 83);
+            this.cbEcchiGenreAnime.Location = new System.Drawing.Point(814, 84);
             this.cbEcchiGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbEcchiGenreAnime.Name = "cbEcchiGenreAnime";
             this.cbEcchiGenreAnime.Size = new System.Drawing.Size(80, 34);
@@ -283,7 +281,7 @@
             // cbIsekaiGenreAnime
             // 
             this.cbIsekaiGenreAnime.AutoSize = true;
-            this.cbIsekaiGenreAnime.Location = new System.Drawing.Point(812, 122);
+            this.cbIsekaiGenreAnime.Location = new System.Drawing.Point(814, 124);
             this.cbIsekaiGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbIsekaiGenreAnime.Name = "cbIsekaiGenreAnime";
             this.cbIsekaiGenreAnime.Size = new System.Drawing.Size(86, 34);
@@ -294,7 +292,7 @@
             // cbHorrorGenreAnime
             // 
             this.cbHorrorGenreAnime.AutoSize = true;
-            this.cbHorrorGenreAnime.Location = new System.Drawing.Point(659, 122);
+            this.cbHorrorGenreAnime.Location = new System.Drawing.Point(661, 124);
             this.cbHorrorGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbHorrorGenreAnime.Name = "cbHorrorGenreAnime";
             this.cbHorrorGenreAnime.Size = new System.Drawing.Size(98, 34);
@@ -305,7 +303,7 @@
             // cbComedyGenreAnime
             // 
             this.cbComedyGenreAnime.AutoSize = true;
-            this.cbComedyGenreAnime.Location = new System.Drawing.Point(983, 44);
+            this.cbComedyGenreAnime.Location = new System.Drawing.Point(985, 43);
             this.cbComedyGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbComedyGenreAnime.Name = "cbComedyGenreAnime";
             this.cbComedyGenreAnime.Size = new System.Drawing.Size(114, 34);
@@ -316,7 +314,7 @@
             // cbDramaGenreAnime
             // 
             this.cbDramaGenreAnime.AutoSize = true;
-            this.cbDramaGenreAnime.Location = new System.Drawing.Point(659, 83);
+            this.cbDramaGenreAnime.Location = new System.Drawing.Point(661, 85);
             this.cbDramaGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbDramaGenreAnime.Name = "cbDramaGenreAnime";
             this.cbDramaGenreAnime.Size = new System.Drawing.Size(96, 34);
@@ -327,7 +325,7 @@
             // cbFantasyGenreAnime
             // 
             this.cbFantasyGenreAnime.AutoSize = true;
-            this.cbFantasyGenreAnime.Location = new System.Drawing.Point(983, 83);
+            this.cbFantasyGenreAnime.Location = new System.Drawing.Point(985, 85);
             this.cbFantasyGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbFantasyGenreAnime.Name = "cbFantasyGenreAnime";
             this.cbFantasyGenreAnime.Size = new System.Drawing.Size(103, 34);
@@ -338,7 +336,7 @@
             // cbAdventureGenreAnime
             // 
             this.cbAdventureGenreAnime.AutoSize = true;
-            this.cbAdventureGenreAnime.Location = new System.Drawing.Point(812, 44);
+            this.cbAdventureGenreAnime.Location = new System.Drawing.Point(814, 46);
             this.cbAdventureGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbAdventureGenreAnime.Name = "cbAdventureGenreAnime";
             this.cbAdventureGenreAnime.Size = new System.Drawing.Size(133, 34);
@@ -349,7 +347,7 @@
             // cbActionGenreAnime
             // 
             this.cbActionGenreAnime.AutoSize = true;
-            this.cbActionGenreAnime.Location = new System.Drawing.Point(659, 44);
+            this.cbActionGenreAnime.Location = new System.Drawing.Point(661, 46);
             this.cbActionGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbActionGenreAnime.Name = "cbActionGenreAnime";
             this.cbActionGenreAnime.Size = new System.Drawing.Size(93, 34);
@@ -360,7 +358,7 @@
             // cbShoujoGenreAnime
             // 
             this.cbShoujoGenreAnime.AutoSize = true;
-            this.cbShoujoGenreAnime.Location = new System.Drawing.Point(812, 200);
+            this.cbShoujoGenreAnime.Location = new System.Drawing.Point(814, 202);
             this.cbShoujoGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbShoujoGenreAnime.Name = "cbShoujoGenreAnime";
             this.cbShoujoGenreAnime.Size = new System.Drawing.Size(99, 34);
@@ -371,7 +369,7 @@
             // cbShounenGenreAnime
             // 
             this.cbShounenGenreAnime.AutoSize = true;
-            this.cbShounenGenreAnime.Location = new System.Drawing.Point(983, 200);
+            this.cbShounenGenreAnime.Location = new System.Drawing.Point(985, 202);
             this.cbShounenGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbShounenGenreAnime.Name = "cbShounenGenreAnime";
             this.cbShounenGenreAnime.Size = new System.Drawing.Size(117, 34);
@@ -382,7 +380,7 @@
             // labelGenresAnime
             // 
             this.labelGenresAnime.AutoSize = true;
-            this.labelGenresAnime.Location = new System.Drawing.Point(563, 42);
+            this.labelGenresAnime.Location = new System.Drawing.Point(565, 44);
             this.labelGenresAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelGenresAnime.Name = "labelGenresAnime";
             this.labelGenresAnime.Size = new System.Drawing.Size(86, 30);
@@ -401,7 +399,7 @@
             // labelDescriptionAnime
             // 
             this.labelDescriptionAnime.AutoSize = true;
-            this.labelDescriptionAnime.Location = new System.Drawing.Point(14, 298);
+            this.labelDescriptionAnime.Location = new System.Drawing.Point(16, 300);
             this.labelDescriptionAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelDescriptionAnime.Name = "labelDescriptionAnime";
             this.labelDescriptionAnime.Size = new System.Drawing.Size(127, 30);
@@ -435,7 +433,7 @@
             // labelRatingAnime
             // 
             this.labelRatingAnime.AutoSize = true;
-            this.labelRatingAnime.Location = new System.Drawing.Point(14, 260);
+            this.labelRatingAnime.Location = new System.Drawing.Point(16, 262);
             this.labelRatingAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelRatingAnime.Name = "labelRatingAnime";
             this.labelRatingAnime.Size = new System.Drawing.Size(79, 30);
@@ -455,7 +453,7 @@
             // labelReleaseSeasonAnime
             // 
             this.labelReleaseSeasonAnime.AutoSize = true;
-            this.labelReleaseSeasonAnime.Location = new System.Drawing.Point(14, 218);
+            this.labelReleaseSeasonAnime.Location = new System.Drawing.Point(16, 220);
             this.labelReleaseSeasonAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelReleaseSeasonAnime.Name = "labelReleaseSeasonAnime";
             this.labelReleaseSeasonAnime.Size = new System.Drawing.Size(163, 30);
@@ -465,7 +463,7 @@
             // labelReleaseYearAnime
             // 
             this.labelReleaseYearAnime.AutoSize = true;
-            this.labelReleaseYearAnime.Location = new System.Drawing.Point(14, 176);
+            this.labelReleaseYearAnime.Location = new System.Drawing.Point(16, 178);
             this.labelReleaseYearAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelReleaseYearAnime.Name = "labelReleaseYearAnime";
             this.labelReleaseYearAnime.Size = new System.Drawing.Size(139, 30);
@@ -491,7 +489,7 @@
             // labelNrEpisodesAnime
             // 
             this.labelNrEpisodesAnime.AutoSize = true;
-            this.labelNrEpisodesAnime.Location = new System.Drawing.Point(14, 133);
+            this.labelNrEpisodesAnime.Location = new System.Drawing.Point(16, 135);
             this.labelNrEpisodesAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelNrEpisodesAnime.Name = "labelNrEpisodesAnime";
             this.labelNrEpisodesAnime.Size = new System.Drawing.Size(134, 30);
@@ -501,7 +499,7 @@
             // labelStudioAnime
             // 
             this.labelStudioAnime.AutoSize = true;
-            this.labelStudioAnime.Location = new System.Drawing.Point(14, 87);
+            this.labelStudioAnime.Location = new System.Drawing.Point(16, 89);
             this.labelStudioAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelStudioAnime.Name = "labelStudioAnime";
             this.labelStudioAnime.Size = new System.Drawing.Size(79, 30);
@@ -511,24 +509,24 @@
             // labelNameAnime
             // 
             this.labelNameAnime.AutoSize = true;
-            this.labelNameAnime.Location = new System.Drawing.Point(14, 45);
+            this.labelNameAnime.Location = new System.Drawing.Point(16, 47);
             this.labelNameAnime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelNameAnime.Name = "labelNameAnime";
             this.labelNameAnime.Size = new System.Drawing.Size(76, 30);
             this.labelNameAnime.TabIndex = 0;
             this.labelNameAnime.Text = "Name:";
             // 
-            // PopupAddAnime
+            // PopupEditAnime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1150, 666);
+            this.ClientSize = new System.Drawing.Size(1151, 671);
             this.Controls.Add(this.groupBoxAnimeDetails);
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Name = "PopupAddAnime";
+            this.Name = "PopupEditAnime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PopupAddAnime";
+            this.Text = "PopupEditAnime";
             this.groupBoxAnimeDetails.ResumeLayout(false);
             this.groupBoxAnimeDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingAnime)).EndInit();

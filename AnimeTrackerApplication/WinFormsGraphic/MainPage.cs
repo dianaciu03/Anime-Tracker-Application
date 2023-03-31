@@ -15,9 +15,6 @@ namespace WinFormsGraphic
     public partial class MainPage : Form
     {
         //declare variables
-        string filename = String.Empty;
-        List<CheckBox> animeGenre;
-        private IAnime _animeDataHandler;
         AnimeManager animeManager;
 
         public MainPage()
@@ -29,7 +26,7 @@ namespace WinFormsGraphic
 
         private void InitializeManagers()
         {
-            _animeDataHandler = new AnimeRepository();
+            IAnime _animeDataHandler = new AnimeRepository();
             animeManager = new AnimeManager(_animeDataHandler);
         }
 
@@ -43,6 +40,11 @@ namespace WinFormsGraphic
         {
             PopupAddAnime form = new PopupAddAnime();
             form.ShowDialog();
+        }
+
+        private void btnEditAnime_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

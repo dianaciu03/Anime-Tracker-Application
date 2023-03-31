@@ -264,6 +264,7 @@
             this.btnEditAnime.TabIndex = 38;
             this.btnEditAnime.Text = "Edit Anime";
             this.btnEditAnime.UseVisualStyleBackColor = false;
+            this.btnEditAnime.Click += new System.EventHandler(this.btnEditAnime_Click);
             // 
             // groupBoxAllAnime
             // 
