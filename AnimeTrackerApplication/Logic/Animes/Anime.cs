@@ -22,12 +22,12 @@ namespace Logic.Animes
             this.studio = studio;
         }
 
-        public Season SeasonAnime { get; set; }
+        public Season SeasonAnime { get { return season; } set { season = value; } }
 
-        public int NrEpisodes { get; set; }
-        
-        public string Studio { get; set; }
-        
+        public int NrEpisodes { get { return nrEpisodes; } set { nrEpisodes = value; } }
+
+        public string Studio { get { return studio; } set { studio = value; } }
+
         public override string ToString()
         {
             return $"{Name} - {nrEpisodes} episodes - Rating {Rating}/5";

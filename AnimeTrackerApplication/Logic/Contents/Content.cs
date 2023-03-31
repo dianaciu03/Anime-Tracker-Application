@@ -28,17 +28,17 @@ namespace Logic.Contents
             this.imageURL = imageURL;
         }
 
-        public string Name { get; set; }
+        public string Name { get { return name; } set { name = value; } }
 
-        public string Description { get; set; }
-        
-        public string Id { get; }
+        public string Description { get { return description; } set { description = value; } }
 
-        public double Rating { get; set; }
+        public string Id { get { return id; } }
 
-        public int ReleaseYear { get; set; }
-        
-        public string ImageURL { get; set; }
+        public double Rating { get { return rating; } set { rating = value; } }
+
+        public int ReleaseYear { get { return releaseYear; } set { releaseYear = value; } }
+
+        public string ImageURL { get { return imageURL; } set { imageURL = value; } }
 
         public List<Genre> GetGenres()
         {

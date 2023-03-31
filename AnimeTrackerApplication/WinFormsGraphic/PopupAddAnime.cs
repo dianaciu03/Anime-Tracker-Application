@@ -12,6 +12,7 @@ using DAL;
 using Logic.Enums;
 using DAL.Repositories;
 using Logic.Animes;
+using Microsoft.VisualBasic.Devices;
 
 namespace WinFormsGraphic
 {
@@ -56,13 +57,11 @@ namespace WinFormsGraphic
                         genres.Add((Genre)Enum.Parse(typeof(Genre), cb.Text));
                     }
                 }
-                if (adv.IsNameValid(tbxNameAnime.Text) && adv.IsStudioValid(tbxStudioAnime.Text) && adv.IsDescriptionValid(tbxDescriptionAnime.Text) && adv.IsNrEpisodesValid(tbxNrEpisodes.Text) && adv.IsRatingValid(numRatingAnime.Text) && adv.IsYearValid(tbxReleaseYearAnime.Text) && adv.IsSeasonValid((Season)cbxReleaseSeasonAnime.SelectedItem) && adv.IsPathValid(tbxImageURL.Text))
-
-                
-
-                //create anime object bases on all the inputted data
-                //animeManager.AddAnime(name, description, rating, releaseYear, filename, releaseSeason, nrEpisodes, studio, genres);
-
+                if (adv.IsNameValid(tbxNameAnime.Text) && adv.IsStudioValid(tbxStudioAnime.Text) && adv.IsNrEpisodesValid(tbxNrEpisodes.Text) && adv.IsYearValid(tbxReleaseYearAnime.Text) && adv.IsSeasonValid((Season)cbxReleaseSeasonAnime.SelectedItem) && adv.IsRatingValid(numRatingAnime.Text) && adv.IsDescriptionValid(tbxDescriptionAnime.Text) && adv.IsPathValid(tbxImageURL.Text))
+                {
+                    animeManager.AddAnime(tbxNameAnime.Text, tbxDescriptionAnime.Text, Convert.ToDouble(numRatingAnime.Text), Convert.ToInt32(tbxReleaseYearAnime.Text), tbxImageURL.Text, (Season)cbxReleaseSeasonAnime.SelectedItem, Convert.ToInt32(tbxNrEpisodes.Text), tbxStudioAnime.Text, genres);
+                    MessageBox.Show("Anime was added successfully!");
+                }
                 this.Close();
             }
             catch (Exception ex)

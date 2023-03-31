@@ -387,6 +387,7 @@
             this.btnDisplayAllAnime.TabIndex = 37;
             this.btnDisplayAllAnime.Text = "Display all";
             this.btnDisplayAllAnime.UseVisualStyleBackColor = false;
+            this.btnDisplayAllAnime.Click += new System.EventHandler(this.btnDisplayAllAnime_Click);
             // 
             // cbxGenreSearchAnime
             // 

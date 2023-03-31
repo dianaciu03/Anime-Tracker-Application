@@ -47,13 +47,13 @@ namespace Logic.Animes
                 Random r = new Random();
                 int idNr = r.Next(1, 9999);
                 string id = "A" + idNr;
-                if (animes.Count == 0)
+                if (GetAllAnime().Count == 0)
                 {
                     return id;
                 }
                 else
                 {
-                    if (!animes.Select(x => x.Id).Contains(id))
+                    if (!GetAllAnime().Select(x => x.Id).Contains(id))
                     {
                         return id;
                     }

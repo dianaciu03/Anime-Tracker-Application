@@ -46,5 +46,28 @@ namespace WinFormsGraphic
         {
 
         }
+
+        private void btnDisplayAllAnime_Click(object sender, EventArgs e)
+        {
+            UpdateAnimeListview(animeManager.GetAllAnime());
+        }
+
+        private void UpdateAnimeListview(List<Anime> animes)
+        {
+            lvwAnime.Items.Clear();
+            foreach (Anime a in animes)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = a.Id;
+                item.Tag = a;
+                item.SubItems.Add(a.Name);
+                item.SubItems.Add(a.Studio);
+                item.SubItems.Add(a.Rating.ToString());
+                item.SubItems.Add(a.ReleaseYear.ToString());
+                item.SubItems.Add(a.SeasonAnime.ToString());
+                item.SubItems.Add(a.NrEpisodes.ToString());
+                lvwAnime.Items.Add(item);
+            }
+        }
     }
 }

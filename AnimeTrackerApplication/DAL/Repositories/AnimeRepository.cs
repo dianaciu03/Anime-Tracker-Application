@@ -127,6 +127,7 @@ namespace DAL.Repositories
                             command.Parameters.AddWithValue("@Image", imageURL);
 
                             command.ExecuteNonQuery();
+                            transaction.Commit();
                         }
                     }
                     catch (Exception ex)
@@ -161,6 +162,7 @@ namespace DAL.Repositories
                             command.Parameters.AddWithValue("@AnimeId", animeId);
 
                             command.ExecuteNonQuery();
+                            transaction.Commit();
                         }
                     }
                     catch (Exception ex)
