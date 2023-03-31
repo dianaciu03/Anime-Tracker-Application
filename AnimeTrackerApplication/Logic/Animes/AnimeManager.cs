@@ -8,23 +8,26 @@ using System.Threading.Tasks;
 
 namespace Logic.Animes
 {
-    public class AnimeManager : ContentManager
+    public class AnimeManager
     {
         private readonly IAnime _animeDataHandler;
-        List<Anime> animes;
 
-        public AnimeManager(IAnime iAnime) : base()
+        public AnimeManager(IAnime iAnime)
         {
-            animes = new List<Anime>();
             _animeDataHandler = iAnime;
         }
 
         public List<Anime> GetAllAnime()
         {
-            return animes = _animeDataHandler.GetAllAnime();
+            return _animeDataHandler.GetAllAnime();
         }
 
-        public void AddAnime(string name, string description, double rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
+        public int GetNrAnime()
+        {
+            return _animeDataHandler.GetNrAnime();
+        }
+
+        public void AddAnime(string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
         {
             Content anime = new Anime(GiveId(), name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
             _animeDataHandler.AddAnime((Anime)anime);
@@ -40,14 +43,14 @@ namespace Logic.Animes
             _animeDataHandler.DeleteAnime(id);
         }
 
-        public override string GiveId()
+        public string GiveId()
         {
             while (true)
             {
                 Random r = new Random();
                 int idNr = r.Next(1, 9999);
                 string id = "A" + idNr;
-                if (GetAllAnime().Count == 0)
+                if (GetNrAnime() == 0)
                 {
                     return id;
                 }

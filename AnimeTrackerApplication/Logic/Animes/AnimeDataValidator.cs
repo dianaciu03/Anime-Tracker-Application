@@ -62,7 +62,7 @@ namespace Logic.Animes
             {
                 try
                 {
-                    double nr = Convert.ToDouble(rating);
+                    decimal nr = Convert.ToDecimal(rating);
                     if (nr >= 1 && nr <= 5)
                         return true;
                     else

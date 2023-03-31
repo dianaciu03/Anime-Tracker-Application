@@ -124,6 +124,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.groupBoxAllAnime.SuspendLayout();
@@ -172,6 +173,7 @@
             // tabAnime
             // 
             this.tabAnime.BackColor = System.Drawing.Color.Thistle;
+            this.tabAnime.Controls.Add(this.button6);
             this.tabAnime.Controls.Add(this.btnAddAnime);
             this.tabAnime.Controls.Add(this.lvwAnime);
             this.tabAnime.Controls.Add(this.btnEditAnime);
@@ -188,10 +190,10 @@
             this.btnAddAnime.BackColor = System.Drawing.Color.MediumPurple;
             this.btnAddAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAddAnime.ForeColor = System.Drawing.Color.Black;
-            this.btnAddAnime.Location = new System.Drawing.Point(1190, 754);
+            this.btnAddAnime.Location = new System.Drawing.Point(580, 754);
             this.btnAddAnime.Margin = new System.Windows.Forms.Padding(5);
             this.btnAddAnime.Name = "btnAddAnime";
-            this.btnAddAnime.Size = new System.Drawing.Size(379, 72);
+            this.btnAddAnime.Size = new System.Drawing.Size(353, 72);
             this.btnAddAnime.TabIndex = 40;
             this.btnAddAnime.Text = "Add Anime";
             this.btnAddAnime.UseVisualStyleBackColor = false;
@@ -257,10 +259,10 @@
             this.btnEditAnime.BackColor = System.Drawing.Color.MediumPurple;
             this.btnEditAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnEditAnime.ForeColor = System.Drawing.Color.Black;
-            this.btnEditAnime.Location = new System.Drawing.Point(745, 754);
+            this.btnEditAnime.Location = new System.Drawing.Point(993, 754);
             this.btnEditAnime.Margin = new System.Windows.Forms.Padding(5);
             this.btnEditAnime.Name = "btnEditAnime";
-            this.btnEditAnime.Size = new System.Drawing.Size(379, 72);
+            this.btnEditAnime.Size = new System.Drawing.Size(353, 72);
             this.btnEditAnime.TabIndex = 38;
             this.btnEditAnime.Text = "Edit Anime";
             this.btnEditAnime.UseVisualStyleBackColor = false;
@@ -1181,6 +1183,19 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Name:";
             // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.MediumPurple;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button6.ForeColor = System.Drawing.Color.Black;
+            this.button6.Location = new System.Drawing.Point(1405, 754);
+            this.button6.Margin = new System.Windows.Forms.Padding(5);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(353, 72);
+            this.button6.TabIndex = 41;
+            this.button6.Text = "Remove Anime";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1316,5 +1331,6 @@
         private GroupBox groupBox1;
         private TextBox textBox1;
         private Label label1;
+        private Button button6;
     }
 }

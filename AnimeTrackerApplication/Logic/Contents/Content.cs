@@ -12,12 +12,12 @@ namespace Logic.Contents
         protected string name;
         protected string description;
         protected string id;
-        protected double rating;
+        protected decimal rating;
         protected int releaseYear;
         protected string imageURL;
         protected List<Genre> genres = new List<Genre>();
 
-        public Content(string id, string name, string description, double rating, int releaseYear, List<Genre> genres, string imageURL)
+        public Content(string id, string name, string description, decimal rating, int releaseYear, List<Genre> genres, string imageURL)
         {
             this.id = id;
             this.name = name;
@@ -34,7 +34,7 @@ namespace Logic.Contents
 
         public string Id { get { return id; } }
 
-        public double Rating { get { return rating; } set { rating = value; } }
+        public decimal Rating { get { return rating; } set { rating = value; } }
 
         public int ReleaseYear { get { return releaseYear; } set { releaseYear = value; } }
 

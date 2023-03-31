@@ -16,5 +16,10 @@ namespace WinFormsGraphic
         {
             InitializeComponent();
         }
+
+        private void btnCancelAnimeAddition_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

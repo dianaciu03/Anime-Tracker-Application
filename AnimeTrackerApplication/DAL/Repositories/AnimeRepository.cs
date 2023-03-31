@@ -3,6 +3,7 @@ using Logic.Contents;
 using Logic.Enums;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -27,13 +28,6 @@ namespace DAL.Repositories
                     {
                         SqlDataReader reader = command1.ExecuteReader();
 
-                        if (!reader.Read())
-                        {
-                            reader.Close();
-                            conn.Close();
-                            return listAnime;
-                        }
-
                         while (reader.Read())
                         {
                             string animeId = reader.GetString(reader.GetOrdinal("AnimeId"));
@@ -42,7 +36,7 @@ namespace DAL.Repositories
                             int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
                             int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
                             string releaseSeason = reader.GetString(reader.GetOrdinal("ReleaseSeason"));
-                            double rating = reader.GetDouble(reader.GetOrdinal("Rating"));
+                            decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
                             string description = reader.GetString(reader.GetOrdinal("Description"));
                             string imageURL = reader.GetString(reader.GetOrdinal("Image"));
                             Season season = (Season)Enum.Parse(typeof(Season), releaseSeason);
@@ -50,7 +44,9 @@ namespace DAL.Repositories
                             Content anime = new Anime(animeId, name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, new List<Genre>());
                             listAnime.Add((Anime)anime);
                         }
+                        reader.Close();
                     }
+                    conn.Close();
                 }
             }
             catch (Exception)
@@ -58,6 +54,29 @@ namespace DAL.Repositories
                 throw new Exception("There are no animes at the moment");
             }
             return listAnime;
+        }
+
+        public int GetNrAnime()
+        {
+            int nrAnime = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query1 = @$"SELECT COUNT(*) FROM Anime";
+                    using (SqlCommand command = new SqlCommand(query1, conn))
+                    {
+                        nrAnime = (int)command.ExecuteScalar();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Couldn't provide the numbers of anime at the moment!");
+            }
+            return nrAnime;
         }
 
         public void AddAnime(Anime anime)

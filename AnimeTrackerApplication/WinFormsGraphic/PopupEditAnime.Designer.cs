@@ -131,6 +131,7 @@
             this.btnCancelAnimeAddition.TabIndex = 44;
             this.btnCancelAnimeAddition.Text = "Cancel";
             this.btnCancelAnimeAddition.UseVisualStyleBackColor = false;
+            this.btnCancelAnimeAddition.Click += new System.EventHandler(this.btnCancelAnimeAddition_Click);
             // 
             // labelNote
             // 
