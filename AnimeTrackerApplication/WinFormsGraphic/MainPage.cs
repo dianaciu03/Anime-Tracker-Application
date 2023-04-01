@@ -85,7 +85,28 @@ namespace WinFormsGraphic
 
         private void btnRemoveAnime_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                Anime anime = (Anime)lvwAnime.SelectedItems[0].Tag;
+                //Display a confirmation message box
+                DialogResult result = MessageBox.Show("Are you sure you want to remove " + anime.Name + "?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // If the user clicks Yes, remove the selected item
+                if (result == DialogResult.Yes)
+                {
+                    animeManager.DeleteAnime(anime.Id);
+                    MessageBox.Show("Anime has been successfully deleted!");
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select an anime to edit details!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
         private void btnClearSearch_Click(object sender, EventArgs e)
