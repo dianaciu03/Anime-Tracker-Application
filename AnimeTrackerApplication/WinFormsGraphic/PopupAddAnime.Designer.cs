@@ -444,6 +444,7 @@
             // 
             // cbxReleaseSeasonAnime
             // 
+            this.cbxReleaseSeasonAnime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxReleaseSeasonAnime.FormattingEnabled = true;
             this.cbxReleaseSeasonAnime.ItemHeight = 30;
             this.cbxReleaseSeasonAnime.Location = new System.Drawing.Point(187, 215);

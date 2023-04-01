@@ -35,7 +35,7 @@
             this.tbxNrEpisodes = new System.Windows.Forms.TextBox();
             this.tbxReleaseYearAnime = new System.Windows.Forms.TextBox();
             this.labelImageAnime = new System.Windows.Forms.Label();
-            this.btnAddAnime = new System.Windows.Forms.Button();
+            this.btnEditAnime = new System.Windows.Forms.Button();
             this.cbSportsGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbSliceOfLifeGenreAnime = new System.Windows.Forms.CheckBox();
             this.cbSciFiGenreAnime = new System.Windows.Forms.CheckBox();
@@ -78,7 +78,7 @@
             this.groupBoxAnimeDetails.Controls.Add(this.tbxNrEpisodes);
             this.groupBoxAnimeDetails.Controls.Add(this.tbxReleaseYearAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.labelImageAnime);
-            this.groupBoxAnimeDetails.Controls.Add(this.btnAddAnime);
+            this.groupBoxAnimeDetails.Controls.Add(this.btnEditAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbSportsGenreAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbSliceOfLifeGenreAnime);
             this.groupBoxAnimeDetails.Controls.Add(this.cbSciFiGenreAnime);
@@ -124,7 +124,7 @@
             this.btnCancelAnimeAddition.BackColor = System.Drawing.Color.Plum;
             this.btnCancelAnimeAddition.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCancelAnimeAddition.ForeColor = System.Drawing.Color.Black;
-            this.btnCancelAnimeAddition.Location = new System.Drawing.Point(829, 533);
+            this.btnCancelAnimeAddition.Location = new System.Drawing.Point(878, 533);
             this.btnCancelAnimeAddition.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancelAnimeAddition.Name = "btnCancelAnimeAddition";
             this.btnCancelAnimeAddition.Size = new System.Drawing.Size(221, 72);
@@ -149,7 +149,7 @@
             this.tbxImageURL.Location = new System.Drawing.Point(570, 333);
             this.tbxImageURL.Margin = new System.Windows.Forms.Padding(5);
             this.tbxImageURL.Name = "tbxImageURL";
-            this.tbxImageURL.Size = new System.Drawing.Size(480, 36);
+            this.tbxImageURL.Size = new System.Drawing.Size(529, 36);
             this.tbxImageURL.TabIndex = 42;
             // 
             // tbxNrEpisodes
@@ -178,18 +178,19 @@
             this.labelImageAnime.TabIndex = 38;
             this.labelImageAnime.Text = "Image:";
             // 
-            // btnAddAnime
+            // btnEditAnime
             // 
-            this.btnAddAnime.BackColor = System.Drawing.Color.Plum;
-            this.btnAddAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAddAnime.ForeColor = System.Drawing.Color.Black;
-            this.btnAddAnime.Location = new System.Drawing.Point(570, 533);
-            this.btnAddAnime.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAddAnime.Name = "btnAddAnime";
-            this.btnAddAnime.Size = new System.Drawing.Size(221, 72);
-            this.btnAddAnime.TabIndex = 36;
-            this.btnAddAnime.Text = "Edit Anime";
-            this.btnAddAnime.UseVisualStyleBackColor = false;
+            this.btnEditAnime.BackColor = System.Drawing.Color.Plum;
+            this.btnEditAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEditAnime.ForeColor = System.Drawing.Color.Black;
+            this.btnEditAnime.Location = new System.Drawing.Point(570, 533);
+            this.btnEditAnime.Margin = new System.Windows.Forms.Padding(5);
+            this.btnEditAnime.Name = "btnEditAnime";
+            this.btnEditAnime.Size = new System.Drawing.Size(221, 72);
+            this.btnEditAnime.TabIndex = 36;
+            this.btnEditAnime.Text = "Edit Anime";
+            this.btnEditAnime.UseVisualStyleBackColor = false;
+            this.btnEditAnime.Click += new System.EventHandler(this.btnEditAnime_Click);
             // 
             // cbSportsGenreAnime
             // 
@@ -443,6 +444,7 @@
             // 
             // cbxReleaseSeasonAnime
             // 
+            this.cbxReleaseSeasonAnime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxReleaseSeasonAnime.FormattingEnabled = true;
             this.cbxReleaseSeasonAnime.ItemHeight = 30;
             this.cbxReleaseSeasonAnime.Location = new System.Drawing.Point(187, 215);
@@ -544,7 +546,7 @@
         private TextBox tbxNrEpisodes;
         private TextBox tbxReleaseYearAnime;
         private Label labelImageAnime;
-        private Button btnAddAnime;
+        private Button btnEditAnime;
         private CheckBox cbSportsGenreAnime;
         private CheckBox cbSliceOfLifeGenreAnime;
         private CheckBox cbSciFiGenreAnime;

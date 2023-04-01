@@ -31,6 +31,7 @@
             this.labelTitleWorldOfAnime = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabAnime = new System.Windows.Forms.TabPage();
+            this.btnRemoveAnime = new System.Windows.Forms.Button();
             this.btnAddAnime = new System.Windows.Forms.Button();
             this.lvwAnime = new System.Windows.Forms.ListView();
             this.colAnimeId = new System.Windows.Forms.ColumnHeader();
@@ -124,7 +125,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.groupBoxAllAnime.SuspendLayout();
@@ -173,7 +173,7 @@
             // tabAnime
             // 
             this.tabAnime.BackColor = System.Drawing.Color.Thistle;
-            this.tabAnime.Controls.Add(this.button6);
+            this.tabAnime.Controls.Add(this.btnRemoveAnime);
             this.tabAnime.Controls.Add(this.btnAddAnime);
             this.tabAnime.Controls.Add(this.lvwAnime);
             this.tabAnime.Controls.Add(this.btnEditAnime);
@@ -184,6 +184,20 @@
             this.tabAnime.Size = new System.Drawing.Size(1797, 852);
             this.tabAnime.TabIndex = 0;
             this.tabAnime.Text = "Anime";
+            // 
+            // btnRemoveAnime
+            // 
+            this.btnRemoveAnime.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnRemoveAnime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemoveAnime.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveAnime.Location = new System.Drawing.Point(1405, 754);
+            this.btnRemoveAnime.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRemoveAnime.Name = "btnRemoveAnime";
+            this.btnRemoveAnime.Size = new System.Drawing.Size(353, 72);
+            this.btnRemoveAnime.TabIndex = 41;
+            this.btnRemoveAnime.Text = "Remove Anime";
+            this.btnRemoveAnime.UseVisualStyleBackColor = false;
+            this.btnRemoveAnime.Click += new System.EventHandler(this.btnRemoveAnime_Click);
             // 
             // btnAddAnime
             // 
@@ -308,6 +322,7 @@
             this.btnClearSearch.TabIndex = 44;
             this.btnClearSearch.Text = "Clear fields";
             this.btnClearSearch.UseVisualStyleBackColor = false;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // tbxReleaseYearSearchAnime
             // 
@@ -350,6 +365,7 @@
             // 
             // cbxSeasonSearchAnime
             // 
+            this.cbxSeasonSearchAnime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSeasonSearchAnime.FormattingEnabled = true;
             this.cbxSeasonSearchAnime.ItemHeight = 25;
             this.cbxSeasonSearchAnime.Location = new System.Drawing.Point(201, 210);
@@ -393,6 +409,7 @@
             // 
             // cbxGenreSearchAnime
             // 
+            this.cbxGenreSearchAnime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxGenreSearchAnime.FormattingEnabled = true;
             this.cbxGenreSearchAnime.ItemHeight = 25;
             this.cbxGenreSearchAnime.Location = new System.Drawing.Point(116, 252);
@@ -422,7 +439,7 @@
             // 
             this.numNrEpisodesToSearchAnime.Location = new System.Drawing.Point(400, 126);
             this.numNrEpisodesToSearchAnime.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});
@@ -1183,19 +1200,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Name:";
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.MediumPurple;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button6.ForeColor = System.Drawing.Color.Black;
-            this.button6.Location = new System.Drawing.Point(1405, 754);
-            this.button6.Margin = new System.Windows.Forms.Padding(5);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(353, 72);
-            this.button6.TabIndex = 41;
-            this.button6.Text = "Remove Anime";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1331,6 +1335,6 @@
         private GroupBox groupBox1;
         private TextBox textBox1;
         private Label label1;
-        private Button button6;
+        private Button btnRemoveAnime;
     }
 }

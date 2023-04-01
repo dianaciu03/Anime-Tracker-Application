@@ -1,5 +1,6 @@
 ﻿using DAL.Repositories;
 using Logic.Animes;
+using Logic.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +35,9 @@ namespace WinFormsGraphic
         {
             //fix background image
             this.BackgroundImageLayout = ImageLayout.Stretch;
+            cbxSeasonSearchAnime.DataSource = Enum.GetValues(typeof(Season));
+            cbxGenreSearchAnime.DataSource = Enum.GetValues(typeof(Genre));
+            btnClearSearch_Click(this, EventArgs.Empty);
         }
 
         private void btnAddAnime_Click(object sender, EventArgs e)
@@ -44,7 +48,16 @@ namespace WinFormsGraphic
 
         private void btnEditAnime_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Anime anime = (Anime)lvwAnime.SelectedItems[0].Tag;
+                PopupEditAnime form = new PopupEditAnime(anime);
+                form.ShowDialog();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select an anime to edit details!");
+            }
         }
 
         private void btnDisplayAllAnime_Click(object sender, EventArgs e)
@@ -68,6 +81,23 @@ namespace WinFormsGraphic
                 item.SubItems.Add(a.NrEpisodes.ToString());
                 lvwAnime.Items.Add(item);
             }
+        }
+
+        private void btnRemoveAnime_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            tbxNameSearchAnime.Text = string.Empty;
+            tbxStudioSearchAnime.Text = string.Empty;
+            numNrEpisodesFromSearchAnime.Text = "1";
+            numNrEpisodesToSearchAnime.Text = "1";
+            tbxReleaseYearSearchAnime.Text = string.Empty;
+            cbxGenreSearchAnime.SelectedIndex = -1;
+            cbxSeasonSearchAnime.SelectedIndex = -1;
+            numRatingSearchAnime.Text = "1";
         }
     }
 }

@@ -121,7 +121,7 @@ namespace DAL.Repositories
             }
         }
 
-        public void UpdateAnime(string id, string name, string studio, int nrEpisodes, int releaseYear, Season releaseSeason, double rating, string description, string imageURL)
+        public void UpdateAnime(string id, string name, string studio, int nrEpisodes, int releaseYear, Season releaseSeason, decimal rating, string description, string imageURL)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace DAL.Repositories
                         string query = @"UPDATE Anime SET Name=@Name, Studio=@Studio, NrEpisodes=@NrEpisodes, ReleaseYear=@ReleaseYear, ReleaseSeason=@ReleaseSeason, Rating=@Rating, Description=@Description, Image=@Image WHERE AnimeId=@AnimeId";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
-                            //command.Parameters.AddWithValue("@AnimeId", id);
+                            command.Parameters.AddWithValue("@AnimeId", id);
                             command.Parameters.AddWithValue("@Name", name);
                             command.Parameters.AddWithValue("@Studio", studio);
                             command.Parameters.AddWithValue("@NrEpisodes", nrEpisodes);

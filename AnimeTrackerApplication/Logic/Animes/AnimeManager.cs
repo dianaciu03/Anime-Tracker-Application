@@ -33,7 +33,7 @@ namespace Logic.Animes
             _animeDataHandler.AddAnime((Anime)anime);
         }
 
-        public void UpdateAnime(string id, string name, string description, double rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
+        public void UpdateAnime(string id, string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
         {
             _animeDataHandler.UpdateAnime(id, name, studio, nrEpisodes, releaseYear, season, rating, description, imageURL);
         }
