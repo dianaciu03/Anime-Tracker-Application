@@ -13,6 +13,9 @@ namespace WebAppGraphic.Pages
         [BindProperty]
         public RegisteredWebUser RegistrationFormUser { get; set; } = new RegisteredWebUser();
 
+        [BindProperty]
+        public string ConfirmPassword { get; set; };
+
         public void OnGet()
         {
             ModelState.Clear();
@@ -25,10 +28,10 @@ namespace WebAppGraphic.Pages
                 return Page();
             }
 
-            if (RegistrationFormUser.Password == RegistrationFormUser.PasswordConfirm)
+            if (RegistrationFormUser.Password == ConfirmPassword)
             {
                 User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.UtcNow, RegistrationFormUser.Username);
-                TempData["WebUser"] = JsonSerializer.Serialize(webUser);
+                //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
                 _userManager.AddUser(webUser);
             }
             return RedirectToPage("Index");

@@ -10,8 +10,6 @@ namespace Logic.Users
     public class RegisteredWebUser : User
     {
         private string username;
-        private string passwordConfirm;
-
 
         public RegisteredWebUser(string name, string email, string password, DateTime joinDate, string username) : base(name, email, password, joinDate)
         {
@@ -25,8 +23,6 @@ namespace Logic.Users
 
         [Required(ErrorMessage = "A username is required")]
         public string Username { get { return username; } set { this.username = value; } }
-
-        public string PasswordConfirm { get { return passwordConfirm; } set { this.passwordConfirm = value; } }
 
 
         public override string ToString()

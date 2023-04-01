@@ -9,6 +9,8 @@ namespace Logic.Users
 {
     public abstract class User
     {
+        protected int Id { get; set; }
+
         protected string name;
         protected string email;
         protected string password;

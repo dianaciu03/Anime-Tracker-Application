@@ -51,7 +51,7 @@ namespace DAL.Repositories
             }
             catch (Exception)
             {
-                throw new Exception("There are no animes at the moment");
+                throw new Exception("There were issues while trying to retrive the animes!");
             }
             return listAnime;
         }
