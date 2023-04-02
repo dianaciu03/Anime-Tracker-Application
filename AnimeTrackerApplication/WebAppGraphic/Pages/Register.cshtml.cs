@@ -3,18 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using Logic.Users;
+using DAL.Repositories;
 
 namespace WebAppGraphic.Pages
 {
     public class RegisterModel : PageModel
     {
-        private static UserManager _userManager = new UserManager();
+        private static IUser _userDataHandler= new UserRepository();
+        private static UserManager userManager = new UserManager(_userDataHandler);
 
         [BindProperty]
         public RegisteredWebUser RegistrationFormUser { get; set; } = new RegisteredWebUser();
 
         [BindProperty]
-        public string ConfirmPassword { get; set; };
+        public string ConfirmPassword { get; set; }
 
         public void OnGet()
         {
@@ -30,9 +32,9 @@ namespace WebAppGraphic.Pages
 
             if (RegistrationFormUser.Password == ConfirmPassword)
             {
-                User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.UtcNow, RegistrationFormUser.Username);
+                User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.Now.Date, RegistrationFormUser.Username);
                 //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
-                _userManager.AddUser(webUser);
+                userManager.AddUser(webUser);
             }
             return RedirectToPage("Index");
         }

@@ -29,16 +29,18 @@ namespace Logic.Users
 
         }
 
-        [Required(ErrorMessage = "A name is required")]
+        [Required(ErrorMessage = "A name is required!")]
         public string Name { get { return name; } set { this.name = value; } }
 
         [Required(ErrorMessage = "An email is required"),
-         EmailAddress(ErrorMessage = "Your email must be a valid one")]
+         EmailAddress(ErrorMessage = "Your email address must be a valid!")]
         public string Email { get { return email; } set { this.email = value; } }
 
         [Required(ErrorMessage = "A password is required"),
-         MinLength(6, ErrorMessage = "Your password need to be at least 6 characters")]
+         MinLength(6, ErrorMessage = "Your password need to be at least 6 characters!")]
         public string Password { get { return password; } set { this.password = value; } }
+
+        public DateTime JoinDate { get { return joinDate; } set { this.joinDate = value; } }
 
         public override string ToString()
         {

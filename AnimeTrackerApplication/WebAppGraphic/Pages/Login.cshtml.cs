@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using Logic.Users;
 using System.Text.Json;
+using DAL.Repositories;
 
 namespace WebAppGraphic.Pages
 {
     public class LoginModel : PageModel
     {
-        private static UserManager _userManager = new UserManager();
+        private static IUser _userDataHandler = new UserRepository();
+        private static UserManager userManager = new UserManager(_userDataHandler);
         //private List<User> users = _userManager.GetUsers();
 
         public void OnGet()

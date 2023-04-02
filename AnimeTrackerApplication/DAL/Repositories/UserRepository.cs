@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UserRepository : BaseDAL
+    public class UserRepository : BaseDAL, IUser
     {
         public List<User> GetAllUsers()
         {
@@ -156,7 +156,7 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"INSERT INTO User (Name, UserName, Email, Password, Salt, JoinDate, Role) VALUES (@UserId, @Name, @UserName, @Email, @Password, @Salt, @JoinDate, @Role)";
+                        string query = @"INSERT INTO [User] (Name, UserName, Email, JoinDate, Salt, Password, Role) VALUES (@Name, @UserName, @Email, @JoinDate, @Salt, @Password, @Role)";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@Name", user.Name);
@@ -168,9 +168,9 @@ namespace DAL.Repositories
                             else
                                 command.Parameters.AddWithValue("@UserName", DBNull.Value);
                             command.Parameters.AddWithValue("@Email", user.Email);
+                            command.Parameters.AddWithValue("@JoinDate", user.JoinDate);
                             command.Parameters.AddWithValue("@Password", user.Password);
-                            //command.Parameters.AddWithValue("@Salt", user.Salt);
-                            command.Parameters.AddWithValue("@JoinDate", DateTime.Now.Date);
+                            command.Parameters.AddWithValue("@Salt", DBNull.Value);
                             command.Parameters.AddWithValue("@Role", user.GetType().Name);
 
                             command.ExecuteNonQuery();
