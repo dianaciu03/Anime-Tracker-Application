@@ -13,38 +13,58 @@ namespace WebAppGraphic.Pages
     {
         private static IUser _userDataHandler = new UserRepository();
         private static UserManager userManager = new UserManager(_userDataHandler);
-        //private List<User> users = _userManager.GetUsers();
+
+        [BindProperty]
+        public string UserEmail { get; set; }
+
+        [BindProperty]
+        public string UserPassword { get; set; }
 
         public void OnGet()
         {
-            if (TempData.ContainsKey("WebUser"))
-            {
-                //RegisteredWebUser webUser = JsonSerializer.Deserialize<RegisteredWebUser>((string)TempData["WebUser"])!;
-            }
+            //if (TempData.ContainsKey("WebUser"))
+            //{
+            //    RegisteredWebUser webUser = JsonSerializer.Deserialize<RegisteredWebUser>((string)TempData["WebUser"])!;
+            //}
         }
 
-        public async Task OnPostAsync()
-        {
-            if (ModelState.IsValid)
-            {
-                //Validate
-                //Simulate database
-                ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-                    new Claim[]
-                    {
-                        new Claim("id", "email@gmail.com"),
-                        new Claim(ClaimTypes.Name, "My name"),
-                        new Claim(ClaimTypes.Role, "WebUser")
-                    }, CookieAuthenticationDefaults.AuthenticationScheme);
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync(claimsPrincipal);
-            }
-        }
+        //public async Task OnPostAsync()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //Validate
+        //        //Simulate database
+        //        //ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+        //        //    new Claim[]
+        //        //    {
+        //        //        new Claim("id", "email@gmail.com"),
+        //        //        new Claim(ClaimTypes.Name, "My name"),
+        //        //        new Claim(ClaimTypes.Role, "WebUser")
+        //        //    }, CookieAuthenticationDefaults.AuthenticationScheme);
+        //        //ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+        //        //await HttpContext.SignInAsync(claimsPrincipal);
+        //    }
+
+
+        //}
 
         public IActionResult OnPost()
         {
+            RegisteredWebUser? user = null;
 
-            return RedirectToPage("Index");
+            if (ModelState.IsValid)
+            {
+                user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
+            }
+
+            if(user != null)
+            {
+                return RedirectToPage("Privacy");
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }

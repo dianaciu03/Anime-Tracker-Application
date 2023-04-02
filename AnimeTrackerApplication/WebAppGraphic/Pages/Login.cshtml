@@ -12,12 +12,14 @@
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group mb-3">
-                            <label class="text-white" for="inputEmail">Email</label>
-                            <input type="email" class="form-control rounded-pill" id="inputEmail" name="inputEmail" required />
+                            <label asp-for="UserEmail" class="text-white">Email</label>
+                            <input asp-for="UserEmail" type="text" class="form-control rounded-pill" placeholder="Your email..." />
+                            <span asp-validation-for="UserEmail" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
-                            <label class="text-white" for="inputPassword">Password</label>
-                            <input type="password" class="form-control rounded-pill" id="inputPassword" name="inputPassword" required />
+                            <label asp-for="UserPassword" class="text-white">Password</label>
+                            <input asp-for="UserPassword" type="password" class="form-control rounded-pill" placeholder="Your password..." />
+                            <span asp-validation-for="UserPassword" class="text-danger"></span>
                         </div>
                         <button type="submit" style="padding: 2px 20px 3px 20px; font-size: 20px" class="btn btn-primary rounded-pill mt-4 d-flex mx-auto">Login</button>
                     </form>

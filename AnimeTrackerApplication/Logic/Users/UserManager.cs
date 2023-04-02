@@ -31,9 +31,9 @@ namespace Logic.Users
             _userDataHandler.AddUser(user);
         }
 
-        //public List<User> GetUsers()
-        //{
-            
-        //}
+        public User? GetUserByEmail(string email)
+        {
+            return _userDataHandler.GetUserByEmail(email);
+        }
     }
 }

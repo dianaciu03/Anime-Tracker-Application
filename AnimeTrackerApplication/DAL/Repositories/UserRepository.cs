@@ -108,29 +108,43 @@ namespace DAL.Repositories
             return listUsers;
         }
 
-        public RegisteredWebUser? GetWebUserByEmail(string email)
+        public User? GetUserByEmail(string email)
         {
-            RegisteredWebUser webUser = null;
+            User user = null;
             try
             {
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query = @$"SELECT * FROM User WHERE Role = 'RegisteredWebUser' AND Email = '{email}'";
+                    string query = @$"SELECT * FROM [User] WHERE Email = '{email}'";
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         SqlDataReader reader = command.ExecuteReader();
 
                         while (reader.Read())
                         {
-                            string userId = reader.GetString(reader.GetOrdinal("UserId"));
+                            int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
                             string username = reader.GetString(reader.GetOrdinal("UserName"));
                             string password = reader.GetString(reader.GetOrdinal("Password"));
-                            string salt = reader.GetString(reader.GetOrdinal("Salt"));
+                            //string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
+                            string role = reader.GetString(reader.GetOrdinal("Role"));
 
-                            webUser = new RegisteredWebUser(name, email, password, joinDate, username);
+                            switch (role)
+                            {
+                                case "Admin":
+                                    user = new Admin(name, email, password, joinDate);
+                                    break;
+
+                                case "Maintainer":
+                                    user = new Maintainer(name, email, password, joinDate);
+                                    break;
+
+                                case "RegisteredWebUser":
+                                    user = new RegisteredWebUser(name, email, password, joinDate, username);
+                                    break;
+                            }
                         }
                         reader.Close();
                     }
@@ -141,7 +155,7 @@ namespace DAL.Repositories
             {
                 throw new Exception("There were issues while trying to retrieve the user!");
             }
-            return webUser;
+            return user;
         }
 
 
