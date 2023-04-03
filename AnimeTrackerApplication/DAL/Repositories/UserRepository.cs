@@ -116,9 +116,10 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query = @$"SELECT * FROM [User] WHERE Email = '{email}'";
+                    string query = @"SELECT * FROM [User] WHERE Email = @Email";
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
+                        command.Parameters.AddWithValue("@Email", user.Email);
                         SqlDataReader reader = command.ExecuteReader();
 
                         while (reader.Read())
