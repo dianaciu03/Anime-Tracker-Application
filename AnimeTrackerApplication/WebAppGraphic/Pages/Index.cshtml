@@ -1,4 +1,5 @@
 ﻿@page
+@using Logic.Animes
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -12,7 +13,17 @@
     </div>
 </div>
 
-<div class="container-fluid bg-dark p-5">
+<div class="container-fluid container-display bg-dark p-5">
+    @foreach(Anime anime in Model.Animes) 
+    {
+        <a asp-page="ContentDetails" asp-route-id="@anime.Id">
+            <div>
+                <p>@anime.Name</p>
+                <p>@anime.SeasonAnime @anime.ReleaseYear</p>
+                @*<img src="@anime.ImageURL" />*@
+            </div>
+        </a>
+    }
     <div class="row">
         <div class="col-md-2">
             <div class="card-display bg-light rounded-3">something</div>
