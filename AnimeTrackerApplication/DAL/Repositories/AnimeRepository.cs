@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace DAL.Repositories
 {
-    public class AnimeRepository : BaseDAL, IAnime
+    public class AnimeRepository : BaseDAL, IAnimeRepository
     {
         public List<Anime> GetAllAnime()
         {

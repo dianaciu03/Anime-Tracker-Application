@@ -27,7 +27,7 @@ namespace WinFormsGraphic
 
         private void InitializeManagers()
         {
-            IAnime _animeDataHandler = new AnimeRepository();
+            IAnimeRepository _animeDataHandler = new AnimeRepository();
             animeManager = new AnimeManager(_animeDataHandler);
         }
 

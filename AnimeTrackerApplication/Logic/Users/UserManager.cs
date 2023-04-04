@@ -9,9 +9,9 @@ namespace Logic.Users
 {
     public class UserManager
     {
-        private readonly IUser _userDataHandler;
+        private readonly IUserRepository _userDataHandler;
 
-        public UserManager(IUser iUser)
+        public UserManager(IUserRepository iUser)
         {
             _userDataHandler = iUser;
         }

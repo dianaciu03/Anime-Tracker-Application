@@ -20,7 +20,7 @@ namespace WinFormsGraphic
     {
         //declare variables
         List<CheckBox> animeGenre;
-        private IAnime _animeDataHandler;
+        private IAnimeRepository _animeDataHandler;
         AnimeManager animeManager;
 
         public PopupAddAnime()

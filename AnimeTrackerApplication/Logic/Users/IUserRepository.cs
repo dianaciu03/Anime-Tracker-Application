@@ -2,7 +2,7 @@
 
 namespace Logic.Users
 {
-    public interface IUser
+    public interface IUserRepository
     {
         void AddUser(User user);
         List<User> GetAllUsers();

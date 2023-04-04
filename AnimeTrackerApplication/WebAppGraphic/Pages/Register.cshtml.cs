@@ -9,7 +9,7 @@ namespace WebAppGraphic.Pages
 {
     public class RegisterModel : PageModel
     {
-        private static IUser _userDataHandler= new UserRepository();
+        private static IUserRepository _userDataHandler= new UserRepository();
         private static UserManager userManager = new UserManager(_userDataHandler);
 
         [BindProperty]

@@ -17,7 +17,7 @@ namespace WinFormsGraphic
     {
         //declare variables
         List<CheckBox> cbAnimeGenre;
-        private IAnime _animeDataHandler;
+        private IAnimeRepository _animeDataHandler;
         AnimeManager animeManager;
         Anime anime;
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Animes
 {
-    public interface IAnime
+    public interface IAnimeRepository
     {
         void AddAnime(Anime anime);
         void DeleteAnime(string animeId);

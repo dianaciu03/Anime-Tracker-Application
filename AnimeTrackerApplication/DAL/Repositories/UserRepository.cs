@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UserRepository : BaseDAL, IUser
+    public class UserRepository : BaseDAL, IUserRepository
     {
         public List<User> GetAllUsers()
         {
@@ -23,7 +23,7 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query1 = @$"SELECT * FROM User";
+                    string query1 = @$"SELECT * FROM [User]";
                     using (SqlCommand command1 = new SqlCommand(query1, conn))
                     {
                         SqlDataReader reader = command1.ExecuteReader();
@@ -77,7 +77,7 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query1 = @$"SELECT * FROM User WHERE Role = 'RegisteredWebUser'";
+                    string query1 = @$"SELECT * FROM [User] WHERE Role = 'RegisteredWebUser'";
                     using (SqlCommand command1 = new SqlCommand(query1, conn))
                     {
                         SqlDataReader reader = command1.ExecuteReader();
@@ -116,10 +116,10 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query = @"SELECT * FROM [User] WHERE Email = @Email";
+                    string query = @"SELECT * FROM [User] WHERE Email=@Email";
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
-                        command.Parameters.AddWithValue("@Email", user.Email);
+                        command.Parameters.AddWithValue("@Email", email);
                         SqlDataReader reader = command.ExecuteReader();
 
                         while (reader.Read())
