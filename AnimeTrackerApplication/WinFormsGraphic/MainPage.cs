@@ -73,9 +73,8 @@ namespace WinFormsGraphic
             foreach (Anime a in animes)
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = a.Id.ToString();
+                item.Text = a.Name;
                 item.Tag = a;
-                item.SubItems.Add(a.Name);
                 item.SubItems.Add(a.Studio);
                 item.SubItems.Add(a.Rating.ToString());
                 item.SubItems.Add(a.ReleaseYear.ToString());
