@@ -16,5 +16,10 @@ namespace WinFormsGraphic
         {
             InitializeComponent();
         }
+
+        private void btnCancelMangaAddition_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

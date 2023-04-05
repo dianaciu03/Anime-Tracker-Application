@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic.Animes
+namespace Logic.Mangas
 {
-    public class AnimeDataValidator
+    public class MangaDataValidator
     {
-        public AnimeDataValidator()
+        public MangaDataValidator()
         {
 
         }
@@ -22,10 +22,10 @@ namespace Logic.Animes
                 return true;
         }
 
-        public bool IsStudioValid(string studio)
+        public bool IsCreatorValid(string creator)
         {
-            if (String.IsNullOrEmpty(studio))
-                throw new Exception("You need to provide a studio!");
+            if (String.IsNullOrEmpty(creator))
+                throw new Exception("You need to provide a creator!");
             else
                 return true;
         }
@@ -38,22 +38,22 @@ namespace Logic.Animes
                 return true;
         }
 
-        public bool IsNrEpisodesValid(string nrEpisodes)
+        public bool IsNrChaptersValid(string nrchapters)
         {
-            if(!String.IsNullOrEmpty(nrEpisodes))
+            if (!String.IsNullOrEmpty(nrchapters))
             {
                 try
                 {
-                    int nr = Convert.ToInt32(nrEpisodes);
+                    int nr = Convert.ToInt32(nrchapters);
                     return true;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                    throw new Exception("The number of episodes is not valid!");
+                    throw new Exception("The number of chapters is not valid!");
                 }
             }
             else
-                throw new Exception("You need to provide a number for episodes!");
+                throw new Exception("You need to provide a number for chapters!");
         }
 
         public bool IsRatingValid(string rating)
@@ -98,17 +98,17 @@ namespace Logic.Animes
                 throw new Exception("You need to provide a release year!");
         }
 
-        public bool IsSeasonValid(Season season)
+        public bool IsStatusValid(MangaStatus status)
         {
-            if (!String.IsNullOrEmpty(season.ToString()))
+            if (!String.IsNullOrEmpty(status.ToString()))
             {
-                if (Enum.IsDefined(typeof(Season), season))
+                if (Enum.IsDefined(typeof(Season), status))
                     return true;
                 else
                     throw new Exception("You can't change the provided options!");
             }
             else
-                throw new Exception("You need to provide a season!");
+                throw new Exception("You need to provide a status!");
         }
 
         public bool IsPathValid(string path)

@@ -131,6 +131,7 @@
             this.btnCancelMangaAddition.TabIndex = 44;
             this.btnCancelMangaAddition.Text = "Cancel";
             this.btnCancelMangaAddition.UseVisualStyleBackColor = false;
+            this.btnCancelMangaAddition.Click += new System.EventHandler(this.btnCancelMangaAddition_Click);
             // 
             // labelNote
             // 
