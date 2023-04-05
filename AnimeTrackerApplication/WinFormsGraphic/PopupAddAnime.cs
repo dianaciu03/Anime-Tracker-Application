@@ -13,6 +13,8 @@ using Logic.Enums;
 using DAL.Repositories;
 using Logic.Animes;
 using Microsoft.VisualBasic.Devices;
+using Factory.ManagerFactory;
+using Factory.RepositoryFactory;
 
 namespace WinFormsGraphic
 {
@@ -20,17 +22,13 @@ namespace WinFormsGraphic
     {
         //declare variables
         List<CheckBox> animeGenre;
-        private IAnimeRepository _animeDataHandler;
-        AnimeManager animeManager;
+        IAnimeManager animeManager;
 
         public PopupAddAnime()
         {
             InitializeComponent();
             InitializeForm();
-
-            //change to factory later
-            _animeDataHandler = new AnimeRepository();
-            animeManager = new AnimeManager(_animeDataHandler);
+            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
         }
 
         private void InitializeForm()

@@ -13,7 +13,7 @@ namespace WebAppGraphic.Pages
         private static UserManager userManager = new UserManager(_userDataHandler);
 
         [BindProperty]
-        public RegisteredWebUser RegistrationFormUser { get; set; } = new RegisteredWebUser();
+        public RegisteredWebUser RegistrationFormUser { get; set; } 
 
         [BindProperty]
         public string ConfirmPassword { get; set; }

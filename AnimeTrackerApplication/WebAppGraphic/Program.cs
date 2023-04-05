@@ -5,19 +5,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(120);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
+//builder.Services.AddSession(options =>
+//{
+//    options.IdleTimeout = TimeSpan.FromMinutes(120);
+//    options.Cookie.HttpOnly = true;
+//    options.Cookie.IsEssential = true;
+//});
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/ContactLogin";
-        options.AccessDeniedPath = "/Error";
-    });
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//    .AddCookie(options =>
+//    {
+//        options.LoginPath = "/ContactLogin";
+//        options.AccessDeniedPath = "/Error";
+//    });
 
 var app = builder.Build();
 
@@ -34,9 +34,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession();
+//app.UseSession();
 
-app.UseAuthentication();
+//app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

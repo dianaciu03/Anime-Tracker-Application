@@ -21,7 +21,7 @@ namespace WebAppGraphic.Pages
 
         public void OnGet(string id)
         {
-            //Anime = animeManager.GetById(id);
+            Anime = animeManager.GetAnimeByCode(id);
         }
     }
 }

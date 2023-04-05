@@ -24,16 +24,35 @@
 .container-display {
 
     display: grid;
-    grid-template-columns: repeat(6, 1fr)
-
+    grid-template-columns: repeat(6, 1fr);
+    padding: 4rem 10rem 4rem 10rem;
+    gap: 2rem 4rem;
 }
 
-.card-display {
+.container-display > a {
     height: 100px;
+}
+
+.container-display > a:hover {
+        
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+}
+
+.container-display > a > div {
+    margin-right: 0.5rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 10px 8px #888888;
+    align-content: center;
+}
+
+/*.card-display {
+    
     border: none;
 }
 
 .card-display:hover {
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
-}
+}*/

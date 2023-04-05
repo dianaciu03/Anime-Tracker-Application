@@ -1,4 +1,6 @@
 ﻿using DAL.Repositories;
+using Factory.ManagerFactory;
+using Factory.RepositoryFactory;
 using Logic.Animes;
 using Logic.Enums;
 using System;
@@ -17,16 +19,14 @@ namespace WinFormsGraphic
     {
         //declare variables
         List<CheckBox> cbAnimeGenre;
-        private IAnimeRepository _animeDataHandler;
-        AnimeManager animeManager;
+        IAnimeManager animeManager;
         Anime anime;
 
         public PopupEditAnime(Anime a)
         {
             InitializeComponent();
             anime = a;
-            _animeDataHandler = new AnimeRepository();
-            animeManager = new AnimeManager(_animeDataHandler);
+            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
             FillInDetails();
         }
 

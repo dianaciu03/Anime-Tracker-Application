@@ -39,6 +39,7 @@ namespace DAL.Repositories
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
 
+                            //user factory?
                             switch (role)
                             {
                                 case "Admin":

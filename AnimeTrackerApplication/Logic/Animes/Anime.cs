@@ -14,8 +14,16 @@ namespace Logic.Animes
         private int nrEpisodes;
         private string studio;
 
-        public Anime(string id, string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
+        public Anime(int id, string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
             : base(id, name, description, rating, releaseYear, genres, imageURL)
+        {
+            this.season = season;
+            this.nrEpisodes = nrEpisodes;
+            this.studio = studio;
+        }
+
+        public Anime(string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
+            : base(name, description, rating, releaseYear, genres, imageURL)
         {
             this.season = season;
             this.nrEpisodes = nrEpisodes;

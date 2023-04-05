@@ -1,6 +1,7 @@
 ﻿using Logic.Animes;
 using Logic.Contents;
 using Logic.Enums;
+using Logic.Users;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections;
@@ -30,7 +31,7 @@ namespace DAL.Repositories
 
                         while (reader.Read())
                         {
-                            string animeId = reader.GetString(reader.GetOrdinal("AnimeId"));
+                            int animeId = reader.GetInt32(reader.GetOrdinal("AnimeId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
                             string studio = reader.GetString(reader.GetOrdinal("Studio"));
                             int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
@@ -90,10 +91,9 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"INSERT INTO Anime (AnimeId, Name, Studio, NrEpisodes, ReleaseYear, ReleaseSeason, Rating, Description, Image) VALUES (@AnimeId,@Name,@Studio,@NrEpisodes,@ReleaseYear,@ReleaseSeason,@Rating,@Description,@Image)";
+                        string query = @"INSERT INTO Anime (Name, Studio, NrEpisodes, ReleaseYear, ReleaseSeason, Rating, Description, Image) VALUES (@Name, @Studio, @NrEpisodes, @ReleaseYear, @ReleaseSeason, @Rating, @Description, @Image)";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
-                            command.Parameters.AddWithValue("@AnimeId", anime.Id);
                             command.Parameters.AddWithValue("@Name", anime.Name);
                             command.Parameters.AddWithValue("@Studio", anime.Studio);
                             command.Parameters.AddWithValue("@NrEpisodes", anime.NrEpisodes);
@@ -121,7 +121,7 @@ namespace DAL.Repositories
             }
         }
 
-        public void UpdateAnime(string id, string name, string studio, int nrEpisodes, int releaseYear, Season releaseSeason, decimal rating, string description, string imageURL)
+        public void UpdateAnime(int id, string name, string studio, int nrEpisodes, int releaseYear, Season releaseSeason, decimal rating, string description, string imageURL)
         {
             try
             {
@@ -164,7 +164,7 @@ namespace DAL.Repositories
         }
 
 
-        public void DeleteAnime(string animeId)
+        public void DeleteAnime(int animeId)
         {
             try
             {
@@ -196,6 +196,47 @@ namespace DAL.Repositories
             {
                 throw new Exception($"An error occurred: {ex.Message}");
             }
+        }
+
+        public Anime? GetAnimeById(int animeId)
+        {
+            Content anime = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM Anime WHERE AnimeId=@AnimeId";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@AnimeId", animeId);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int animeid = reader.GetInt32(reader.GetOrdinal("AnimeId"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string studio = reader.GetString(reader.GetOrdinal("Studio"));
+                            int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
+                            int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                            string releaseSeason = reader.GetString(reader.GetOrdinal("ReleaseSeason"));
+                            decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                            string description = reader.GetString(reader.GetOrdinal("Description"));
+                            string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                            Season season = (Season)Enum.Parse(typeof(Season), releaseSeason);
+
+                            anime = new Anime(animeId, name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, new List<Genre>());
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the anime!");
+            }
+            return (Anime)anime;
         }
     }
 }

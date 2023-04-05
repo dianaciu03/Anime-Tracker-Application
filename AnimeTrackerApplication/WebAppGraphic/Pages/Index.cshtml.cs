@@ -8,13 +8,12 @@ namespace WebAppGraphic.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private static IAnimeRepository animeRepository = new AnimeRepository();
-        AnimeManager animeManager;
+        //private IAnimeRepository animeRepository = new AnimeRepository();
+        private static AnimeManager animeManager = new AnimeManager(new AnimeRepository());
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            animeManager = new AnimeManager(animeRepository);
         }
 
         public List<Anime> Animes
@@ -22,14 +21,19 @@ namespace WebAppGraphic.Pages
             get { return animeManager.GetAllAnime(); }
         }
 
-        public IActionResult OnGet()
-        {
-            //if(HttpContext.Session.Get("Dummy") is null)
-            //{
-            //    HttpContext.Session.SetString("Dummy", "Some data");
-            //}
+        //public IActionResult OnGet()
+        //{
+        //    //if(HttpContext.Session.Get("Dummy") is null)
+        //    //{
+        //    //    HttpContext.Session.SetString("Dummy", "Some data");
+        //    //}
 
-            return Page();
+        //    //return Page();
+        //}
+
+        public void OnGet()
+        {
+
         }
     }
 }

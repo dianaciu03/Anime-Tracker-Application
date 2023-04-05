@@ -10,13 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Factory;
+using Factory.ManagerFactory;
+using Factory.RepositoryFactory;
 
 namespace WinFormsGraphic
 {
     public partial class MainPage : Form
     {
         //declare variables
-        AnimeManager animeManager;
+        IAnimeManager animeManager;
 
         public MainPage()
         {
@@ -27,8 +30,7 @@ namespace WinFormsGraphic
 
         private void InitializeManagers()
         {
-            IAnimeRepository _animeDataHandler = new AnimeRepository();
-            animeManager = new AnimeManager(_animeDataHandler);
+            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
         }
 
         private void InitializeForm()
@@ -71,7 +73,7 @@ namespace WinFormsGraphic
             foreach (Anime a in animes)
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = a.Id;
+                item.Text = a.Id.ToString();
                 item.Tag = a;
                 item.SubItems.Add(a.Name);
                 item.SubItems.Add(a.Studio);

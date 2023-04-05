@@ -33,7 +33,7 @@ namespace Logic.Users
         public string Name { get { return name; } set { this.name = value; } }
 
         [Required(ErrorMessage = "An email is required"),
-         EmailAddress(ErrorMessage = "Your email address must be a valid!")]
+         EmailAddress(ErrorMessage = "Your email address must be valid!")]
         public string Email { get { return email; } set { this.email = value; } }
 
         [Required(ErrorMessage = "A password is required"),
