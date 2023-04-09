@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class MangaRepository : BaseDAL
+    public class MangaRepository : BaseDAL, IMangaRepository
     {
         public List<Manga> GetAllManga()
         {
