@@ -32,9 +32,9 @@ namespace Logic.Mangas
 
         public MangaStatus Status { get { return status; } set { status = value; } }
 
-        public int NrEpisodes { get { return nrChapters; } set { nrChapters = value; } }
+        public int NrChapters { get { return nrChapters; } set { nrChapters = value; } }
 
-        public string Studio { get { return creator; } set { creator = value; } }
+        public string Creator { get { return creator; } set { creator = value; } }
 
         public override string ToString()
         {

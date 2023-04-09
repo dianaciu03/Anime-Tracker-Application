@@ -187,7 +187,7 @@ namespace DAL.Repositories
                     catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw new Exception($"An error occurred: {ex.Message}");
+                        throw new Exception($"Anime couldn't be deleted: {ex.Message}");
                     }
                     conn.Close();
                 }

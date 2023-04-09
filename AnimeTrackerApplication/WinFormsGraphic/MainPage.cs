@@ -26,6 +26,7 @@ namespace WinFormsGraphic
             InitializeComponent();
             InitializeForm();
             InitializeManagers();
+            
         }
 
         private void InitializeManagers()

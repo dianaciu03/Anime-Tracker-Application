@@ -469,7 +469,6 @@
             // cbxSeasonSearchAnime
             // 
             this.cbxSeasonSearchAnime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSeasonSearchAnime.FormattingEnabled = true;
             this.cbxSeasonSearchAnime.ItemHeight = 25;
             this.cbxSeasonSearchAnime.Location = new System.Drawing.Point(201, 210);
             this.cbxSeasonSearchAnime.Name = "cbxSeasonSearchAnime";
@@ -500,7 +499,6 @@
             // cbxGenreSearchAnime
             // 
             this.cbxGenreSearchAnime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxGenreSearchAnime.FormattingEnabled = true;
             this.cbxGenreSearchAnime.ItemHeight = 25;
             this.cbxGenreSearchAnime.Location = new System.Drawing.Point(116, 252);
             this.cbxGenreSearchAnime.Name = "cbxGenreSearchAnime";
