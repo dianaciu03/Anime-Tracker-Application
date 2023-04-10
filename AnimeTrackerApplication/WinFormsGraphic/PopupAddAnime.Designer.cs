@@ -426,11 +426,6 @@
             this.numRatingAnime.Name = "numRatingAnime";
             this.numRatingAnime.Size = new System.Drawing.Size(156, 36);
             this.numRatingAnime.TabIndex = 15;
-            this.numRatingAnime.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelRatingAnime
             // 

@@ -451,11 +451,6 @@
             this.numRatingSearchAnime.Name = "numRatingSearchAnime";
             this.numRatingSearchAnime.Size = new System.Drawing.Size(111, 32);
             this.numRatingSearchAnime.TabIndex = 42;
-            this.numRatingSearchAnime.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelRatingSearchAnime
             // 
@@ -495,6 +490,7 @@
             this.btnSearchAnime.TabIndex = 38;
             this.btnSearchAnime.Text = "Search";
             this.btnSearchAnime.UseVisualStyleBackColor = false;
+            this.btnSearchAnime.Click += new System.EventHandler(this.btnSearchAnime_Click);
             // 
             // cbxGenreSearchAnime
             // 
@@ -531,19 +527,9 @@
             0,
             0,
             0});
-            this.numNrEpisodesToSearchAnime.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numNrEpisodesToSearchAnime.Name = "numNrEpisodesToSearchAnime";
             this.numNrEpisodesToSearchAnime.Size = new System.Drawing.Size(93, 32);
             this.numNrEpisodesToSearchAnime.TabIndex = 12;
-            this.numNrEpisodesToSearchAnime.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelNrEpisodesToSearchAnime
             // 
@@ -562,19 +548,9 @@
             0,
             0,
             0});
-            this.numNrEpisodesFromSearchAnime.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numNrEpisodesFromSearchAnime.Name = "numNrEpisodesFromSearchAnime";
             this.numNrEpisodesFromSearchAnime.Size = new System.Drawing.Size(93, 32);
             this.numNrEpisodesFromSearchAnime.TabIndex = 10;
-            this.numNrEpisodesFromSearchAnime.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelNrEpisodesFromSearchAnime
             // 
@@ -645,6 +621,7 @@
             this.btnRemoveManga.TabIndex = 46;
             this.btnRemoveManga.Text = "Remove Manga";
             this.btnRemoveManga.UseVisualStyleBackColor = false;
+            this.btnRemoveManga.Click += new System.EventHandler(this.btnRemoveManga_Click);
             // 
             // btnAddManga
             // 
@@ -658,6 +635,7 @@
             this.btnAddManga.TabIndex = 45;
             this.btnAddManga.Text = "Add Manga";
             this.btnAddManga.UseVisualStyleBackColor = false;
+            this.btnAddManga.Click += new System.EventHandler(this.btnAddManga_Click);
             // 
             // btnEditManga
             // 
@@ -671,6 +649,7 @@
             this.btnEditManga.TabIndex = 44;
             this.btnEditManga.Text = "Edit Manga";
             this.btnEditManga.UseVisualStyleBackColor = false;
+            this.btnEditManga.Click += new System.EventHandler(this.btnEditManga_Click);
             // 
             // groupBoxSortManga
             // 
@@ -789,6 +768,7 @@
             this.btnDisplayAllManga.TabIndex = 37;
             this.btnDisplayAllManga.Text = "Display all";
             this.btnDisplayAllManga.UseVisualStyleBackColor = false;
+            this.btnDisplayAllManga.Click += new System.EventHandler(this.btnDisplayAllManga_Click);
             // 
             // lvwManga
             // 
@@ -879,6 +859,7 @@
             this.btnClearSearchManga.TabIndex = 44;
             this.btnClearSearchManga.Text = "Clear fields";
             this.btnClearSearchManga.UseVisualStyleBackColor = false;
+            this.btnClearSearchManga.Click += new System.EventHandler(this.btnClearSearchManga_Click);
             // 
             // tbxReleaseYearManga
             // 
@@ -904,11 +885,6 @@
             this.numRatingManga.Name = "numRatingManga";
             this.numRatingManga.Size = new System.Drawing.Size(111, 32);
             this.numRatingManga.TabIndex = 42;
-            this.numRatingManga.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelRatingManga
             // 
@@ -949,6 +925,7 @@
             this.btnSearchManga.TabIndex = 38;
             this.btnSearchManga.Text = "Search";
             this.btnSearchManga.UseVisualStyleBackColor = false;
+            this.btnSearchManga.Click += new System.EventHandler(this.btnSearchManga_Click);
             // 
             // cbxGenreManga
             // 
@@ -986,19 +963,9 @@
             0,
             0,
             0});
-            this.numChaptersToManga.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numChaptersToManga.Name = "numChaptersToManga";
             this.numChaptersToManga.Size = new System.Drawing.Size(93, 32);
             this.numChaptersToManga.TabIndex = 12;
-            this.numChaptersToManga.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelChaptersToManga
             // 
@@ -1017,19 +984,9 @@
             0,
             0,
             0});
-            this.numChaptersFromManga.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numChaptersFromManga.Name = "numChaptersFromManga";
             this.numChaptersFromManga.Size = new System.Drawing.Size(93, 32);
             this.numChaptersFromManga.TabIndex = 10;
-            this.numChaptersFromManga.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // labelNrChaptersFromManga
             // 

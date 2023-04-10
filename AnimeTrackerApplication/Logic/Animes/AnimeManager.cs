@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Logic.Animes
 {
@@ -46,6 +47,39 @@ namespace Logic.Animes
         public void DeleteAnime(int id)
         {
             _animeDataHandler.DeleteAnime(id);
+        }
+
+        public List<Anime> SortAnime(int option)
+        {
+            switch(option)
+            {
+                case 1:
+                    return GetAllAnime().OrderBy(x => x.Name).ToList();
+
+                case 2:
+                    return GetAllAnime().OrderByDescending(x => x.Name).ToList();
+
+                case 3:
+                    return GetAllAnime().OrderBy(x => x.Studio).ThenBy(x => x.Name).ToList();
+
+                case 4:
+                    return GetAllAnime().OrderByDescending(x => x.Studio).ThenBy(x => x.Name).ToList();
+
+                case 5:
+                    return GetAllAnime().OrderBy(x => x.ReleaseYear).ThenBy(x => x.Name).ToList();
+
+                case 6:
+                    return GetAllAnime().OrderByDescending(x => x.ReleaseYear).ThenBy(x => x.Name).ToList();
+
+                case 7:
+                    return GetAllAnime().OrderBy(x => x.Rating).ThenBy(x => x.Name).ToList();
+
+                case 8:
+                    return GetAllAnime().OrderByDescending(x => x.Rating).ThenBy(x => x.Name).ToList();
+
+                default:
+                    return GetAllAnime().OrderBy(x => x.Name).ToList();
+            }
         }
 
         //public string GiveCode()

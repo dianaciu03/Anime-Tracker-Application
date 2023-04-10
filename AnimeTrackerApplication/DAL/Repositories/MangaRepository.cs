@@ -92,10 +92,10 @@ namespace DAL.Repositories
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@Name", manga.Name);
-                            command.Parameters.AddWithValue("@Studio", manga.Creator);
-                            command.Parameters.AddWithValue("@NrEpisodes", manga.NrChapters);
+                            command.Parameters.AddWithValue("@Creator", manga.Creator);
+                            command.Parameters.AddWithValue("@NrChapters", manga.NrChapters);
                             command.Parameters.AddWithValue("@ReleaseYear", manga.ReleaseYear);
-                            command.Parameters.AddWithValue("@ReleaseSeason", manga.Status.ToString());
+                            command.Parameters.AddWithValue("@Status", manga.Status.ToString());
                             command.Parameters.AddWithValue("@Rating", manga.Rating);
                             command.Parameters.AddWithValue("@Description", manga.Description);
                             command.Parameters.AddWithValue("@Image", manga.ImageURL);

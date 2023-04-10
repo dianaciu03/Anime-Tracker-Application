@@ -1,6 +1,6 @@
 ﻿namespace WinFormsGraphic
 {
-    partial class PopupAddManga
+    partial class PopupEditManga
     {
         /// <summary>
         /// Required designer variable.
@@ -61,7 +61,7 @@
             this.cbxStatusManga = new System.Windows.Forms.ComboBox();
             this.labelStatusManga = new System.Windows.Forms.Label();
             this.labelReleaseYearManga = new System.Windows.Forms.Label();
-            this.tbxCreatorManga = new System.Windows.Forms.TextBox();
+            this.tbxStudioManga = new System.Windows.Forms.TextBox();
             this.tbxNameManga = new System.Windows.Forms.TextBox();
             this.labelNrChaptersManga = new System.Windows.Forms.Label();
             this.labelCreatorManga = new System.Windows.Forms.Label();
@@ -104,7 +104,7 @@
             this.groupBoxMangaDetails.Controls.Add(this.cbxStatusManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelStatusManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelReleaseYearManga);
-            this.groupBoxMangaDetails.Controls.Add(this.tbxCreatorManga);
+            this.groupBoxMangaDetails.Controls.Add(this.tbxStudioManga);
             this.groupBoxMangaDetails.Controls.Add(this.tbxNameManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelNrChaptersManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelCreatorManga);
@@ -115,7 +115,7 @@
             this.groupBoxMangaDetails.Name = "groupBoxMangaDetails";
             this.groupBoxMangaDetails.Padding = new System.Windows.Forms.Padding(5);
             this.groupBoxMangaDetails.Size = new System.Drawing.Size(1122, 639);
-            this.groupBoxMangaDetails.TabIndex = 5;
+            this.groupBoxMangaDetails.TabIndex = 6;
             this.groupBoxMangaDetails.TabStop = false;
             this.groupBoxMangaDetails.Text = "Manga details";
             // 
@@ -131,13 +131,12 @@
             this.btnCancelMangaAddition.TabIndex = 44;
             this.btnCancelMangaAddition.Text = "Cancel";
             this.btnCancelMangaAddition.UseVisualStyleBackColor = false;
-            this.btnCancelMangaAddition.Click += new System.EventHandler(this.btnCancelMangaAddition_Click);
             // 
             // labelNote
             // 
             this.labelNote.AutoSize = true;
             this.labelNote.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.labelNote.Location = new System.Drawing.Point(572, 376);
+            this.labelNote.Location = new System.Drawing.Point(574, 378);
             this.labelNote.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelNote.Name = "labelNote";
             this.labelNote.Size = new System.Drawing.Size(355, 25);
@@ -171,7 +170,7 @@
             // labelImageManga
             // 
             this.labelImageManga.AutoSize = true;
-            this.labelImageManga.Location = new System.Drawing.Point(572, 300);
+            this.labelImageManga.Location = new System.Drawing.Point(574, 302);
             this.labelImageManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelImageManga.Name = "labelImageManga";
             this.labelImageManga.Size = new System.Drawing.Size(79, 30);
@@ -190,12 +189,11 @@
             this.btnAddManga.TabIndex = 36;
             this.btnAddManga.Text = "Add Manga";
             this.btnAddManga.UseVisualStyleBackColor = false;
-            this.btnAddManga.Click += new System.EventHandler(this.btnAddManga_Click);
             // 
             // cbSportsGenreManga
             // 
             this.cbSportsGenreManga.AutoSize = true;
-            this.cbSportsGenreManga.Location = new System.Drawing.Point(814, 241);
+            this.cbSportsGenreManga.Location = new System.Drawing.Point(816, 243);
             this.cbSportsGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbSportsGenreManga.Name = "cbSportsGenreManga";
             this.cbSportsGenreManga.Size = new System.Drawing.Size(94, 34);
@@ -206,7 +204,7 @@
             // cbSliceOfLifeGenreManga
             // 
             this.cbSliceOfLifeGenreManga.AutoSize = true;
-            this.cbSliceOfLifeGenreManga.Location = new System.Drawing.Point(661, 241);
+            this.cbSliceOfLifeGenreManga.Location = new System.Drawing.Point(663, 243);
             this.cbSliceOfLifeGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbSliceOfLifeGenreManga.Name = "cbSliceOfLifeGenreManga";
             this.cbSliceOfLifeGenreManga.Size = new System.Drawing.Size(143, 34);
@@ -217,7 +215,7 @@
             // cbSciFiGenreManga
             // 
             this.cbSciFiGenreManga.AutoSize = true;
-            this.cbSciFiGenreManga.Location = new System.Drawing.Point(661, 202);
+            this.cbSciFiGenreManga.Location = new System.Drawing.Point(663, 204);
             this.cbSciFiGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbSciFiGenreManga.Name = "cbSciFiGenreManga";
             this.cbSciFiGenreManga.Size = new System.Drawing.Size(84, 34);
@@ -228,7 +226,7 @@
             // cbRomanceGenreManga
             // 
             this.cbRomanceGenreManga.AutoSize = true;
-            this.cbRomanceGenreManga.Location = new System.Drawing.Point(985, 163);
+            this.cbRomanceGenreManga.Location = new System.Drawing.Point(987, 165);
             this.cbRomanceGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbRomanceGenreManga.Name = "cbRomanceGenreManga";
             this.cbRomanceGenreManga.Size = new System.Drawing.Size(121, 34);
@@ -239,7 +237,7 @@
             // cbPsychologicalGenreManga
             // 
             this.cbPsychologicalGenreManga.AutoSize = true;
-            this.cbPsychologicalGenreManga.Location = new System.Drawing.Point(814, 163);
+            this.cbPsychologicalGenreManga.Location = new System.Drawing.Point(816, 165);
             this.cbPsychologicalGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbPsychologicalGenreManga.Name = "cbPsychologicalGenreManga";
             this.cbPsychologicalGenreManga.Size = new System.Drawing.Size(161, 34);
@@ -250,7 +248,7 @@
             // cbMisteryGenreManga
             // 
             this.cbMisteryGenreManga.AutoSize = true;
-            this.cbMisteryGenreManga.Location = new System.Drawing.Point(661, 163);
+            this.cbMisteryGenreManga.Location = new System.Drawing.Point(663, 165);
             this.cbMisteryGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbMisteryGenreManga.Name = "cbMisteryGenreManga";
             this.cbMisteryGenreManga.Size = new System.Drawing.Size(104, 34);
@@ -261,7 +259,7 @@
             // cbMechaGenreManga
             // 
             this.cbMechaGenreManga.AutoSize = true;
-            this.cbMechaGenreManga.Location = new System.Drawing.Point(985, 124);
+            this.cbMechaGenreManga.Location = new System.Drawing.Point(987, 126);
             this.cbMechaGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbMechaGenreManga.Name = "cbMechaGenreManga";
             this.cbMechaGenreManga.Size = new System.Drawing.Size(97, 34);
@@ -272,7 +270,7 @@
             // cbEcchiGenreManga
             // 
             this.cbEcchiGenreManga.AutoSize = true;
-            this.cbEcchiGenreManga.Location = new System.Drawing.Point(814, 85);
+            this.cbEcchiGenreManga.Location = new System.Drawing.Point(816, 87);
             this.cbEcchiGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbEcchiGenreManga.Name = "cbEcchiGenreManga";
             this.cbEcchiGenreManga.Size = new System.Drawing.Size(80, 34);
@@ -283,7 +281,7 @@
             // cbIsekaiGenreManga
             // 
             this.cbIsekaiGenreManga.AutoSize = true;
-            this.cbIsekaiGenreManga.Location = new System.Drawing.Point(814, 124);
+            this.cbIsekaiGenreManga.Location = new System.Drawing.Point(816, 126);
             this.cbIsekaiGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbIsekaiGenreManga.Name = "cbIsekaiGenreManga";
             this.cbIsekaiGenreManga.Size = new System.Drawing.Size(86, 34);
@@ -294,7 +292,7 @@
             // cbHorrorGenreManga
             // 
             this.cbHorrorGenreManga.AutoSize = true;
-            this.cbHorrorGenreManga.Location = new System.Drawing.Point(661, 124);
+            this.cbHorrorGenreManga.Location = new System.Drawing.Point(663, 126);
             this.cbHorrorGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbHorrorGenreManga.Name = "cbHorrorGenreManga";
             this.cbHorrorGenreManga.Size = new System.Drawing.Size(98, 34);
@@ -305,7 +303,7 @@
             // cbComedyGenreManga
             // 
             this.cbComedyGenreManga.AutoSize = true;
-            this.cbComedyGenreManga.Location = new System.Drawing.Point(985, 46);
+            this.cbComedyGenreManga.Location = new System.Drawing.Point(987, 48);
             this.cbComedyGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbComedyGenreManga.Name = "cbComedyGenreManga";
             this.cbComedyGenreManga.Size = new System.Drawing.Size(114, 34);
@@ -316,7 +314,7 @@
             // cbDramaGenreManga
             // 
             this.cbDramaGenreManga.AutoSize = true;
-            this.cbDramaGenreManga.Location = new System.Drawing.Point(661, 85);
+            this.cbDramaGenreManga.Location = new System.Drawing.Point(663, 87);
             this.cbDramaGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbDramaGenreManga.Name = "cbDramaGenreManga";
             this.cbDramaGenreManga.Size = new System.Drawing.Size(96, 34);
@@ -327,7 +325,7 @@
             // cbFantasyGenreManga
             // 
             this.cbFantasyGenreManga.AutoSize = true;
-            this.cbFantasyGenreManga.Location = new System.Drawing.Point(985, 85);
+            this.cbFantasyGenreManga.Location = new System.Drawing.Point(987, 87);
             this.cbFantasyGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbFantasyGenreManga.Name = "cbFantasyGenreManga";
             this.cbFantasyGenreManga.Size = new System.Drawing.Size(103, 34);
@@ -338,7 +336,7 @@
             // cbAdventureGenreManga
             // 
             this.cbAdventureGenreManga.AutoSize = true;
-            this.cbAdventureGenreManga.Location = new System.Drawing.Point(814, 46);
+            this.cbAdventureGenreManga.Location = new System.Drawing.Point(816, 48);
             this.cbAdventureGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbAdventureGenreManga.Name = "cbAdventureGenreManga";
             this.cbAdventureGenreManga.Size = new System.Drawing.Size(133, 34);
@@ -349,7 +347,7 @@
             // cbActionGenreManga
             // 
             this.cbActionGenreManga.AutoSize = true;
-            this.cbActionGenreManga.Location = new System.Drawing.Point(661, 46);
+            this.cbActionGenreManga.Location = new System.Drawing.Point(663, 48);
             this.cbActionGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbActionGenreManga.Name = "cbActionGenreManga";
             this.cbActionGenreManga.Size = new System.Drawing.Size(93, 34);
@@ -360,7 +358,7 @@
             // cbShoujoGenreManga
             // 
             this.cbShoujoGenreManga.AutoSize = true;
-            this.cbShoujoGenreManga.Location = new System.Drawing.Point(814, 202);
+            this.cbShoujoGenreManga.Location = new System.Drawing.Point(816, 204);
             this.cbShoujoGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbShoujoGenreManga.Name = "cbShoujoGenreManga";
             this.cbShoujoGenreManga.Size = new System.Drawing.Size(99, 34);
@@ -371,7 +369,7 @@
             // cbShounenGenreManga
             // 
             this.cbShounenGenreManga.AutoSize = true;
-            this.cbShounenGenreManga.Location = new System.Drawing.Point(985, 202);
+            this.cbShounenGenreManga.Location = new System.Drawing.Point(987, 204);
             this.cbShounenGenreManga.Margin = new System.Windows.Forms.Padding(5);
             this.cbShounenGenreManga.Name = "cbShounenGenreManga";
             this.cbShounenGenreManga.Size = new System.Drawing.Size(117, 34);
@@ -382,7 +380,7 @@
             // labelGenresManga
             // 
             this.labelGenresManga.AutoSize = true;
-            this.labelGenresManga.Location = new System.Drawing.Point(565, 44);
+            this.labelGenresManga.Location = new System.Drawing.Point(567, 46);
             this.labelGenresManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelGenresManga.Name = "labelGenresManga";
             this.labelGenresManga.Size = new System.Drawing.Size(86, 30);
@@ -401,7 +399,7 @@
             // labelDescriptionManga
             // 
             this.labelDescriptionManga.AutoSize = true;
-            this.labelDescriptionManga.Location = new System.Drawing.Point(16, 300);
+            this.labelDescriptionManga.Location = new System.Drawing.Point(18, 302);
             this.labelDescriptionManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelDescriptionManga.Name = "labelDescriptionManga";
             this.labelDescriptionManga.Size = new System.Drawing.Size(127, 30);
@@ -426,11 +424,16 @@
             this.numRatingManga.Name = "numRatingManga";
             this.numRatingManga.Size = new System.Drawing.Size(176, 36);
             this.numRatingManga.TabIndex = 15;
+            this.numRatingManga.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // labelRatingManga
             // 
             this.labelRatingManga.AutoSize = true;
-            this.labelRatingManga.Location = new System.Drawing.Point(16, 262);
+            this.labelRatingManga.Location = new System.Drawing.Point(18, 264);
             this.labelRatingManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelRatingManga.Name = "labelRatingManga";
             this.labelRatingManga.Size = new System.Drawing.Size(79, 30);
@@ -451,7 +454,7 @@
             // labelStatusManga
             // 
             this.labelStatusManga.AutoSize = true;
-            this.labelStatusManga.Location = new System.Drawing.Point(16, 220);
+            this.labelStatusManga.Location = new System.Drawing.Point(18, 222);
             this.labelStatusManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelStatusManga.Name = "labelStatusManga";
             this.labelStatusManga.Size = new System.Drawing.Size(75, 30);
@@ -461,20 +464,20 @@
             // labelReleaseYearManga
             // 
             this.labelReleaseYearManga.AutoSize = true;
-            this.labelReleaseYearManga.Location = new System.Drawing.Point(16, 178);
+            this.labelReleaseYearManga.Location = new System.Drawing.Point(18, 180);
             this.labelReleaseYearManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelReleaseYearManga.Name = "labelReleaseYearManga";
             this.labelReleaseYearManga.Size = new System.Drawing.Size(139, 30);
             this.labelReleaseYearManga.TabIndex = 10;
             this.labelReleaseYearManga.Text = "Release year:";
             // 
-            // tbxCreatorManga
+            // tbxStudioManga
             // 
-            this.tbxCreatorManga.Location = new System.Drawing.Point(112, 84);
-            this.tbxCreatorManga.Margin = new System.Windows.Forms.Padding(5);
-            this.tbxCreatorManga.Name = "tbxCreatorManga";
-            this.tbxCreatorManga.Size = new System.Drawing.Size(416, 36);
-            this.tbxCreatorManga.TabIndex = 4;
+            this.tbxStudioManga.Location = new System.Drawing.Point(112, 84);
+            this.tbxStudioManga.Margin = new System.Windows.Forms.Padding(5);
+            this.tbxStudioManga.Name = "tbxStudioManga";
+            this.tbxStudioManga.Size = new System.Drawing.Size(416, 36);
+            this.tbxStudioManga.TabIndex = 4;
             // 
             // tbxNameManga
             // 
@@ -487,7 +490,7 @@
             // labelNrChaptersManga
             // 
             this.labelNrChaptersManga.AutoSize = true;
-            this.labelNrChaptersManga.Location = new System.Drawing.Point(16, 135);
+            this.labelNrChaptersManga.Location = new System.Drawing.Point(18, 137);
             this.labelNrChaptersManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelNrChaptersManga.Name = "labelNrChaptersManga";
             this.labelNrChaptersManga.Size = new System.Drawing.Size(130, 30);
@@ -497,7 +500,7 @@
             // labelCreatorManga
             // 
             this.labelCreatorManga.AutoSize = true;
-            this.labelCreatorManga.Location = new System.Drawing.Point(16, 89);
+            this.labelCreatorManga.Location = new System.Drawing.Point(18, 91);
             this.labelCreatorManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelCreatorManga.Name = "labelCreatorManga";
             this.labelCreatorManga.Size = new System.Drawing.Size(91, 30);
@@ -507,24 +510,24 @@
             // labelNameManga
             // 
             this.labelNameManga.AutoSize = true;
-            this.labelNameManga.Location = new System.Drawing.Point(16, 47);
+            this.labelNameManga.Location = new System.Drawing.Point(18, 49);
             this.labelNameManga.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelNameManga.Name = "labelNameManga";
             this.labelNameManga.Size = new System.Drawing.Size(76, 30);
             this.labelNameManga.TabIndex = 0;
             this.labelNameManga.Text = "Name:";
             // 
-            // PopupAddManga
+            // PopupEditManga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1159, 670);
+            this.ClientSize = new System.Drawing.Size(1155, 669);
             this.Controls.Add(this.groupBoxMangaDetails);
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Name = "PopupAddManga";
+            this.Name = "PopupEditManga";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PopupAddManga";
+            this.Text = "PopupEditManga";
             this.groupBoxMangaDetails.ResumeLayout(false);
             this.groupBoxMangaDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRatingManga)).EndInit();
@@ -567,7 +570,7 @@
         private ComboBox cbxStatusManga;
         private Label labelStatusManga;
         private Label labelReleaseYearManga;
-        private TextBox tbxCreatorManga;
+        private TextBox tbxStudioManga;
         private TextBox tbxNameManga;
         private Label labelNrChaptersManga;
         private Label labelCreatorManga;

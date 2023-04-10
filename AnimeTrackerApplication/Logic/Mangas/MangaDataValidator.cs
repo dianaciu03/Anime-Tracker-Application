@@ -45,7 +45,10 @@ namespace Logic.Mangas
                 try
                 {
                     int nr = Convert.ToInt32(nrchapters);
-                    return true;
+                    if (nr >= 1)
+                        return true;
+                    else
+                        throw new Exception("The number of chapters is not valid!");
                 }
                 catch (Exception)
                 {
@@ -84,7 +87,7 @@ namespace Logic.Mangas
                 try
                 {
                     int nr = Convert.ToInt32(year);
-                    if (nr >= 1900 && nr <= (DateTime.Now.Year + 10))
+                    if (nr >= 1850 && nr <= (DateTime.Now.Year + 10))
                         return true;
                     else
                         throw new Exception("The release year is not valid!");
@@ -102,7 +105,7 @@ namespace Logic.Mangas
         {
             if (!String.IsNullOrEmpty(status.ToString()))
             {
-                if (Enum.IsDefined(typeof(Season), status))
+                if (Enum.IsDefined(typeof(MangaStatus), status))
                     return true;
                 else
                     throw new Exception("You can't change the provided options!");

@@ -45,7 +45,10 @@ namespace Logic.Animes
                 try
                 {
                     int nr = Convert.ToInt32(nrEpisodes);
-                    return true;
+                    if (nr >= 1)
+                        return true;
+                    else
+                        throw new Exception("The number of episodes is not valid!");
                 }
                 catch(Exception)
                 {

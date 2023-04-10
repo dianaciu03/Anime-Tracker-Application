@@ -39,6 +39,10 @@ namespace WinFormsGraphic
 
             //fill combobox with data
             cbxReleaseSeasonAnime.DataSource = Enum.GetValues(typeof(Season));
+
+            //reset elements
+            cbxReleaseSeasonAnime.SelectedIndex = -1;
+            numRatingAnime.Value = 0;
         }
 
         private void btnAddAnime_Click(object sender, EventArgs e)
@@ -59,8 +63,8 @@ namespace WinFormsGraphic
                 {
                     animeManager.AddAnime(tbxNameAnime.Text, tbxDescriptionAnime.Text, Convert.ToDecimal(numRatingAnime.Text), Convert.ToInt32(tbxReleaseYearAnime.Text), tbxImageURL.Text, (Season)cbxReleaseSeasonAnime.SelectedItem, Convert.ToInt32(tbxNrEpisodes.Text), tbxStudioAnime.Text, genres);
                     MessageBox.Show("Anime was added successfully!");
-                }
-                this.Close();
+                    this.Close();
+                }  
             }
             catch (Exception ex)
             {
