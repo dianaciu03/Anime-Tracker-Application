@@ -183,6 +183,7 @@ namespace DAL.Repositories
                             }
                             else
                                 command.Parameters.AddWithValue("@UserName", DBNull.Value);
+
                             command.Parameters.AddWithValue("@Email", user.Email);
                             command.Parameters.AddWithValue("@JoinDate", user.JoinDate);
                             command.Parameters.AddWithValue("@Password", user.Password);

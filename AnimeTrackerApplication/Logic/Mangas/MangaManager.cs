@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Mangas
 {
-    public class MangaManager : IMangaManager, IComparable<Manga>
+    public class MangaManager : IMangaManager
     {
         private readonly IMangaRepository _mangaDataHandler;
 
@@ -39,9 +39,9 @@ namespace Logic.Mangas
             _mangaDataHandler.AddManga((Manga)manga);
         }
 
-        public void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL)
+        public void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL, List<Genre> genres)
         {
-            _mangaDataHandler.UpdateManga(id, name, creator, nrChapters, releaseYear, status, rating, description, imageURL);
+            _mangaDataHandler.UpdateManga(id, name, creator, nrChapters, releaseYear, status, rating, description, imageURL, genres);
         }
 
         public void DeleteManga(int id)
@@ -49,9 +49,5 @@ namespace Logic.Mangas
             _mangaDataHandler.DeleteManga(id);
         }
 
-        public int CompareTo(Manga manga, int  option)
-        {
-
-        }
     }
 }

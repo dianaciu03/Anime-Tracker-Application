@@ -110,16 +110,23 @@ namespace WinFormsGraphic
 
         private void btnDisplayAllAnime_Click(object sender, EventArgs e)
         {
-            //int option;
-            //foreach(RadioButton rbtn in animeSort)
-            //{
-            //    if(rbtn.Checked == true)
-            //    {
-            //        UpdateAnimeListview(animeManager.SortAnime());
-            //        break;
-            //    }
-            //}
-            UpdateAnimeListview(animeManager.GetAllAnime());
+            try
+            {
+                //int option;
+                //foreach(RadioButton rbtn in animeSort)
+                //{
+                //    if(rbtn.Checked == true)
+                //    {
+                //        UpdateAnimeListview(animeManager.SortAnime());
+                //        break;
+                //    }
+                //}
+                UpdateAnimeListview(animeManager.GetAllAnime());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            } 
         }
 
         private void UpdateAnimeListview(List<Anime> animes)
@@ -141,19 +148,27 @@ namespace WinFormsGraphic
 
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
+            cbxGenreSearchAnime.SelectedIndex = -1;
             tbxNameSearchAnime.Text = string.Empty;
             tbxStudioSearchAnime.Text = string.Empty;
             numNrEpisodesFromSearchAnime.Value = 0;
             numNrEpisodesToSearchAnime.Value = 0;
             tbxReleaseYearSearchAnime.Text = string.Empty;
-            cbxGenreSearchAnime.SelectedIndex = -1;
             cbxSeasonSearchAnime.SelectedIndex = -1;
-            numRatingSearchAnime.Value = 0;
+            numRatingLowerAnime.Value = 0;
+            numRatingUpperAnime.Value = 0;
         }
 
         private void btnSearchAnime_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //
@@ -167,33 +182,75 @@ namespace WinFormsGraphic
 
         private void btnEditManga_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Manga manga = (Manga)lvwManga.SelectedItems[0].Tag;
+                PopupEditManga form = new PopupEditManga(manga);
+                form.ShowDialog();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select an anime to edit details!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
         private void btnRemoveManga_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Manga manga = (Manga)lvwManga.SelectedItems[0].Tag;
+                //Display a confirmation message box
+                DialogResult result = MessageBox.Show("Are you sure you want to remove " + manga.Name + "?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                // If the user clicks Yes, remove the selected item
+                if (result == DialogResult.Yes)
+                {
+                    mangaManager.DeleteManga(manga.Id);
+                    MessageBox.Show("Manga has been successfully deleted!");
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select an anime to edit details!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
         private void btnDisplayAllManga_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                UpdateMangaListView(mangaManager.GetAllManga());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UpdateMangaListView(List<Manga> mangas)
         {
-            lvwAnime.Items.Clear();
-            foreach (Anime a in animes)
+            lvwManga.Items.Clear();
+            foreach (Manga m in mangas)
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = a.Name;
-                item.Tag = a;
-                item.SubItems.Add(a.Studio);
-                item.SubItems.Add(a.Rating.ToString());
-                item.SubItems.Add(a.ReleaseYear.ToString());
-                item.SubItems.Add(a.SeasonAnime.ToString());
-                item.SubItems.Add(a.NrEpisodes.ToString());
-                lvwAnime.Items.Add(item);
+                item.Text = m.Name;
+                item.Tag = m;
+                item.SubItems.Add(m.Creator);
+                item.SubItems.Add(m.Rating.ToString());
+                item.SubItems.Add(m.ReleaseYear.ToString());
+                item.SubItems.Add(m.Status.ToString());
+                item.SubItems.Add(m.NrChapters.ToString());
+                lvwManga.Items.Add(item);
             }
         }
 
@@ -206,7 +263,8 @@ namespace WinFormsGraphic
             tbxReleaseYearManga.Text = string.Empty;
             cbxGenreManga.SelectedIndex = -1;
             cbxMangaStatus.SelectedIndex = -1;
-            numRatingManga.Value = 0;
+            numRatingLowerManga.Value = 0;
+            numRatingUpperManga.Value = 0;
         }
 
         private void btnSearchManga_Click(object sender, EventArgs e)

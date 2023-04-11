@@ -54,7 +54,7 @@
             this.groupBoxSearchAnime = new System.Windows.Forms.GroupBox();
             this.btnClearSearch = new System.Windows.Forms.Button();
             this.tbxReleaseYearSearchAnime = new System.Windows.Forms.TextBox();
-            this.numRatingSearchAnime = new System.Windows.Forms.NumericUpDown();
+            this.numRatingLowerAnime = new System.Windows.Forms.NumericUpDown();
             this.labelRatingSearchAnime = new System.Windows.Forms.Label();
             this.cbxSeasonSearchAnime = new System.Windows.Forms.ComboBox();
             this.labelReleaseSeasonSearchAnime = new System.Windows.Forms.Label();
@@ -94,8 +94,6 @@
             this.groupBoxSearchManga = new System.Windows.Forms.GroupBox();
             this.btnClearSearchManga = new System.Windows.Forms.Button();
             this.tbxReleaseYearManga = new System.Windows.Forms.TextBox();
-            this.numRatingManga = new System.Windows.Forms.NumericUpDown();
-            this.labelRatingManga = new System.Windows.Forms.Label();
             this.cbxMangaStatus = new System.Windows.Forms.ComboBox();
             this.labelMangaStatus = new System.Windows.Forms.Label();
             this.btnSearchManga = new System.Windows.Forms.Button();
@@ -115,21 +113,29 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelRatingToAnime = new System.Windows.Forms.Label();
+            this.numRatingUpperAnime = new System.Windows.Forms.NumericUpDown();
+            this.numRatingUpperManga = new System.Windows.Forms.NumericUpDown();
+            this.labelRatingToManga = new System.Windows.Forms.Label();
+            this.numRatingLowerManga = new System.Windows.Forms.NumericUpDown();
+            this.labelRatingFromManga = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
             this.groupBoxSearchAnime.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingLowerAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).BeginInit();
             this.tabManga.SuspendLayout();
             this.groupBoxSortManga.SuspendLayout();
             this.groupBoxSearchManga.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRatingManga)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersToManga)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersFromManga)).BeginInit();
             this.tabCreateAccount.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingUpperAnime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingUpperManga)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingLowerManga)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -388,9 +394,11 @@
             // 
             // groupBoxSearchAnime
             // 
+            this.groupBoxSearchAnime.Controls.Add(this.numRatingUpperAnime);
+            this.groupBoxSearchAnime.Controls.Add(this.labelRatingToAnime);
             this.groupBoxSearchAnime.Controls.Add(this.btnClearSearch);
             this.groupBoxSearchAnime.Controls.Add(this.tbxReleaseYearSearchAnime);
-            this.groupBoxSearchAnime.Controls.Add(this.numRatingSearchAnime);
+            this.groupBoxSearchAnime.Controls.Add(this.numRatingLowerAnime);
             this.groupBoxSearchAnime.Controls.Add(this.labelRatingSearchAnime);
             this.groupBoxSearchAnime.Controls.Add(this.cbxSeasonSearchAnime);
             this.groupBoxSearchAnime.Controls.Add(this.labelReleaseSeasonSearchAnime);
@@ -434,32 +442,32 @@
             this.tbxReleaseYearSearchAnime.Size = new System.Drawing.Size(155, 32);
             this.tbxReleaseYearSearchAnime.TabIndex = 43;
             // 
-            // numRatingSearchAnime
+            // numRatingLowerAnime
             // 
-            this.numRatingSearchAnime.DecimalPlaces = 1;
-            this.numRatingSearchAnime.Increment = new decimal(new int[] {
+            this.numRatingLowerAnime.DecimalPlaces = 1;
+            this.numRatingLowerAnime.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numRatingSearchAnime.Location = new System.Drawing.Point(116, 293);
-            this.numRatingSearchAnime.Maximum = new decimal(new int[] {
+            this.numRatingLowerAnime.Location = new System.Drawing.Point(156, 293);
+            this.numRatingLowerAnime.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.numRatingSearchAnime.Name = "numRatingSearchAnime";
-            this.numRatingSearchAnime.Size = new System.Drawing.Size(111, 32);
-            this.numRatingSearchAnime.TabIndex = 42;
+            this.numRatingLowerAnime.Name = "numRatingLowerAnime";
+            this.numRatingLowerAnime.Size = new System.Drawing.Size(90, 32);
+            this.numRatingLowerAnime.TabIndex = 42;
             // 
             // labelRatingSearchAnime
             // 
             this.labelRatingSearchAnime.AutoSize = true;
             this.labelRatingSearchAnime.Location = new System.Drawing.Point(21, 295);
             this.labelRatingSearchAnime.Name = "labelRatingSearchAnime";
-            this.labelRatingSearchAnime.Size = new System.Drawing.Size(81, 26);
+            this.labelRatingSearchAnime.Size = new System.Drawing.Size(131, 26);
             this.labelRatingSearchAnime.TabIndex = 41;
-            this.labelRatingSearchAnime.Text = "Rating:";
+            this.labelRatingSearchAnime.Text = "Rating from:";
             // 
             // cbxSeasonSearchAnime
             // 
@@ -667,7 +675,7 @@
             this.groupBoxSortManga.Size = new System.Drawing.Size(515, 273);
             this.groupBoxSortManga.TabIndex = 43;
             this.groupBoxSortManga.TabStop = false;
-            this.groupBoxSortManga.Text = "Sort anime by:";
+            this.groupBoxSortManga.Text = "Sort manga by:";
             // 
             // rbtnMangaRatingDesc
             // 
@@ -822,14 +830,16 @@
             // 
             // groupBoxSearchManga
             // 
+            this.groupBoxSearchManga.Controls.Add(this.numRatingUpperManga);
             this.groupBoxSearchManga.Controls.Add(this.btnClearSearchManga);
             this.groupBoxSearchManga.Controls.Add(this.tbxReleaseYearManga);
-            this.groupBoxSearchManga.Controls.Add(this.numRatingManga);
-            this.groupBoxSearchManga.Controls.Add(this.labelRatingManga);
+            this.groupBoxSearchManga.Controls.Add(this.labelRatingToManga);
             this.groupBoxSearchManga.Controls.Add(this.cbxMangaStatus);
             this.groupBoxSearchManga.Controls.Add(this.labelMangaStatus);
+            this.groupBoxSearchManga.Controls.Add(this.numRatingLowerManga);
             this.groupBoxSearchManga.Controls.Add(this.btnSearchManga);
             this.groupBoxSearchManga.Controls.Add(this.cbxGenreManga);
+            this.groupBoxSearchManga.Controls.Add(this.labelRatingFromManga);
             this.groupBoxSearchManga.Controls.Add(this.labelGenreManga);
             this.groupBoxSearchManga.Controls.Add(this.labelReleaseYearManga);
             this.groupBoxSearchManga.Controls.Add(this.numChaptersToManga);
@@ -867,33 +877,6 @@
             this.tbxReleaseYearManga.Name = "tbxReleaseYearManga";
             this.tbxReleaseYearManga.Size = new System.Drawing.Size(183, 32);
             this.tbxReleaseYearManga.TabIndex = 43;
-            // 
-            // numRatingManga
-            // 
-            this.numRatingManga.DecimalPlaces = 1;
-            this.numRatingManga.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numRatingManga.Location = new System.Drawing.Point(116, 293);
-            this.numRatingManga.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numRatingManga.Name = "numRatingManga";
-            this.numRatingManga.Size = new System.Drawing.Size(111, 32);
-            this.numRatingManga.TabIndex = 42;
-            // 
-            // labelRatingManga
-            // 
-            this.labelRatingManga.AutoSize = true;
-            this.labelRatingManga.Location = new System.Drawing.Point(21, 295);
-            this.labelRatingManga.Name = "labelRatingManga";
-            this.labelRatingManga.Size = new System.Drawing.Size(81, 26);
-            this.labelRatingManga.TabIndex = 41;
-            this.labelRatingManga.Text = "Rating:";
             // 
             // cbxMangaStatus
             // 
@@ -1077,6 +1060,87 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Name:";
             // 
+            // labelRatingToAnime
+            // 
+            this.labelRatingToAnime.AutoSize = true;
+            this.labelRatingToAnime.Location = new System.Drawing.Point(268, 295);
+            this.labelRatingToAnime.Name = "labelRatingToAnime";
+            this.labelRatingToAnime.Size = new System.Drawing.Size(42, 26);
+            this.labelRatingToAnime.TabIndex = 45;
+            this.labelRatingToAnime.Text = "To:";
+            // 
+            // numRatingUpperAnime
+            // 
+            this.numRatingUpperAnime.DecimalPlaces = 1;
+            this.numRatingUpperAnime.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numRatingUpperAnime.Location = new System.Drawing.Point(316, 293);
+            this.numRatingUpperAnime.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numRatingUpperAnime.Name = "numRatingUpperAnime";
+            this.numRatingUpperAnime.Size = new System.Drawing.Size(90, 32);
+            this.numRatingUpperAnime.TabIndex = 46;
+            // 
+            // numRatingUpperManga
+            // 
+            this.numRatingUpperManga.DecimalPlaces = 1;
+            this.numRatingUpperManga.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numRatingUpperManga.Location = new System.Drawing.Point(316, 296);
+            this.numRatingUpperManga.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numRatingUpperManga.Name = "numRatingUpperManga";
+            this.numRatingUpperManga.Size = new System.Drawing.Size(90, 32);
+            this.numRatingUpperManga.TabIndex = 50;
+            // 
+            // labelRatingToManga
+            // 
+            this.labelRatingToManga.AutoSize = true;
+            this.labelRatingToManga.Location = new System.Drawing.Point(268, 298);
+            this.labelRatingToManga.Name = "labelRatingToManga";
+            this.labelRatingToManga.Size = new System.Drawing.Size(42, 26);
+            this.labelRatingToManga.TabIndex = 49;
+            this.labelRatingToManga.Text = "To:";
+            // 
+            // numRatingLowerManga
+            // 
+            this.numRatingLowerManga.DecimalPlaces = 1;
+            this.numRatingLowerManga.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numRatingLowerManga.Location = new System.Drawing.Point(156, 296);
+            this.numRatingLowerManga.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numRatingLowerManga.Name = "numRatingLowerManga";
+            this.numRatingLowerManga.Size = new System.Drawing.Size(90, 32);
+            this.numRatingLowerManga.TabIndex = 48;
+            // 
+            // labelRatingFromManga
+            // 
+            this.labelRatingFromManga.AutoSize = true;
+            this.labelRatingFromManga.Location = new System.Drawing.Point(21, 298);
+            this.labelRatingFromManga.Name = "labelRatingFromManga";
+            this.labelRatingFromManga.Size = new System.Drawing.Size(131, 26);
+            this.labelRatingFromManga.TabIndex = 47;
+            this.labelRatingFromManga.Text = "Rating from:";
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1096,7 +1160,7 @@
             this.BroupBoxSortAnime.PerformLayout();
             this.groupBoxSearchAnime.ResumeLayout(false);
             this.groupBoxSearchAnime.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRatingSearchAnime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingLowerAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesToSearchAnime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNrEpisodesFromSearchAnime)).EndInit();
             this.tabManga.ResumeLayout(false);
@@ -1104,12 +1168,14 @@
             this.groupBoxSortManga.PerformLayout();
             this.groupBoxSearchManga.ResumeLayout(false);
             this.groupBoxSearchManga.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRatingManga)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersToManga)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersFromManga)).EndInit();
             this.tabCreateAccount.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingUpperAnime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingUpperManga)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingLowerManga)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1131,7 +1197,7 @@
         private GroupBox groupBoxSearchAnime;
         private Button btnClearSearch;
         private TextBox tbxReleaseYearSearchAnime;
-        private NumericUpDown numRatingSearchAnime;
+        private NumericUpDown numRatingLowerAnime;
         private Label labelRatingSearchAnime;
         private ComboBox cbxSeasonSearchAnime;
         private Label labelReleaseSeasonSearchAnime;
@@ -1167,8 +1233,6 @@
         private GroupBox groupBoxSearchManga;
         private Button btnClearSearchManga;
         private TextBox tbxReleaseYearManga;
-        private NumericUpDown numRatingManga;
-        private Label labelRatingManga;
         private ComboBox cbxMangaStatus;
         private Label labelMangaStatus;
         private Button btnSearchManga;
@@ -1203,5 +1267,11 @@
         private ColumnHeader columnReleaseYearManga;
         private ColumnHeader columnStatus;
         private ColumnHeader columnNrChapters;
+        private NumericUpDown numRatingUpperAnime;
+        private Label labelRatingToAnime;
+        private NumericUpDown numRatingUpperManga;
+        private Label labelRatingToManga;
+        private NumericUpDown numRatingLowerManga;
+        private Label labelRatingFromManga;
     }
 }

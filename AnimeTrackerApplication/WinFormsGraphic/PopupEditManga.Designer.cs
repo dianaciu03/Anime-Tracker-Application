@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBoxMangaDetails = new System.Windows.Forms.GroupBox();
-            this.btnCancelMangaAddition = new System.Windows.Forms.Button();
+            this.btnCancelMangaEdit = new System.Windows.Forms.Button();
             this.labelNote = new System.Windows.Forms.Label();
             this.tbxImageURLManga = new System.Windows.Forms.TextBox();
             this.tbxNrChaptersManga = new System.Windows.Forms.TextBox();
             this.tbxReleaseYearManga = new System.Windows.Forms.TextBox();
             this.labelImageManga = new System.Windows.Forms.Label();
-            this.btnAddManga = new System.Windows.Forms.Button();
+            this.btnEditManga = new System.Windows.Forms.Button();
             this.cbSportsGenreManga = new System.Windows.Forms.CheckBox();
             this.cbSliceOfLifeGenreManga = new System.Windows.Forms.CheckBox();
             this.cbSciFiGenreManga = new System.Windows.Forms.CheckBox();
@@ -61,7 +61,7 @@
             this.cbxStatusManga = new System.Windows.Forms.ComboBox();
             this.labelStatusManga = new System.Windows.Forms.Label();
             this.labelReleaseYearManga = new System.Windows.Forms.Label();
-            this.tbxStudioManga = new System.Windows.Forms.TextBox();
+            this.tbxCreatorManga = new System.Windows.Forms.TextBox();
             this.tbxNameManga = new System.Windows.Forms.TextBox();
             this.labelNrChaptersManga = new System.Windows.Forms.Label();
             this.labelCreatorManga = new System.Windows.Forms.Label();
@@ -72,13 +72,13 @@
             // 
             // groupBoxMangaDetails
             // 
-            this.groupBoxMangaDetails.Controls.Add(this.btnCancelMangaAddition);
+            this.groupBoxMangaDetails.Controls.Add(this.btnCancelMangaEdit);
             this.groupBoxMangaDetails.Controls.Add(this.labelNote);
             this.groupBoxMangaDetails.Controls.Add(this.tbxImageURLManga);
             this.groupBoxMangaDetails.Controls.Add(this.tbxNrChaptersManga);
             this.groupBoxMangaDetails.Controls.Add(this.tbxReleaseYearManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelImageManga);
-            this.groupBoxMangaDetails.Controls.Add(this.btnAddManga);
+            this.groupBoxMangaDetails.Controls.Add(this.btnEditManga);
             this.groupBoxMangaDetails.Controls.Add(this.cbSportsGenreManga);
             this.groupBoxMangaDetails.Controls.Add(this.cbSliceOfLifeGenreManga);
             this.groupBoxMangaDetails.Controls.Add(this.cbSciFiGenreManga);
@@ -104,7 +104,7 @@
             this.groupBoxMangaDetails.Controls.Add(this.cbxStatusManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelStatusManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelReleaseYearManga);
-            this.groupBoxMangaDetails.Controls.Add(this.tbxStudioManga);
+            this.groupBoxMangaDetails.Controls.Add(this.tbxCreatorManga);
             this.groupBoxMangaDetails.Controls.Add(this.tbxNameManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelNrChaptersManga);
             this.groupBoxMangaDetails.Controls.Add(this.labelCreatorManga);
@@ -119,18 +119,19 @@
             this.groupBoxMangaDetails.TabStop = false;
             this.groupBoxMangaDetails.Text = "Manga details";
             // 
-            // btnCancelMangaAddition
+            // btnCancelMangaEdit
             // 
-            this.btnCancelMangaAddition.BackColor = System.Drawing.Color.Plum;
-            this.btnCancelMangaAddition.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCancelMangaAddition.ForeColor = System.Drawing.Color.Black;
-            this.btnCancelMangaAddition.Location = new System.Drawing.Point(876, 533);
-            this.btnCancelMangaAddition.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCancelMangaAddition.Name = "btnCancelMangaAddition";
-            this.btnCancelMangaAddition.Size = new System.Drawing.Size(221, 72);
-            this.btnCancelMangaAddition.TabIndex = 44;
-            this.btnCancelMangaAddition.Text = "Cancel";
-            this.btnCancelMangaAddition.UseVisualStyleBackColor = false;
+            this.btnCancelMangaEdit.BackColor = System.Drawing.Color.Plum;
+            this.btnCancelMangaEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelMangaEdit.ForeColor = System.Drawing.Color.Black;
+            this.btnCancelMangaEdit.Location = new System.Drawing.Point(876, 533);
+            this.btnCancelMangaEdit.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancelMangaEdit.Name = "btnCancelMangaEdit";
+            this.btnCancelMangaEdit.Size = new System.Drawing.Size(221, 72);
+            this.btnCancelMangaEdit.TabIndex = 44;
+            this.btnCancelMangaEdit.Text = "Cancel";
+            this.btnCancelMangaEdit.UseVisualStyleBackColor = false;
+            this.btnCancelMangaEdit.Click += new System.EventHandler(this.btnCancelMangaEdit_Click);
             // 
             // labelNote
             // 
@@ -177,18 +178,19 @@
             this.labelImageManga.TabIndex = 38;
             this.labelImageManga.Text = "Image:";
             // 
-            // btnAddManga
+            // btnEditManga
             // 
-            this.btnAddManga.BackColor = System.Drawing.Color.Plum;
-            this.btnAddManga.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAddManga.ForeColor = System.Drawing.Color.Black;
-            this.btnAddManga.Location = new System.Drawing.Point(570, 533);
-            this.btnAddManga.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAddManga.Name = "btnAddManga";
-            this.btnAddManga.Size = new System.Drawing.Size(221, 72);
-            this.btnAddManga.TabIndex = 36;
-            this.btnAddManga.Text = "Add Manga";
-            this.btnAddManga.UseVisualStyleBackColor = false;
+            this.btnEditManga.BackColor = System.Drawing.Color.Plum;
+            this.btnEditManga.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEditManga.ForeColor = System.Drawing.Color.Black;
+            this.btnEditManga.Location = new System.Drawing.Point(570, 533);
+            this.btnEditManga.Margin = new System.Windows.Forms.Padding(5);
+            this.btnEditManga.Name = "btnEditManga";
+            this.btnEditManga.Size = new System.Drawing.Size(221, 72);
+            this.btnEditManga.TabIndex = 36;
+            this.btnEditManga.Text = "Edit Manga";
+            this.btnEditManga.UseVisualStyleBackColor = false;
+            this.btnEditManga.Click += new System.EventHandler(this.btnEditManga_Click);
             // 
             // cbSportsGenreManga
             // 
@@ -471,13 +473,13 @@
             this.labelReleaseYearManga.TabIndex = 10;
             this.labelReleaseYearManga.Text = "Release year:";
             // 
-            // tbxStudioManga
+            // tbxCreatorManga
             // 
-            this.tbxStudioManga.Location = new System.Drawing.Point(112, 84);
-            this.tbxStudioManga.Margin = new System.Windows.Forms.Padding(5);
-            this.tbxStudioManga.Name = "tbxStudioManga";
-            this.tbxStudioManga.Size = new System.Drawing.Size(416, 36);
-            this.tbxStudioManga.TabIndex = 4;
+            this.tbxCreatorManga.Location = new System.Drawing.Point(112, 84);
+            this.tbxCreatorManga.Margin = new System.Windows.Forms.Padding(5);
+            this.tbxCreatorManga.Name = "tbxCreatorManga";
+            this.tbxCreatorManga.Size = new System.Drawing.Size(416, 36);
+            this.tbxCreatorManga.TabIndex = 4;
             // 
             // tbxNameManga
             // 
@@ -538,13 +540,13 @@
         #endregion
 
         private GroupBox groupBoxMangaDetails;
-        private Button btnCancelMangaAddition;
+        private Button btnCancelMangaEdit;
         private Label labelNote;
         private TextBox tbxImageURLManga;
         private TextBox tbxNrChaptersManga;
         private TextBox tbxReleaseYearManga;
         private Label labelImageManga;
-        private Button btnAddManga;
+        private Button btnEditManga;
         private CheckBox cbSportsGenreManga;
         private CheckBox cbSliceOfLifeGenreManga;
         private CheckBox cbSciFiGenreManga;
@@ -570,7 +572,7 @@
         private ComboBox cbxStatusManga;
         private Label labelStatusManga;
         private Label labelReleaseYearManga;
-        private TextBox tbxStudioManga;
+        private TextBox tbxCreatorManga;
         private TextBox tbxNameManga;
         private Label labelNrChaptersManga;
         private Label labelCreatorManga;

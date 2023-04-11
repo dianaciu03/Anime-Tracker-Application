@@ -35,8 +35,10 @@ namespace WebAppGraphic.Pages
                 User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.Now.Date, RegistrationFormUser.Username);
                 //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
                 userManager.AddUser(webUser);
+                return RedirectToPage("Login");
             }
-            return RedirectToPage("Index");
+            else
+            return Page();
         }
     }
 }

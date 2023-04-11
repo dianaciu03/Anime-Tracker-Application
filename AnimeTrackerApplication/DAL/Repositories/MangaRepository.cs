@@ -118,7 +118,7 @@ namespace DAL.Repositories
             }
         }
 
-        public void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL)
+        public void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL, List<Genre> genres)
         {
             try
             {

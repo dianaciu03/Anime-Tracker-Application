@@ -47,7 +47,7 @@ namespace WinFormsGraphic
             catch (Exception)
             {
                 labelErorrMessage.Visible = true;
-                return;
+                throw;
             }
         }
 
