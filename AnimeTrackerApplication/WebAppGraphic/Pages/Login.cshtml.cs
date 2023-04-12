@@ -6,13 +6,14 @@ using System.Security.Claims;
 using Logic.Users;
 using System.Text.Json;
 using DAL.Repositories;
+using Factory.ManagerFactory;
+using Factory.RepositoryFactory;
 
 namespace WebAppGraphic.Pages
 {
     public class LoginModel : PageModel
     {
-        private static IUserRepository _userDataHandler = new UserRepository();
-        private static UserManager userManager = new UserManager(_userDataHandler);
+        private static UserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
 
         [BindProperty]
         public string UserEmail { get; set; }
@@ -59,7 +60,10 @@ namespace WebAppGraphic.Pages
 
             if(user != null)
             {
-                return RedirectToPage("Privacy");
+                if(user.Password == UserPassword)
+                    return RedirectToPage("Privacy");
+                else
+                    return Page();
             }
             else
             {
