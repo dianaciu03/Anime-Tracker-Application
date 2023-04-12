@@ -272,6 +272,13 @@ namespace WinFormsGraphic
 
         }
 
-        
+        //
+        //CHARACTER TAB
+        //
+        private void btnAddCharacter_Click(object sender, EventArgs e)
+        {
+            PopupAddCharacter form = new PopupAddCharacter();
+            form.ShowDialog();
+        }
     }
 }

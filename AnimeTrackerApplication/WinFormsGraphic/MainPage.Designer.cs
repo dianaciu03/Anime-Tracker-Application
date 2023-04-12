@@ -115,10 +115,6 @@
             this.tbxNameManga = new System.Windows.Forms.TextBox();
             this.labeNameManga = new System.Windows.Forms.Label();
             this.tabCharacters = new System.Windows.Forms.TabPage();
-            this.tabCreateAccount = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -137,6 +133,10 @@
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.label9 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -155,10 +155,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.tabCreateAccount = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRemoveCharacter = new System.Windows.Forms.Button();
+            this.btnAddCharacter = new System.Windows.Forms.Button();
+            this.btnEditCharacter = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -175,14 +178,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersToManga)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersFromManga)).BeginInit();
             this.tabCharacters.SuspendLayout();
-            this.tabCreateAccount.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            this.tabCreateAccount.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -1143,6 +1146,9 @@
             // tabCharacters
             // 
             this.tabCharacters.BackColor = System.Drawing.Color.Thistle;
+            this.tabCharacters.Controls.Add(this.btnRemoveCharacter);
+            this.tabCharacters.Controls.Add(this.btnAddCharacter);
+            this.tabCharacters.Controls.Add(this.btnEditCharacter);
             this.tabCharacters.Controls.Add(this.groupBox2);
             this.tabCharacters.Controls.Add(this.listView1);
             this.tabCharacters.Controls.Add(this.groupBox3);
@@ -1152,44 +1158,6 @@
             this.tabCharacters.Size = new System.Drawing.Size(1797, 852);
             this.tabCharacters.TabIndex = 2;
             this.tabCharacters.Text = "Characters";
-            // 
-            // tabCreateAccount
-            // 
-            this.tabCreateAccount.BackColor = System.Drawing.Color.Thistle;
-            this.tabCreateAccount.Controls.Add(this.groupBox1);
-            this.tabCreateAccount.Location = new System.Drawing.Point(4, 46);
-            this.tabCreateAccount.Name = "tabCreateAccount";
-            this.tabCreateAccount.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCreateAccount.Size = new System.Drawing.Size(1797, 852);
-            this.tabCreateAccount.TabIndex = 3;
-            this.tabCreateAccount.Text = "Create account";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 17);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(527, 306);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Create account for maintainer";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(78, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(431, 32);
-            this.textBox1.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 26);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Name:";
             // 
             // groupBox2
             // 
@@ -1391,6 +1359,48 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Manga search:";
             // 
+            // radioButton11
+            // 
+            this.radioButton11.AutoSize = true;
+            this.radioButton11.Location = new System.Drawing.Point(313, 82);
+            this.radioButton11.Name = "radioButton11";
+            this.radioButton11.Size = new System.Drawing.Size(121, 30);
+            this.radioButton11.TabIndex = 54;
+            this.radioButton11.TabStop = true;
+            this.radioButton11.Text = "Unknown";
+            this.radioButton11.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Location = new System.Drawing.Point(204, 82);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(103, 30);
+            this.radioButton10.TabIndex = 53;
+            this.radioButton10.TabStop = true;
+            this.radioButton10.Text = "Female";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Location = new System.Drawing.Point(121, 82);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(77, 30);
+            this.radioButton9.TabIndex = 52;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "Male";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 85);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 26);
+            this.label9.TabIndex = 51;
+            this.label9.Text = "Name:";
+            // 
             // numericUpDown1
             // 
             this.numericUpDown1.DecimalPlaces = 1;
@@ -1581,47 +1591,83 @@
             this.label10.TabIndex = 1;
             this.label10.Text = "Name:";
             // 
-            // label9
+            // tabCreateAccount
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 85);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 26);
-            this.label9.TabIndex = 51;
-            this.label9.Text = "Name:";
+            this.tabCreateAccount.BackColor = System.Drawing.Color.Thistle;
+            this.tabCreateAccount.Controls.Add(this.groupBox1);
+            this.tabCreateAccount.Location = new System.Drawing.Point(4, 46);
+            this.tabCreateAccount.Name = "tabCreateAccount";
+            this.tabCreateAccount.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCreateAccount.Size = new System.Drawing.Size(1797, 852);
+            this.tabCreateAccount.TabIndex = 3;
+            this.tabCreateAccount.Text = "Create account";
             // 
-            // radioButton9
+            // groupBox1
             // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(121, 82);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(77, 30);
-            this.radioButton9.TabIndex = 52;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "Male";
-            this.radioButton9.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(3, 17);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(527, 306);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Create account for maintainer";
             // 
-            // radioButton10
+            // textBox1
             // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Location = new System.Drawing.Point(204, 82);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(103, 30);
-            this.radioButton10.TabIndex = 53;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "Female";
-            this.radioButton10.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(78, 44);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(431, 32);
+            this.textBox1.TabIndex = 5;
             // 
-            // radioButton11
+            // label1
             // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(313, 82);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(121, 30);
-            this.radioButton11.TabIndex = 54;
-            this.radioButton11.TabStop = true;
-            this.radioButton11.Text = "Unknown";
-            this.radioButton11.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 26);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Name:";
+            // 
+            // btnRemoveCharacter
+            // 
+            this.btnRemoveCharacter.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnRemoveCharacter.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemoveCharacter.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveCharacter.Location = new System.Drawing.Point(1407, 752);
+            this.btnRemoveCharacter.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRemoveCharacter.Name = "btnRemoveCharacter";
+            this.btnRemoveCharacter.Size = new System.Drawing.Size(353, 72);
+            this.btnRemoveCharacter.TabIndex = 49;
+            this.btnRemoveCharacter.Text = "Remove Character";
+            this.btnRemoveCharacter.UseVisualStyleBackColor = false;
+            // 
+            // btnAddCharacter
+            // 
+            this.btnAddCharacter.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnAddCharacter.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAddCharacter.ForeColor = System.Drawing.Color.Black;
+            this.btnAddCharacter.Location = new System.Drawing.Point(582, 752);
+            this.btnAddCharacter.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAddCharacter.Name = "btnAddCharacter";
+            this.btnAddCharacter.Size = new System.Drawing.Size(353, 72);
+            this.btnAddCharacter.TabIndex = 48;
+            this.btnAddCharacter.Text = "Add Character";
+            this.btnAddCharacter.UseVisualStyleBackColor = false;
+            this.btnAddCharacter.Click += new System.EventHandler(this.btnAddCharacter_Click);
+            // 
+            // btnEditCharacter
+            // 
+            this.btnEditCharacter.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnEditCharacter.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnEditCharacter.ForeColor = System.Drawing.Color.Black;
+            this.btnEditCharacter.Location = new System.Drawing.Point(995, 752);
+            this.btnEditCharacter.Margin = new System.Windows.Forms.Padding(5);
+            this.btnEditCharacter.Name = "btnEditCharacter";
+            this.btnEditCharacter.Size = new System.Drawing.Size(353, 72);
+            this.btnEditCharacter.TabIndex = 47;
+            this.btnEditCharacter.Text = "Edit Character";
+            this.btnEditCharacter.UseVisualStyleBackColor = false;
             // 
             // MainPage
             // 
@@ -1656,9 +1702,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersToManga)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numChaptersFromManga)).EndInit();
             this.tabCharacters.ResumeLayout(false);
-            this.tabCreateAccount.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1667,6 +1710,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            this.tabCreateAccount.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1804,5 +1850,8 @@
         private Label label8;
         private TextBox textBox4;
         private Label label10;
+        private Button btnRemoveCharacter;
+        private Button btnAddCharacter;
+        private Button btnEditCharacter;
     }
 }
