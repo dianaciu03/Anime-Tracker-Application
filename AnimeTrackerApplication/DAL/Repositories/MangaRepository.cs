@@ -160,7 +160,6 @@ namespace DAL.Repositories
             }
         }
 
-
         public void DeleteManga(int mangaId)
         {
             try
@@ -234,6 +233,47 @@ namespace DAL.Repositories
                 throw new Exception("There were issues while trying to retrieve the manga!");
             }
             return (Manga)manga;
+        }
+
+        public List<Manga> GetMangaByName(string name)
+        {
+            List<Manga> mangaList = new List<Manga>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM Manga WHERE Name LIKE '%' + @Name + '%' ";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@Name", name);
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int mangaId = reader.GetInt32(reader.GetOrdinal("MangaId"));
+                            string mangaName = reader.GetString(reader.GetOrdinal("Name"));
+                            string creator = reader.GetString(reader.GetOrdinal("Creator"));
+                            int nrChapters = reader.GetInt32(reader.GetOrdinal("NrChapters"));
+                            int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                            string status = reader.GetString(reader.GetOrdinal("Status"));
+                            decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                            string description = reader.GetString(reader.GetOrdinal("Description"));
+                            string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                            MangaStatus mangaStatus = (MangaStatus)Enum.Parse(typeof(MangaStatus), status);
+
+                            Manga manga = new Manga(mangaId, name, description, rating, releaseYear, imageURL, mangaStatus, nrChapters, creator, new List<Genre>());
+                            mangaList.Add(manga);
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the manga!");
+            }
+            return mangaList;
         }
     }
 }

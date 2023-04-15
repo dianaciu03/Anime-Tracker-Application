@@ -22,13 +22,25 @@ namespace Logic.Characters
                 return true;
         }
 
+        public bool IsGenderValid(string gender)
+        {
+            if (String.IsNullOrEmpty(gender))
+                throw new Exception("You need to provide a gender!");
+            else
+                return true;
+        }
+
         public bool IsValidImageUrl(string url)
         {
             string[] validExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
-            string extension = Path.GetExtension(url);
+            Uri uri = new Uri(url);
 
-            if (!validExtensions.Contains(extension.ToLower()))
-                return false;
+            string extension = Path.GetExtension(uri.AbsolutePath);
+
+            if (string.IsNullOrEmpty(extension) || !validExtensions.Contains(extension.ToLower()))
+            {
+                throw new Exception("The image link is not valid!");
+            }
 
             try
             {
@@ -39,9 +51,9 @@ namespace Logic.Characters
                     return response.ContentType.ToLower().StartsWith("image/");
                 }
             }
-            catch
+            catch(Exception)
             {
-                return false;
+                throw new Exception("The image link is not valid!");
             }
         }
     }

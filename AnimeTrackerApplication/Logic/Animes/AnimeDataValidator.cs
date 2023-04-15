@@ -115,22 +115,17 @@ namespace Logic.Animes
                 throw new Exception("You need to provide a season!");
         }
 
-        public bool IsPathValid(string path)
-        {
-            //how to validate url keywords: ping, http request
-            if (String.IsNullOrEmpty(path))
-                throw new Exception("You need to provide an URL from an online image!");
-            else
-                return true;
-        }
-
         public bool IsValidImageUrl(string url)
         {
             string[] validExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
-            string extension = Path.GetExtension(url);
+            Uri uri = new Uri(url);
 
-            if (!validExtensions.Contains(extension.ToLower()))
-                return false;
+            string extension = Path.GetExtension(uri.AbsolutePath);
+
+            if (string.IsNullOrEmpty(extension) || !validExtensions.Contains(extension.ToLower()))
+            {
+                throw new Exception("The image link is not valid!");
+            }
 
             try
             {
@@ -141,9 +136,9 @@ namespace Logic.Animes
                     return response.ContentType.ToLower().StartsWith("image/");
                 }
             }
-            catch
+            catch (Exception)
             {
-                return false;
+                throw new Exception("The image link is not valid!");
             }
         }
     }

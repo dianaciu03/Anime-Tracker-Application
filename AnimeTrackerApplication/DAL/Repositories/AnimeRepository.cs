@@ -238,5 +238,47 @@ namespace DAL.Repositories
             }
             return (Anime)anime;
         }
+
+        public List<Anime> GetAnimeByName(string name)
+        {
+            List<Anime> animeList = new List<Anime>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM Anime WHERE Name LIKE '%' + @Name + '%' ";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@Name", name);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int animeId = reader.GetInt32(reader.GetOrdinal("AnimeId"));
+                            string animeName = reader.GetString(reader.GetOrdinal("Name"));
+                            string studio = reader.GetString(reader.GetOrdinal("Studio"));
+                            int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
+                            int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                            string releaseSeason = reader.GetString(reader.GetOrdinal("ReleaseSeason"));
+                            decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                            string description = reader.GetString(reader.GetOrdinal("Description"));
+                            string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                            Season season = (Season)Enum.Parse(typeof(Season), releaseSeason);
+
+                            Anime anime = new Anime(animeId, animeName, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, new List<Genre>());
+                            animeList.Add(anime);
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the anime!");
+            }
+            return animeList;
+        }
     }
 }

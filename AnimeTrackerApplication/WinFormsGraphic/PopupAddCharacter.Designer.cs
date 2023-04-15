@@ -29,6 +29,18 @@
         private void InitializeComponent()
         {
             this.groupBoxCharacterDetails = new System.Windows.Forms.GroupBox();
+            this.tbxCharacterImage = new System.Windows.Forms.TextBox();
+            this.labelImage = new System.Windows.Forms.Label();
+            this.btnCancelCharacterAddition = new System.Windows.Forms.Button();
+            this.btnAddCharacter = new System.Windows.Forms.Button();
+            this.lvwMangaCharacter = new System.Windows.Forms.ListView();
+            this.columnNameManga = new System.Windows.Forms.ColumnHeader();
+            this.columnCreator = new System.Windows.Forms.ColumnHeader();
+            this.tbxMangaTitle = new System.Windows.Forms.TextBox();
+            this.labelMangaTitle = new System.Windows.Forms.Label();
+            this.lvwAnimeCharacter = new System.Windows.Forms.ListView();
+            this.columnNameAnime = new System.Windows.Forms.ColumnHeader();
+            this.columnStudio = new System.Windows.Forms.ColumnHeader();
             this.tbxAnimeTitle = new System.Windows.Forms.TextBox();
             this.labelAnimeTitle = new System.Windows.Forms.Label();
             this.labelAppearsIn = new System.Windows.Forms.Label();
@@ -38,20 +50,6 @@
             this.labelGender = new System.Windows.Forms.Label();
             this.tbxCharacterName = new System.Windows.Forms.TextBox();
             this.labelCharacterName = new System.Windows.Forms.Label();
-            this.lvwAnimeCharacter = new System.Windows.Forms.ListView();
-            this.columnNameAnime = new System.Windows.Forms.ColumnHeader();
-            this.columnStudio = new System.Windows.Forms.ColumnHeader();
-            this.btnSearchAnime = new System.Windows.Forms.Button();
-            this.btnSearchManga = new System.Windows.Forms.Button();
-            this.lvwMangaCharacter = new System.Windows.Forms.ListView();
-            this.columnNameManga = new System.Windows.Forms.ColumnHeader();
-            this.columnCreator = new System.Windows.Forms.ColumnHeader();
-            this.tbxMangaTitle = new System.Windows.Forms.TextBox();
-            this.labelMangaTitle = new System.Windows.Forms.Label();
-            this.btnCancelCharacterAddition = new System.Windows.Forms.Button();
-            this.btnAddCharacter = new System.Windows.Forms.Button();
-            this.tbxCharacterImage = new System.Windows.Forms.TextBox();
-            this.labelImage = new System.Windows.Forms.Label();
             this.groupBoxCharacterDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,11 +59,9 @@
             this.groupBoxCharacterDetails.Controls.Add(this.labelImage);
             this.groupBoxCharacterDetails.Controls.Add(this.btnCancelCharacterAddition);
             this.groupBoxCharacterDetails.Controls.Add(this.btnAddCharacter);
-            this.groupBoxCharacterDetails.Controls.Add(this.btnSearchManga);
             this.groupBoxCharacterDetails.Controls.Add(this.lvwMangaCharacter);
             this.groupBoxCharacterDetails.Controls.Add(this.tbxMangaTitle);
             this.groupBoxCharacterDetails.Controls.Add(this.labelMangaTitle);
-            this.groupBoxCharacterDetails.Controls.Add(this.btnSearchAnime);
             this.groupBoxCharacterDetails.Controls.Add(this.lvwAnimeCharacter);
             this.groupBoxCharacterDetails.Controls.Add(this.tbxAnimeTitle);
             this.groupBoxCharacterDetails.Controls.Add(this.labelAnimeTitle);
@@ -84,12 +80,128 @@
             this.groupBoxCharacterDetails.TabStop = false;
             this.groupBoxCharacterDetails.Text = "Character details:";
             // 
+            // tbxCharacterImage
+            // 
+            this.tbxCharacterImage.Location = new System.Drawing.Point(147, 82);
+            this.tbxCharacterImage.Name = "tbxCharacterImage";
+            this.tbxCharacterImage.Size = new System.Drawing.Size(297, 32);
+            this.tbxCharacterImage.TabIndex = 66;
+            // 
+            // labelImage
+            // 
+            this.labelImage.AutoSize = true;
+            this.labelImage.Location = new System.Drawing.Point(20, 85);
+            this.labelImage.Name = "labelImage";
+            this.labelImage.Size = new System.Drawing.Size(79, 26);
+            this.labelImage.TabIndex = 65;
+            this.labelImage.Text = "Image:";
+            // 
+            // btnCancelCharacterAddition
+            // 
+            this.btnCancelCharacterAddition.BackColor = System.Drawing.Color.Plum;
+            this.btnCancelCharacterAddition.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelCharacterAddition.ForeColor = System.Drawing.Color.Black;
+            this.btnCancelCharacterAddition.Location = new System.Drawing.Point(318, 607);
+            this.btnCancelCharacterAddition.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancelCharacterAddition.Name = "btnCancelCharacterAddition";
+            this.btnCancelCharacterAddition.Size = new System.Drawing.Size(221, 57);
+            this.btnCancelCharacterAddition.TabIndex = 64;
+            this.btnCancelCharacterAddition.Text = "Cancel";
+            this.btnCancelCharacterAddition.UseVisualStyleBackColor = false;
+            this.btnCancelCharacterAddition.Click += new System.EventHandler(this.btnCancelCharacterAddition_Click);
+            // 
+            // btnAddCharacter
+            // 
+            this.btnAddCharacter.BackColor = System.Drawing.Color.Plum;
+            this.btnAddCharacter.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAddCharacter.ForeColor = System.Drawing.Color.Black;
+            this.btnAddCharacter.Location = new System.Drawing.Point(20, 607);
+            this.btnAddCharacter.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAddCharacter.Name = "btnAddCharacter";
+            this.btnAddCharacter.Size = new System.Drawing.Size(221, 57);
+            this.btnAddCharacter.TabIndex = 63;
+            this.btnAddCharacter.Text = "Add Character";
+            this.btnAddCharacter.UseVisualStyleBackColor = false;
+            this.btnAddCharacter.Click += new System.EventHandler(this.btnAddCharacter_Click);
+            // 
+            // lvwMangaCharacter
+            // 
+            this.lvwMangaCharacter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnNameManga,
+            this.columnCreator});
+            this.lvwMangaCharacter.FullRowSelect = true;
+            this.lvwMangaCharacter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvwMangaCharacter.Location = new System.Drawing.Point(20, 463);
+            this.lvwMangaCharacter.MultiSelect = false;
+            this.lvwMangaCharacter.Name = "lvwMangaCharacter";
+            this.lvwMangaCharacter.Size = new System.Drawing.Size(519, 121);
+            this.lvwMangaCharacter.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvwMangaCharacter.TabIndex = 59;
+            this.lvwMangaCharacter.UseCompatibleStateImageBehavior = false;
+            this.lvwMangaCharacter.View = System.Windows.Forms.View.Details;
+            this.lvwMangaCharacter.SelectedIndexChanged += new System.EventHandler(this.lvwMangaCharacter_SelectedIndexChanged);
+            // 
+            // columnNameManga
+            // 
+            this.columnNameManga.Text = "Name";
+            this.columnNameManga.Width = 270;
+            // 
+            // columnCreator
+            // 
+            this.columnCreator.Text = "Creator";
+            this.columnCreator.Width = 210;
+            // 
+            // tbxMangaTitle
+            // 
+            this.tbxMangaTitle.Location = new System.Drawing.Point(147, 413);
+            this.tbxMangaTitle.Name = "tbxMangaTitle";
+            this.tbxMangaTitle.Size = new System.Drawing.Size(297, 32);
+            this.tbxMangaTitle.TabIndex = 61;
+            this.tbxMangaTitle.TextChanged += new System.EventHandler(this.tbxMangaTitle_TextChanged);
+            // 
+            // labelMangaTitle
+            // 
+            this.labelMangaTitle.AutoSize = true;
+            this.labelMangaTitle.Location = new System.Drawing.Point(20, 416);
+            this.labelMangaTitle.Name = "labelMangaTitle";
+            this.labelMangaTitle.Size = new System.Drawing.Size(124, 26);
+            this.labelMangaTitle.TabIndex = 60;
+            this.labelMangaTitle.Text = "Manga title:";
+            // 
+            // lvwAnimeCharacter
+            // 
+            this.lvwAnimeCharacter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnNameAnime,
+            this.columnStudio});
+            this.lvwAnimeCharacter.FullRowSelect = true;
+            this.lvwAnimeCharacter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvwAnimeCharacter.Location = new System.Drawing.Point(20, 258);
+            this.lvwAnimeCharacter.MultiSelect = false;
+            this.lvwAnimeCharacter.Name = "lvwAnimeCharacter";
+            this.lvwAnimeCharacter.Size = new System.Drawing.Size(519, 121);
+            this.lvwAnimeCharacter.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvwAnimeCharacter.TabIndex = 46;
+            this.lvwAnimeCharacter.UseCompatibleStateImageBehavior = false;
+            this.lvwAnimeCharacter.View = System.Windows.Forms.View.Details;
+            this.lvwAnimeCharacter.SelectedIndexChanged += new System.EventHandler(this.lvwAnimeCharacter_SelectedIndexChanged);
+            // 
+            // columnNameAnime
+            // 
+            this.columnNameAnime.Text = "Name";
+            this.columnNameAnime.Width = 270;
+            // 
+            // columnStudio
+            // 
+            this.columnStudio.Text = "Studio";
+            this.columnStudio.Width = 210;
+            // 
             // tbxAnimeTitle
             // 
             this.tbxAnimeTitle.Location = new System.Drawing.Point(147, 209);
             this.tbxAnimeTitle.Name = "tbxAnimeTitle";
             this.tbxAnimeTitle.Size = new System.Drawing.Size(297, 32);
             this.tbxAnimeTitle.TabIndex = 57;
+            this.tbxAnimeTitle.TextChanged += new System.EventHandler(this.tbxAnimeTitle_TextChanged);
             // 
             // labelAnimeTitle
             // 
@@ -167,140 +279,6 @@
             this.labelCharacterName.TabIndex = 1;
             this.labelCharacterName.Text = "Name:";
             // 
-            // lvwAnimeCharacter
-            // 
-            this.lvwAnimeCharacter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnNameAnime,
-            this.columnStudio});
-            this.lvwAnimeCharacter.FullRowSelect = true;
-            this.lvwAnimeCharacter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lvwAnimeCharacter.Location = new System.Drawing.Point(20, 258);
-            this.lvwAnimeCharacter.MultiSelect = false;
-            this.lvwAnimeCharacter.Name = "lvwAnimeCharacter";
-            this.lvwAnimeCharacter.Size = new System.Drawing.Size(519, 121);
-            this.lvwAnimeCharacter.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvwAnimeCharacter.TabIndex = 46;
-            this.lvwAnimeCharacter.UseCompatibleStateImageBehavior = false;
-            this.lvwAnimeCharacter.View = System.Windows.Forms.View.Details;
-            // 
-            // columnNameAnime
-            // 
-            this.columnNameAnime.Text = "Name";
-            this.columnNameAnime.Width = 270;
-            // 
-            // columnStudio
-            // 
-            this.columnStudio.Text = "Studio";
-            this.columnStudio.Width = 210;
-            // 
-            // btnSearchAnime
-            // 
-            this.btnSearchAnime.BackColor = System.Drawing.Color.LavenderBlush;
-            this.btnSearchAnime.Location = new System.Drawing.Point(450, 213);
-            this.btnSearchAnime.Name = "btnSearchAnime";
-            this.btnSearchAnime.Size = new System.Drawing.Size(89, 37);
-            this.btnSearchAnime.TabIndex = 58;
-            this.btnSearchAnime.Text = "Search";
-            this.btnSearchAnime.UseVisualStyleBackColor = false;
-            this.btnSearchAnime.Click += new System.EventHandler(this.btnSearchAnime_Click);
-            // 
-            // btnSearchManga
-            // 
-            this.btnSearchManga.BackColor = System.Drawing.Color.LavenderBlush;
-            this.btnSearchManga.Location = new System.Drawing.Point(450, 417);
-            this.btnSearchManga.Name = "btnSearchManga";
-            this.btnSearchManga.Size = new System.Drawing.Size(89, 37);
-            this.btnSearchManga.TabIndex = 62;
-            this.btnSearchManga.Text = "Search";
-            this.btnSearchManga.UseVisualStyleBackColor = false;
-            this.btnSearchManga.Click += new System.EventHandler(this.btnSearchManga_Click);
-            // 
-            // lvwMangaCharacter
-            // 
-            this.lvwMangaCharacter.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnNameManga,
-            this.columnCreator});
-            this.lvwMangaCharacter.FullRowSelect = true;
-            this.lvwMangaCharacter.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lvwMangaCharacter.Location = new System.Drawing.Point(20, 463);
-            this.lvwMangaCharacter.MultiSelect = false;
-            this.lvwMangaCharacter.Name = "lvwMangaCharacter";
-            this.lvwMangaCharacter.Size = new System.Drawing.Size(519, 121);
-            this.lvwMangaCharacter.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvwMangaCharacter.TabIndex = 59;
-            this.lvwMangaCharacter.UseCompatibleStateImageBehavior = false;
-            this.lvwMangaCharacter.View = System.Windows.Forms.View.Details;
-            // 
-            // columnNameManga
-            // 
-            this.columnNameManga.Text = "Name";
-            this.columnNameManga.Width = 270;
-            // 
-            // columnCreator
-            // 
-            this.columnCreator.Text = "Creator";
-            this.columnCreator.Width = 210;
-            // 
-            // tbxMangaTitle
-            // 
-            this.tbxMangaTitle.Location = new System.Drawing.Point(147, 413);
-            this.tbxMangaTitle.Name = "tbxMangaTitle";
-            this.tbxMangaTitle.Size = new System.Drawing.Size(297, 32);
-            this.tbxMangaTitle.TabIndex = 61;
-            // 
-            // labelMangaTitle
-            // 
-            this.labelMangaTitle.AutoSize = true;
-            this.labelMangaTitle.Location = new System.Drawing.Point(20, 416);
-            this.labelMangaTitle.Name = "labelMangaTitle";
-            this.labelMangaTitle.Size = new System.Drawing.Size(124, 26);
-            this.labelMangaTitle.TabIndex = 60;
-            this.labelMangaTitle.Text = "Manga title:";
-            // 
-            // btnCancelCharacterAddition
-            // 
-            this.btnCancelCharacterAddition.BackColor = System.Drawing.Color.Plum;
-            this.btnCancelCharacterAddition.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCancelCharacterAddition.ForeColor = System.Drawing.Color.Black;
-            this.btnCancelCharacterAddition.Location = new System.Drawing.Point(318, 607);
-            this.btnCancelCharacterAddition.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCancelCharacterAddition.Name = "btnCancelCharacterAddition";
-            this.btnCancelCharacterAddition.Size = new System.Drawing.Size(221, 57);
-            this.btnCancelCharacterAddition.TabIndex = 64;
-            this.btnCancelCharacterAddition.Text = "Cancel";
-            this.btnCancelCharacterAddition.UseVisualStyleBackColor = false;
-            this.btnCancelCharacterAddition.Click += new System.EventHandler(this.btnCancelCharacterAddition_Click);
-            // 
-            // btnAddCharacter
-            // 
-            this.btnAddCharacter.BackColor = System.Drawing.Color.Plum;
-            this.btnAddCharacter.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAddCharacter.ForeColor = System.Drawing.Color.Black;
-            this.btnAddCharacter.Location = new System.Drawing.Point(20, 607);
-            this.btnAddCharacter.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAddCharacter.Name = "btnAddCharacter";
-            this.btnAddCharacter.Size = new System.Drawing.Size(221, 57);
-            this.btnAddCharacter.TabIndex = 63;
-            this.btnAddCharacter.Text = "Add Character";
-            this.btnAddCharacter.UseVisualStyleBackColor = false;
-            this.btnAddCharacter.Click += new System.EventHandler(this.btnAddCharacter_Click);
-            // 
-            // tbxCharacterImage
-            // 
-            this.tbxCharacterImage.Location = new System.Drawing.Point(147, 82);
-            this.tbxCharacterImage.Name = "tbxCharacterImage";
-            this.tbxCharacterImage.Size = new System.Drawing.Size(297, 32);
-            this.tbxCharacterImage.TabIndex = 66;
-            // 
-            // labelImage
-            // 
-            this.labelImage.AutoSize = true;
-            this.labelImage.Location = new System.Drawing.Point(20, 85);
-            this.labelImage.Name = "labelImage";
-            this.labelImage.Size = new System.Drawing.Size(79, 26);
-            this.labelImage.TabIndex = 65;
-            this.labelImage.Text = "Image:";
-            // 
             // PopupAddCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -330,13 +308,11 @@
         private Label labelGender;
         private TextBox tbxCharacterName;
         private Label labelCharacterName;
-        private Button btnSearchManga;
         private ListView lvwMangaCharacter;
         private ColumnHeader columnNameManga;
         private ColumnHeader columnCreator;
         private TextBox tbxMangaTitle;
         private Label labelMangaTitle;
-        private Button btnSearchAnime;
         private ListView lvwAnimeCharacter;
         private ColumnHeader columnNameAnime;
         private ColumnHeader columnStudio;

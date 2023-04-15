@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class CharacterRepository : BaseDAL
+    public class CharacterRepository : BaseDAL, ICharacterRepository
     {
         public void AddCharacter(Character character)
         {
@@ -31,16 +31,16 @@ namespace DAL.Repositories
                             command.Parameters.AddWithValue("@Name", character.Name);
                             command.Parameters.AddWithValue("@Gender", character.Gender);
 
-                            if(character.FromAnime != null)
-                                command.Parameters.AddWithValue("@AnimeId", character.FromAnime);
+                            if (character.FromAnime != null)
+                                command.Parameters.AddWithValue("@AnimeId", character.FromAnime.Id);
                             else
                                 command.Parameters.AddWithValue("@AnimeId", DBNull.Value);
 
-                            if (character.FromAnime != null)
-                                command.Parameters.AddWithValue("@MangaId", character.FromManga);
+                            if (character.FromManga != null)
+                                command.Parameters.AddWithValue("@MangaId", character.FromManga.Id);
                             else
                                 command.Parameters.AddWithValue("@MangaId", DBNull.Value);
-                            
+
                             command.Parameters.AddWithValue("@Image", character.Image);
                             command.Parameters.AddWithValue("@NrLikes", character.NrLikes);
                             command.Parameters.AddWithValue("@NrDislikes", character.NrDislikes);
@@ -118,12 +118,12 @@ namespace DAL.Repositories
                             command.Parameters.AddWithValue("@Gender", character.Gender);
                             command.Parameters.AddWithValue("@Image", character.Image);
                             if (character.FromAnime != null)
-                                command.Parameters.AddWithValue("@AnimeId", character.FromAnime);
+                                command.Parameters.AddWithValue("@AnimeId", character.FromAnime.Id);
                             else
                                 command.Parameters.AddWithValue("@AnimeId", DBNull.Value);
 
                             if (character.FromAnime != null)
-                                command.Parameters.AddWithValue("@MangaId", character.FromManga);
+                                command.Parameters.AddWithValue("@MangaId", character.FromManga.Id);
                             else
                                 command.Parameters.AddWithValue("@MangaId", DBNull.Value);
 

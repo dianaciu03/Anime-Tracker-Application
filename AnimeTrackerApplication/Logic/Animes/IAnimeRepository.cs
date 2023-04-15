@@ -15,5 +15,6 @@ namespace Logic.Animes
         Anime? GetAnimeById(int animeId);
         int GetNrAnime();
         void UpdateAnime(Anime anime);
+        List<Anime> GetAnimeByName(string name);
     }
 }

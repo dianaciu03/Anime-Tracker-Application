@@ -50,5 +50,10 @@ namespace Logic.Mangas
             _mangaDataHandler.DeleteManga(id);
         }
 
-    }
+        public List<Manga> GetMangaByName(string name)
+        {
+            return _mangaDataHandler.GetMangaByName(name);
+        }
+
+    }   
 }

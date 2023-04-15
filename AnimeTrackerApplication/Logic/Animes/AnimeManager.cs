@@ -50,6 +50,11 @@ namespace Logic.Animes
             _animeDataHandler.DeleteAnime(id);
         }
 
+        public List<Anime> GetAnimeByName(string name)
+        {
+            return _animeDataHandler.GetAnimeByName(name);
+        }
+
         //public List<Anime> SortAnime(int option)
         //{
         //    switch(option)

@@ -76,7 +76,7 @@ namespace WinFormsGraphic
                         genres.Add((Genre)Enum.Parse(typeof(Genre), cb.Text));
                     }
                 }
-                if (adv.IsNameValid(tbxNameAnime.Text) && adv.IsStudioValid(tbxStudioAnime.Text) && adv.IsNrEpisodesValid(tbxNrEpisodes.Text) && adv.IsYearValid(tbxReleaseYearAnime.Text) && adv.IsSeasonValid((Season)cbxReleaseSeasonAnime.SelectedItem) && adv.IsRatingValid(numRatingAnime.Text) && adv.IsDescriptionValid(tbxDescriptionAnime.Text) && adv.IsPathValid(tbxImageURL.Text))
+                if (adv.IsNameValid(tbxNameAnime.Text) && adv.IsStudioValid(tbxStudioAnime.Text) && adv.IsNrEpisodesValid(tbxNrEpisodes.Text) && adv.IsYearValid(tbxReleaseYearAnime.Text) && adv.IsSeasonValid((Season)cbxReleaseSeasonAnime.SelectedItem) && adv.IsRatingValid(numRatingAnime.Text) && adv.IsDescriptionValid(tbxDescriptionAnime.Text) && adv.IsValidImageUrl(tbxImageURL.Text))
                 {
                     animeManager.UpdateAnime(anime.Id, tbxNameAnime.Text, tbxDescriptionAnime.Text, Convert.ToDecimal(numRatingAnime.Text), Convert.ToInt32(tbxReleaseYearAnime.Text), tbxImageURL.Text, (Season)cbxReleaseSeasonAnime.SelectedItem, Convert.ToInt32(tbxNrEpisodes.Text), tbxStudioAnime.Text, genres);
                     MessageBox.Show("Anime was successfully edited!");

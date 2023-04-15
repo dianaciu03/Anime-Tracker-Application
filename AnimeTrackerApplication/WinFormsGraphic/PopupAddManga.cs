@@ -61,7 +61,7 @@ namespace WinFormsGraphic
                         genres.Add((Genre)Enum.Parse(typeof(Genre), cb.Text));
                     }
                 }
-                if (mdv.IsNameValid(tbxNameManga.Text) && mdv.IsCreatorValid(tbxCreatorManga.Text) && mdv.IsNrChaptersValid(tbxNrChaptersManga.Text) && mdv.IsYearValid(tbxReleaseYearManga.Text) && mdv.IsStatusValid((MangaStatus)cbxStatusManga.SelectedItem) && mdv.IsRatingValid(numRatingManga.Text) && mdv.IsDescriptionValid(tbxDescriptionManga.Text) && mdv.IsPathValid(tbxImageURLManga.Text))
+                if (mdv.IsNameValid(tbxNameManga.Text) && mdv.IsCreatorValid(tbxCreatorManga.Text) && mdv.IsNrChaptersValid(tbxNrChaptersManga.Text) && mdv.IsYearValid(tbxReleaseYearManga.Text) && mdv.IsStatusValid((MangaStatus)cbxStatusManga.SelectedItem) && mdv.IsRatingValid(numRatingManga.Text) && mdv.IsDescriptionValid(tbxDescriptionManga.Text) && mdv.IsValidImageUrl(tbxImageURLManga.Text))
                 {
                     mangaManager.AddManga(tbxNameManga.Text, tbxDescriptionManga.Text, Convert.ToDecimal(numRatingManga.Text), Convert.ToInt32(tbxReleaseYearManga.Text), tbxImageURLManga.Text, (MangaStatus)cbxStatusManga.SelectedItem, Convert.ToInt32(tbxNrChaptersManga.Text), tbxCreatorManga.Text, genres);
                     MessageBox.Show("Manga was added successfully!");
