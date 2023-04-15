@@ -118,7 +118,7 @@ namespace DAL.Repositories
             }
         }
 
-        public void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL, List<Genre> genres)
+        public void UpdateManga(Manga manga)
         {
             try
             {
@@ -132,15 +132,15 @@ namespace DAL.Repositories
                         string query = @"UPDATE Manga SET Name=@Name, Creator=@Creator, NrChapters=@NrChapters, ReleaseYear=@ReleaseYear, Status=@Status, Rating=@Rating, Description=@Description, Image=@Image WHERE MangaId=@MangaId";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
-                            command.Parameters.AddWithValue("@MangaId", id);
-                            command.Parameters.AddWithValue("@Name", name);
-                            command.Parameters.AddWithValue("@Creator", creator);
-                            command.Parameters.AddWithValue("@NrChapters", nrChapters);
-                            command.Parameters.AddWithValue("@ReleaseYear", releaseYear);
-                            command.Parameters.AddWithValue("@Status", status.ToString());
-                            command.Parameters.AddWithValue("@Rating", rating);
-                            command.Parameters.AddWithValue("@Description", description);
-                            command.Parameters.AddWithValue("@Image", imageURL);
+                            command.Parameters.AddWithValue("@MangaId", manga.Id);
+                            command.Parameters.AddWithValue("@Name", manga.Name);
+                            command.Parameters.AddWithValue("@Creator", manga.Creator);
+                            command.Parameters.AddWithValue("@NrChapters", manga.NrChapters);
+                            command.Parameters.AddWithValue("@ReleaseYear", manga.ReleaseYear);
+                            command.Parameters.AddWithValue("@Status", manga.Status.ToString());
+                            command.Parameters.AddWithValue("@Rating", manga.Rating);
+                            command.Parameters.AddWithValue("@Description", manga.Description);
+                            command.Parameters.AddWithValue("@Image", manga.ImageURL);
 
                             command.ExecuteNonQuery();
                             transaction.Commit();

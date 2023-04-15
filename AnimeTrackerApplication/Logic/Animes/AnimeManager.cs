@@ -41,7 +41,8 @@ namespace Logic.Animes
 
         public void UpdateAnime(int id, string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
         {
-            _animeDataHandler.UpdateAnime(id, name, studio, nrEpisodes, releaseYear, season, rating, description, imageURL);
+            Content anime = new Anime(id, name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
+            _animeDataHandler.UpdateAnime((Anime)anime);
         }
 
         public void DeleteAnime(int id)

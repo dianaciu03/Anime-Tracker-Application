@@ -30,6 +30,7 @@ namespace Logic.Contents
 
         public Content(string name, string description, decimal rating, int releaseYear, List<Genre> genres, string imageURL)
         {
+            this.id = -1;
             this.name = name;
             this.description = description;
             this.rating = rating;

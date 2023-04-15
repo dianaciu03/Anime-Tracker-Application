@@ -2,7 +2,9 @@
 using Factory.ManagerFactory;
 using Factory.RepositoryFactory;
 using Logic.Animes;
+using Logic.Contents;
 using Logic.Enums;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

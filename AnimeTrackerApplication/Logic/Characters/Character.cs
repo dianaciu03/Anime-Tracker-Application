@@ -20,14 +20,14 @@ namespace Logic.Characters
         private int nrLikes;
         private int nrDislikes;
 
-        public Character(int id, string name, string image, string gender)
+        public Character(int id, string name, string image, string gender, int nrLikes, int nrDislikes)
         {
             this.id = id;
             this.name = name;
             this.image = image;
             this.gender = gender;
-            this.nrLikes = 0;
-            this.nrDislikes = 0;
+            this.nrLikes = nrLikes;
+            this.nrDislikes = nrDislikes;
         }
 
         public Character(string name, string image, string gender)

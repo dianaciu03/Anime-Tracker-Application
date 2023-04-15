@@ -14,6 +14,6 @@ namespace Logic.Animes
         List<Anime> GetAllAnime();
         Anime? GetAnimeById(int animeId);
         int GetNrAnime();
-        void UpdateAnime(int id, string name, string studio, int nrEpisodes, int releaseYear, Season releaseSeason, decimal rating, string description, string imageURL);
+        void UpdateAnime(Anime anime);
     }
 }

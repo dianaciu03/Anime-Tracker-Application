@@ -121,7 +121,7 @@ namespace DAL.Repositories
             }
         }
 
-        public void UpdateAnime(int id, string name, string studio, int nrEpisodes, int releaseYear, Season releaseSeason, decimal rating, string description, string imageURL)
+        public void UpdateAnime(Anime anime)
         {
             try
             {
@@ -135,15 +135,15 @@ namespace DAL.Repositories
                         string query = @"UPDATE Anime SET Name=@Name, Studio=@Studio, NrEpisodes=@NrEpisodes, ReleaseYear=@ReleaseYear, ReleaseSeason=@ReleaseSeason, Rating=@Rating, Description=@Description, Image=@Image WHERE AnimeId=@AnimeId";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
-                            command.Parameters.AddWithValue("@AnimeId", id);
-                            command.Parameters.AddWithValue("@Name", name);
-                            command.Parameters.AddWithValue("@Studio", studio);
-                            command.Parameters.AddWithValue("@NrEpisodes", nrEpisodes);
-                            command.Parameters.AddWithValue("@ReleaseYear", releaseYear);
-                            command.Parameters.AddWithValue("@ReleaseSeason", releaseSeason.ToString());
-                            command.Parameters.AddWithValue("@Rating", rating);
-                            command.Parameters.AddWithValue("@Description", description);
-                            command.Parameters.AddWithValue("@Image", imageURL);
+                            command.Parameters.AddWithValue("@AnimeId", anime.Id);
+                            command.Parameters.AddWithValue("@Name", anime.Name);
+                            command.Parameters.AddWithValue("@Studio", anime.Studio);
+                            command.Parameters.AddWithValue("@NrEpisodes", anime.NrEpisodes);
+                            command.Parameters.AddWithValue("@ReleaseYear", anime.ReleaseYear);
+                            command.Parameters.AddWithValue("@ReleaseSeason", anime.SeasonAnime.ToString());
+                            command.Parameters.AddWithValue("@Rating", anime.Rating);
+                            command.Parameters.AddWithValue("@Description", anime.Description);
+                            command.Parameters.AddWithValue("@Image", anime.ImageURL);
 
                             command.ExecuteNonQuery();
                             transaction.Commit();

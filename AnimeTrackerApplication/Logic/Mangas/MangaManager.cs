@@ -41,7 +41,8 @@ namespace Logic.Mangas
 
         public void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL, List<Genre> genres)
         {
-            _mangaDataHandler.UpdateManga(id, name, creator, nrChapters, releaseYear, status, rating, description, imageURL, genres);
+            Content manga = new Manga(id, name, description, rating, releaseYear, imageURL, status, nrChapters, creator, genres);
+            _mangaDataHandler.UpdateManga((Manga)manga);
         }
 
         public void DeleteManga(int id)
