@@ -261,7 +261,7 @@ namespace DAL.Repositories
                             string imageURL = reader.GetString(reader.GetOrdinal("Image"));
                             MangaStatus mangaStatus = (MangaStatus)Enum.Parse(typeof(MangaStatus), status);
 
-                            Manga manga = new Manga(mangaId, name, description, rating, releaseYear, imageURL, mangaStatus, nrChapters, creator, new List<Genre>());
+                            Manga manga = new Manga(mangaId, mangaName, description, rating, releaseYear, imageURL, mangaStatus, nrChapters, creator, new List<Genre>());
                             mangaList.Add(manga);
                         }
                         reader.Close();

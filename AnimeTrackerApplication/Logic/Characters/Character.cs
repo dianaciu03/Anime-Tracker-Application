@@ -19,6 +19,8 @@ namespace Logic.Characters
         private Manga manga;
         private int nrLikes;
         private int nrDislikes;
+        private int animeId;
+        private int mangaId;
 
         public Character(int id, string name, string gender, string image, int nrLikes, int nrDislikes)
         {
@@ -28,6 +30,8 @@ namespace Logic.Characters
             this.gender = gender;
             this.nrLikes = nrLikes;
             this.nrDislikes = nrDislikes;
+            this.animeId = 0;
+            this.mangaId = 0;
         }
 
         public Character(string name, string gender, string image)
@@ -37,6 +41,8 @@ namespace Logic.Characters
             this.gender = gender;
             this.nrLikes = 0;
             this.nrDislikes = 0;
+            this.animeId = 0;
+            this.mangaId = 0;
         }
 
         public string Name { get { return name; } set { name = value; } }
@@ -46,6 +52,10 @@ namespace Logic.Characters
         public string Gender { get { return gender; } set { gender = value; } }
 
         public string Image { get { return image; } set { image = value; } }
+
+        public int AnimeId { get { return animeId; } set { animeId = value; } }
+
+        public int MangaId { get { return mangaId; } set { mangaId = value; } }
 
         public Anime FromAnime { get { return anime; } set { anime = value; } }
 
@@ -77,12 +87,12 @@ namespace Logic.Characters
 
         public override string ToString()
         {
-            return $"{Name} - Anime: {anime}/ Manga - {manga}";
+            return $"{Name} - Anime: {anime.Name}/ Manga - {manga.Name}";
         }
 
         public string GetInfoDetailed()
         {
-            string info = $"{Id}.{Name} - Anime: {anime}/ Manga - {manga}\nNr likes: {nrLikes}\nNr dislikes: {nrDislikes}";
+            string info = $"{Id}.{Name} - Anime: {anime.Name}/ Manga - {manga.Name}\nNr likes: {nrLikes}\nNr dislikes: {nrDislikes}";
             return info;
         }
     }

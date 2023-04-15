@@ -85,6 +85,16 @@ namespace DAL.Repositories
                             int nrLikes = reader.GetInt32(reader.GetOrdinal("NrLikes"));
                             int nrDislikes = reader.GetInt32(reader.GetOrdinal("NrDislikes"));
                             Character character = new Character(characterId, name, gender, image, nrLikes, nrDislikes);
+                            int? animeId = reader.IsDBNull(reader.GetOrdinal("AnimeId")) ? null : reader.GetInt32(reader.GetOrdinal("AnimeId"));
+                            if(animeId != null)
+                            {
+                                character.AnimeId = (int)animeId;
+                            }
+                            int? mangaId = reader.IsDBNull(reader.GetOrdinal("MangaId")) ? null : reader.GetInt32(reader.GetOrdinal("MangaId"));
+                            if (mangaId != null)
+                            {
+                                character.MangaId = (int)mangaId;
+                            }
                             listCharacters.Add(character);
                         }
                         reader.Close();
@@ -110,23 +120,29 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"UPDATE Anime SET Name=@Name, Gender=@Gender, Image=@Image, AnimeId=@AnimeId, MangaId=@MangaId, NrLikes=@NrLikes, NrDislikes=@NrDislikes";
+                        string query = @"UPDATE Character SET Name=@Name, Gender=@Gender, AnimeId=@AnimeId, MangaId=@MangaId, Image=@Image, NrLikes=@NrLikes, NrDislikes=@NrDislikes WHERE CharacterId=@CharacterId";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@CharacterId", character.Id);
                             command.Parameters.AddWithValue("@Name", character.Name);
                             command.Parameters.AddWithValue("@Gender", character.Gender);
-                            command.Parameters.AddWithValue("@Image", character.Image);
+                            
                             if (character.FromAnime != null)
+                            {
                                 command.Parameters.AddWithValue("@AnimeId", character.FromAnime.Id);
+                            }  
                             else
+                            {
                                 command.Parameters.AddWithValue("@AnimeId", DBNull.Value);
-
-                            if (character.FromAnime != null)
+                            }
+                            if (character.FromManga != null)
+                            {
                                 command.Parameters.AddWithValue("@MangaId", character.FromManga.Id);
+                            }   
                             else
+                            {
                                 command.Parameters.AddWithValue("@MangaId", DBNull.Value);
-
+                            }
                             command.Parameters.AddWithValue("@Image", character.Image);
                             command.Parameters.AddWithValue("@NrLikes", character.NrLikes);
                             command.Parameters.AddWithValue("@NrDislikes", character.NrDislikes);

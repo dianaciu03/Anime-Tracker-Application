@@ -15,6 +15,7 @@ using Factory.ManagerFactory;
 using Factory.RepositoryFactory;
 using Logic.Mangas;
 using static Azure.Core.HttpHeader;
+using Logic.Characters;
 
 namespace WinFormsGraphic
 {
@@ -23,6 +24,7 @@ namespace WinFormsGraphic
         //declare variables
         IAnimeManager animeManager;
         IMangaManager mangaManager;
+        ICharacterManager characterManager;
         //List<RadioButton> animeSort;
 
         public MainPage()
@@ -36,6 +38,7 @@ namespace WinFormsGraphic
         {
             animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
             mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
+            characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
         }
 
         private void InitializeForm()
@@ -57,6 +60,9 @@ namespace WinFormsGraphic
             cbxGenreManga.DataSource = Enum.GetValues(typeof(Genre));
             btnClearSearchManga_Click(this, EventArgs.Empty);
             rbtnMangaNameAsc.Checked = true;
+
+            //initilize character search
+            rbtnCharacterNameAsc.Checked = true;
         }
 
         //
@@ -216,7 +222,7 @@ namespace WinFormsGraphic
             }
             catch (ArgumentOutOfRangeException)
             {
-                MessageBox.Show("Please select an anime to edit details!");
+                MessageBox.Show("Please select a manga to remove!");
             }
             catch (Exception ex)
             {
@@ -279,6 +285,110 @@ namespace WinFormsGraphic
         {
             PopupAddCharacter form = new PopupAddCharacter();
             form.ShowDialog();
+        }
+
+        private void btnEditCharacter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Character character = (Character)lvwCharacters.SelectedItems[0].Tag;
+                PopupEditCharacter form = new PopupEditCharacter(character);
+                form.ShowDialog();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select a character to edit details!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
+        private void btnDisplayAllCharacters_Click(object sender, EventArgs e)
+        {
+            List<Character> characters = characterManager.GetAllCharacters();
+            foreach (Character c in characters)
+            {
+                if (c.AnimeId > 0)
+                {
+                    Anime anime = animeManager.GetAnimeById(c.AnimeId);
+                    c.FromAnime = anime;
+                }
+                if (c.MangaId > 0)
+                {
+                    Manga manga = mangaManager.GetMangaById(c.MangaId);
+                    c.FromManga = manga;
+                }
+            }
+            UpdateCharactersListView(characters);
+        }
+
+        private void UpdateCharactersListView(List<Character> characters)
+        {
+            lvwCharacters.Items.Clear();
+            foreach (Character c in characters)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = c.Name;
+                item.Tag = c;
+                item.SubItems.Add(c.Gender);
+                if (c.FromAnime != null)
+                {
+                    item.SubItems.Add(c.FromAnime.Name);
+                }
+                else
+                {
+                    item.SubItems.Add(string.Empty);
+                }
+                if (c.FromManga != null)
+                {
+                    item.SubItems.Add(c.FromManga.Name);
+                }
+                else
+                {
+                    item.SubItems.Add(string.Empty);
+                }
+                item.SubItems.Add(c.NrLikes.ToString());
+                item.SubItems.Add(c.NrDislikes.ToString());
+                lvwCharacters.Items.Add(item);
+            }
+        }
+        private void btnRemoveCharacter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Character character = (Character)lvwCharacters.SelectedItems[0].Tag;
+                //Display a confirmation message box
+                DialogResult result = MessageBox.Show("Are you sure you want to remove " + character.Name + "?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // If the user clicks Yes, remove the selected item
+                if (result == DialogResult.Yes)
+                {
+                    characterManager.DeleteCharacter(character.Id);
+                    MessageBox.Show("Character has been successfully deleted!");
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select a character to remove!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
+        private void btnClearFieldsCharacter_Click(object sender, EventArgs e)
+        {
+            tbxCharacterName.Text = string.Empty;
+            rbtnMale.Checked = false;
+            rbtnFemale.Checked = false;
+            rbtnUnknown.Checked = false;
+            tbxAnimeCharacterSearch.Text = string.Empty;
+            tbxMangaCharacterSearch.Text = string.Empty;
         }
     }
 }

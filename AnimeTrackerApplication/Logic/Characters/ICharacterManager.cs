@@ -8,6 +8,6 @@ namespace Logic.Characters
         void AddCharacter(string name, string gender, string image, Anime anime, Manga manga);
         void DeleteCharacter(int id);
         List<Character> GetAllCharacters();
-        void UpdateCharacter(string name, string gender, string image, Anime anime, Manga manga);
+        void UpdateCharacter(int id, string name, string gender, string image, Anime anime, Manga manga, int nrLikes, int nrDislikes);
     }
 }

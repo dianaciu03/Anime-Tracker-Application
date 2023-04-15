@@ -28,9 +28,9 @@ namespace Logic.Characters
             _characterDataHandler.AddCharacter(character);
         }
 
-        public void UpdateCharacter(string name, string gender, string image, Anime anime, Manga manga)
+        public void UpdateCharacter(int id, string name, string gender, string image, Anime anime, Manga manga, int nrLikes, int nrDislikes)
         {
-            Character character = new Character(name, gender, image);
+            Character character = new Character(id, name, gender, image, nrLikes, nrDislikes);
             if (anime != null)
                 character.FromAnime = anime;
             if (manga != null)
