@@ -8,9 +8,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static Azure.Core.HttpHeader;
 
 namespace DAL.Repositories
 {
@@ -24,7 +26,7 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query1 = @$"SELECT * FROM Anime";
+                    string query1 = @$"SELECT * FROM Anime INNER JOIN Anime_Genre";
                     using (SqlCommand command1 = new SqlCommand(query1, conn))
                     {
                         SqlDataReader reader = command1.ExecuteReader();
@@ -91,21 +93,37 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"INSERT INTO Anime (Name, Studio, NrEpisodes, ReleaseYear, ReleaseSeason, Rating, Description, Image) VALUES (@Name, @Studio, @NrEpisodes, @ReleaseYear, @ReleaseSeason, @Rating, @Description, @Image)";
-                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        string query1 = @"INSERT INTO Anime (Name, Studio, NrEpisodes, ReleaseYear, ReleaseSeason, Rating, Description, Image)
+                                          VALUES (@Name, @Studio, @NrEpisodes, @ReleaseYear, @ReleaseSeason, @Rating, @Description, @Image);
+                                          SELECT SCOPE_IDENTITY();";
+                        int animeId = 0;
+                        using (SqlCommand animeCommand = new SqlCommand(query1, conn, transaction))
                         {
-                            command.Parameters.AddWithValue("@Name", anime.Name);
-                            command.Parameters.AddWithValue("@Studio", anime.Studio);
-                            command.Parameters.AddWithValue("@NrEpisodes", anime.NrEpisodes);
-                            command.Parameters.AddWithValue("@ReleaseYear", anime.ReleaseYear);
-                            command.Parameters.AddWithValue("@ReleaseSeason", anime.SeasonAnime.ToString());
-                            command.Parameters.AddWithValue("@Rating", anime.Rating);
-                            command.Parameters.AddWithValue("@Description", anime.Description);
-                            command.Parameters.AddWithValue("@Image", anime.ImageURL);
-
-                            command.ExecuteNonQuery();
-                            transaction.Commit();
+                            animeCommand.Parameters.AddWithValue("@Name", anime.Name);
+                            animeCommand.Parameters.AddWithValue("@Studio", anime.Studio);
+                            animeCommand.Parameters.AddWithValue("@NrEpisodes", anime.NrEpisodes);
+                            animeCommand.Parameters.AddWithValue("@ReleaseYear", anime.ReleaseYear);
+                            animeCommand.Parameters.AddWithValue("@ReleaseSeason", anime.SeasonAnime.ToString());
+                            animeCommand.Parameters.AddWithValue("@Rating", anime.Rating);
+                            animeCommand.Parameters.AddWithValue("@Description", anime.Description);
+                            animeCommand.Parameters.AddWithValue("@Image", anime.ImageURL);
+                            animeId = Convert.ToInt32(animeCommand.ExecuteScalar());
                         }
+
+                        foreach(Genre genre in anime.GetGenres())
+                        {
+                            string query2 = @"INSERT INTO Anime_Genre (AnimeId, GenreId)
+                                        VALUES (@AnimeId, (SELECT GenreId FROM ContentGenre WHERE Genre = @Genre))";
+                            using (SqlCommand genreCommand = new SqlCommand(query2, conn, transaction))
+                            {
+                                genreCommand.Parameters.Clear();
+                                genreCommand.Parameters.AddWithValue("@AnimeId", animeId);
+                                genreCommand.Parameters.AddWithValue("@Genre", genre.ToString());
+                                genreCommand.ExecuteNonQuery();
+                            }      
+                        }
+
+                        transaction.Commit();
                     }
                     catch (Exception ex)
                     {
