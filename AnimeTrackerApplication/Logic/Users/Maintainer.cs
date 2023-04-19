@@ -13,6 +13,11 @@ namespace Logic.Users
 
         }
 
+        public Maintainer(int id, string name, string email, string password, DateTime joinDate) : base(id, name, email, password, joinDate)
+        {
+
+        }
+
         public override string ToString()
         {
             return $"{this.Name}";

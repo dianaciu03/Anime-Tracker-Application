@@ -35,5 +35,10 @@ namespace Logic.Users
         {
             return _userDataHandler.GetUserByEmail(email);
         }
+
+        public User? GetUserById(int id)
+        {
+            return _userDataHandler.GetUserById(id);
+        }
     }
 }

@@ -14,6 +14,11 @@ namespace Logic.Users
 
         }
 
+        public Admin(int id, string name, string email, string password, DateTime joinDate) : base(id, name, email, password, joinDate)
+        {
+
+        }
+
         public override string ToString()
         {
             return $"{this.Name}";

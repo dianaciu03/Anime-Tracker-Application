@@ -30,7 +30,7 @@ namespace DAL.Repositories
 
                         while (reader.Read())
                         {
-                            string userId = reader.GetString(reader.GetOrdinal("UserId"));
+                            int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
                             string username = reader.GetString(reader.GetOrdinal("UserName"));
                             string email = reader.GetString(reader.GetOrdinal("Email"));
@@ -53,7 +53,7 @@ namespace DAL.Repositories
                                     break;
 
                                 case "RegisteredWebUser":
-                                    User webUser = new RegisteredWebUser(name, email, password, joinDate, username);
+                                    User webUser = new RegisteredWebUser(userId, name, email, password, joinDate, username);
                                     listUsers.Add(webUser);
                                     break;
                             }
@@ -136,15 +136,66 @@ namespace DAL.Repositories
                             switch (role)
                             {
                                 case "Admin":
-                                    user = new Admin(name, email, password, joinDate);
+                                    user = new Admin(userId, name, email, password, joinDate);
                                     break;
 
                                 case "Maintainer":
-                                    user = new Maintainer(name, email, password, joinDate);
+                                    user = new Maintainer(userId, name, email, password, joinDate);
                                     break;
 
                                 case "RegisteredWebUser":
-                                    user = new RegisteredWebUser(name, email, password, joinDate, username);
+                                    user = new RegisteredWebUser(userId, name, email, password, joinDate, username);
+                                    break;
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the user!");
+            }
+            return user;
+        }
+
+        public User? GetUserById(int id)
+        {
+            User user = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM [User] WHERE UserId=@UserId";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@UserId", id);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            string email = reader.GetString(reader.GetOrdinal("Email"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string username = reader.GetString(reader.GetOrdinal("UserName"));
+                            string password = reader.GetString(reader.GetOrdinal("Password"));
+                            //string salt = reader.GetString(reader.GetOrdinal("Salt"));
+                            DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
+                            string role = reader.GetString(reader.GetOrdinal("Role"));
+
+                            switch (role)
+                            {
+                                case "Admin":
+                                    user = new Admin(id, name, email, password, joinDate);
+                                    break;
+
+                                case "Maintainer":
+                                    user = new Maintainer(id, name, email, password, joinDate);
+                                    break;
+
+                                case "RegisteredWebUser":
+                                    user = new RegisteredWebUser(id, name, email, password, joinDate, username);
                                     break;
                             }
                         }

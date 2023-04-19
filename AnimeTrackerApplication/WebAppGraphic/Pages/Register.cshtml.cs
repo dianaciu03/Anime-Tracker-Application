@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using Logic.Users;
 using DAL.Repositories;
+using Factory.ManagerFactory;
+using Factory.RepositoryFactory;
 
 namespace WebAppGraphic.Pages
 {
     public class RegisterModel : PageModel
     {
-        private static IUserRepository _userDataHandler= new UserRepository();
-        private static UserManager userManager = new UserManager(_userDataHandler);
+        private static IUserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
 
         [BindProperty]
         public RegisteredWebUser RegistrationFormUser { get; set; } 

@@ -16,6 +16,11 @@ namespace Logic.Users
             this.username = username;
         }
 
+        public RegisteredWebUser(int id, string name, string email, string password, DateTime joinDate, string username) : base(id, name, email, password, joinDate)
+        {
+            this.username = username;
+        }
+
         public RegisteredWebUser()
         {
 

@@ -9,8 +9,7 @@ namespace Logic.Users
 {
     public abstract class User
     {
-        protected int Id { get; set; }
-
+        protected int id;
         protected string name;
         protected string email;
         protected string password;
@@ -22,6 +21,16 @@ namespace Logic.Users
             this.email = email;
             this.password = password;
             this.joinDate = joinDate;
+            this.id = 0;
+        }
+
+        public User(int id, string name, string email, string password, DateTime joinDate)
+        {
+            this.name = name;
+            this.email = email;
+            this.password = password;
+            this.joinDate = joinDate;
+            this.id = id;
         }
 
         public User()
@@ -41,6 +50,8 @@ namespace Logic.Users
         public string Password { get { return password; } set { this.password = value; } }
 
         public DateTime JoinDate { get { return joinDate; } set { this.joinDate = value; } }
+
+        public int Id { get { return id; } set { id = value; } }
 
         public override string ToString()
         {

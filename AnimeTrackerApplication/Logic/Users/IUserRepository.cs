@@ -8,5 +8,6 @@ namespace Logic.Users
         List<User> GetAllUsers();
         List<RegisteredWebUser> GetAllWebUsers();
         User? GetUserByEmail(string email);
+        User? GetUserById(int id);
     }
 }

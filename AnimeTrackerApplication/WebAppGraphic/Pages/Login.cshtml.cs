@@ -31,19 +31,16 @@ namespace WebAppGraphic.Pages
             //}
         }
 
-        public async Task OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
                 RegisteredWebUser? user = null;
-
-                if (ModelState.IsValid)
-                {
-                    user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
-                }
+                user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
 
                 if (user != null && user.Password == UserPassword)
                 {
+                    HttpContext.Session.SetInt32("userId", user.Id);
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(
                     new Claim[]
                     {
@@ -52,13 +49,15 @@ namespace WebAppGraphic.Pages
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                     await HttpContext.SignInAsync(claimsPrincipal);
-                    RedirectToPage("Profile");
+                    return RedirectToPage("Profile");
                 }
                 else
                 {
                     await HttpContext.ForbidAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                    return Page();
                 }
             }
+            return Page();
         }
 
         //public IActionResult OnPost()
