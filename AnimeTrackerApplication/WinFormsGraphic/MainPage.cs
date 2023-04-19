@@ -16,6 +16,11 @@ using Factory.RepositoryFactory;
 using Logic.Mangas;
 using static Azure.Core.HttpHeader;
 using Logic.Characters;
+using Logic.Users;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
+using System.Globalization;
 
 namespace WinFormsGraphic
 {
@@ -25,7 +30,7 @@ namespace WinFormsGraphic
         IAnimeManager animeManager;
         IMangaManager mangaManager;
         ICharacterManager characterManager;
-        //List<RadioButton> animeSort;
+        List<RadioButton> animeSort;
 
         public MainPage()
         {
@@ -50,9 +55,9 @@ namespace WinFormsGraphic
             cbxSeasonSearchAnime.DataSource = Enum.GetValues(typeof(Season));
             cbxGenreSearchAnime.DataSource = Enum.GetValues(typeof(Genre));
             btnClearSearch_Click(this, EventArgs.Empty);
-            //create list of genre textboxes
-            //animeSort = new List<RadioButton>
-            //{ rbtnAnimeNameAsc, rbtnAnimeNameDesc, rbtnAnimeStudioAsc, rbtnAnimeStudioDesc, rbtnAnimeReleaseYearAsc, rbtnAnimeReleaseYearDesc, rbtnAnimeRatingAsc, rbtnAnimeRatingDesc };
+            //create list of radiobuttons for anime
+            animeSort = new List<RadioButton>
+            { rbtnAnimeNameAsc, rbtnAnimeNameDesc, rbtnAnimeStudioAsc, rbtnAnimeStudioDesc, rbtnAnimeReleaseYearAsc, rbtnAnimeReleaseYearDesc, rbtnAnimeRatingAsc, rbtnAnimeRatingDesc };
             rbtnAnimeNameAsc.Checked = true;
 
             //initilize manga search
@@ -116,23 +121,75 @@ namespace WinFormsGraphic
 
         private void btnDisplayAllAnime_Click(object sender, EventArgs e)
         {
+            string option = "Name ↑"; 
             try
             {
-                //int option;
-                //foreach(RadioButton rbtn in animeSort)
-                //{
-                //    if(rbtn.Checked == true)
-                //    {
-                //        UpdateAnimeListview(animeManager.SortAnime());
-                //        break;
-                //    }
-                //}
-                UpdateAnimeListview(animeManager.GetAllAnime());
+                foreach (RadioButton rbtn in animeSort)
+                {
+                    if (rbtn.Checked == true)
+                    {
+                        option = rbtn.Text;
+                        break;
+                    }
+                }
+                (string sortBy, bool ascending) = GetSortingParameters(option);
+                UpdateAnimeListview(animeManager.GetAllAnime(sortBy, ascending));
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             } 
+        }
+
+        private (string sortBy, bool ascending) GetSortingParameters(string option)
+        {
+            string sortBy = "Name";
+            bool ascending = true;
+            switch (option)
+            {
+                case "Name ↑":
+                    sortBy = "Name";
+                    ascending = true;
+                    return (sortBy, ascending);
+
+                case "Name ↓":
+                    sortBy = "Name";
+                    ascending = false;
+                    return (sortBy, ascending);
+
+                case "Studio ↑":
+                    sortBy = "Studio";
+                    ascending = true;
+                    return (sortBy, ascending);
+
+                case "Studio ↓":
+                    sortBy = "Studio";
+                    ascending = false;
+                    return (sortBy, ascending);
+
+                case "Release year ↑":
+                    sortBy = "ReleaseYear";
+                    ascending = true;
+                    return (sortBy, ascending);
+
+                case "Release year ↓":
+                    sortBy = "ReleaseYear";
+                    ascending = false;
+                    return (sortBy, ascending);
+
+                case "Rating ↑":
+                    sortBy = "Rating";
+                    ascending = true;
+                    return (sortBy, ascending);
+
+                case "Rating ↓":
+                    sortBy = "Rating";
+                    ascending = false;
+                    return (sortBy, ascending);
+
+                default:
+                    return (sortBy, ascending);
+            }
         }
 
         private void UpdateAnimeListview(List<Anime> animes)
@@ -150,6 +207,8 @@ namespace WinFormsGraphic
                 item.SubItems.Add(a.NrEpisodes.ToString());
                 lvwAnime.Items.Add(item);
             }
+            lvwAnime.ListViewItemSorter = null;
+            lvwAnime.Update();
         }
 
         private void btnClearSearch_Click(object sender, EventArgs e)
@@ -175,6 +234,12 @@ namespace WinFormsGraphic
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void lvwAnime_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Anime anime = (Anime)lvwAnime.SelectedItems[0].Tag;
+            MessageBox.Show(anime.GetInfoDetailed());
         }
 
         //
@@ -390,5 +455,6 @@ namespace WinFormsGraphic
             tbxAnimeCharacterSearch.Text = string.Empty;
             tbxMangaCharacterSearch.Text = string.Empty;
         }
+
     }
 }

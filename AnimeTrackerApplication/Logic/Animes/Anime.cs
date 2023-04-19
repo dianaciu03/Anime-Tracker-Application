@@ -30,6 +30,11 @@ namespace Logic.Animes
             this.studio = studio;
         }
 
+        public Anime() : base()
+        {
+
+        }
+
         public Season SeasonAnime { get { return season; } set { season = value; } }
 
         public int NrEpisodes { get { return nrEpisodes; } set { nrEpisodes = value; } }

@@ -39,6 +39,11 @@ namespace Logic.Contents
             this.imageURL = imageURL;
         }
 
+        public Content()
+        {
+
+        }
+
         public string Name { get { return name; } set { name = value; } }
 
         public string Description { get { return description; } set { description = value; } }
@@ -59,6 +64,11 @@ namespace Logic.Contents
         public void AddGenre(Genre genre)
         {
             genres.Add(genre);
+        }
+
+        public void RemoveGenre(Genre genre)
+        {
+            genres.Remove(genre);
         }
 
         public virtual string GetInfoDetailed()

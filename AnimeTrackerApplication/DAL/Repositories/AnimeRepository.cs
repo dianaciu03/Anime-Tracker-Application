@@ -18,34 +18,54 @@ namespace DAL.Repositories
 {
     public class AnimeRepository : BaseDAL, IAnimeRepository
     {
-        public List<Anime> GetAllAnime()
+        public List<Anime> GetAllAnime(string sortBy, bool ascending)
         {
             List<Anime> listAnime = new List<Anime>();
+            int oldAnimeId = 0;
+            Content anime = new Anime();
             try
             {
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query1 = @$"SELECT * FROM Anime INNER JOIN Anime_Genre";
+                    string sortDirection = ascending ? "ASC" : "DESC";
+                    string query1 = @$"SELECT Anime.*, ContentGenre.Genre FROM Anime INNER JOIN Anime_Genre ON Anime.AnimeId = Anime_Genre.AnimeId INNER JOIN ContentGenre ON Anime_Genre.GenreId = ContentGenre.GenreId
+                                       ORDER BY {sortBy} {sortDirection}";
                     using (SqlCommand command1 = new SqlCommand(query1, conn))
                     {
+                        //command1.Parameters.AddWithValue("@SortBy", sortBy);
                         SqlDataReader reader = command1.ExecuteReader();
 
                         while (reader.Read())
                         {
-                            int animeId = reader.GetInt32(reader.GetOrdinal("AnimeId"));
-                            string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string studio = reader.GetString(reader.GetOrdinal("Studio"));
-                            int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
-                            int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
-                            string releaseSeason = reader.GetString(reader.GetOrdinal("ReleaseSeason"));
-                            decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
-                            string description = reader.GetString(reader.GetOrdinal("Description"));
-                            string imageURL = reader.GetString(reader.GetOrdinal("Image"));
-                            Season season = (Season)Enum.Parse(typeof(Season), releaseSeason);
+                            int newAnimeId = reader.GetInt32(reader.GetOrdinal("AnimeId"));
+                            if(newAnimeId != oldAnimeId)
+                            {
+                                oldAnimeId = newAnimeId;
 
-                            Content anime = new Anime(animeId, name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, new List<Genre>());
-                            listAnime.Add((Anime)anime);
+                                string name = reader.GetString(reader.GetOrdinal("Name"));
+                                string studio = reader.GetString(reader.GetOrdinal("Studio"));
+                                int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
+                                int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                                string releaseSeason = reader.GetString(reader.GetOrdinal("ReleaseSeason"));
+                                decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                                string description = reader.GetString(reader.GetOrdinal("Description"));
+                                string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                                Season season = (Season)Enum.Parse(typeof(Season), releaseSeason);
+
+                                List<Genre> genres = new List<Genre>();
+                                string genreAnime = reader.GetString(reader.GetOrdinal("Genre"));
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreAnime);
+                                genres.Add(genre);
+                                anime = new Anime(oldAnimeId, name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
+                                listAnime.Add((Anime)anime);
+                            }
+                            else if(newAnimeId == oldAnimeId)
+                            {
+                                string genreAnime = reader.GetString(9);
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreAnime);
+                                anime.AddGenre(genre);
+                            }
                         }
                         reader.Close();
                     }

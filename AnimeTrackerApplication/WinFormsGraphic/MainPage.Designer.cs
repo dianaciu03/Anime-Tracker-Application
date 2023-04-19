@@ -382,10 +382,10 @@
             this.lvwAnime.MultiSelect = false;
             this.lvwAnime.Name = "lvwAnime";
             this.lvwAnime.Size = new System.Drawing.Size(1178, 696);
-            this.lvwAnime.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwAnime.TabIndex = 39;
             this.lvwAnime.UseCompatibleStateImageBehavior = false;
             this.lvwAnime.View = System.Windows.Forms.View.Details;
+            this.lvwAnime.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvwAnime_MouseDoubleClick);
             // 
             // colAnimeName
             // 

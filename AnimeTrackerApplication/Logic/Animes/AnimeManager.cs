@@ -2,6 +2,7 @@
 using Logic.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,9 @@ namespace Logic.Animes
             _animeDataHandler = iAnime;
         }
 
-        public List<Anime> GetAllAnime()
+        public List<Anime> GetAllAnime(string sortBy, bool ascending)
         {
-            return _animeDataHandler.GetAllAnime();
+            return _animeDataHandler.GetAllAnime(sortBy, ascending);
         }
 
         public Anime? GetAnimeById(int id)
