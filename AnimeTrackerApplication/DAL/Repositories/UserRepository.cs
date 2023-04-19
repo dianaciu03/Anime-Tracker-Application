@@ -32,9 +32,9 @@ namespace DAL.Repositories
                         {
                             int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string username = reader.GetString(reader.GetOrdinal("UserName"));
+                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
                             string email = reader.GetString(reader.GetOrdinal("Email"));
-                            string password = reader.GetString(reader.GetOrdinal("Password"));
+                            string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                             string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
@@ -43,17 +43,17 @@ namespace DAL.Repositories
                             switch (role)
                             {
                                 case "Admin":
-                                    User admin = new Admin(name, email, password, joinDate);
+                                    User admin = new Admin(userId, name, email, hashedPassword, joinDate, salt);
                                     listUsers.Add(admin);
                                     break;
 
                                 case "Maintainer":
-                                    User maintainer = new Maintainer(name, email, password, joinDate);
+                                    User maintainer = new Maintainer(userId, name, email, hashedPassword, joinDate, salt);
                                     listUsers.Add(maintainer);
                                     break;
 
                                 case "RegisteredWebUser":
-                                    User webUser = new RegisteredWebUser(userId, name, email, password, joinDate, username);
+                                    User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
                                     listUsers.Add(webUser);
                                     break;
                             }
@@ -85,16 +85,16 @@ namespace DAL.Repositories
 
                         while (reader.Read())
                         {
-                            string userId = reader.GetString(reader.GetOrdinal("UserId"));
+                            int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string username = reader.GetString(reader.GetOrdinal("UserName"));
+                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
                             string email = reader.GetString(reader.GetOrdinal("Email"));
-                            string password = reader.GetString(reader.GetOrdinal("Password"));
+                            string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                             string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
 
-                            User webUser = new RegisteredWebUser(name, email, password, joinDate, username);
+                            User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
                             listUsers.Add((RegisteredWebUser)webUser);
                         }
                         reader.Close();
@@ -127,24 +127,24 @@ namespace DAL.Repositories
                         {
                             int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string username = reader.GetString(reader.GetOrdinal("UserName"));
-                            string password = reader.GetString(reader.GetOrdinal("Password"));
-                            //string salt = reader.GetString(reader.GetOrdinal("Salt"));
+                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
+                            string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
+                            string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
 
                             switch (role)
                             {
                                 case "Admin":
-                                    user = new Admin(userId, name, email, password, joinDate);
+                                    User admin = new Admin(userId, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "Maintainer":
-                                    user = new Maintainer(userId, name, email, password, joinDate);
+                                    User maintainer = new Maintainer(userId, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "RegisteredWebUser":
-                                    user = new RegisteredWebUser(userId, name, email, password, joinDate, username);
+                                    User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
                                     break;
                             }
                         }
@@ -178,24 +178,24 @@ namespace DAL.Repositories
                         {
                             string email = reader.GetString(reader.GetOrdinal("Email"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string username = reader.GetString(reader.GetOrdinal("UserName"));
-                            string password = reader.GetString(reader.GetOrdinal("Password"));
-                            //string salt = reader.GetString(reader.GetOrdinal("Salt"));
+                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
+                            string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
+                            string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
 
                             switch (role)
                             {
                                 case "Admin":
-                                    user = new Admin(id, name, email, password, joinDate);
+                                    User admin = new Admin(id, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "Maintainer":
-                                    user = new Maintainer(id, name, email, password, joinDate);
+                                    User maintainer = new Maintainer(id, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "RegisteredWebUser":
-                                    user = new RegisteredWebUser(id, name, email, password, joinDate, username);
+                                    User webUser = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt, username);
                                     break;
                             }
                         }
@@ -237,10 +237,9 @@ namespace DAL.Repositories
 
                             command.Parameters.AddWithValue("@Email", user.Email);
                             command.Parameters.AddWithValue("@JoinDate", user.JoinDate);
-                            command.Parameters.AddWithValue("@Password", user.Password);
-                            command.Parameters.AddWithValue("@Salt", DBNull.Value);
+                            command.Parameters.AddWithValue("@Password", user.HashedPassword);
+                            command.Parameters.AddWithValue("@Salt", user.Salt);
                             command.Parameters.AddWithValue("@Role", user.GetType().Name);
-
                             command.ExecuteNonQuery();
                             transaction.Commit();
                         }

@@ -11,12 +11,12 @@ namespace Logic.Users
     {
         private string username;
 
-        public RegisteredWebUser(string name, string email, string password, DateTime joinDate, string username) : base(name, email, password, joinDate)
+        public RegisteredWebUser(string name, string email, string hashedPassword, DateTime joinDate, string salt, string username) : base(name, email, hashedPassword, joinDate, salt)
         {
             this.username = username;
         }
 
-        public RegisteredWebUser(int id, string name, string email, string password, DateTime joinDate, string username) : base(id, name, email, password, joinDate)
+        public RegisteredWebUser(int id, string name, string email, string hashedPassword, DateTime joinDate, string salt, string username) : base(id, name, email, hashedPassword, joinDate, salt)
         {
             this.username = username;
         }

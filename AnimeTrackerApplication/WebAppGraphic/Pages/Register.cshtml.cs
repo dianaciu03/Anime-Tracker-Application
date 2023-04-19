@@ -33,10 +33,11 @@ namespace WebAppGraphic.Pages
 
             if (RegistrationFormUser.Password == ConfirmPassword)
             {
-                User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, DateTime.Now.Date, RegistrationFormUser.Username);
+                (string salt, string hashedPassword) = Security.CreateSaltAndHash(RegistrationFormUser.Password);
+                User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, hashedPassword, DateTime.Now.Date, salt, RegistrationFormUser.Username);
                 //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
                 userManager.AddUser(webUser);
-                return RedirectToPage("Login");
+                return RedirectToPage("Profile");
             }
             else
             return Page();

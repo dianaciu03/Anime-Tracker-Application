@@ -12,24 +12,28 @@ namespace Logic.Users
         protected int id;
         protected string name;
         protected string email;
+        protected string salt;
         protected string password;
+        protected string hashedPassword;
         protected DateTime joinDate;
 
-        public User(string name, string email, string password, DateTime joinDate)
+        public User(string name, string email, string hashedPassword, DateTime joinDate, string salt)
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.hashedPassword = hashedPassword;
             this.joinDate = joinDate;
+            this.salt = salt;
             this.id = 0;
         }
 
-        public User(int id, string name, string email, string password, DateTime joinDate)
+        public User(int id, string name, string email, string hashedPassword, DateTime joinDate, string salt)
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.hashedPassword = hashedPassword;
             this.joinDate = joinDate;
+            this.salt = salt;
             this.id = id;
         }
 
@@ -48,6 +52,10 @@ namespace Logic.Users
         [Required(ErrorMessage = "A password is required"),
          MinLength(6, ErrorMessage = "Your password need to be at least 6 characters!")]
         public string Password { get { return password; } set { this.password = value; } }
+
+        public string HashedPassword { get { return hashedPassword; } set { this.hashedPassword = value; } }
+
+        public string Salt { get { return salt; } set { this.salt = value; } }
 
         public DateTime JoinDate { get { return joinDate; } set { this.joinDate = value; } }
 

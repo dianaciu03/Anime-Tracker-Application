@@ -8,12 +8,12 @@ namespace Logic.Users
 {
     public class Maintainer : User
     {
-        public Maintainer(string name, string email, string password, DateTime joinDate) : base(name, email, password, joinDate)
+        public Maintainer(string name, string email, string hashedPassword, DateTime joinDate, string salt) : base(name, email, hashedPassword, joinDate, salt)
         {
 
         }
 
-        public Maintainer(int id, string name, string email, string password, DateTime joinDate) : base(id, name, email, password, joinDate)
+        public Maintainer(int id, string name, string email, string hashedPassword, DateTime joinDate, string salt) : base(id, name, email, hashedPassword, joinDate, salt)
         {
 
         }
