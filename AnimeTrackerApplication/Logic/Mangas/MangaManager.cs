@@ -18,9 +18,9 @@ namespace Logic.Mangas
             _mangaDataHandler = iManga;
         }
 
-        public List<Manga> GetAllManga()
+        public List<Manga> GetAllManga(string sortBy, bool ascending)
         {
-            return _mangaDataHandler.GetAllManga();
+            return _mangaDataHandler.GetAllManga(sortBy, ascending);
         }
 
         public Manga? GetMangaById(int id)

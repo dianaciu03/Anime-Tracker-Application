@@ -13,13 +13,15 @@ namespace WebAppGraphic.Pages
 {
     public class LoginModel : PageModel
     {
-        private static UserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
+        private static IUserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
 
         [BindProperty]
         public string UserEmail { get; set; }
 
         [BindProperty]
         public string UserPassword { get; set; }
+
+        
 
         public void OnGet()
         {
@@ -29,46 +31,56 @@ namespace WebAppGraphic.Pages
             //}
         }
 
-        //public async Task OnPostAsync()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //Validate
-        //        //Simulate database
-        //        //ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-        //        //    new Claim[]
-        //        //    {
-        //        //        new Claim("id", "email@gmail.com"),
-        //        //        new Claim(ClaimTypes.Name, "My name"),
-        //        //        new Claim(ClaimTypes.Role, "WebUser")
-        //        //    }, CookieAuthenticationDefaults.AuthenticationScheme);
-        //        //ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-        //        //await HttpContext.SignInAsync(claimsPrincipal);
-        //    }
-
-
-        //}
-
-        public IActionResult OnPost()
+        public async Task OnPostAsync()
         {
-            RegisteredWebUser? user = null;
-
             if (ModelState.IsValid)
             {
-                user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
-            }
+                RegisteredWebUser? user = null;
 
-            if(user != null)
-            {
-                if(user.Password == UserPassword)
-                    return RedirectToPage("Privacy");
+                if (ModelState.IsValid)
+                {
+                    user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
+                }
+
+                if (user != null && user.Password == UserPassword)
+                {
+                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                    new Claim[]
+                    {
+                        new Claim(ClaimTypes.Name, user.Name),
+                        new Claim(ClaimTypes.Role, user.GetType().ToString())
+                    }, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
+                    RedirectToPage("Profile");
+                }
                 else
-                    return Page();
-            }
-            else
-            {
-                return Page();
+                {
+                    await HttpContext.ForbidAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                }
             }
         }
+
+        //public IActionResult OnPost()
+        //{
+        //    RegisteredWebUser? user = null;
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
+        //    }
+
+        //    if(user != null)
+        //    {
+        //        if(user.Password == UserPassword)
+        //            return RedirectToPage("Privacy");
+        //        else
+        //            return Page();
+        //    }
+        //    else
+        //    {
+        //        return Page();
+        //    }
+        //}
     }
 }

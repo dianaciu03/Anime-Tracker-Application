@@ -31,6 +31,7 @@ namespace WinFormsGraphic
         IMangaManager mangaManager;
         ICharacterManager characterManager;
         List<RadioButton> animeSort;
+        List<RadioButton> mangaSort;
 
         public MainPage()
         {
@@ -44,6 +45,7 @@ namespace WinFormsGraphic
             animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
             mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
             characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
+            //UserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
         }
 
         private void InitializeForm()
@@ -64,6 +66,8 @@ namespace WinFormsGraphic
             cbxMangaStatus.DataSource = Enum.GetValues(typeof(MangaStatus));
             cbxGenreManga.DataSource = Enum.GetValues(typeof(Genre));
             btnClearSearchManga_Click(this, EventArgs.Empty);
+            mangaSort = new List<RadioButton>
+            { rbtnMangaNameAsc, rbtnMangaNameDesc, rbtnMangaCreatorAsc, rbtnMangaCreatorDesc, rbtnMangaReleaseYearAsc, rbtnMangaReleaseYearDesc, rbtnMangaRatingAsc, rbtnMangaRatingDesc };
             rbtnMangaNameAsc.Checked = true;
 
             //initilize character search
@@ -187,6 +191,16 @@ namespace WinFormsGraphic
                     ascending = false;
                     return (sortBy, ascending);
 
+                case "Creator ↑":
+                    sortBy = "Creator";
+                    ascending = true;
+                    return (sortBy, ascending);
+
+                case "Creator ↓":
+                    sortBy = "Creator";
+                    ascending = false;
+                    return (sortBy, ascending);
+
                 default:
                     return (sortBy, ascending);
             }
@@ -298,9 +312,19 @@ namespace WinFormsGraphic
 
         private void btnDisplayAllManga_Click(object sender, EventArgs e)
         {
+            string option = "Name ↑";
             try
             {
-                UpdateMangaListView(mangaManager.GetAllManga());
+                foreach (RadioButton rbtn in mangaSort)
+                {
+                    if (rbtn.Checked == true)
+                    {
+                        option = rbtn.Text;
+                        break;
+                    }
+                }
+                (string sortBy, bool ascending) = GetSortingParameters(option);
+                UpdateMangaListView(mangaManager.GetAllManga(sortBy, ascending));
             }
             catch (Exception ex)
             {

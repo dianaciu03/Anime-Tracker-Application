@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Users
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private readonly IUserRepository _userDataHandler;
 

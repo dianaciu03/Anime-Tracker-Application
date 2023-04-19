@@ -8,39 +8,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DAL.Repositories
 {
     public class MangaRepository : BaseDAL, IMangaRepository
     {
-        public List<Manga> GetAllManga()
+        public List<Manga> GetAllManga(string sortBy, bool ascending)
         {
             List<Manga> listManga = new List<Manga>();
+            int oldMangaId = 0;
+            Content manga = new Manga();
             try
             {
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query1 = @$"SELECT * FROM Manga";
+                    string sortDirection = ascending ? "ASC" : "DESC";
+                    string query1 = @$"SELECT Manga.*, ContentGenre.Genre FROM Manga INNER JOIN Manga_Genre ON Manga.MangaId = Manga_Genre.MangaId INNER JOIN ContentGenre ON Manga_Genre.GenreId = ContentGenre.GenreId
+                                       ORDER BY {sortBy} {sortDirection}";
                     using (SqlCommand command1 = new SqlCommand(query1, conn))
                     {
                         SqlDataReader reader = command1.ExecuteReader();
 
                         while (reader.Read())
                         {
-                            int mangaId = reader.GetInt32(reader.GetOrdinal("MangaId"));
-                            string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string creator = reader.GetString(reader.GetOrdinal("Creator"));
-                            int nrChapters = reader.GetInt32(reader.GetOrdinal("NrChapters"));
-                            int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
-                            string status = reader.GetString(reader.GetOrdinal("Status"));
-                            decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
-                            string description = reader.GetString(reader.GetOrdinal("Description"));
-                            string imageURL = reader.GetString(reader.GetOrdinal("Image"));
-                            MangaStatus statusManga = (MangaStatus)Enum.Parse(typeof(MangaStatus), status);
+                            int newMangaId = reader.GetInt32(reader.GetOrdinal("MangaId"));
+                            if (newMangaId != oldMangaId)
+                            {
+                                oldMangaId = newMangaId;
 
-                            Content manga = new Manga(mangaId, name, description, rating, releaseYear, imageURL, statusManga, nrChapters, creator, new List<Genre>());
-                            listManga.Add((Manga)manga);
+                                string name = reader.GetString(reader.GetOrdinal("Name"));
+                                string creator = reader.GetString(reader.GetOrdinal("Creator"));
+                                int nrChapters = reader.GetInt32(reader.GetOrdinal("NrChapters"));
+                                int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                                string status = reader.GetString(reader.GetOrdinal("Status"));
+                                decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                                string description = reader.GetString(reader.GetOrdinal("Description"));
+                                string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                                MangaStatus statusManga = (MangaStatus)Enum.Parse(typeof(MangaStatus), status);
+
+                                List<Genre> genres = new List<Genre>();
+                                string genreManga = reader.GetString(reader.GetOrdinal("Genre"));
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);
+                                genres.Add(genre);
+                                manga = new Manga(oldMangaId, name, description, rating, releaseYear, imageURL, statusManga, nrChapters, creator, genres);
+                                listManga.Add((Manga)manga);
+                            }
+                            else if (newMangaId == oldMangaId)
+                            {
+                                string genreManga = reader.GetString(9);
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);
+                                manga.AddGenre(genre);
+                            }
                         }
                         reader.Close();
                     }
@@ -88,7 +108,9 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"INSERT INTO Manga (Name, Creator, NrChapters, ReleaseYear, Status, Rating, Description, Image) VALUES (@Name, @Creator, @NrChapters, @ReleaseYear, @Status, @Rating, @Description, @Image)";
+                        string query = @"INSERT INTO Manga (Name, Creator, NrChapters, ReleaseYear, Status, Rating, Description, Image) 
+                                         VALUES (@Name, @Creator, @NrChapters, @ReleaseYear, @Status, @Rating, @Description, @Image);
+                                         SELECT SCOPE_IDENTITY();";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@Name", manga.Name);

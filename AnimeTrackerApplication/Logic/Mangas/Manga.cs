@@ -30,6 +30,11 @@ namespace Logic.Mangas
             this.creator = creator;
         }
 
+        public Manga()
+        {
+
+        }
+
         public MangaStatus Status { get { return status; } set { status = value; } }
 
         public int NrChapters { get { return nrChapters; } set { nrChapters = value; } }

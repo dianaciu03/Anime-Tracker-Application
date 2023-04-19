@@ -859,7 +859,6 @@
             this.lvwManga.MultiSelect = false;
             this.lvwManga.Name = "lvwManga";
             this.lvwManga.Size = new System.Drawing.Size(1178, 696);
-            this.lvwManga.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwManga.TabIndex = 40;
             this.lvwManga.UseCompatibleStateImageBehavior = false;
             this.lvwManga.View = System.Windows.Forms.View.Details;
@@ -1348,7 +1347,6 @@
             this.lvwCharacters.MultiSelect = false;
             this.lvwCharacters.Name = "lvwCharacters";
             this.lvwCharacters.Size = new System.Drawing.Size(1178, 696);
-            this.lvwCharacters.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvwCharacters.TabIndex = 45;
             this.lvwCharacters.UseCompatibleStateImageBehavior = false;
             this.lvwCharacters.View = System.Windows.Forms.View.Details;

@@ -18,7 +18,7 @@ namespace WebAppGraphic.Pages
 
         public List<Anime> Animes
         {
-            get { return animeManager.GetAllAnime(); }
+            get { return animeManager.GetAllAnime("Name", true); }
         }
 
         //public IActionResult OnGet()

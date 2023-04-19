@@ -7,7 +7,7 @@ namespace Logic.Mangas
     {
         void AddManga(Manga manga);
         void DeleteManga(int mangaId);
-        List<Manga> GetAllManga();
+        List<Manga> GetAllManga(string sortBy, bool ascending);
         Manga? GetMangaById(int mangaId);
         List<Manga> GetMangaByName(string name);
         int GetNrManga();
