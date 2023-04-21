@@ -259,7 +259,6 @@ namespace DAL.Repositories
         public Manga? GetMangaById(int mangaId)
         {
             Manga manga = null;
-            int oldMangaId = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(Connection))
@@ -267,7 +266,7 @@ namespace DAL.Repositories
                     conn.Open();
                     string query = @"SELECT Manga.*, ContentGenre.Genre FROM Manga INNER JOIN Manga_Genre 
                                      ON Manga.MangaId = Manga_Genre.MangaId INNER JOIN ContentGenre 
-                                     ON Manga_Genre.GenreId = ContentGenre.GenreId";
+                                     ON Manga_Genre.GenreId = ContentGenre.GenreId WHERE Manga.MangaId=@MangaId";
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@MangaId", mangaId);
@@ -275,11 +274,8 @@ namespace DAL.Repositories
 
                         while (reader.Read())
                         {
-                            int newMangaId = reader.GetInt32(reader.GetOrdinal("MangaId"));
-                            if (newMangaId != oldMangaId)
+                            if (manga == null)
                             {
-                                oldMangaId = newMangaId;
-
                                 string name = reader.GetString(reader.GetOrdinal("Name"));
                                 string creator = reader.GetString(reader.GetOrdinal("Creator"));
                                 int nrChapters = reader.GetInt32(reader.GetOrdinal("NrChapters"));
@@ -294,9 +290,9 @@ namespace DAL.Repositories
                                 string genreManga = reader.GetString(reader.GetOrdinal("Genre"));
                                 Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);
                                 genres.Add(genre);
-                                manga = new Manga(oldMangaId, name, description, rating, releaseYear, imageURL, statusManga, nrChapters, creator, genres);
+                                manga = new Manga(mangaId, name, description, rating, releaseYear, imageURL, statusManga, nrChapters, creator, genres);
                             }
-                            else if (newMangaId == oldMangaId)
+                            else
                             {
                                 string genreManga = reader.GetString(9);
                                 Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);

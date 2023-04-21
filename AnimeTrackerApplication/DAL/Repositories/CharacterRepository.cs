@@ -180,7 +180,6 @@ namespace DAL.Repositories
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@CharacterId", characterId);
-
                             command.ExecuteNonQuery();
                             transaction.Commit();
                         }

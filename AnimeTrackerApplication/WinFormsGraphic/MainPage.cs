@@ -362,7 +362,15 @@ namespace WinFormsGraphic
 
         private void btnSearchManga_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
         //
