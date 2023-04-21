@@ -1,7 +1,4 @@
-﻿using Logic.Animes;
-using Logic.Contents;
-using Logic.Enums;
-using Logic.Users;
+﻿using Logic.Users;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;

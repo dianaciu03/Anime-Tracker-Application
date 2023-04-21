@@ -170,8 +170,15 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"UPDATE Anime SET Name=@Name, Studio=@Studio, NrEpisodes=@NrEpisodes, ReleaseYear=@ReleaseYear, ReleaseSeason=@ReleaseSeason, Rating=@Rating, Description=@Description, Image=@Image WHERE AnimeId=@AnimeId";
-                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        string query1 = @"DELETE FROM Anime_Genre WHERE AnimeId=@AnimeId";
+                        using (SqlCommand command = new SqlCommand(query1, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@AnimeId", anime.Id);
+                            command.ExecuteNonQuery();
+                        }
+
+                        string query2 = @"UPDATE Anime SET Name=@Name, Studio=@Studio, NrEpisodes=@NrEpisodes, ReleaseYear=@ReleaseYear, ReleaseSeason=@ReleaseSeason, Rating=@Rating, Description=@Description, Image=@Image WHERE AnimeId=@AnimeId";
+                        using (SqlCommand command = new SqlCommand(query2, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@AnimeId", anime.Id);
                             command.Parameters.AddWithValue("@Name", anime.Name);
@@ -182,10 +189,23 @@ namespace DAL.Repositories
                             command.Parameters.AddWithValue("@Rating", anime.Rating);
                             command.Parameters.AddWithValue("@Description", anime.Description);
                             command.Parameters.AddWithValue("@Image", anime.ImageURL);
-
                             command.ExecuteNonQuery();
-                            transaction.Commit();
                         }
+
+                        foreach (Genre genre in anime.GetGenres())
+                        {
+                            string query3 = @"INSERT INTO Anime_Genre (AnimeId, GenreId)
+                                        VALUES (@AnimeId, (SELECT GenreId FROM ContentGenre WHERE Genre = @Genre))";
+                            using (SqlCommand genreCommand = new SqlCommand(query3, conn, transaction))
+                            {
+                                genreCommand.Parameters.Clear();
+                                genreCommand.Parameters.AddWithValue("@AnimeId", anime.Id);
+                                genreCommand.Parameters.AddWithValue("@Genre", genre.ToString());
+                                genreCommand.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
                     }
                     catch (Exception ex)
                     {
@@ -213,14 +233,20 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"DELETE FROM Anime WHERE AnimeId=@AnimeId";
-                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        string query2 = @"DELETE FROM Anime_Genre WHERE AnimeId=@AnimeId";
+                        using (SqlCommand command = new SqlCommand(query2, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@AnimeId", animeId);
-
                             command.ExecuteNonQuery();
-                            transaction.Commit();
                         }
+
+                        string query1 = @"DELETE FROM Anime WHERE AnimeId=@AnimeId";
+                        using (SqlCommand command = new SqlCommand(query1, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@AnimeId", animeId);
+                            command.ExecuteNonQuery();   
+                        }
+                        transaction.Commit();
                     }
                     catch (Exception ex)
                     {

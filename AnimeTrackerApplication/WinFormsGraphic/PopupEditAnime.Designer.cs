@@ -209,9 +209,9 @@
             this.cbSliceOfLifeGenreAnime.Location = new System.Drawing.Point(661, 241);
             this.cbSliceOfLifeGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbSliceOfLifeGenreAnime.Name = "cbSliceOfLifeGenreAnime";
-            this.cbSliceOfLifeGenreAnime.Size = new System.Drawing.Size(129, 34);
+            this.cbSliceOfLifeGenreAnime.Size = new System.Drawing.Size(134, 34);
             this.cbSliceOfLifeGenreAnime.TabIndex = 34;
-            this.cbSliceOfLifeGenreAnime.Text = "SliceOflife";
+            this.cbSliceOfLifeGenreAnime.Text = "SliceOfLife";
             this.cbSliceOfLifeGenreAnime.UseVisualStyleBackColor = true;
             // 
             // cbSciFiGenreAnime

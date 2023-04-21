@@ -38,13 +38,14 @@ namespace WebAppGraphic.Pages
                 RegisteredWebUser? user = null;
                 user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
 
-                if (user != null && user.Password == UserPassword)
+                if (user != null && user.HashedPassword == Security.CreateHash(user.Salt,UserPassword))
                 {
                     HttpContext.Session.SetInt32("userId", user.Id);
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(
                     new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, user.Name),
+                        new Claim("userId", "user.Id"),
+                        new Claim(ClaimTypes.Name, user.Username),
                         new Claim(ClaimTypes.Role, user.GetType().ToString())
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
