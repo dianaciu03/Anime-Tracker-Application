@@ -29,7 +29,9 @@ namespace DAL.Repositories
                 {
                     conn.Open();
                     string sortDirection = ascending ? "ASC" : "DESC";
-                    string query1 = @$"SELECT Anime.*, ContentGenre.Genre FROM Anime INNER JOIN Anime_Genre ON Anime.AnimeId = Anime_Genre.AnimeId INNER JOIN ContentGenre ON Anime_Genre.GenreId = ContentGenre.GenreId
+                    string query1 = @$"SELECT Anime.*, ContentGenre.Genre FROM Anime INNER JOIN Anime_Genre 
+                                       ON Anime.AnimeId = Anime_Genre.AnimeId INNER JOIN ContentGenre 
+                                       ON Anime_Genre.GenreId = ContentGenre.GenreId
                                        ORDER BY {sortBy} {sortDirection}";
                     using (SqlCommand command1 = new SqlCommand(query1, conn))
                     {
@@ -330,7 +332,10 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query = @"SELECT * FROM Anime WHERE Name LIKE '%' + @Name + '%' ";
+                    string query = @"SELECT Anime.*, ContentGenre.Genre FROM Anime INNER JOIN Anime_Genre 
+                                       ON Anime.AnimeId = Anime_Genre.AnimeId INNER JOIN ContentGenre 
+                                       ON Anime_Genre.GenreId = ContentGenre.GenreId
+                                       WHERE Name LIKE '%' + @Name + '%' ";
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@Name", name);

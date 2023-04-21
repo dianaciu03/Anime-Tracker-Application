@@ -30,6 +30,7 @@ namespace WinFormsGraphic
         IAnimeManager animeManager;
         IMangaManager mangaManager;
         ICharacterManager characterManager;
+        IUserManager userManager;
         List<RadioButton> animeSort;
         List<RadioButton> mangaSort;
 
@@ -45,7 +46,7 @@ namespace WinFormsGraphic
             animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
             mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
             characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
-            //UserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
+            userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
         }
 
         private void InitializeForm()
@@ -57,7 +58,6 @@ namespace WinFormsGraphic
             cbxSeasonSearchAnime.DataSource = Enum.GetValues(typeof(Season));
             cbxGenreSearchAnime.DataSource = Enum.GetValues(typeof(Genre));
             btnClearSearch_Click(this, EventArgs.Empty);
-            //create list of radiobuttons for anime
             animeSort = new List<RadioButton>
             { rbtnAnimeNameAsc, rbtnAnimeNameDesc, rbtnAnimeStudioAsc, rbtnAnimeStudioDesc, rbtnAnimeReleaseYearAsc, rbtnAnimeReleaseYearDesc, rbtnAnimeRatingAsc, rbtnAnimeRatingDesc };
             rbtnAnimeNameAsc.Checked = true;
@@ -221,8 +221,6 @@ namespace WinFormsGraphic
                 item.SubItems.Add(a.NrEpisodes.ToString());
                 lvwAnime.Items.Add(item);
             }
-            lvwAnime.ListViewItemSorter = null;
-            lvwAnime.Update();
         }
 
         private void btnClearSearch_Click(object sender, EventArgs e)
