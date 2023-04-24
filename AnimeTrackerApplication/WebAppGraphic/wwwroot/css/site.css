@@ -25,12 +25,14 @@
 
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    padding: 4rem 10rem 4rem 10rem;
-    gap: 2rem 4rem;
+    padding: 4rem 7rem 4rem 7rem;
+    gap: 2rem 6rem;
 }
 
 .container-display > a {
-    height: 100px;
+    height: 400px;
+    text-decoration: none;
+    color: white;
 }
 
 .container-display > a:hover {
@@ -43,11 +45,17 @@
     margin-right: 0.5rem;
     border: 1px solid black;
     border-radius: 10px;
+    overflow: hidden;
     box-shadow: 5px 10px 8px #888888;
     align-content: center;
 }
 
-/*.card-display {
+.container-display > a > div > p {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center;
+}
+        /*.card-display {
     
     border: none;
 }

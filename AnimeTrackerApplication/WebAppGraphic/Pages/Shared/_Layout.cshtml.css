@@ -5,6 +5,13 @@ html {
     background-color: #6544f3;
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .mynavbar {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
@@ -67,14 +74,12 @@ html {
 }
 
 .myfooter {
-    position: absolute;
     bottom: 0;
     width: 100%;
     font-size: 18px;
     background-color: #6544f3;
     color: white;
-    white-space: nowrap;
-    line-height: initial;
+    white-space: nowrap;   
     padding: 2px 2px 7px 20px;
 }
 

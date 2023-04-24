@@ -17,10 +17,10 @@
 @foreach(Anime anime in Model.Animes) 
 {
     <a asp-page="ContentDetails" asp-route-id="@anime.Id">
-        <div>
-            <p>@anime.Name</p>
+        <div class="d-flex flex-column align-items-center">
+            <img src="@anime.ImageURL" style="width: 190px; height: 260px;" />
+            <p style=" padding-top: 8px">@anime.Name</p>
             <p>@anime.SeasonAnime @anime.ReleaseYear</p>
-            <img src="@anime.ImageURL" />
         </div>
     </a>
 }
