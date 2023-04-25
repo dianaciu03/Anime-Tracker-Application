@@ -19,9 +19,9 @@ namespace Logic.Animes
             _animeDataHandler = iAnime;
         }
 
-        public List<Anime> GetAllAnime(string sortBy, bool ascending)
+        public List<Anime> GetAllAnime(string sortBy, bool ascending, int nrWanted)
         {
-            return _animeDataHandler.GetAllAnime(sortBy, ascending);
+            return _animeDataHandler.GetAllAnime(sortBy, ascending, nrWanted);
         }
 
         public Anime? GetAnimeById(int id)

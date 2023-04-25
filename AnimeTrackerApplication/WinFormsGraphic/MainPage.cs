@@ -137,7 +137,7 @@ namespace WinFormsGraphic
                     }
                 }
                 (string sortBy, bool ascending) = GetSortingParameters(option);
-                UpdateAnimeListview(animeManager.GetAllAnime(sortBy, ascending));
+                UpdateAnimeListview(animeManager.GetAllAnime(sortBy, ascending, 10000));
             }
             catch(Exception ex)
             {
