@@ -15,13 +15,19 @@ namespace WebAppGraphic.Pages
         [BindProperty]
         public RegisteredWebUser CurrentUser { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             int? id = HttpContext.Session.GetInt32("userId");
             if (id != null)
             {
                 CurrentUser = (RegisteredWebUser)userManager.GetUserById((int)id);
+                return Page();
             }
+            else
+            {
+                return RedirectToPage("Login");
+            }
+                
         }
     }
 }

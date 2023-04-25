@@ -21,7 +21,7 @@ namespace WebAppGraphic.Pages
         [BindProperty]
         public string UserPassword { get; set; }
 
-        
+
 
         public void OnGet()
         {
@@ -38,7 +38,7 @@ namespace WebAppGraphic.Pages
                 RegisteredWebUser? user = null;
                 user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
 
-                if (user != null && user.HashedPassword == Security.CreateHash(user.Salt,UserPassword))
+                if (user != null && user.HashedPassword == Security.CreateHash(user.Salt, UserPassword))
                 {
                     HttpContext.Session.SetInt32("userId", user.Id);
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(

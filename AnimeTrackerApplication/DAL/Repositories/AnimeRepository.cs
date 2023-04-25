@@ -18,7 +18,7 @@ namespace DAL.Repositories
 {
     public class AnimeRepository : BaseDAL, IAnimeRepository
     {
-        public List<Anime> GetAllAnime(string sortBy, bool ascending, int nrWanted)
+        public List<Anime> GetAllAnime(string sortBy, bool ascending)
         {
             List<Anime> listAnime = new List<Anime>();
             int oldAnimeId = 0;
@@ -29,7 +29,7 @@ namespace DAL.Repositories
                 {
                     conn.Open();
                     string sortDirection = ascending ? "ASC" : "DESC";
-                    string query1 = @$"SELECT TOP {nrWanted} Anime.*, ContentGenre.Genre FROM Anime INNER JOIN Anime_Genre 
+                    string query1 = @$"SELECT Anime.*, ContentGenre.Genre FROM Anime INNER JOIN Anime_Genre 
                                        ON Anime.AnimeId = Anime_Genre.AnimeId INNER JOIN ContentGenre 
                                        ON Anime_Genre.GenreId = ContentGenre.GenreId
                                        ORDER BY {sortBy} {sortDirection}";

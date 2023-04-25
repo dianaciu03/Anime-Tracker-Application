@@ -11,7 +11,7 @@ namespace Logic.Animes
     {
         void AddAnime(Anime anime);
         void DeleteAnime(int animeId);
-        List<Anime> GetAllAnime(string sortBy, bool ascending, int nrWanted);
+        List<Anime> GetAllAnime(string sortBy, bool ascending);
         Anime? GetAnimeById(int animeId);
         int GetNrAnime();
         void UpdateAnime(Anime anime);

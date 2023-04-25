@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebAppGraphic.Pages.Animes
+namespace WebAppGraphic.Pages
 {
     public class NewReleasesAnimeModel : PageModel
     {
