@@ -1,6 +1,7 @@
 ﻿@page
 @model WebAppGraphic.Pages.ProfileModel
 @{
+	Layout = "_LayoutLogout";
 }
 
-<label asp-for="CurrentUser.Username">@Model.CurrentUser.Username</label>
+<label class="text-white" asp-for="CurrentUser.Username">@Model.CurrentUser.Username</label>
