@@ -9,7 +9,7 @@ namespace WebAppGraphic.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         //private IAnimeRepository animeRepository = new AnimeRepository();
-        private static AnimeManager animeManager = new AnimeManager(new AnimeRepository());
+        private static IAnimeManager animeManager = new AnimeManager(new AnimeRepository());
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -18,7 +18,7 @@ namespace WebAppGraphic.Pages
 
         public List<Anime> Animes
         {
-            get { return animeManager.GetAllAnime("Name", true); }
+            get { return animeManager.GetAllAnime("Rating", false); }
         }
 
         //public IActionResult OnGet()

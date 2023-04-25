@@ -2,10 +2,12 @@ using Logic.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
-using Logic.Users;
 using DAL.Repositories;
 using Factory.ManagerFactory;
 using Factory.RepositoryFactory;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace WebAppGraphic.Pages
 {
@@ -24,22 +26,34 @@ namespace WebAppGraphic.Pages
             ModelState.Clear();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                return Page();
-            }
+                if (RegistrationFormUser.Password == ConfirmPassword)
+                {
+                    (string salt, string hashedPassword) = Security.CreateSaltAndHash(RegistrationFormUser.Password);
+                    RegisteredWebUser webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, hashedPassword, DateTime.Now.Date, salt, RegistrationFormUser.Username);
+                    //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
+                    userManager.AddUser(webUser);
 
-            if (RegistrationFormUser.Password == ConfirmPassword)
-            {
-                (string salt, string hashedPassword) = Security.CreateSaltAndHash(RegistrationFormUser.Password);
-                User webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, hashedPassword, DateTime.Now.Date, salt, RegistrationFormUser.Username);
-                //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
-                userManager.AddUser(webUser);
-                return RedirectToPage("Profile");
+                    //login newly created user
+                    RegisteredWebUser user = (RegisteredWebUser)userManager.GetUserByEmail(webUser.Email);
+                    HttpContext.Session.SetInt32("userId", user.Id);
+                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                    new Claim[]
+                    {
+                        new Claim("userId", "user.Id"),
+                        new Claim(ClaimTypes.Name, user.Username),
+                        new Claim(ClaimTypes.Role, user.GetType().ToString())
+                    }, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
+                    return RedirectToPage("Profile");
+                }
+                else
+                    return Page();
             }
-            else
             return Page();
         }
     }

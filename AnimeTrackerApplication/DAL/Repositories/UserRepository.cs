@@ -133,15 +133,15 @@ namespace DAL.Repositories
                             switch (role)
                             {
                                 case "Admin":
-                                    User admin = new Admin(userId, name, email, hashedPassword, joinDate, salt);
+                                    user = new Admin(userId, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "Maintainer":
-                                    User maintainer = new Maintainer(userId, name, email, hashedPassword, joinDate, salt);
+                                    user = new Maintainer(userId, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "RegisteredWebUser":
-                                    User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
+                                    user = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
                                     break;
                             }
                         }
@@ -184,15 +184,15 @@ namespace DAL.Repositories
                             switch (role)
                             {
                                 case "Admin":
-                                    User admin = new Admin(id, name, email, hashedPassword, joinDate, salt);
+                                    user = new Admin(id, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "Maintainer":
-                                    User maintainer = new Maintainer(id, name, email, hashedPassword, joinDate, salt);
+                                    user = new Maintainer(id, name, email, hashedPassword, joinDate, salt);
                                     break;
 
                                 case "RegisteredWebUser":
-                                    User webUser = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt, username);
+                                    user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt, username);
                                     break;
                             }
                         }

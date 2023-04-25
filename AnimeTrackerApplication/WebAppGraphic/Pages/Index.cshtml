@@ -13,15 +13,18 @@
     </div>
 </div>
 
+
+<h1 class="second-title text-white">Popular anime</h1>
 <div class="container-fluid container-display bg-dark">
-@foreach(Anime anime in Model.Animes) 
-{
-    <a asp-page="ContentDetails" asp-route-id="@anime.Id">
-        <div class="d-flex flex-column align-items-center">
-            <img src="@anime.ImageURL" style="width: 190px; height: 260px;" />
-            <p style=" padding-top: 8px">@anime.Name</p>
-            <p>@anime.SeasonAnime @anime.ReleaseYear</p>
-        </div>
-    </a>
-}
+    
+    @foreach(Anime anime in Model.Animes) 
+    {
+        <a asp-page="ContentDetails" asp-route-id="@anime.Id">
+            <div class="d-flex flex-column align-items-center">
+                <img src="@anime.ImageURL" style="width: 190px; height: 260px;" />
+                <p style=" padding-top: 8px">@anime.Name</p>
+                <p>@anime.SeasonAnime @anime.ReleaseYear</p>
+            </div>
+        </a>
+    }
 </div>

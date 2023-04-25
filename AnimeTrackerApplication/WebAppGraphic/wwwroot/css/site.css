@@ -21,6 +21,12 @@
     font-size: 32px;
 }
 
+.second-title {
+    padding:3rem 0rem 0rem 7rem;
+    font-size: 36px;
+    text-decoration: underline;
+}
+
 .container-display {
 
     display: grid;
@@ -30,7 +36,7 @@
 }
 
 .container-display > a {
-    height: 400px;
+    height: 380px;
     text-decoration: none;
     color: white;
 }
@@ -52,8 +58,8 @@
 
 .container-display > a > div > p {
     display: flex;
-    justify-content: center; /* center horizontally */
-    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
         /*.card-display {
     
