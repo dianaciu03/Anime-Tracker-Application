@@ -1,6 +1,16 @@
 ﻿@page
 @model WebAppGraphic.Pages.ContentDetailsModel
 @{
+    ViewData["Title"] = "Content details";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null)
+    {
+        Layout = "_LayoutLogout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 <h1 class="text-white">@Model.Anime.Id</h1>
 

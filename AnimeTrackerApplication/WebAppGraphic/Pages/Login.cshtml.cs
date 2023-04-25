@@ -44,7 +44,7 @@ namespace WebAppGraphic.Pages
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(
                     new Claim[]
                     {
-                        new Claim("userId", "user.Id"),
+                        new Claim("UserId", user.Id.ToString()),
                         new Claim(ClaimTypes.Name, user.Username),
                         new Claim(ClaimTypes.Role, user.GetType().ToString())
                     }, CookieAuthenticationDefaults.AuthenticationScheme);

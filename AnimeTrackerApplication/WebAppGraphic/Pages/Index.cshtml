@@ -3,7 +3,13 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-    Layout = "_Layout";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null) {
+        Layout = "_LayoutLogout";
+    }
+    else {
+        Layout = "_Layout";
+    }
 }
 
 <div class="background-img-landing-page">

@@ -3,6 +3,16 @@
 @model WebAppGraphic.Pages.TopAnimeModel
 @{
     int position = 1;
+    ViewData["Title"] = "Top Rated Anime";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null)
+    {
+        Layout = "_LayoutLogout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
 
 <div class="background-img-anime">
