@@ -1,5 +1,4 @@
-﻿using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+﻿using Factory;
 using Logic.Animes;
 using Logic.Characters;
 using Logic.Mangas;
@@ -26,9 +25,9 @@ namespace WinFormsGraphic
         public PopupAddCharacter()
         {
             InitializeComponent();
-            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
-            mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
-            characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
+            animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
+            mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
+            characterManager = ManagerFactory.CreateCharacterManager(RepositoryFactory.CreateCharacterRepository());
         }
 
         private void btnAddCharacter_Click(object sender, EventArgs e)

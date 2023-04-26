@@ -1,6 +1,5 @@
 ﻿using DAL.Repositories;
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+using Factory;
 using Logic.Animes;
 using Logic.Contents;
 using Logic.Enums;
@@ -28,7 +27,7 @@ namespace WinFormsGraphic
         {
             InitializeComponent();
             anime = a;
-            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
+            animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
             FillInDetails();
         }
 

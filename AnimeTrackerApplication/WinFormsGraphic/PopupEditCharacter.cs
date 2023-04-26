@@ -1,5 +1,4 @@
-﻿using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+﻿using Factory;
 using Logic.Animes;
 using Logic.Characters;
 using Logic.Mangas;
@@ -28,9 +27,9 @@ namespace WinFormsGraphic
         {
             InitializeComponent();
             this.character = c;
-            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
-            mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
-            characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
+            animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
+            mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
+            characterManager = ManagerFactory.CreateCharacterManager(RepositoryFactory.CreateCharacterRepository());
             FillInDetails();
         }
 

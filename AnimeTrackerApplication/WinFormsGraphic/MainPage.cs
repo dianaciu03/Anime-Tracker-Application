@@ -11,8 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Factory;
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
 using Logic.Mangas;
 using static Azure.Core.HttpHeader;
 using Logic.Characters;
@@ -43,10 +41,10 @@ namespace WinFormsGraphic
 
         private void InitializeManagers()
         {
-            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
-            mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
-            characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
-            userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
+            animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
+            mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
+            characterManager = ManagerFactory.CreateCharacterManager(RepositoryFactory.CreateCharacterRepository());
+            userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
         }
 
         private void InitializeForm()
@@ -137,7 +135,7 @@ namespace WinFormsGraphic
                     }
                 }
                 (string sortBy, bool ascending) = GetSortingParameters(option);
-                UpdateAnimeListview(animeManager.GetAllAnime(sortBy, ascending, 10000));
+                UpdateAnimeListview(animeManager.GetAllAnime(sortBy, ascending));
             }
             catch(Exception ex)
             {

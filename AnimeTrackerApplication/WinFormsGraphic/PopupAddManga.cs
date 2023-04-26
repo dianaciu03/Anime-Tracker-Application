@@ -1,5 +1,4 @@
-﻿using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+﻿using Factory;
 using Logic.Animes;
 using Logic.Enums;
 using Logic.Mangas;
@@ -25,7 +24,7 @@ namespace WinFormsGraphic
         {
             InitializeComponent();
             InitializeForm();
-            mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
+            mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
         }
 
         private void InitializeForm()

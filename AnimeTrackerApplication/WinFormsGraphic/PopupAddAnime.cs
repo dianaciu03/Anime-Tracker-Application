@@ -13,8 +13,7 @@ using Logic.Enums;
 using DAL.Repositories;
 using Logic.Animes;
 using Microsoft.VisualBasic.Devices;
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+using Factory;
 
 namespace WinFormsGraphic
 {
@@ -28,7 +27,7 @@ namespace WinFormsGraphic
         {
             InitializeComponent();
             InitializeForm();
-            animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
+            animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
         }
 
         private void InitializeForm()
