@@ -1,6 +1,5 @@
 ﻿using DAL.Repositories;
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+using Factory;
 using Logic.Animes;
 using Logic.Characters;
 using Logic.Mangas;
@@ -12,9 +11,8 @@ namespace WebAppGraphic.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        //private IAnimeRepository animeRepository = new AnimeRepository();
-        private static IAnimeManager animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
-        private static IMangaManager mangaManager = MangaManagerFactory.CreateMangaManager(MangaRepositoryFactory.CreateMangaRepository());
+        private static IAnimeManager animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
+        private static IMangaManager mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
         //private static ICharacterManager characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
         //userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
 

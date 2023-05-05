@@ -12,6 +12,19 @@
         Layout = "_Layout";
     }
 }
-<h1 class="text-white">@Model.Anime.Id</h1>
 
-<p class="text-white">@Model.Anime.SeasonAnime @Model.Anime.ReleaseYear</p>
+<div class="content-details-container text-white">
+    <div class="text-center" style="padding-left: 5rem;">
+        <img src="@Model.Anime.ImageURL" style=" width: 380px; height: 520px;" />
+        <div style="padding-top: 1rem;">@Model.Anime.Name</div>
+        <div style="padding-top: 1rem;">@Model.Anime.SeasonAnime @Model.Anime.ReleaseYear</div>
+    </div>
+    <div>
+        <div class="text-white">Studio: @Model.Anime.Studio</div>
+        <div class="text-white">Number of episodes: @Model.Anime.NrEpisodes</div>
+        <p style="padding-top: 2rem;" class="text-white">@Model.Anime.Description</p>
+    </div>
+    <div>
+        <p class="text-white">Leave a review:</p>
+    </div>
+</div>

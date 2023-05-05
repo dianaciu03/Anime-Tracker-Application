@@ -1,5 +1,4 @@
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+using Factory;
 using Logic.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +9,7 @@ namespace WebAppGraphic.Pages
     [Authorize]
     public class ProfileModel : PageModel
     {
-        private static IUserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
+        private static IUserManager userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
 
         [BindProperty]
         public RegisteredWebUser CurrentUser { get; set; }

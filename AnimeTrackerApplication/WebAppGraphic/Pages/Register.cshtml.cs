@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using DAL.Repositories;
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+using Factory;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
@@ -13,7 +12,7 @@ namespace WebAppGraphic.Pages
 {
     public class RegisterModel : PageModel
     {
-        private static IUserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
+        private static IUserManager userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
 
         [BindProperty]
         public RegisteredWebUser RegistrationFormUser { get; set; } 

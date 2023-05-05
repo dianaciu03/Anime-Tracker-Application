@@ -79,12 +79,11 @@
     justify-content: center;
     text-align: center;
 }
-        /*.card-display {
-    
-    border: none;
-}
 
-.card-display:hover {
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
-}*/
+.content-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 7rem;
+    font-size: 24px;
+}

@@ -6,14 +6,13 @@ using System.Security.Claims;
 using Logic.Users;
 using System.Text.Json;
 using DAL.Repositories;
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+using Factory;
 
 namespace WebAppGraphic.Pages
 {
     public class LoginModel : PageModel
     {
-        private static IUserManager userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
+        private static IUserManager userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
 
         [BindProperty]
         public string UserEmail { get; set; }

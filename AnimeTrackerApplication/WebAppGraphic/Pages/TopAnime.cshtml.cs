@@ -1,5 +1,4 @@
-using Factory.ManagerFactory;
-using Factory.RepositoryFactory;
+using Factory;
 using Logic.Animes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,7 +7,7 @@ namespace WebAppGraphic.Pages
 {
     public class TopAnimeModel : PageModel
     {
-        private static IAnimeManager animeManager = AnimeManagerFactory.CreateAnimeManager(AnimeRepositoryFactory.CreateAnimeRepository());
+        private static IAnimeManager animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
 
         public List<Anime> TopRatedAnime
         {
