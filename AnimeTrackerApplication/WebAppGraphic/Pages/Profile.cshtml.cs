@@ -20,6 +20,7 @@ namespace WebAppGraphic.Pages
             if (id != null)
             {
                 CurrentUser = userManager.GetWebUserById((int)id);
+                CurrentUser.Profile = userManager.GetProfileByWebUserId((int)id);
                 return Page();
             }
             else

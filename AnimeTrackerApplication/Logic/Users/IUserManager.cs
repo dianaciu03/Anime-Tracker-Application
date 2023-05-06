@@ -1,4 +1,6 @@
-﻿namespace Logic.Users
+﻿using Logic.Profiles;
+
+namespace Logic.Users
 {
     public interface IUserManager
     {
@@ -9,5 +11,6 @@
         RegisteredWebUser? GetWebUserByEmail(string email);
         User? GetUserById(int id);
         RegisteredWebUser? GetWebUserById(int id);
+        Profile GetProfileByWebUserId(int id);
     }
 }

@@ -48,5 +48,10 @@ namespace Logic.Characters
         {
             _characterDataHandler.DeleteCharacter(id);
         }
+
+        public Character GetCharacterById(int id)
+        {
+            return _characterDataHandler.GetCharacterById(id);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Logic.Animes;
+using Logic.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,11 @@ namespace Logic.Users
         public RegisteredWebUser? GetWebUserById(int id)
         {
             return _userDataHandler.GetWebUserById(id);
+        }
+
+        public Profile GetProfileByWebUserId(int id)
+        {
+            return _userDataHandler.GetProfileByWebUserId(id);
         }
     }
 }

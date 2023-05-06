@@ -8,5 +8,6 @@ namespace Logic.Characters
         void DeleteCharacter(int characterId);
         List<Character> GetAllCharacters();
         void UpdateCharacter(Character character);
+        Character? GetCharacterById(int id);
     }
 }

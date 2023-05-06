@@ -1,4 +1,5 @@
-﻿using Logic.Users;
+﻿using Logic.Profiles;
+using Logic.Users;
 
 namespace Logic.Users
 {
@@ -11,5 +12,6 @@ namespace Logic.Users
         RegisteredWebUser? GetWebUserByEmail(string email);
         User? GetUserById(int id);
         RegisteredWebUser? GetWebUserById(int id);
+        Profile GetProfileByWebUserId(int id);
     }
 }

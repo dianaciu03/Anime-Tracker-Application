@@ -313,7 +313,7 @@ namespace DAL.Repositories
                                 CustomList customList = new CustomList(listId, name, contentType);
                                 profile.AddCustomList(customList);
                                 int nrContent = -1;
-
+                                //I already have a reader open so I need to stop the reader before the switch and iterate through the lists
                                 switch(contentType)
                                 {
                                     case "Anime":
@@ -441,15 +441,17 @@ namespace DAL.Repositories
                                     profileCommand.Parameters.AddWithValue("@UserId", userId);
                                     profileCommand.Parameters.AddWithValue("@Username", webUser.Profile.Username);
                                     profileId = Convert.ToInt32(profileCommand.ExecuteScalar());
-                                } 
-                                foreach(CustomList custom in webUser.Profile.GetAllCustomLists())
+                                }
+                                List<CustomList> customLists = webUser.Profile.GetAllCustomLists();
+                                foreach (CustomList custom in customLists)
                                 {
-                                    string query3 = @"INSERT INTO CustomList (Name, ProfileId) 
-                                         VALUES (@Name, @ProfileId);";
+                                    string query3 = @"INSERT INTO CustomList (Name, ProfileId, ContentType) 
+                                         VALUES (@Name, @ProfileId, @ContentType);";
                                     using (SqlCommand listCommand = new SqlCommand(query3, conn, transaction))
                                     {
                                         listCommand.Parameters.AddWithValue("@Name", custom.Name);
                                         listCommand.Parameters.AddWithValue("@ProfileId", profileId);
+                                        listCommand.Parameters.AddWithValue("@ContentType", custom.ContentType);
                                         listCommand.ExecuteNonQuery();
                                     }
                                 }
