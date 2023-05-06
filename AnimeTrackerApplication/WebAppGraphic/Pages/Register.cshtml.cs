@@ -7,6 +7,7 @@ using Factory;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using Logic.Profiles;
 
 namespace WebAppGraphic.Pages
 {
@@ -15,7 +16,10 @@ namespace WebAppGraphic.Pages
         private static IUserManager userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
 
         [BindProperty]
-        public RegisteredWebUser RegistrationFormUser { get; set; } 
+        public RegisteredWebUser RegistrationFormUser { get; set; }
+
+        [BindProperty]
+        public Profile RegistrationProfile { get; set; }
 
         [BindProperty]
         public string ConfirmPassword { get; set; }
@@ -33,7 +37,8 @@ namespace WebAppGraphic.Pages
                 {
                     //add validatio to check that the mail is not repeating
                     (string salt, string hashedPassword) = Security.CreateSaltAndHash(RegistrationFormUser.Password);
-                    RegisteredWebUser webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, hashedPassword, DateTime.Now.Date, salt, RegistrationFormUser.Username);
+                    Profile webProfile = new Profile(RegistrationProfile.Username);
+                    RegisteredWebUser webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, hashedPassword, DateTime.Now.Date, salt, webProfile);
                     //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
                     userManager.AddUser(webUser);
 
@@ -44,7 +49,7 @@ namespace WebAppGraphic.Pages
                     new Claim[]
                     {
                         new Claim("userId", "user.Id"),
-                        new Claim(ClaimTypes.Name, user.Username),
+                        //new Claim(ClaimTypes.Name, user.Profile.Username),
                         new Claim(ClaimTypes.Role, user.GetType().ToString())
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);

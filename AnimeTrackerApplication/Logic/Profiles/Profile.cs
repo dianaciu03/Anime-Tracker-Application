@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,8 @@ namespace Logic.Profiles
             this.username = username;
             customLists.Add(new CustomList("Watched"));
             customLists.Add(new CustomList("Want to watch"));
-            customLists.Add(new CustomList("Dropped"));
+            customLists.Add(new CustomList("Read"));
+            customLists.Add(new CustomList("Want to read"));
             customLists.Add(new CustomList("Favourite characters"));
             customLists.Add(new CustomList("Disliked characters"));
         }
@@ -29,9 +31,22 @@ namespace Logic.Profiles
             this.customLists = customLists;
         }
 
+        public Profile()
+        {
+
+        }
+
+        [Required(ErrorMessage = "A username is required")]
+        public string Username { get { return username; } set { this.username = value; } }
+
         public void AddCustomList(CustomList list)
         {
             customLists.Add(list);
+        }
+
+        public List<CustomList> GetAllCustomLists()
+        {
+            return customLists;
         }
     }
 }

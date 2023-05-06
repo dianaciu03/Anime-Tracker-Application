@@ -1,4 +1,5 @@
 ﻿using Logic.Animes;
+using Logic.Profiles;
 using Logic.Users;
 using Microsoft.Data.SqlClient;
 using System;
@@ -30,7 +31,6 @@ namespace DAL.Repositories
                         {
                             int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
                             string email = reader.GetString(reader.GetOrdinal("Email"));
                             string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                             string salt = reader.GetString(reader.GetOrdinal("Salt"));
@@ -51,7 +51,7 @@ namespace DAL.Repositories
                                     break;
 
                                 case "RegisteredWebUser":
-                                    User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
+                                    User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt);
                                     listUsers.Add(webUser);
                                     break;
                             }
@@ -85,14 +85,13 @@ namespace DAL.Repositories
                         {
                             int userId = reader.GetInt32(reader.GetOrdinal("UserId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
                             string email = reader.GetString(reader.GetOrdinal("Email"));
                             string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                             string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
 
-                            User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
+                            User webUser = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt);
                             listUsers.Add((RegisteredWebUser)webUser);
                         }
                         reader.Close();
@@ -176,7 +175,7 @@ namespace DAL.Repositories
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
                             string username = reader.GetString(reader.GetOrdinal("Username"));
-                            user = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt, username);
+                            user = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt);
                         }
                         reader.Close();
                     }
@@ -225,7 +224,7 @@ namespace DAL.Repositories
                                     break;
 
                                 case "RegisteredWebUser":
-                                    user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt, username);
+                                    user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt);
                                     break;
                             }
                         }
@@ -249,7 +248,7 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query = @"SELECT * FROM [User] INNER JOIN Profile ON [User].UserId = Profile.UserId WHERE [User].UserId=@UserId";
+                    string query = @"SELECT [User].*, Username FROM [User] INNER JOIN Profile ON [User].UserId = Profile.UserId WHERE [User].UserId=@UserId";
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@UserId", id);
@@ -264,7 +263,7 @@ namespace DAL.Repositories
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
                             string username = reader.GetString(reader.GetOrdinal("Username"));
-                            user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt, username);
+                            user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt);
                         }
                         reader.Close();
                     }
@@ -278,6 +277,45 @@ namespace DAL.Repositories
             return user;
         }
 
+        //public Profile GetProfileByWebUserId(int id)
+        //{
+        //    Profile profile = null;
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(Connection))
+        //        {
+        //            conn.Open();
+        //            string query = @"SELECT Profile.*, CustomList.* FROM [User] INNER JOIN Profile 
+        //                             ON [User].UserId = Profile.UserId INNER JOIN CustomList 
+        //                             ON Profile.ProfileId = CustomList.ProfileId 
+        //                             WHERE [User].UserId=@UserId";
+        //            using (SqlCommand command = new SqlCommand(query, conn))
+        //            {
+        //                command.Parameters.AddWithValue("@UserId", id);
+        //                SqlDataReader reader = command.ExecuteReader();
+
+        //                while (reader.Read())
+        //                {
+        //                    string email = reader.GetString(reader.GetOrdinal("Email"));
+        //                    string name = reader.GetString(reader.GetOrdinal("Name"));
+        //                    string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
+        //                    string salt = reader.GetString(reader.GetOrdinal("Salt"));
+        //                    DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
+        //                    string role = reader.GetString(reader.GetOrdinal("Role"));
+        //                    string username = reader.GetString(reader.GetOrdinal("Username"));
+        //                    user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt);
+        //                }
+        //                reader.Close();
+        //            }
+        //            conn.Close();
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new Exception("There were issues while trying to retrieve the user!");
+        //    }
+        //    return user;
+        //}
 
         public void AddUser(User user)
         {
@@ -308,13 +346,26 @@ namespace DAL.Repositories
                             {
                                 RegisteredWebUser webUser = (RegisteredWebUser)user;
                                 string query2 = @"INSERT INTO Profile (UserId, Username) 
-                                         VALUES (@UserId, @Username)";
+                                         VALUES (@UserId, @Username); 
+                                         SELECT SCOPE_IDENTITY();";
+                                int profileId = 0;
                                 using(SqlCommand profileCommand = new SqlCommand(query2, conn, transaction))
                                 {
                                     profileCommand.Parameters.AddWithValue("@UserId", userId);
-                                    profileCommand.Parameters.AddWithValue("@Username", webUser.Username);
-                                    profileCommand.ExecuteNonQuery();
+                                    profileCommand.Parameters.AddWithValue("@Username", webUser.Profile.Username);
+                                    profileId = Convert.ToInt32(profileCommand.ExecuteScalar());
                                 } 
+                                foreach(CustomList custom in webUser.Profile.GetAllCustomLists())
+                                {
+                                    string query3 = @"INSERT INTO CustomList (Name, ProfileId) 
+                                         VALUES (@Name, @ProfileId);";
+                                    using (SqlCommand listCommand = new SqlCommand(query3, conn, transaction))
+                                    {
+                                        listCommand.Parameters.AddWithValue("@Name", custom.Name);
+                                        listCommand.Parameters.AddWithValue("@ProfileId", profileId);
+                                        listCommand.ExecuteNonQuery();
+                                    }
+                                }
                             }
                             //command.ExecuteNonQuery();
                             transaction.Commit();
