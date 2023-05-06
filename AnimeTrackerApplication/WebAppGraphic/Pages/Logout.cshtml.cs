@@ -1,3 +1,4 @@
+using Logic.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,9 +7,10 @@ namespace WebAppGraphic.Pages
 {
     public class LogoutModel : PageModel
     {
-        public async Task<IActionResult> OnGetAsync()
+        public IActionResult OnGet()
         {
-            await HttpContext.SignOutAsync();
+            HttpContext.Session.Clear();
+            //await HttpContext.SignOutAsync();
             return RedirectToPage("Login");
         }
     }

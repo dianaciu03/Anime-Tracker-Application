@@ -35,7 +35,7 @@ namespace WebAppGraphic.Pages
             if (ModelState.IsValid)
             {
                 RegisteredWebUser? user = null;
-                user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
+                user = userManager.GetWebUserByEmail(UserEmail);
 
                 if (user != null && user.HashedPassword == Security.CreateHash(user.Salt, UserPassword))
                 {

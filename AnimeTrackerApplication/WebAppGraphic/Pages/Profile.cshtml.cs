@@ -19,7 +19,7 @@ namespace WebAppGraphic.Pages
             int? id = HttpContext.Session.GetInt32("userId");
             if (id != null)
             {
-                CurrentUser = (RegisteredWebUser)userManager.GetUserById((int)id);
+                CurrentUser = userManager.GetWebUserById((int)id);
                 return Page();
             }
             else

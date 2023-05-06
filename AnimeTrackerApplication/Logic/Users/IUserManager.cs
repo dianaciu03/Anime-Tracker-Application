@@ -6,6 +6,8 @@
         List<User> GetAllUsers();
         List<RegisteredWebUser> GetAllWebUsers();
         User? GetUserByEmail(string email);
+        RegisteredWebUser? GetWebUserByEmail(string email);
         User? GetUserById(int id);
+        RegisteredWebUser? GetWebUserById(int id);
     }
 }

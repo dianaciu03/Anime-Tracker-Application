@@ -36,9 +36,19 @@ namespace Logic.Users
             return _userDataHandler.GetUserByEmail(email);
         }
 
+        public RegisteredWebUser? GetWebUserByEmail(string email)
+        {
+            return _userDataHandler.GetWebUserByEmail(email);
+        }
+
         public User? GetUserById(int id)
         {
             return _userDataHandler.GetUserById(id);
+        }
+
+        public RegisteredWebUser? GetWebUserById(int id)
+        {
+            return _userDataHandler.GetWebUserById(id);
         }
     }
 }

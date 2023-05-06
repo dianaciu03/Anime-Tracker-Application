@@ -31,13 +31,14 @@ namespace WebAppGraphic.Pages
             {
                 if (RegistrationFormUser.Password == ConfirmPassword)
                 {
+                    //add validatio to check that the mail is not repeating
                     (string salt, string hashedPassword) = Security.CreateSaltAndHash(RegistrationFormUser.Password);
                     RegisteredWebUser webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, hashedPassword, DateTime.Now.Date, salt, RegistrationFormUser.Username);
                     //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
                     userManager.AddUser(webUser);
 
                     //login newly created user
-                    RegisteredWebUser user = (RegisteredWebUser)userManager.GetUserByEmail(webUser.Email);
+                    RegisteredWebUser user = userManager.GetWebUserByEmail(webUser.Email);
                     HttpContext.Session.SetInt32("userId", user.Id);
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(
                     new Claim[]
