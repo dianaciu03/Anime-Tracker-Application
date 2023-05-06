@@ -1,5 +1,6 @@
 ﻿using Logic.Animes;
 using Logic.Characters;
+using Logic.Contents;
 using Logic.Mangas;
 using Logic.Profiles;
 using Logic.Users;
@@ -264,7 +265,6 @@ namespace DAL.Repositories
                             string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
                             string role = reader.GetString(reader.GetOrdinal("Role"));
-                            string username = reader.GetString(reader.GetOrdinal("Username"));
                             user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt);
                         }
                         reader.Close();
@@ -304,6 +304,11 @@ namespace DAL.Repositories
                                 oldProfileId = newProfileId;
                                 string username = reader.GetString(reader.GetOrdinal("Username"));
                                 profile = new Profile(oldProfileId, username);
+                                int listId = reader.GetInt32(3);
+                                string name = reader.GetString(4);
+                                string contentType = reader.GetString(6);
+                                CustomList customList = new CustomList(listId, name, contentType);
+                                profile.AddCustomList(customList);
                             }
                             else
                             {
@@ -312,87 +317,88 @@ namespace DAL.Repositories
                                 string contentType = reader.GetString(6);
                                 CustomList customList = new CustomList(listId, name, contentType);
                                 profile.AddCustomList(customList);
-                                int nrContent = -1;
-                                //I already have a reader open so I need to stop the reader before the switch and iterate through the lists
-                                switch(contentType)
-                                {
-                                    case "Anime":
-                                        string queryAnime = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Anime 
-                                                               ON CustomList.ListId = List_Anime.ListId WHERE ListId = {listId}";
-                                        using (SqlCommand commandList = new SqlCommand(queryAnime, conn))
-                                        {
-                                            nrContent = (int)commandList.ExecuteScalar();
-                                        }
-                                        if (nrContent > 0)
-                                        {
-                                            AnimeRepository ar = new AnimeRepository();
-                                            string getAnime = @$"SELECT * FROM List_Anime WHERE ListId = {listId}";
-                                            using (SqlCommand commandAnime = new SqlCommand(getAnime, conn))
-                                            {
-                                                SqlDataReader readerAnime = commandAnime.ExecuteReader();
-                                                while (readerAnime.Read())
-                                                {
-                                                    int animeId = readerAnime.GetInt32(1);
-                                                    Anime anime = ar.GetAnimeById(animeId);
-                                                    customList.AddContent(anime);
-                                                }
-                                            }
-                                        }
-                                        break;
-
-                                    case "Manga":
-                                        string queryManga = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Manga 
-                                                               ON CustomList.ListId = List_Manga.ListId WHERE ListId = {listId}";
-                                        using (SqlCommand commandList = new SqlCommand(queryManga, conn))
-                                        {
-                                            nrContent = (int)commandList.ExecuteScalar();
-                                        }
-                                        if (nrContent > 0)
-                                        {
-                                            MangaRepository mr = new MangaRepository();
-                                            string getManga = @$"SELECT * FROM List_Manga WHERE ListId = {listId}";
-                                            using (SqlCommand commandManga = new SqlCommand(getManga, conn))
-                                            {
-                                                SqlDataReader readerManga = commandManga.ExecuteReader();
-                                                while (readerManga.Read())
-                                                {
-                                                    int mangaId = readerManga.GetInt32(1);
-                                                    Manga manga = mr.GetMangaById(mangaId);
-                                                    customList.AddContent(manga);
-                                                }
-                                            }
-                                        }
-                                        break;
-
-                                    case "Character":
-                                        string queryCharacter = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Character 
-                                                               ON CustomList.ListId = List_Character.ListId WHERE ListId = {listId}";
-                                        using (SqlCommand commandList = new SqlCommand(queryCharacter, conn))
-                                        {
-                                            nrContent = (int)commandList.ExecuteScalar();
-                                        }
-                                        if (nrContent > 0)
-                                        {
-                                            CharacterRepository cr = new CharacterRepository();
-                                            string getCharacters = @$"SELECT * FROM List_Character WHERE ListId = {listId}";
-                                            using (SqlCommand commandCharacters = new SqlCommand(getCharacters, conn))
-                                            {
-                                                SqlDataReader readerCharacters = commandCharacters.ExecuteReader();
-                                                while (readerCharacters.Read())
-                                                {
-                                                    int characterId = readerCharacters.GetInt32(1);
-                                                    Character character = cr.GetCharacterById(characterId);
-                                                    customList.AddContent(character);
-                                                }
-                                            }
-                                        }
-                                        break;
-                                }
-
                             }
-
                         }
                         reader.Close();
+
+                        foreach(CustomList custom in profile.GetAllCustomLists())
+                        {
+                            int nrContent = -1;
+                            switch (custom.ContentType)
+                            {
+                                case "Anime":
+                                    string queryAnime = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Anime 
+                                                               ON CustomList.ListId = List_Anime.ListId WHERE CustomList.ListId = {custom.Id}";
+                                    using (SqlCommand commandList = new SqlCommand(queryAnime, conn))
+                                    {
+                                        nrContent = (int)commandList.ExecuteScalar();
+                                    }
+                                    if (nrContent > 0)
+                                    {
+                                        AnimeRepository ar = new AnimeRepository();
+                                        string getAnime = @$"SELECT * FROM List_Anime WHERE ListId = {custom.Id}";
+                                        using (SqlCommand commandAnime = new SqlCommand(getAnime, conn))
+                                        {
+                                            SqlDataReader readerAnime = commandAnime.ExecuteReader();
+                                            while (readerAnime.Read())
+                                            {
+                                                int animeId = readerAnime.GetInt32(1);
+                                                Anime anime = ar.GetAnimeById(animeId);
+                                                custom.AddContent(anime);
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case "Manga":
+                                    string queryManga = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Manga 
+                                                               ON CustomList.ListId = List_Manga.ListId WHERE CustomList.ListId = {custom.Id}";
+                                    using (SqlCommand commandList = new SqlCommand(queryManga, conn))
+                                    {
+                                        nrContent = (int)commandList.ExecuteScalar();
+                                    }
+                                    if (nrContent > 0)
+                                    {
+                                        MangaRepository mr = new MangaRepository();
+                                        string getManga = @$"SELECT * FROM List_Manga WHERE ListId = {custom.Id}";
+                                        using (SqlCommand commandManga = new SqlCommand(getManga, conn))
+                                        {
+                                            SqlDataReader readerManga = commandManga.ExecuteReader();
+                                            while (readerManga.Read())
+                                            {
+                                                int mangaId = readerManga.GetInt32(1);
+                                                Manga manga = mr.GetMangaById(mangaId);
+                                                custom.AddContent(manga);
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                case "Character":
+                                    string queryCharacter = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Character 
+                                                               ON CustomList.ListId = List_Character.ListId WHERE CustomList.ListId = {custom.Id}";
+                                    using (SqlCommand commandList = new SqlCommand(queryCharacter, conn))
+                                    {
+                                        nrContent = (int)commandList.ExecuteScalar();
+                                    }
+                                    if (nrContent > 0)
+                                    {
+                                        CharacterRepository cr = new CharacterRepository();
+                                        string getCharacters = @$"SELECT * FROM List_Character WHERE ListId = {custom.Id}";
+                                        using (SqlCommand commandCharacters = new SqlCommand(getCharacters, conn))
+                                        {
+                                            SqlDataReader readerCharacters = commandCharacters.ExecuteReader();
+                                            while (readerCharacters.Read())
+                                            {
+                                                int characterId = readerCharacters.GetInt32(1);
+                                                Character character = cr.GetCharacterById(characterId);
+                                                custom.AddContent(character);
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
                     }
                     conn.Close();
                 }
