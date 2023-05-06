@@ -10,19 +10,37 @@ namespace Logic.Profiles
     {
         private int id;
         private string name;
-        private List<object> content;
+        private string contentType;
+        private List<object> content = new List<object>();
 
-        public CustomList(string name)
+        public CustomList(string name, string type)
         {
             this.name = name;
             this.id = 0;
-            content = new List<object>();
+            this.contentType = type;
+        }
+
+        public CustomList(int id, string name, string type)
+        {
+            this.name = name;
+            this.id = id;
+            this.contentType = type;
         }
 
         public string Name { get { return name; } set { name = value; } }
 
+        public string ContentType { get { return contentType; } set { contentType = value; } }
+
         public int Id { get { return id; } }
 
-        public List<object> Content { get { return content; } }
+        public void AddContent(object objectContent)
+        {
+            content.Add(objectContent);
+        }
+
+        public List<object> GetAllContent()
+        {
+            return content;
+        }
     }
 }

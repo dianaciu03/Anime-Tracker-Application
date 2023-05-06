@@ -1,4 +1,6 @@
 ﻿using Logic.Animes;
+using Logic.Characters;
+using Logic.Mangas;
 using Logic.Profiles;
 using Logic.Users;
 using Microsoft.Data.SqlClient;
@@ -277,45 +279,130 @@ namespace DAL.Repositories
             return user;
         }
 
-        //public Profile GetProfileByWebUserId(int id)
-        //{
-        //    Profile profile = null;
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(Connection))
-        //        {
-        //            conn.Open();
-        //            string query = @"SELECT Profile.*, CustomList.* FROM [User] INNER JOIN Profile 
-        //                             ON [User].UserId = Profile.UserId INNER JOIN CustomList 
-        //                             ON Profile.ProfileId = CustomList.ProfileId 
-        //                             WHERE [User].UserId=@UserId";
-        //            using (SqlCommand command = new SqlCommand(query, conn))
-        //            {
-        //                command.Parameters.AddWithValue("@UserId", id);
-        //                SqlDataReader reader = command.ExecuteReader();
+        public Profile GetProfileByWebUserId(int id)
+        {
+            Profile profile = null;
+            int oldProfileId = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM Profile INNER JOIN CustomList 
+                                     ON Profile.ProfileId = CustomList.ProfileId 
+                                     WHERE UserId=@UserId";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@UserId", id);
+                        SqlDataReader reader = command.ExecuteReader();
 
-        //                while (reader.Read())
-        //                {
-        //                    string email = reader.GetString(reader.GetOrdinal("Email"));
-        //                    string name = reader.GetString(reader.GetOrdinal("Name"));
-        //                    string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
-        //                    string salt = reader.GetString(reader.GetOrdinal("Salt"));
-        //                    DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
-        //                    string role = reader.GetString(reader.GetOrdinal("Role"));
-        //                    string username = reader.GetString(reader.GetOrdinal("Username"));
-        //                    user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt);
-        //                }
-        //                reader.Close();
-        //            }
-        //            conn.Close();
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw new Exception("There were issues while trying to retrieve the user!");
-        //    }
-        //    return user;
-        //}
+                        while (reader.Read())
+                        {
+                            int newProfileId = reader.GetInt32(reader.GetOrdinal("ProfileId"));
+                            if (newProfileId != oldProfileId)
+                            {
+                                oldProfileId = newProfileId;
+                                string username = reader.GetString(reader.GetOrdinal("Username"));
+                                profile = new Profile(oldProfileId, username);
+                            }
+                            else
+                            {
+                                int listId = reader.GetInt32(3);
+                                string name = reader.GetString(4);
+                                string contentType = reader.GetString(6);
+                                CustomList customList = new CustomList(listId, name, contentType);
+                                profile.AddCustomList(customList);
+                                int nrContent = -1;
+
+                                switch(contentType)
+                                {
+                                    case "Anime":
+                                        string queryAnime = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Anime 
+                                                               ON CustomList.ListId = List_Anime.ListId WHERE ListId = {listId}";
+                                        using (SqlCommand commandList = new SqlCommand(queryAnime, conn))
+                                        {
+                                            nrContent = (int)commandList.ExecuteScalar();
+                                        }
+                                        if (nrContent > 0)
+                                        {
+                                            AnimeRepository ar = new AnimeRepository();
+                                            string getAnime = @$"SELECT * FROM List_Anime WHERE ListId = {listId}";
+                                            using (SqlCommand commandAnime = new SqlCommand(getAnime, conn))
+                                            {
+                                                SqlDataReader readerAnime = commandAnime.ExecuteReader();
+                                                while (readerAnime.Read())
+                                                {
+                                                    int animeId = readerAnime.GetInt32(1);
+                                                    Anime anime = ar.GetAnimeById(animeId);
+                                                    customList.AddContent(anime);
+                                                }
+                                            }
+                                        }
+                                        break;
+
+                                    case "Manga":
+                                        string queryManga = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Manga 
+                                                               ON CustomList.ListId = List_Manga.ListId WHERE ListId = {listId}";
+                                        using (SqlCommand commandList = new SqlCommand(queryManga, conn))
+                                        {
+                                            nrContent = (int)commandList.ExecuteScalar();
+                                        }
+                                        if (nrContent > 0)
+                                        {
+                                            MangaRepository mr = new MangaRepository();
+                                            string getManga = @$"SELECT * FROM List_Manga WHERE ListId = {listId}";
+                                            using (SqlCommand commandManga = new SqlCommand(getManga, conn))
+                                            {
+                                                SqlDataReader readerManga = commandManga.ExecuteReader();
+                                                while (readerManga.Read())
+                                                {
+                                                    int mangaId = readerManga.GetInt32(1);
+                                                    Manga manga = mr.GetMangaById(mangaId);
+                                                    customList.AddContent(manga);
+                                                }
+                                            }
+                                        }
+                                        break;
+
+                                    case "Character":
+                                        string queryCharacter = @$"SELECT COUNT(*) FROM CustomList INNER JOIN List_Character 
+                                                               ON CustomList.ListId = List_Character.ListId WHERE ListId = {listId}";
+                                        using (SqlCommand commandList = new SqlCommand(queryCharacter, conn))
+                                        {
+                                            nrContent = (int)commandList.ExecuteScalar();
+                                        }
+                                        if (nrContent > 0)
+                                        {
+                                            CharacterRepository cr = new CharacterRepository();
+                                            string getCharacters = @$"SELECT * FROM List_Character WHERE ListId = {listId}";
+                                            using (SqlCommand commandCharacters = new SqlCommand(getCharacters, conn))
+                                            {
+                                                SqlDataReader readerCharacters = commandCharacters.ExecuteReader();
+                                                while (readerCharacters.Read())
+                                                {
+                                                    int characterId = readerCharacters.GetInt32(1);
+                                                    Character character = cr.GetCharacterById(characterId);
+                                                    customList.AddContent(character);
+                                                }
+                                            }
+                                        }
+                                        break;
+                                }
+
+                            }
+
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the user!");
+            }
+            return profile;
+        }
 
         public void AddUser(User user)
         {

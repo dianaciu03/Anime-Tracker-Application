@@ -16,19 +16,18 @@ namespace Logic.Profiles
         public Profile(string username)
         {
             this.username = username;
-            customLists.Add(new CustomList("Watched"));
-            customLists.Add(new CustomList("Want to watch"));
-            customLists.Add(new CustomList("Read"));
-            customLists.Add(new CustomList("Want to read"));
-            customLists.Add(new CustomList("Favourite characters"));
-            customLists.Add(new CustomList("Disliked characters"));
+            customLists.Add(new CustomList("Watched", "Anime"));
+            customLists.Add(new CustomList("Want to watch", "Anime"));
+            customLists.Add(new CustomList("Read", "Manga"));
+            customLists.Add(new CustomList("Want to read", "Manga"));
+            customLists.Add(new CustomList("Favourite characters", "Character"));
+            customLists.Add(new CustomList("Disliked characters", "Character"));
         }
 
-        public Profile(int id, string username, List<CustomList> customLists)
+        public Profile(int id, string username)
         {
             this.id = id;
             this.username = username;
-            this.customLists = customLists;
         }
 
         public Profile()

@@ -109,6 +109,51 @@ namespace DAL.Repositories
             return listCharacters;
         }
 
+        public Character? GetCharacterById(int id)
+        {
+            Character character = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query1 = @$"SELECT * FROM Character WHERE CharacterId = @CharacterId";
+                    using (SqlCommand command1 = new SqlCommand(query1, conn))
+                    {
+                        command1.Parameters.AddWithValue("@CharacterId", id);
+                        SqlDataReader reader = command1.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string gender = reader.GetString(reader.GetOrdinal("Gender"));
+                            string image = reader.GetString(reader.GetOrdinal("Image"));
+                            int nrLikes = reader.GetInt32(reader.GetOrdinal("NrLikes"));
+                            int nrDislikes = reader.GetInt32(reader.GetOrdinal("NrDislikes"));
+                            character = new Character(id, name, gender, image, nrLikes, nrDislikes);
+                            int? animeId = reader.IsDBNull(reader.GetOrdinal("AnimeId")) ? null : reader.GetInt32(reader.GetOrdinal("AnimeId"));
+                            if (animeId != null)
+                            {
+                                character.AnimeId = (int)animeId;
+                            }
+                            int? mangaId = reader.IsDBNull(reader.GetOrdinal("MangaId")) ? null : reader.GetInt32(reader.GetOrdinal("MangaId"));
+                            if (mangaId != null)
+                            {
+                                character.MangaId = (int)mangaId;
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrive the character!");
+            }
+            return character;
+        }
+
         public void UpdateCharacter(Character character)
         {
             try
