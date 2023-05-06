@@ -16,8 +16,6 @@ namespace WebAppGraphic.Pages
 
         public void OnGet()
         {
-        }
-
-        
+        }  
     }
 }
