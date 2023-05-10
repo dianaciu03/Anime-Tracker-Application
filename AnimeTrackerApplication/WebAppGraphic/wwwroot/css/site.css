@@ -12,6 +12,13 @@
     background-position: center;
 }
 
+.bg-img-manga {
+    background-image: url('/images/bg-img-manga.png');
+    background-size: 100% 100%;
+    height: 17em;
+    background-position: center;
+}
+
 .masthead-heading {
     font-size: 36px;
     font-weight: bold;
@@ -46,7 +53,6 @@
 }
 
 .container-display {
-
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     padding: 4rem 7rem 4rem 7rem;

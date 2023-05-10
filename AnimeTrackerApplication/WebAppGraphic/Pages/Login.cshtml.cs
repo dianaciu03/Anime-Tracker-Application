@@ -20,8 +20,6 @@ namespace WebAppGraphic.Pages
         [BindProperty]
         public string UserPassword { get; set; }
 
-
-
         public void OnGet()
         {
             //if (TempData.ContainsKey("WebUser"))

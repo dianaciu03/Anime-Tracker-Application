@@ -31,7 +31,9 @@ namespace Logic.Users
 
         public RegisteredWebUser()
         {
+
         }
+
         public Profile Profile { get { return profile; } set { profile = value; } }
 
         public override string ToString()

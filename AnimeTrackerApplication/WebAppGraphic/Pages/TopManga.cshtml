@@ -1,0 +1,36 @@
+﻿@page
+@using Logic.Mangas
+@model WebAppGraphic.Pages.TopMangaModel
+@{
+    int position = 1;
+    ViewData["Title"] = "Top Rated Anime";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null)
+    {
+        Layout = "_LayoutLogout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+
+<div class="bg-img-manga">
+</div>
+
+<h1 class="second-title text-white">Top rated manga</h1>
+<h4 class="second-subtitle text-white">Here you can find the best rated manga available.</h4>
+<div class="container-fluid container-display bg-dark">
+
+    @foreach (Manga manga in Model.TopRatedManga)
+    {
+        <a asp-page="ContentDetails" asp-route-id="@manga.Id">
+            <div class="d-flex flex-column align-items-center">
+                <img src="@manga.ImageURL" style="width: 190px; height: 260px;" />
+                <p style=" padding-top: 8px">@position. @manga.Name</p>
+                <p>@manga.Rating / 5 ⭐</p>
+            </div>
+        </a>
+        position++;
+    }
+</div>
