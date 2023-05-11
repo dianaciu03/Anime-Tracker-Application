@@ -40,7 +40,6 @@ namespace WebAppGraphic.Pages
                     {
                         if (existUser.Email == RegistrationFormUser.Email)
                         {
-
                             userExists = true;
                             ModelState.AddModelError(string.Empty, "This email address is unavailable.");
                         }

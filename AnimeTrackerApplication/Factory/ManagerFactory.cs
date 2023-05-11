@@ -12,7 +12,7 @@ namespace Factory
 {
     public static class ManagerFactory
     {
-        public static AnimeManager CreateAnimeManager(IAnimeRepository animeRepository)
+        public static AnimeManager CreateAnimeManager(AnimeRepository animeRepository)
         {
             return new AnimeManager(animeRepository);
         }

@@ -47,16 +47,6 @@ namespace WebAppGraphic.Pages
             return mangas;
         }
 
-        //public IActionResult OnGet()
-        //{
-        //    //if(HttpContext.Session.Get("Dummy") is null)
-        //    //{
-        //    //    HttpContext.Session.SetString("Dummy", "Some data");
-        //    //}
-
-        //    //return Page();
-        //}
-
         public void OnGet()
         {
 

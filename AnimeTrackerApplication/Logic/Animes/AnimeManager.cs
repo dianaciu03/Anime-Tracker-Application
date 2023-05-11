@@ -12,11 +12,13 @@ namespace Logic.Animes
 {
     public class AnimeManager : IAnimeManager
     {
-        private readonly IAnimeRepository _animeDataHandler;
+        private readonly AnimeRepository _animeDataHandler;
+        private AnimeDataValidator adv;
 
-        public AnimeManager(IAnimeRepository iAnime)
+        public AnimeManager(AnimeRepository iAnime)
         {
             _animeDataHandler = iAnime;
+            adv = new AnimeDataValidator();
         }
 
         public List<Anime> GetAllAnime(string sortBy, bool ascending)
@@ -36,14 +38,35 @@ namespace Logic.Animes
 
         public void AddAnime(string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
         {
-            Content anime = new Anime(name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
-            _animeDataHandler.AddAnime((Anime)anime);
+            try
+            {
+                if (adv.IsNameValid(name) && adv.IsStudioValid(studio) && adv.IsNrEpisodesValid(nrEpisodes.ToString()) && adv.IsYearValid(releaseYear.ToString()) && adv.IsSeasonValid(season) && adv.IsRatingValid(rating.ToString()) && adv.IsDescriptionValid(description) && adv.IsValidImageUrl(imageURL))
+                {
+                    Content anime = new Anime(name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
+                    _animeDataHandler.AddAnime((Anime)anime);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public void UpdateAnime(int id, string name, string description, decimal rating, int releaseYear, string imageURL, Season season, int nrEpisodes, string studio, List<Genre> genres)
         {
-            Content anime = new Anime(id, name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
-            _animeDataHandler.UpdateAnime((Anime)anime);
+            try
+            {
+                if (adv.IsNameValid(name) && adv.IsStudioValid(studio) && adv.IsNrEpisodesValid(nrEpisodes.ToString()) && adv.IsYearValid(releaseYear.ToString()) && adv.IsSeasonValid(season) && adv.IsRatingValid(rating.ToString()) && adv.IsDescriptionValid(description) && adv.IsValidImageUrl(imageURL))
+                {
+                    Content anime = new Anime(name, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
+                    _animeDataHandler.UpdateAnime((Anime)anime);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void DeleteAnime(int id)

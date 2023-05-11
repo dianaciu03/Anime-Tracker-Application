@@ -16,7 +16,7 @@ using static Azure.Core.HttpHeader;
 
 namespace DAL.Repositories
 {
-    public class AnimeRepository : BaseDAL, IAnimeRepository
+    public class AnimeRepository : BaseDAL, Logic.Animes.AnimeRepository
     {
         public List<Anime> GetAllAnime(string sortBy, bool ascending)
         {
