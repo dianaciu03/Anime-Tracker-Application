@@ -32,18 +32,18 @@ namespace Logic.Characters
 
         public bool IsValidImageUrl(string url)
         {
-            string[] validExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
-            Uri uri = new Uri(url);
-
-            string extension = Path.GetExtension(uri.AbsolutePath);
-
-            if (string.IsNullOrEmpty(extension) || !validExtensions.Contains(extension.ToLower()))
-            {
-                throw new Exception("The image link is not valid!");
-            }
-
             try
             {
+                string[] validExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
+                Uri uri = new Uri(url);
+
+                string extension = Path.GetExtension(uri.AbsolutePath);
+
+                if (string.IsNullOrEmpty(extension) || !validExtensions.Contains(extension.ToLower()))
+                {
+                    throw new Exception("The image link is not valid!");
+                }
+
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "HEAD";
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())

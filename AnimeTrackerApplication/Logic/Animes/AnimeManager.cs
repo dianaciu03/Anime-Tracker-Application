@@ -12,10 +12,10 @@ namespace Logic.Animes
 {
     public class AnimeManager : IAnimeManager
     {
-        private readonly AnimeRepository _animeDataHandler;
+        private readonly IAnimeRepository _animeDataHandler;
         private AnimeDataValidator adv;
 
-        public AnimeManager(AnimeRepository iAnime)
+        public AnimeManager(IAnimeRepository iAnime)
         {
             _animeDataHandler = iAnime;
             adv = new AnimeDataValidator();

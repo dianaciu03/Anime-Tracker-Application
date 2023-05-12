@@ -8,7 +8,7 @@ namespace WebAppGraphic.Pages
     public class ContentDetailsModel : PageModel
     {
         private readonly ILogger<ContentDetailsModel> _logger;
-        private static Logic.Animes.AnimeRepository animeRepository = new DAL.Repositories.AnimeRepository();
+        private static IAnimeRepository animeRepository = new AnimeRepository();
         AnimeManager animeManager;
 
         public ContentDetailsModel(ILogger<ContentDetailsModel> logger)
