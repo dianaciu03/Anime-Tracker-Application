@@ -9,7 +9,12 @@ namespace Logic.Users
     public class Admin : User
     {
 
-        public Admin(string name, string email, string password, DateTime joinDate) : base(name, email, password, joinDate)
+        public Admin(string name, string email, string hashedPassword, DateTime joinDate, string salt) : base(name, email, hashedPassword, joinDate, salt)
+        {
+
+        }
+
+        public Admin(int id, string name, string email, string hashedPassword, DateTime joinDate, string salt) : base(id, name, email, hashedPassword, joinDate, salt)
         {
 
         }

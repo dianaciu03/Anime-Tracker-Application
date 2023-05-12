@@ -6,13 +6,13 @@ using System.Security.Claims;
 using Logic.Users;
 using System.Text.Json;
 using DAL.Repositories;
+using Factory;
 
 namespace WebAppGraphic.Pages
 {
     public class LoginModel : PageModel
     {
-        private static IUserRepository _userDataHandler = new UserRepository();
-        private static UserManager userManager = new UserManager(_userDataHandler);
+        private static IUserManager userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
 
         [BindProperty]
         public string UserEmail { get; set; }
@@ -28,43 +28,56 @@ namespace WebAppGraphic.Pages
             //}
         }
 
-        //public async Task OnPostAsync()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        //Validate
-        //        //Simulate database
-        //        //ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-        //        //    new Claim[]
-        //        //    {
-        //        //        new Claim("id", "email@gmail.com"),
-        //        //        new Claim(ClaimTypes.Name, "My name"),
-        //        //        new Claim(ClaimTypes.Role, "WebUser")
-        //        //    }, CookieAuthenticationDefaults.AuthenticationScheme);
-        //        //ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-        //        //await HttpContext.SignInAsync(claimsPrincipal);
-        //    }
-
-
-        //}
-
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            RegisteredWebUser? user = null;
-
             if (ModelState.IsValid)
             {
-                user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
-            }
+                RegisteredWebUser? user = null;
+                user = userManager.GetWebUserByEmail(UserEmail);
 
-            if(user != null)
-            {
-                return RedirectToPage("Privacy");
+                if (user != null && user.HashedPassword == Security.CreateHash(user.Salt, UserPassword))
+                {
+                    HttpContext.Session.SetInt32("userId", user.Id);
+                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                    new Claim[]
+                    {
+                        new Claim("UserId", user.Id.ToString()),
+                        //new Claim(ClaimTypes.Name, user.Profile.Username),
+                        new Claim(ClaimTypes.Role, user.GetType().ToString())
+                    }, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
+                    return RedirectToPage("Profile");
+                }
+                else
+                {
+                    await HttpContext.ForbidAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                    return Page();
+                }
             }
-            else
-            {
-                return Page();
-            }
+            return Page();
         }
+
+        //public IActionResult OnPost()
+        //{
+        //    RegisteredWebUser? user = null;
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
+        //    }
+
+        //    if(user != null)
+        //    {
+        //        if(user.Password == UserPassword)
+        //            return RedirectToPage("Privacy");
+        //        else
+        //            return Page();
+        //    }
+        //    else
+        //    {
+        //        return Page();
+        //    }
+        //}
     }
 }

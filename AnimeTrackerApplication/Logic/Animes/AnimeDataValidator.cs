@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,7 +46,10 @@ namespace Logic.Animes
                 try
                 {
                     int nr = Convert.ToInt32(nrEpisodes);
-                    return true;
+                    if (nr >= 1)
+                        return true;
+                    else
+                        throw new Exception("The number of episodes is not valid!");
                 }
                 catch(Exception)
                 {
@@ -105,19 +109,37 @@ namespace Logic.Animes
                 if (Enum.IsDefined(typeof(Season), season))
                     return true;
                 else
-                    return false;
+                    throw new Exception("You can't change the provided options!");
             }
             else
                 throw new Exception("You need to provide a season!");
         }
 
-        public bool IsPathValid(string path)
+        public bool IsValidImageUrl(string url)
         {
-            //how to validate url keywords: ping, http request
-            if (String.IsNullOrEmpty(path))
-                throw new Exception("You need to provide an URL from an online image!");
-            else
-                return true;
+            try
+            {
+                string[] validExtensions = { ".jpg", ".jpeg", ".gif", ".png" };
+                Uri uri = new Uri(url);
+
+                string extension = Path.GetExtension(uri.AbsolutePath);
+
+                if (string.IsNullOrEmpty(extension) || !validExtensions.Contains(extension.ToLower()))
+                {
+                    throw new Exception("The image link is not valid!");
+                }
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "HEAD";
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    return response.ContentType.ToLower().StartsWith("image/");
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("The image link is not valid!");
+            }
         }
     }
 }

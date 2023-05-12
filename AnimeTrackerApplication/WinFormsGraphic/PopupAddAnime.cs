@@ -13,6 +13,7 @@ using Logic.Enums;
 using DAL.Repositories;
 using Logic.Animes;
 using Microsoft.VisualBasic.Devices;
+using Factory;
 
 namespace WinFormsGraphic
 {
@@ -20,17 +21,13 @@ namespace WinFormsGraphic
     {
         //declare variables
         List<CheckBox> animeGenre;
-        private IAnimeRepository _animeDataHandler;
-        AnimeManager animeManager;
+        IAnimeManager animeManager;
 
         public PopupAddAnime()
         {
             InitializeComponent();
             InitializeForm();
-
-            //change to factory later
-            _animeDataHandler = new AnimeRepository();
-            animeManager = new AnimeManager(_animeDataHandler);
+            animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
         }
 
         private void InitializeForm()
@@ -41,6 +38,10 @@ namespace WinFormsGraphic
 
             //fill combobox with data
             cbxReleaseSeasonAnime.DataSource = Enum.GetValues(typeof(Season));
+
+            //reset elements
+            cbxReleaseSeasonAnime.SelectedIndex = -1;
+            numRatingAnime.Value = 0;
         }
 
         private void btnAddAnime_Click(object sender, EventArgs e)
@@ -57,12 +58,12 @@ namespace WinFormsGraphic
                         genres.Add((Genre)Enum.Parse(typeof(Genre), cb.Text));
                     }
                 }
-                if (adv.IsNameValid(tbxNameAnime.Text) && adv.IsStudioValid(tbxStudioAnime.Text) && adv.IsNrEpisodesValid(tbxNrEpisodes.Text) && adv.IsYearValid(tbxReleaseYearAnime.Text) && adv.IsSeasonValid((Season)cbxReleaseSeasonAnime.SelectedItem) && adv.IsRatingValid(numRatingAnime.Text) && adv.IsDescriptionValid(tbxDescriptionAnime.Text) && adv.IsPathValid(tbxImageURL.Text))
+                if (adv.IsNameValid(tbxNameAnime.Text) && adv.IsStudioValid(tbxStudioAnime.Text) && adv.IsNrEpisodesValid(tbxNrEpisodes.Text) && adv.IsYearValid(tbxReleaseYearAnime.Text) && adv.IsSeasonValid((Season)cbxReleaseSeasonAnime.SelectedItem) && adv.IsRatingValid(numRatingAnime.Text) && adv.IsDescriptionValid(tbxDescriptionAnime.Text) && adv.IsValidImageUrl(tbxImageURL.Text))
                 {
                     animeManager.AddAnime(tbxNameAnime.Text, tbxDescriptionAnime.Text, Convert.ToDecimal(numRatingAnime.Text), Convert.ToInt32(tbxReleaseYearAnime.Text), tbxImageURL.Text, (Season)cbxReleaseSeasonAnime.SelectedItem, Convert.ToInt32(tbxNrEpisodes.Text), tbxStudioAnime.Text, genres);
                     MessageBox.Show("Anime was added successfully!");
-                }
-                this.Close();
+                    this.Close();
+                }  
             }
             catch (Exception ex)
             {

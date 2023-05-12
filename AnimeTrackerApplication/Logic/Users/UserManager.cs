@@ -1,4 +1,5 @@
 ﻿using Logic.Animes;
+using Logic.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Users
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private readonly IUserRepository _userDataHandler;
 
@@ -34,6 +35,26 @@ namespace Logic.Users
         public User? GetUserByEmail(string email)
         {
             return _userDataHandler.GetUserByEmail(email);
+        }
+
+        public RegisteredWebUser? GetWebUserByEmail(string email)
+        {
+            return _userDataHandler.GetWebUserByEmail(email);
+        }
+
+        public User? GetUserById(int id)
+        {
+            return _userDataHandler.GetUserById(id);
+        }
+
+        public RegisteredWebUser? GetWebUserById(int id)
+        {
+            return _userDataHandler.GetWebUserById(id);
+        }
+
+        public Profile GetProfileByWebUserId(int id)
+        {
+            return _userDataHandler.GetProfileByWebUserId(id);
         }
     }
 }

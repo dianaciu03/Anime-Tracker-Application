@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Logic.Enums;
+using Logic.Profiles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,11 +11,22 @@ namespace Logic.Users
 {
     public class RegisteredWebUser : User
     {
+        private Profile profile;
         private string username;
 
-        public RegisteredWebUser(string name, string email, string password, DateTime joinDate, string username) : base(name, email, password, joinDate)
+        public RegisteredWebUser(string name, string email, string hashedPassword, DateTime joinDate, string salt, Profile profile) : base(name, email, hashedPassword, joinDate, salt)
         {
-            this.username = username;
+            this.profile = profile;
+        }
+
+        public RegisteredWebUser(int id, string name, string email, string hashedPassword, DateTime joinDate, string salt, Profile profile) : base(id, name, email, hashedPassword, joinDate, salt)
+        {
+            this.profile = profile;
+        }
+
+        public RegisteredWebUser(int id, string name, string email, string hashedPassword, DateTime joinDate, string salt) : base(id, name, email, hashedPassword, joinDate, salt)
+        {
+
         }
 
         public RegisteredWebUser()
@@ -21,13 +34,11 @@ namespace Logic.Users
 
         }
 
-        [Required(ErrorMessage = "A username is required")]
-        public string Username { get { return username; } set { this.username = value; } }
-
+        public Profile Profile { get { return profile; } set { profile = value; } }
 
         public override string ToString()
         {
-            return $"{this.username}";
+            return $"{profile.Username}";
         }
     }
 }

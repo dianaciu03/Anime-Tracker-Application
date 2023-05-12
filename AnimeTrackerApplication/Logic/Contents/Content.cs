@@ -11,13 +11,13 @@ namespace Logic.Contents
     {
         protected string name;
         protected string description;
-        protected string id;
+        protected int id;
         protected decimal rating;
         protected int releaseYear;
         protected string imageURL;
         protected List<Genre> genres = new List<Genre>();
 
-        public Content(string id, string name, string description, decimal rating, int releaseYear, List<Genre> genres, string imageURL)
+        public Content(int id, string name, string description, decimal rating, int releaseYear, List<Genre> genres, string imageURL)
         {
             this.id = id;
             this.name = name;
@@ -28,11 +28,27 @@ namespace Logic.Contents
             this.imageURL = imageURL;
         }
 
+        public Content(string name, string description, decimal rating, int releaseYear, List<Genre> genres, string imageURL)
+        {
+            this.id = -1;
+            this.name = name;
+            this.description = description;
+            this.rating = rating;
+            this.releaseYear = releaseYear;
+            this.genres = genres;
+            this.imageURL = imageURL;
+        }
+
+        public Content()
+        {
+
+        }
+
         public string Name { get { return name; } set { name = value; } }
 
         public string Description { get { return description; } set { description = value; } }
 
-        public string Id { get { return id; } }
+        public int Id { get { return id; } set { id = value; } }
 
         public decimal Rating { get { return rating; } set { rating = value; } }
 
@@ -48,6 +64,11 @@ namespace Logic.Contents
         public void AddGenre(Genre genre)
         {
             genres.Add(genre);
+        }
+
+        public void RemoveGenre(Genre genre)
+        {
+            genres.Remove(genre);
         }
 
         public virtual string GetInfoDetailed()

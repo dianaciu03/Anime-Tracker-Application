@@ -209,9 +209,9 @@
             this.cbSliceOfLifeGenreAnime.Location = new System.Drawing.Point(661, 241);
             this.cbSliceOfLifeGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbSliceOfLifeGenreAnime.Name = "cbSliceOfLifeGenreAnime";
-            this.cbSliceOfLifeGenreAnime.Size = new System.Drawing.Size(143, 34);
+            this.cbSliceOfLifeGenreAnime.Size = new System.Drawing.Size(134, 34);
             this.cbSliceOfLifeGenreAnime.TabIndex = 34;
-            this.cbSliceOfLifeGenreAnime.Text = "Slice-of-life";
+            this.cbSliceOfLifeGenreAnime.Text = "SliceOfLife";
             this.cbSliceOfLifeGenreAnime.UseVisualStyleBackColor = true;
             // 
             // cbSciFiGenreAnime
@@ -220,9 +220,9 @@
             this.cbSciFiGenreAnime.Location = new System.Drawing.Point(661, 202);
             this.cbSciFiGenreAnime.Margin = new System.Windows.Forms.Padding(5);
             this.cbSciFiGenreAnime.Name = "cbSciFiGenreAnime";
-            this.cbSciFiGenreAnime.Size = new System.Drawing.Size(84, 34);
+            this.cbSciFiGenreAnime.Size = new System.Drawing.Size(75, 34);
             this.cbSciFiGenreAnime.TabIndex = 33;
-            this.cbSciFiGenreAnime.Text = "Sci-Fi";
+            this.cbSciFiGenreAnime.Text = "SciFi";
             this.cbSciFiGenreAnime.UseVisualStyleBackColor = true;
             // 
             // cbRomanceGenreAnime
@@ -524,7 +524,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(1151, 671);
+            this.ClientSize = new System.Drawing.Size(1151, 669);
             this.Controls.Add(this.groupBoxAnimeDetails);
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "PopupEditAnime";

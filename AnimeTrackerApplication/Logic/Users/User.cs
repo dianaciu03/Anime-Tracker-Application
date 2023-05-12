@@ -9,19 +9,32 @@ namespace Logic.Users
 {
     public abstract class User
     {
-        protected int Id { get; set; }
-
+        protected int id;
         protected string name;
         protected string email;
+        protected string salt;
         protected string password;
+        protected string hashedPassword;
         protected DateTime joinDate;
 
-        public User(string name, string email, string password, DateTime joinDate)
+        public User(string name, string email, string hashedPassword, DateTime joinDate, string salt)
         {
             this.name = name;
             this.email = email;
-            this.password = password;
+            this.hashedPassword = hashedPassword;
             this.joinDate = joinDate;
+            this.salt = salt;
+            this.id = 0;
+        }
+
+        public User(int id, string name, string email, string hashedPassword, DateTime joinDate, string salt)
+        {
+            this.name = name;
+            this.email = email;
+            this.hashedPassword = hashedPassword;
+            this.joinDate = joinDate;
+            this.salt = salt;
+            this.id = id;
         }
 
         public User()
@@ -33,14 +46,20 @@ namespace Logic.Users
         public string Name { get { return name; } set { this.name = value; } }
 
         [Required(ErrorMessage = "An email is required"),
-         EmailAddress(ErrorMessage = "Your email address must be a valid!")]
+         EmailAddress(ErrorMessage = "Your email address must be valid!")]
         public string Email { get { return email; } set { this.email = value; } }
 
         [Required(ErrorMessage = "A password is required"),
          MinLength(6, ErrorMessage = "Your password need to be at least 6 characters!")]
         public string Password { get { return password; } set { this.password = value; } }
 
+        public string HashedPassword { get { return hashedPassword; } set { this.hashedPassword = value; } }
+
+        public string Salt { get { return salt; } set { this.salt = value; } }
+
         public DateTime JoinDate { get { return joinDate; } set { this.joinDate = value; } }
+
+        public int Id { get { return id; } set { id = value; } }
 
         public override string ToString()
         {

@@ -1,6 +1,7 @@
 ﻿@page
 @model WebAppGraphic.Pages.RegisterModel
 @{
+    ViewData["Title"] = "Register";
     Layout = "_LayoutLoginRegister";
 }
 
@@ -10,16 +11,16 @@
             <div class="card p-4 rounded">
                 <h2 class="text-center mb-4">Register</h2>
                 <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
                     <div class="form-group mb-3">
                         <label asp-for="RegistrationFormUser.Name" class="text-white">Name</label>
                         <input asp-for="RegistrationFormUser.Name" type="text" class="form-control rounded-pill" placeholder="Your name..." />
                         <span asp-validation-for="RegistrationFormUser.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group mb-3">
-                        <label asp-for="RegistrationFormUser.Username" class="text-white">Username</label>
-                        <input asp-for="RegistrationFormUser.Username" type="text" class="form-control rounded-pill" placeholder="Your username..." />
-                        <span asp-validation-for="RegistrationFormUser.Username" class="text-danger"></span>
+                        <label asp-for="RegistrationProfile.Username" class="text-white">Username</label>
+                        <input asp-for="RegistrationProfile.Username" type="text" class="form-control rounded-pill" placeholder="Your username..." />
+                        <span asp-validation-for="RegistrationProfile.Username" class="text-danger"></span>
                     </div>
                     <div class="form-group mb-3">
                         <label asp-for="RegistrationFormUser.Email" class="text-white">Email</label>
@@ -37,6 +38,7 @@
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                     <button type="submit" style="padding: 2px 20px 3px 20px; font-size: 20px" class="btn btn-primary rounded-pill mt-4 d-flex mx-auto">Register</button>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 </form>
                 <div class="text-center mt-3 text-white">
                     If you already have an account, login <a asp-page="/Login" id="redirectLogin" role="button">here.</a>

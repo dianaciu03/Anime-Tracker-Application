@@ -1,0 +1,31 @@
+﻿@page
+@model WebAppGraphic.Pages.ContentDetailsModel
+@{
+    ViewData["Title"] = "Content details";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null)
+    {
+        Layout = "_LayoutLogout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+
+<div class="content-details-container text-white">
+    <div class="text-center" style="padding-left: 5rem;">
+        <img src="@Model.Anime.ImageURL" style=" width: 380px; height: 520px; border: 1px solid black; box-shadow: 5px 10px 8px #888888;" />
+        <div style="padding-top: 1rem;">@Model.Anime.Name</div>
+        <div style="padding-top: 1rem;">@Model.Anime.SeasonAnime @Model.Anime.ReleaseYear</div>
+    </div>
+    <div>
+        <div class="text-white">Studio: @Model.Anime.Studio</div>
+        <div class="text-white">Number of episodes: @Model.Anime.NrEpisodes</div>
+        <p style="padding-top: 3rem;">Description:</p>
+        <p class="text-white">@Model.Anime.Description</p>
+    </div>
+    <div>
+        <p class="text-white">Leave a review:</p>
+    </div>
+</div>
