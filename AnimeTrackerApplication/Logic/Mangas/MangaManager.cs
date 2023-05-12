@@ -40,7 +40,7 @@ namespace Logic.Mangas
         {
             try
             {
-                if (mdv.IsNameValid(name) && mdv.IsCreatorValid(creator) && mdv.IsNrChaptersValid(nrChapters.ToString()) && mdv.IsYearValid(releaseYear.ToString()) && mdv.IsStatusValid(status.ToString()) && mdv.IsRatingValid(rating.ToString()) && mdv.IsDescriptionValid(description) && mdv.IsValidImageUrl(imageURL))
+                if (mdv.IsNameValid(name) && mdv.IsCreatorValid(creator) && mdv.IsNrChaptersValid(nrChapters.ToString()) && mdv.IsYearValid(releaseYear.ToString()) && mdv.IsStatusValid(status) && mdv.IsRatingValid(rating.ToString()) && mdv.IsDescriptionValid(description) && mdv.IsValidImageUrl(imageURL))
                 {
                     Content manga = new Manga(name, description, rating, releaseYear, imageURL, status, nrChapters, creator, genres);
                     _mangaDataHandler.AddManga((Manga)manga);
@@ -56,7 +56,7 @@ namespace Logic.Mangas
         {
             try
             {
-                if (mdv.IsNameValid(name) && mdv.IsCreatorValid(creator) && mdv.IsNrChaptersValid(nrChapters.ToString()) && mdv.IsYearValid(releaseYear.ToString()) && mdv.IsStatusValid(status.ToString()) && mdv.IsRatingValid(rating.ToString()) && mdv.IsDescriptionValid(description) && mdv.IsValidImageUrl(imageURL))
+                if (mdv.IsNameValid(name) && mdv.IsCreatorValid(creator) && mdv.IsNrChaptersValid(nrChapters.ToString()) && mdv.IsYearValid(releaseYear.ToString()) && mdv.IsStatusValid(status) && mdv.IsRatingValid(rating.ToString()) && mdv.IsDescriptionValid(description) && mdv.IsValidImageUrl(imageURL))
                 {
                     Content manga = new Manga(id, name, description, rating, releaseYear, imageURL, status, nrChapters, creator, genres);
                     _mangaDataHandler.UpdateManga((Manga)manga);
