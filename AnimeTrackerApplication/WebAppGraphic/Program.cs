@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddScoped<IUserManager, UserManager>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAnimeManager, AnimeManager>();
-builder.Services.AddSingleton<AnimeRepository, AnimeRepository>();
+builder.Services.AddSingleton<IAnimeRepository, AnimeRepository>();
 builder.Services.AddScoped<IMangaManager, MangaManager>();
 builder.Services.AddSingleton<IMangaRepository, MangaRepository>();
 builder.Services.AddScoped<ICharacterManager, CharacterManager>();

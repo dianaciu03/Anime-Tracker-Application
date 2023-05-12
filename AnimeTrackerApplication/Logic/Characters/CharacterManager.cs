@@ -11,32 +11,55 @@ namespace Logic.Characters
     public class CharacterManager : ICharacterManager
     {
         private readonly ICharacterRepository _characterDataHandler;
+        private CharacterDataValidator cdv;
 
         public CharacterManager(ICharacterRepository iCharacterRepository)
         {
             _characterDataHandler = iCharacterRepository;
+            cdv = new CharacterDataValidator();
         }
 
         public void AddCharacter(string name, string gender, string image, Anime anime, Manga manga)
         {
-            Character character = new Character(name, gender, image);
-            if (anime != null)
-                character.FromAnime = anime;
-            if (manga != null)
-                character.FromManga = manga;
+            try
+            {
+                if (cdv.IsNameValid(name) && cdv.IsValidImageUrl(image) && cdv.IsGenderValid(gender))
+                {
+                    Character character = new Character(name, gender, image);
+                    if (anime != null)
+                        character.FromAnime = anime;
+                    if (manga != null)
+                        character.FromManga = manga;
 
-            _characterDataHandler.AddCharacter(character);
+                    _characterDataHandler.AddCharacter(character);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public void UpdateCharacter(int id, string name, string gender, string image, Anime anime, Manga manga, int nrLikes, int nrDislikes)
         {
-            Character character = new Character(id, name, gender, image, nrLikes, nrDislikes);
-            if (anime != null)
-                character.FromAnime = anime;
-            if (manga != null)
-                character.FromManga = manga;
+            try
+            {
+                if (cdv.IsNameValid(name) && cdv.IsValidImageUrl(image) && cdv.IsGenderValid(gender))
+                {
+                    Character character = new Character(id, name, gender, image, nrLikes, nrDislikes);
+                    if (anime != null)
+                        character.FromAnime = anime;
+                    if (manga != null)
+                        character.FromManga = manga;
 
-            _characterDataHandler.UpdateCharacter(character);
+                    _characterDataHandler.UpdateCharacter(character);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<Character> GetAllCharacters()

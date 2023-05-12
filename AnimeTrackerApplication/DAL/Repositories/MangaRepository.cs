@@ -141,10 +141,10 @@ namespace DAL.Repositories
                         }
                         transaction.Commit();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
-                        throw new Exception($"Manga couldn't be added: {ex.Message}");
+                        throw new Exception($"Manga couldn't be added!");
                     }
                     conn.Close();
                 }
