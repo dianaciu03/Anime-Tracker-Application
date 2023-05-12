@@ -32,7 +32,7 @@ namespace WebAppGraphic.Pages
         public List<Anime> NewReleasesAnime()
         {
             List<Anime> animes = animeManager.GetAllAnime("ReleaseYear", false);
-            List<Anime> orderedAnime = animes.OrderByDescending(a => a.SeasonAnime).Take(12).ToList();
+            List<Anime> orderedAnime = animes.OrderByDescending(a => a.ReleaseYear).ThenByDescending(a => a.SeasonAnime).Take(12).ToList();
             return orderedAnime;
         }
 

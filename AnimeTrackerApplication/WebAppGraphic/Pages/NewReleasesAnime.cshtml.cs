@@ -12,7 +12,7 @@ namespace WebAppGraphic.Pages
         public List<Anime> TopRatedAnime()
         {
             List<Anime> animes = animeManager.GetAllAnime("ReleaseYear", false);
-            List<Anime> orderedAnime = animes.OrderByDescending(a => a.SeasonAnime).ToList();
+            List<Anime> orderedAnime = animes.OrderByDescending(a => a.ReleaseYear).ThenByDescending(a => a.SeasonAnime).ToList();
             return orderedAnime;
         }
 
