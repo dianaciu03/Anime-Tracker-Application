@@ -107,7 +107,7 @@
 }
 
 .popup-content {
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -131,6 +131,14 @@
     justify-content: center;
     margin-top: 2rem;
     font-size: 18px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 .btn-content-details {

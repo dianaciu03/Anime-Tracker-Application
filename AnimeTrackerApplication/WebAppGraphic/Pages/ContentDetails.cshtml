@@ -34,6 +34,7 @@
 <!-- Popup screen -->
 <div id="popupScreen" class="popup">
     <div class="popup-content bg-dark text-white">
+        <span id="closeBtn" class="close-btn">&times;</span> <!-- Close button (X) -->
         <h3 style="margin-bottom: 2rem;">Pick a list</h3>
         <ul class="list-group">
             <li class="list-group-item bg-dark text-white">
@@ -65,6 +66,10 @@
 
                 openPopupBtn.addEventListener('click', function () {
                     popupScreen.style.display = 'block';
+                });
+
+                closeBtn.addEventListener('click', function () {
+                    popupScreen.style.display = 'none';
                 });
 
                 submitBtn.addEventListener('click', function () {
