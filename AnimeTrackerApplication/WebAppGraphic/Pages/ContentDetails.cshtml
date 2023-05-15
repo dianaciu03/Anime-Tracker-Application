@@ -27,5 +27,51 @@
     </div>
     <div>
         <p class="text-white">Leave a review:</p>
+        <button id="openPopupBtn" class="btn btn-content-details">Add to List</button>
     </div>
 </div>
+
+<!-- Popup screen -->
+<div id="popupScreen" class="popup">
+    <div class="popup-content bg-dark text-white">
+        <h3 style="margin-bottom: 2rem;">Pick a list</h3>
+        <ul class="list-group">
+            <li class="list-group-item bg-dark text-white">
+                <input type="checkbox" id="list1" />
+                <label for="list1">Want to Watch</label>
+            </li>
+            <li class="list-group-item bg-dark text-white">
+                <input type="checkbox" id="list2" />
+                <label for="list2">Watched</label>
+            </li>
+            <li class="list-group-item bg-dark text-white">
+                <input type="checkbox" id="list3" />
+                <label for="list3">Dropped</label>
+            </li>
+        </ul>
+        <div class="submit-btn-container">
+            <button id="submitBtn" class="btn btn-content-details">Submit</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <text>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const openPopupBtn = document.getElementById('openPopupBtn');
+                const popupScreen = document.getElementById('popupScreen');
+                const submitBtn = document.getElementById('submitBtn');
+
+                openPopupBtn.addEventListener('click', function () {
+                    popupScreen.style.display = 'block';
+                });
+
+                submitBtn.addEventListener('click', function () {
+                    popupScreen.style.display = 'none';
+                });
+            });
+        </script>
+    </text>
+}
+
