@@ -8,5 +8,6 @@ namespace DAL.Repositories
 {
     public class CustomListRepository
     {
+
     }
 }

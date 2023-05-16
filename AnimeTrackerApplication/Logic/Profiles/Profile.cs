@@ -49,13 +49,16 @@ namespace Logic.Profiles
             return customLists;
         }
 
-        //public CustomList GetWatchedAnimeCustomList(int profileId, string listTitle)
-        //{
-        //    return 
-        //}
-
-        public int CalculateTotalMinutesAnime(CustomList watchedAnime)
+        public int CalculateTotalMinutesAnime()
         {
+            CustomList watchedAnime = null;
+            foreach(CustomList list in customLists)
+            {
+                if(list.Name == "Watched")
+                {
+                    watchedAnime = list;
+                }
+            }
             int totalMinutes = 0;
             foreach (Anime anime in watchedAnime.GetAllContent())
             {
