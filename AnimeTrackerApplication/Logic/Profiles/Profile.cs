@@ -69,7 +69,8 @@ namespace Logic.Profiles
             int totalHours = totalMinutes/60;
             int totalDays = totalHours/24;
             int totalMonths = Convert.ToInt32(totalDays / 30.45);
-            return totalMonths / 12;
+            int years = totalMonths / 12;
+            return years;
         }
 
         public int CalculateAnimeMonths(int totalMinutes)
@@ -77,25 +78,29 @@ namespace Logic.Profiles
             int totalHours = totalMinutes / 60;
             int totalDays = totalHours / 24;
             int totalMonths = Convert.ToInt32(totalDays / 30.45);
-            return totalMonths % 12;
+            int remainingMonths = totalMonths % 12;
+            return remainingMonths;
         }
 
         public int CalculateAnimeDays(int totalMinutes)
         {
             int totalHours = totalMinutes / 60;
             int totalDays = totalHours / 24;
-            return totalDays % 30;
+            int remainingDays = totalDays % 30;
+            return remainingDays;
         }
 
         public int CalculateAnimeHours(int totalMinutes)
         {
             int totalHours = totalMinutes / 60;
-            return totalHours % 24;
+            int remainingHours = totalHours % 24;
+            return remainingHours;
         }
 
         public int CalculateAnimeMinutes(int totalMinutes)
         {
-            return totalMinutes % 60;
+            int remainingMinutes = totalMinutes % 60;
+            return remainingMinutes;
         }
     }
 }
