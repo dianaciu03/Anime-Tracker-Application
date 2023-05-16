@@ -152,9 +152,13 @@
             this.tbxCharacterName = new System.Windows.Forms.TextBox();
             this.labelCharacterName = new System.Windows.Forms.Label();
             this.tabCreateAccount = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -174,7 +178,6 @@
             this.groupBoxSortCharacters.SuspendLayout();
             this.groupBoxSearchCharacters.SuspendLayout();
             this.tabCreateAccount.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -1531,40 +1534,81 @@
             // tabCreateAccount
             // 
             this.tabCreateAccount.BackColor = System.Drawing.Color.Thistle;
-            this.tabCreateAccount.Controls.Add(this.groupBox1);
+            this.tabCreateAccount.Controls.Add(this.label5);
+            this.tabCreateAccount.Controls.Add(this.label4);
+            this.tabCreateAccount.Controls.Add(this.label3);
+            this.tabCreateAccount.Controls.Add(this.label2);
+            this.tabCreateAccount.Controls.Add(this.label1);
+            this.tabCreateAccount.Controls.Add(this.button1);
+            this.tabCreateAccount.Controls.Add(this.textBox1);
             this.tabCreateAccount.Location = new System.Drawing.Point(4, 46);
             this.tabCreateAccount.Name = "tabCreateAccount";
             this.tabCreateAccount.Padding = new System.Windows.Forms.Padding(3);
             this.tabCreateAccount.Size = new System.Drawing.Size(1797, 852);
             this.tabCreateAccount.TabIndex = 3;
-            this.tabCreateAccount.Text = "Create account";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 17);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(527, 306);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Create account for maintainer";
+            this.tabCreateAccount.Text = "Accounts";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(78, 44);
+            this.textBox1.Location = new System.Drawing.Point(77, 52);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(431, 32);
-            this.textBox1.TabIndex = 5;
+            this.textBox1.Size = new System.Drawing.Size(138, 32);
+            this.textBox1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(77, 102);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(138, 43);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 47);
+            this.label1.Location = new System.Drawing.Point(306, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 26);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Name:";
+            this.label1.Size = new System.Drawing.Size(115, 26);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "<minutes>";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(306, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 26);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "<hours>";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(306, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 26);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "<days>";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(306, 203);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 26);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "<months>";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(306, 254);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 26);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "<years>";
             // 
             // MainPage
             // 
@@ -1604,8 +1648,7 @@
             this.groupBoxSearchCharacters.ResumeLayout(false);
             this.groupBoxSearchCharacters.PerformLayout();
             this.tabCreateAccount.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.tabCreateAccount.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1647,9 +1690,6 @@
         private TabPage tabManga;
         private TabPage tabCharacters;
         private TabPage tabCreateAccount;
-        private GroupBox groupBox1;
-        private TextBox textBox1;
-        private Label label1;
         private Button btnRemoveAnime;
         private GroupBox BroupBoxSortAnime;
         private RadioButton rbtnAnimeNameAsc;
@@ -1739,5 +1779,12 @@
         private RadioButton rbtnNrDislikesAsc;
         private RadioButton rbtnNrLikesDesc;
         private RadioButton rbtnNrLikesAsc;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private Button button1;
+        private TextBox textBox1;
     }
 }

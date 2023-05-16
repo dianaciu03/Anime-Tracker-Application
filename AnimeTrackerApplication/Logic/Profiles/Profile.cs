@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.Animes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -46,6 +47,55 @@ namespace Logic.Profiles
         public List<CustomList> GetAllCustomLists()
         {
             return customLists;
+        }
+
+        //public CustomList GetWatchedAnimeCustomList(int profileId, string listTitle)
+        //{
+        //    return 
+        //}
+
+        public int CalculateTotalMinutesAnime(CustomList watchedAnime)
+        {
+            int totalMinutes = 0;
+            foreach (Anime anime in watchedAnime.GetAllContent())
+            {
+                totalMinutes += (anime.NrEpisodes * 24);
+            }
+            return totalMinutes;
+        }
+
+        public int CalculateAnimeYears(int totalMinutes)
+        {
+            int totalHours = totalMinutes/60;
+            int totalDays = totalHours/24;
+            int totalMonths = Convert.ToInt32(totalDays / 30.45);
+            return totalMonths / 12;
+        }
+
+        public int CalculateAnimeMonths(int totalMinutes)
+        {
+            int totalHours = totalMinutes / 60;
+            int totalDays = totalHours / 24;
+            int totalMonths = Convert.ToInt32(totalDays / 30.45);
+            return totalMonths % 12;
+        }
+
+        public int CalculateAnimeDays(int totalMinutes)
+        {
+            int totalHours = totalMinutes / 60;
+            int totalDays = totalHours / 24;
+            return totalDays % 30;
+        }
+
+        public int CalculateAnimeHours(int totalMinutes)
+        {
+            int totalHours = totalMinutes / 60;
+            return totalHours % 24;
+        }
+
+        public int CalculateAnimeMinutes(int totalMinutes)
+        {
+            return totalMinutes % 60;
         }
     }
 }

@@ -19,6 +19,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Xml.Linq;
 using System.Globalization;
+using Logic.Profiles;
 
 namespace WinFormsGraphic
 {
@@ -484,5 +485,15 @@ namespace WinFormsGraphic
             tbxMangaCharacterSearch.Text = string.Empty;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Profile profile = new Profile();
+            int totalMinutes = Convert.ToInt32(textBox1.Text);
+            label1.Text = profile.CalculateAnimeMinutes(totalMinutes).ToString() + "minutes";
+            label2.Text = profile.CalculateAnimeHours(totalMinutes).ToString() + "hours";
+            label3.Text = profile.CalculateAnimeDays(totalMinutes).ToString() + "days";
+            label4.Text = profile.CalculateAnimeMonths(totalMinutes).ToString() + "months";
+            label5.Text = profile.CalculateAnimeYears(totalMinutes).ToString() + "years";
+        }
     }
 }
