@@ -78,5 +78,72 @@ namespace DAL.Repositories
                 throw new Exception($"An error occurred");
             }
         }
+
+        public void DeleteContentFromList(object content, int profileId, string contentType)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+                    try
+                    {
+                        switch (contentType)
+                        {
+                            case "Anime":
+                                string query1 = @"DELETE FROM List_Anime INNER JOIN CustomList 
+                                          ON List_Anime.ListId = CustomList.ListId 
+                                          WHERE ProfileId=@ProfileId AND AnimeId=@AnimeId";
+                                using (SqlCommand animeCommand = new SqlCommand(query1, conn, transaction))
+                                {
+                                    animeCommand.Parameters.AddWithValue("@ProfileId", profileId);
+                                    Anime anime = (Anime)content;
+                                    animeCommand.Parameters.AddWithValue("@AnimeId", anime.Id);
+                                    animeCommand.ExecuteNonQuery();
+                                }
+                                break;
+
+                            case "Manga":
+                                string query2 = @"DELETE FROM List_Manga INNER JOIN CustomList 
+                                          ON List_Manga.ListId = CustomList.ListId 
+                                          WHERE ProfileId=@ProfileId AND MangaId=@MangaId";
+                                using (SqlCommand mangaCommand = new SqlCommand(query2, conn, transaction))
+                                {
+                                    mangaCommand.Parameters.AddWithValue("@ProfileId", profileId);
+                                    Manga manga = (Manga)content;
+                                    mangaCommand.Parameters.AddWithValue("@MangaId", manga.Id);
+                                    mangaCommand.ExecuteNonQuery();
+                                }
+                                break;
+
+                            case "Character":
+                                string query3 = @"DELETE FROM List_Character INNER JOIN CustomList 
+                                          ON List_Character.ListId = CustomList.ListId 
+                                          WHERE ProfileId=@ProfileId AND CharacterId=@CharacterId";
+                                using (SqlCommand characterCommand = new SqlCommand(query3, conn, transaction))
+                                {
+                                    characterCommand.Parameters.AddWithValue("@ProfileId", profileId);
+                                    Character character = (Character)content;
+                                    characterCommand.Parameters.AddWithValue("@MangaId", character.Id);
+                                    characterCommand.ExecuteNonQuery();
+                                }
+                                break;
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"An error occurred");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred");
+            }
+        }
     }
 }
