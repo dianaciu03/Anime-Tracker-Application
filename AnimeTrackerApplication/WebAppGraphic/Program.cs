@@ -2,6 +2,7 @@ using DAL.Repositories;
 using Logic.Animes;
 using Logic.Characters;
 using Logic.Mangas;
+using Logic.Profiles;
 using Logic.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -32,6 +33,8 @@ builder.Services.AddScoped<IMangaManager, MangaManager>();
 builder.Services.AddSingleton<IMangaRepository, MangaRepository>();
 builder.Services.AddScoped<ICharacterManager, CharacterManager>();
 builder.Services.AddSingleton<ICharacterRepository, CharacterRepository>();
+builder.Services.AddScoped<IListManager, ListManager>();
+builder.Services.AddSingleton<ICustomListRepository, CustomListRepository>();
 
 var app = builder.Build();
 

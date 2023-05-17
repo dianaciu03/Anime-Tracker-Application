@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace Logic.Profiles
     {
         private int id;
         private string username;
-        private List<CustomList> customLists = new List<CustomList>();
+        private List<CustomList> customLists = new List<CustomList>(); //customlist is an object
 
         public Profile(string username)
         {
@@ -47,6 +48,16 @@ namespace Logic.Profiles
         public List<CustomList> GetAllCustomLists()
         {
             return customLists;
+        }
+
+        public CustomList GetList(string name, string objtype)
+        {
+            foreach(CustomList l in customLists)
+            {
+                if (l.Name == name && l.ContentType == objtype)
+                    return l;
+            }
+            return null;
         }
 
         public int CalculateTotalMinutesAnime()

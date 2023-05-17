@@ -12,12 +12,14 @@ namespace WebAppGraphic.Pages
         private readonly ILogger<ContentDetailsModel> _logger;
         private IAnimeManager animeManager;
         private IUserManager userManager;
+        private IListManager listManager;
 
-        public ContentDetailsModel(ILogger<ContentDetailsModel> logger, IAnimeManager animeManager, IUserManager userManager)
+        public ContentDetailsModel(ILogger<ContentDetailsModel> logger, IAnimeManager animeManager, IUserManager userManager, IListManager customListManager)
         {
             _logger = logger;
             this.animeManager = animeManager;
             this.userManager = userManager;
+            this.listManager = customListManager;
         }
 
         [BindProperty]
@@ -42,7 +44,7 @@ namespace WebAppGraphic.Pages
 
         public void OnGet(int id)
         {
-                Anime = animeManager.GetAnimeById(id);
+            Anime = animeManager.GetAnimeById(id);
         }
 
         public int? IsUserLoggedIn()
@@ -70,7 +72,8 @@ namespace WebAppGraphic.Pages
                 {
                     foreach (string option in selectedOptions)
                     {
-
+                        CustomList temp = GetProfile().GetList(option, "Anime");
+                        listManager.AddContentToCustomList(Anime, temp);
                     }
                 }
 

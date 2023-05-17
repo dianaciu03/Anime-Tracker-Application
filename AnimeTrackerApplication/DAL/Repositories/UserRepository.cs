@@ -346,6 +346,7 @@ namespace DAL.Repositories
                                                 Anime anime = ar.GetAnimeById(animeId);
                                                 custom.AddContent(anime);
                                             }
+                                            readerAnime.Close();
                                         }
                                     }
                                     break;
@@ -370,6 +371,7 @@ namespace DAL.Repositories
                                                 Manga manga = mr.GetMangaById(mangaId);
                                                 custom.AddContent(manga);
                                             }
+                                            readerManga.Close();
                                         }
                                     }
                                     break;
@@ -394,6 +396,7 @@ namespace DAL.Repositories
                                                 Character character = cr.GetCharacterById(characterId);
                                                 custom.AddContent(character);
                                             }
+                                            readerCharacters.Close();
                                         }
                                     }
                                     break;

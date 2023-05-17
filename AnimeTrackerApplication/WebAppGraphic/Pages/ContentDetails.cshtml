@@ -47,16 +47,18 @@
                         <form method="post">
                             <ul class="list-group">
                                 @{
-                                Profile profile = Model.GetProfile();
+                                    Profile profile = Model.GetProfile();
                                 
-                                foreach (CustomList list in profile.GetAllCustomLists())
-                                {
-                                    string listName = list.Name;
-                                        <li class="list-group-item bg-dark text-white">
-                                            <input type="checkbox" name="options[]" value="@listName" />
-                                            <label>@listName</label>
-                                        </li>
-                                }
+                                    foreach (CustomList list in profile.GetAllCustomLists())
+                                    {
+                                        if(list.ContentType == "Anime") {
+                                                string listName = list.Name;
+                                                <li class="list-group-item bg-dark text-white">
+                                                    <input type="checkbox" name="options[]" value="@listName" />
+                                                    <label>@listName</label>
+                                                </li>
+                                        }
+                                    }
                                 }
                             </ul>
                             <div class="modal-footer">
