@@ -1,4 +1,5 @@
 ﻿@page
+@using Logic.Animes
 @using Logic.Profiles
 @model WebAppGraphic.Pages.ContentDetailsModel
 @{
@@ -48,15 +49,29 @@
                             <ul class="list-group">
                                 @{
                                     Profile profile = Model.GetProfile();
-                                
                                     foreach (CustomList list in profile.GetAllCustomLists())
                                     {
                                         if(list.ContentType == "Anime") {
-                                                string listName = list.Name;
-                                                <li class="list-group-item bg-dark text-white">
-                                                    <input type="checkbox" name="options[]" value="@listName" />
-                                                    <label>@listName</label>
-                                                </li>
+                                            @foreach(object content in list.GetAllContent()) 
+                                            {
+                                                Anime tempAnime = (Anime)content;
+                                                if (tempAnime.Id == Model.Anime.Id)
+                                                {
+                                                    string listName = list.Name;
+                                                    <li class="list-group-item bg-dark text-white">
+                                                        <input type="checkbox" name="options[]" value="@listName" checked />
+                                                        <label>@listName</label>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    string listName = list.Name;
+                                                    <li class="list-group-item bg-dark text-white">
+                                                        <input type="checkbox" name="options[]" value="@listName" />
+                                                        <label>@listName</label>
+                                                    </li>
+                                                }
+                                            } 
                                         }
                                     }
                                 }
