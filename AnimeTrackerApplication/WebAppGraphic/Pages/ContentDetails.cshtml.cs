@@ -38,7 +38,7 @@ namespace WebAppGraphic.Pages
             
         }
 
-        public CustomList CList { get; set; }
+        public CustomList CList { get; private set; }
 
         public void OnGet(int id)
         {
@@ -64,16 +64,6 @@ namespace WebAppGraphic.Pages
             else if(action == "Submit")
             {
                 OnGet(Anime.Id);
-                string[] selectedOptions = Request.Form["options[]"];
-
-                if (selectedOptions.Count() > 0)
-                {
-                    foreach (string option in selectedOptions)
-                    {
-
-                    }
-                }
-
                 return Page();
             }
             return Page();

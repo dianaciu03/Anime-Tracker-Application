@@ -48,12 +48,14 @@
                             <ul class="list-group">
                                 @{
                                 Profile profile = Model.GetProfile();
-                                
+                                int boxnr = 0;
                                 foreach (CustomList list in profile.GetAllCustomLists())
                                 {
+                                    boxnr++;
+                                    string boxname = "option" + boxnr;
                                     string listName = list.Name;
                                         <li class="list-group-item bg-dark text-white">
-                                            <input type="checkbox" name="options[]" value="@listName" />
+                                            <input type="checkbox" name="options[]" />
                                             <label>@listName</label>
                                         </li>
                                 }
@@ -75,7 +77,7 @@
             <div class="modal-dialog">
                 <div class="modal-content bg-dark text-white">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="myModalLabel">You need to be logged in to access this feature!</h3>
+                        <h3 class="modal-title" id="myModalLabel">Pls login :(</h3>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-footer">
