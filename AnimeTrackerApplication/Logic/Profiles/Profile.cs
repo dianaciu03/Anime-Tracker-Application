@@ -40,6 +40,8 @@ namespace Logic.Profiles
         [Required(ErrorMessage = "A username is required")]
         public string Username { get { return username; } set { this.username = value; } }
 
+        public int Id { get { return id; } set { this.id = value; } }
+
         public void AddCustomList(CustomList list)
         {
             customLists.Add(list);

@@ -51,27 +51,40 @@
                                     Profile profile = Model.GetProfile();
                                     foreach (CustomList list in profile.GetAllCustomLists())
                                     {
-                                        if(list.ContentType == "Anime") {
-                                            @foreach(object content in list.GetAllContent()) 
+                                        if(list.ContentType == "Anime") 
+                                        {
+                                            if(list.GetAllContent().Count() == 0) 
                                             {
-                                                Anime tempAnime = (Anime)content;
-                                                if (tempAnime.Id == Model.Anime.Id)
+                                                string listName = list.Name;
+                                                <li class="list-group-item bg-dark text-white">
+                                                    <input type="checkbox" name="options[]" value="@listName" />
+                                                    <label>@listName</label>
+                                                </li>
+                                            }
+                                            else 
+                                            {
+                                                @foreach (object content in list.GetAllContent())
                                                 {
-                                                    string listName = list.Name;
-                                                    <li class="list-group-item bg-dark text-white">
-                                                        <input type="checkbox" name="options[]" value="@listName" checked />
-                                                        <label>@listName</label>
-                                                    </li>
+                                                    Anime tempAnime = (Anime)content;
+                                                    if (tempAnime.Id == Model.Anime.Id)
+                                                    {
+                                                        string listName = list.Name;
+                                                        <li class="list-group-item bg-dark text-white">
+                                                            <input type="checkbox" name="options[]" value="@listName" checked />
+                                                            <label>@listName</label>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        string listName = list.Name;
+                                                        <li class="list-group-item bg-dark text-white">
+                                                            <input type="checkbox" name="options[]" value="@listName" />
+                                                            <label>@listName</label>
+                                                        </li>
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    string listName = list.Name;
-                                                    <li class="list-group-item bg-dark text-white">
-                                                        <input type="checkbox" name="options[]" value="@listName" />
-                                                        <label>@listName</label>
-                                                    </li>
-                                                }
-                                            } 
+                                            }
+                                             
                                         }
                                     }
                                 }

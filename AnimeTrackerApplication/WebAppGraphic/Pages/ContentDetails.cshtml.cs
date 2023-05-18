@@ -37,7 +37,6 @@ namespace WebAppGraphic.Pages
             {
                 return null;
             }
-            
         }
 
         public CustomList CList { get; set; }
@@ -67,7 +66,7 @@ namespace WebAppGraphic.Pages
             {
                 OnGet(Anime.Id);
                 string[] selectedOptions = Request.Form["options[]"];
-
+                listManager.DeleteContentFromList(Anime, listManager.GetAnimeListByProfileId(GetProfile().Id)); //remove previously ticked lists
                 if (selectedOptions.Count() > 0)
                 {
                     foreach (string option in selectedOptions)

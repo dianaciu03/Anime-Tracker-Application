@@ -38,15 +38,15 @@ namespace WebAppGraphic.Pages
                 if (user != null && user.HashedPassword == Security.CreateHash(user.Salt, UserPassword))
                 {
                     HttpContext.Session.SetInt32("userId", user.Id);
-                    //ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-                    //new Claim[]
-                    //{
-                    //    new Claim("UserId", user.Id.ToString()),
-                    //    //new Claim(ClaimTypes.Name, user.Profile.Username),
-                    //    new Claim(ClaimTypes.Role, user.GetType().ToString())
-                    //}, CookieAuthenticationDefaults.AuthenticationScheme);
-                    //ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                    //await HttpContext.SignInAsync(claimsPrincipal);
+                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                    new Claim[]
+                    {
+                        new Claim("UserId", user.Id.ToString()),
+                        //new Claim(ClaimTypes.Name, user.Profile.Username),
+                        new Claim(ClaimTypes.Role, user.GetType().ToString())
+                    }, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
                     return RedirectToPage("Profile");
                 }
                 else
