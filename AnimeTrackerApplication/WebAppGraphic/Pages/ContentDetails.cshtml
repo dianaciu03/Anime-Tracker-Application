@@ -48,6 +48,7 @@
                         <form method="post">
                             <ul class="list-group">
                                 @{
+                                    //For each list, if anime is in list, make it checked, otherwise unchecked
                                     Profile profile = Model.GetProfile();
                                     foreach (CustomList list in profile.GetAllCustomLists())
                                     {
@@ -63,25 +64,30 @@
                                             }
                                             else 
                                             {
+                                                bool wasFound = false;
                                                 @foreach (object content in list.GetAllContent())
                                                 {
-                                                    Anime tempAnime = (Anime)content;
-                                                    if (tempAnime.Id == Model.Anime.Id)
+                                                    if (((Anime)content).Id == Model.Anime.Id)
                                                     {
-                                                        string listName = list.Name;
-                                                        <li class="list-group-item bg-dark text-white">
-                                                            <input type="checkbox" name="options[]" value="@listName" checked />
-                                                            <label>@listName</label>
-                                                        </li>
+                                                        wasFound = true;
+                                                        break;
                                                     }
-                                                    else
-                                                    {
-                                                        string listName = list.Name;
-                                                        <li class="list-group-item bg-dark text-white">
-                                                            <input type="checkbox" name="options[]" value="@listName" />
-                                                            <label>@listName</label>
-                                                        </li>
-                                                    }
+                                                }
+                                                if(wasFound)
+                                                {
+                                                    string listName = list.Name;
+                                                    <li class="list-group-item bg-dark text-white">
+                                                        <input type="checkbox" name="options[]" value="@listName" checked />
+                                                        <label>@listName</label>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    string listName = list.Name;
+                                                    <li class="list-group-item bg-dark text-white">
+                                                        <input type="checkbox" name="options[]" value="@listName" />
+                                                        <label>@listName</label>
+                                                    </li>
                                                 }
                                             }
                                              

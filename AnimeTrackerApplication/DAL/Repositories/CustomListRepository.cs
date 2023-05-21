@@ -160,7 +160,7 @@ namespace DAL.Repositories
                             int listId = reader.GetInt32(reader.GetOrdinal("ListId"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
                             string contentType = reader.GetString(reader.GetOrdinal("ContentType"));
-                            CustomList animeList = new CustomList(id, name, contentType);
+                            CustomList animeList = new CustomList(listId, name, contentType);
                             animeLists.Add(animeList);
                         }
                         reader.Close();

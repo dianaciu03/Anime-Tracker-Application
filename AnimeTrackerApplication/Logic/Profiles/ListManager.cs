@@ -30,8 +30,10 @@ namespace Logic.Profiles
 
         public void DeleteContentFromList(object content, List<CustomList> customLists)
         {
-            foreach(CustomList l in customLists)
+            foreach (CustomList l in customLists)
+            {
                 _listDataHandler.DeleteContentFromList(content, l.Id, l.ContentType);
+            }
         }
 
         public List<CustomList> GetAnimeListByProfileId(int id)
