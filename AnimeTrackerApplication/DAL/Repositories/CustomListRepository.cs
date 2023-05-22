@@ -81,7 +81,7 @@ namespace DAL.Repositories
         }
 
         public void DeleteContentFromList(object content, int listId, string contentType)
-        {//is not deleting content from list
+        {
             try
             {
                 using (SqlConnection conn = new SqlConnection(Connection))
@@ -173,6 +173,40 @@ namespace DAL.Repositories
                 throw new Exception("There were issues while trying to retrieve the anime lists!");
             }
             return animeLists;
+        }
+
+        public List<CustomList> GetMangaListByProfileId(int id)
+        {
+            List<CustomList> mangaLists = new List<CustomList>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM CustomList WHERE ProfileId=@ProfileId AND ContentType='Manga'";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@ProfileId", id);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int listId = reader.GetInt32(reader.GetOrdinal("ListId"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string contentType = reader.GetString(reader.GetOrdinal("ContentType"));
+                            CustomList mangaList = new CustomList(listId, name, contentType);
+                            mangaLists.Add(mangaList);
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the manga lists!");
+            }
+            return mangaLists;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace WebAppGraphic.Pages
     {
         private static IMangaManager mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
 
-        public List<Manga> TopRatedManga()
+        public List<Manga> NewReleasesManga()
         {
             List<Manga> mangas = mangaManager.GetAllManga("ReleaseYear", false);
             return mangas;

@@ -5,5 +5,6 @@
         void AddContentToCustomList(object content, CustomList customList);
         void DeleteContentFromList(object content, List<CustomList> customList);
         List<CustomList> GetAnimeListByProfileId(int id);
+        List<CustomList> GetMangaListByProfileId(int id);
     }
 }

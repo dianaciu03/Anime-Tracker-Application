@@ -1,34 +1,26 @@
-using Logic.Animes;
+using Logic.Mangas;
 using Logic.Profiles;
 using Logic.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Identity.Client;
 
 namespace WebAppGraphic.Pages
 {
-    public class ContentDetailsModel : PageModel
+    public class ContentDetailsMangaModel : PageModel
     {
-        private readonly ILogger<ContentDetailsModel> _logger;
-        private IAnimeManager animeManager;
+        private IMangaManager mangaManager;
         private IUserManager userManager;
         private IListManager listManager;
 
-        public ContentDetailsModel(ILogger<ContentDetailsModel> logger, IAnimeManager animeManager, IUserManager userManager, IListManager customListManager)
+        public ContentDetailsMangaModel(IMangaManager mangaManager, IUserManager userManager, IListManager customListManager)
         {
-            _logger = logger;
-            this.animeManager = animeManager;
+            this.mangaManager = mangaManager;
             this.userManager = userManager;
             this.listManager = customListManager;
         }
 
         [BindProperty]
-        public Anime Anime { get; set; }
-
-        public List<CustomList> GetAllAnimeLists()
-        {
-            return listManager.GetAnimeListByProfileId(GetProfile().Id);
-        }
+        public Manga Manga { get; set; }
 
         public Profile GetProfile()
         {
@@ -46,38 +38,45 @@ namespace WebAppGraphic.Pages
 
         public CustomList CList { get; set; }
 
+        public List<CustomList> GetAllMangaLists()
+        {
+            return listManager.GetMangaListByProfileId(GetProfile().Id);
+        }
+
         public void OnGet(int id)
         {
-            Anime = animeManager.GetAnimeById(id);
+            Manga = mangaManager.GetMangaById(id);
         }
 
         public int? IsUserLoggedIn()
         {
             int? id = HttpContext.Session.GetInt32("userId");
-            if(id!= null) {
+            if (id != null)
+            {
                 return id;
             }
-            else {
+            else
+            {
                 return null;
             }
         }
         public IActionResult OnPost(string action)
         {
-            if(action == "Login")
+            if (action == "Login")
             {
                 return RedirectToPage("Login");
             }
-            else if(action == "Submit")
+            else if (action == "Submit")
             {
-                OnGet(Anime.Id);
+                OnGet(Manga.Id);
                 string[] selectedOptions = Request.Form["options[]"];
-                listManager.DeleteContentFromList(Anime, listManager.GetAnimeListByProfileId(GetProfile().Id)); //remove previously ticked lists
+                listManager.DeleteContentFromList(Manga, listManager.GetMangaListByProfileId(GetProfile().Id)); //remove previously ticked lists
                 if (selectedOptions.Count() > 0)
                 {
                     foreach (string option in selectedOptions)
                     {
-                        CustomList temp = GetProfile().GetList(option, "Anime");
-                        listManager.AddContentToCustomList(Anime, temp);
+                        CustomList temp = GetProfile().GetList(option, "Manga");
+                        listManager.AddContentToCustomList(Manga, temp);
                     }
                 }
 

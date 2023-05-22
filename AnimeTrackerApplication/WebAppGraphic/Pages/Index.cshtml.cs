@@ -14,8 +14,6 @@ namespace WebAppGraphic.Pages
         private readonly ILogger<IndexModel> _logger;
         private IAnimeManager animeManager;
         private IMangaManager mangaManager;
-        //private static ICharacterManager characterManager = CharacterManagerFactory.CreateCharacterManager(CharacterRepositoryFactory.CreateCharacterRepository());
-        //userManager = UserManagerFactory.CreateUserManager(UserRepositoryFactory.CreateUserRepository());
 
         public IndexModel(ILogger<IndexModel> logger, IAnimeManager animeManager, IMangaManager mangaManager)
         {
