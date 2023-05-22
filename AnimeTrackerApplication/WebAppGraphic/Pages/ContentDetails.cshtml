@@ -24,6 +24,7 @@
     <div>
         <div class="text-white">Studio: @Model.Anime.Studio</div>
         <div class="text-white">Number of episodes: @Model.Anime.NrEpisodes</div>
+        <div class="text-white">Genres: @Model.Anime.GetGenresString()</div>
         <p style="padding-top: 3rem;">Description:</p>
         <p class="text-white">@Model.Anime.Description</p>
     </div>

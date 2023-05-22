@@ -61,6 +61,12 @@ namespace Logic.Users
 
         public int Id { get { return id; } set { id = value; } }
 
+        public string JoinDateParsed()
+        {
+            string formattedDate = joinDate.ToString("d MMMM yyyy");
+            return formattedDate;
+        }
+
         public override string ToString()
         {
             return $"{this.Name}";

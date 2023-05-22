@@ -61,6 +61,12 @@ namespace Logic.Contents
             return genres;
         }
 
+        public string GetGenresString()
+        {
+            string genresString = string.Join(", ", genres.Select(genre => genre.ToString()));
+            return genresString;
+        }
+
         public void AddGenre(Genre genre)
         {
             genres.Add(genre);

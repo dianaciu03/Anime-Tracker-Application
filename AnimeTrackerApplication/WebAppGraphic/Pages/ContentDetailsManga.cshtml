@@ -24,6 +24,7 @@
     <div>
         <div class="text-white">Studio: @Model.Manga.Creator</div>
         <div class="text-white">Number of chapters: @Model.Manga.NrChapters</div>
+        <div class="text-white">Genres: @Model.Manga.GetGenresString()</div>
         <p style="padding-top: 3rem;">Description:</p>
         <p class="text-white">@Model.Manga.Description</p>
     </div>
