@@ -1,4 +1,5 @@
 ﻿using Logic.Animes;
+using Logic.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,7 @@ namespace Logic.Profiles
         private int id;
         private string username;
         private List<CustomList> customLists = new List<CustomList>(); //customlist is an object
+        private List<Genre> preferredGenres = new List<Genre>();
 
         public Profile(string username)
         {
@@ -50,6 +52,21 @@ namespace Logic.Profiles
         public List<CustomList> GetAllCustomLists()
         {
             return customLists;
+        }
+
+        public void AddGenre(Genre gerne)
+        {
+            preferredGenres.Add(gerne);
+        }
+
+        public void RemoveGenre(Genre gerne)
+        {
+            preferredGenres.Remove(gerne);
+        }
+
+        public List<Genre> GetAllPreferredGenres()
+        {
+            return preferredGenres;
         }
 
         public CustomList GetList(string name, string objtype)

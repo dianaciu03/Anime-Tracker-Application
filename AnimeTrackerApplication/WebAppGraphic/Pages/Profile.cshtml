@@ -1,6 +1,7 @@
 ﻿@page
 @using Logic.Animes
 @using Logic.Characters
+@using Logic.Enums
 @using Logic.Mangas
 @using Logic.Profiles
 @model WebAppGraphic.Pages.ProfileModel
@@ -13,6 +14,7 @@
     <div class="profile-header">
         <label class="username" asp-for="CurrentUser.Profile.Username">@Model.CurrentUser.Profile.Username</label>
         <p class="join-date" asp-for="CurrentUser.JoinDate">Joined: @Model.CurrentUser.JoinDateParsed()</p>
+        <button id="openPopupBtn" class="btn btn-content-details" data-bs-toggle="modal" data-bs-target="#myModal">Preferred genres</button>
     </div>
     <div class="statistics-box text-white">
         <h2 class="statistics-title text-center">Life on Anime</h2>
@@ -67,4 +69,65 @@
         </div>
     }
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Pick a list</h3>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="list-group">
+                                @{
+                                    // Calculate the midpoint to split the genres into two columns
+                                    int midpoint = (Model.GetAllGenres().Count() + 1) / 2;
+
+                                    //For each genre in the first column
+                                    for (int i = 0; i < midpoint; i++)
+                                    {
+                                        Genre genre = Model.GetAllGenres()[i];
+                                        string genreName = genre.ToString();
+
+                                        <li class="list-group-item bg-dark text-white">
+                                            <input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+                                            <label>@genreName</label>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <ul class="list-group">
+                                @{
+                                    //For each genre in the second column
+                                    for (int i = midpoint; i < Model.GetAllGenres().Count(); i++)
+                                    {
+                                        Genre genre = Model.GetAllGenres()[i];
+                                        string genreName = genre.ToString();
+
+                                        <li class="list-group-item bg-dark text-white">
+                                            <input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+                                            <label>@genreName</label>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-content-details" name="action" value="Submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 

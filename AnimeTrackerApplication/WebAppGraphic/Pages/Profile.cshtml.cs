@@ -1,4 +1,5 @@
 using Factory;
+using Logic.Enums;
 using Logic.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,13 @@ namespace WebAppGraphic.Pages
                 return RedirectToPage("Login");
             }
                 
+        }
+
+        public List<Genre> GetAllGenres()
+        {
+            Genre[] genres = (Genre[])Enum.GetValues(typeof(Genre));
+            List<Genre> genreList = new List<Genre>(genres);
+            return genreList;
         }
     }
 }
