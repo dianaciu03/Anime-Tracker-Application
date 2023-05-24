@@ -35,6 +35,8 @@ builder.Services.AddScoped<ICharacterManager, CharacterManager>();
 builder.Services.AddSingleton<ICharacterRepository, CharacterRepository>();
 builder.Services.AddScoped<IListManager, ListManager>();
 builder.Services.AddSingleton<ICustomListRepository, CustomListRepository>();
+builder.Services.AddScoped<IProfileManager, ProfileManager>();
+builder.Services.AddSingleton<IProfileRepository, ProfileRepository>();
 
 var app = builder.Build();
 

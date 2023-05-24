@@ -69,6 +69,12 @@ namespace Logic.Profiles
             return preferredGenres;
         }
 
+        public string GetGenresString()
+        {
+            string genresString = string.Join(", ", preferredGenres.Select(genre => genre.ToString()));
+            return genresString;
+        }
+
         public CustomList GetList(string name, string objtype)
         {
             foreach(CustomList l in customLists)

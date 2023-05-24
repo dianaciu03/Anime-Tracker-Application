@@ -14,6 +14,7 @@
     <div class="profile-header">
         <label class="username" asp-for="CurrentUser.Profile.Username">@Model.CurrentUser.Profile.Username</label>
         <p class="join-date" asp-for="CurrentUser.JoinDate">Joined: @Model.CurrentUser.JoinDateParsed()</p>
+        <div class="text-white">Genres: @Model.CurrentUser.Profile.GetGenresString()</div>
         <button id="openPopupBtn" class="btn btn-content-details" data-bs-toggle="modal" data-bs-target="#myModal">Preferred genres</button>
     </div>
     <div class="statistics-box text-white">
