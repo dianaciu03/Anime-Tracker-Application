@@ -27,10 +27,22 @@
         <div class="text-white">Genres: @Model.Anime.GetGenresString()</div>
         <p style="padding-top: 3rem;">Description:</p>
         <p class="text-white">@Model.Anime.Description</p>
+        <button id="openPopupBtn" style="margin-top:20px" class="btn btn-content-details" data-bs-toggle="modal" data-bs-target="#myModal">Add to Library</button>
     </div>
     <div>
         <p class="text-white">Leave a review:</p>
-        <button id="openPopupBtn" class="btn btn-content-details" data-bs-toggle="modal" data-bs-target="#myModal">Add to List</button>
+        <form class="review-box" method="post">
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <button id="submitReview" type="submit" class="btn btn-content-details" name="action" value="Review">Submit review</button>
+        </form>
+        
     </div>
 </div>
 <!-- Modal -->

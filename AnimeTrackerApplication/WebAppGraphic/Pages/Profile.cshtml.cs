@@ -50,11 +50,12 @@ namespace WebAppGraphic.Pages
         {
             if (action == "Submit")
             {
-
                 OnGet();
                 string[] selectedOptions = Request.Form["options[]"];
 
                 profileManager.DeleteContentFromList(CurrentUser.Profile); //remove previously ticked lists
+                int? id = HttpContext.Session.GetInt32("userId");
+                CurrentUser.Profile = userManager.GetProfileByWebUserId((int)id);
                 if (selectedOptions.Count() > 0)
                 {
                     foreach (string option in selectedOptions)
@@ -62,8 +63,8 @@ namespace WebAppGraphic.Pages
                         Genre genre = (Genre)Enum.Parse(typeof(Genre), option);
                         CurrentUser.Profile.AddGenre(genre);
                     }
+                    profileManager.AddPreferedGenres(CurrentUser.Profile);
                 }
-
                 return Page();
             }
             return Page();

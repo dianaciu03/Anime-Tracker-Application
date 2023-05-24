@@ -192,3 +192,55 @@
     padding: 0 2rem;
     font-size: 24px;
 }
+
+.review-box {
+    background-color: #444;
+    padding: 18px;
+    margin-top: 16px;
+    border-radius: 5px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+    .form-group label {
+        font-size: 20px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .form-group textarea {
+        height: 160px;
+    }
+
+    .form-group input[type="number"],
+    .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .form-group input[type="number"] {
+        height: 32px;
+    }
+
+.submit-button {
+    padding: 8px 16px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    background-color: #2196F3;
+    color: white;
+    cursor: pointer;
+}

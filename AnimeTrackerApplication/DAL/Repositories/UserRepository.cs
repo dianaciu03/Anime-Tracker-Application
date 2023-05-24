@@ -1,6 +1,7 @@
 ﻿using Logic.Animes;
 using Logic.Characters;
 using Logic.Contents;
+using Logic.Enums;
 using Logic.Mangas;
 using Logic.Profiles;
 using Logic.Users;
@@ -400,6 +401,31 @@ namespace DAL.Repositories
                                         }
                                     }
                                     break;
+                            }
+                        }
+
+                        int nrGenre = 0;
+                        string queryGenre = @$"SELECT COUNT(*) FROM Profile_Genre INNER JOIN Profile 
+                                                               ON Profile_Genre.ProfileId = Profile.ProfileId WHERE Profile.ProfileId = {oldProfileId}";
+                        using (SqlCommand commandList = new SqlCommand(queryGenre, conn))
+                        {
+                            nrGenre = (int)commandList.ExecuteScalar();
+                        }
+
+                        if (nrGenre > 0)
+                        {
+                            string getGenre = @$"SELECT * FROM Profile_Genre INNER JOIN ContentGenre 
+                                                 ON Profile_Genre.GenreId = ContentGenre.GenreId WHERE ProfileId = {oldProfileId}";
+                            using (SqlCommand commandGenre = new SqlCommand(getGenre, conn))
+                            {
+                                SqlDataReader readerGenre = commandGenre.ExecuteReader();
+                                while (readerGenre.Read())
+                                {
+                                    string genreString = readerGenre.GetString(readerGenre.GetOrdinal("Genre"));
+                                    Genre genre = (Genre)Enum.Parse(typeof(Genre), genreString);
+                                    profile.AddGenre(genre);
+                                }
+                                readerGenre.Close();
                             }
                         }
                     }
