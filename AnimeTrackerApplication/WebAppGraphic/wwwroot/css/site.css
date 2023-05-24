@@ -163,6 +163,7 @@
 .profile-container {
     color: #fff;
     padding: 4rem 7rem 4rem 7rem;
+
 }
 
 .username {
@@ -173,6 +174,13 @@
 .join-date {
     font-size: 24px;
     margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.genres {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 .statistics-box {

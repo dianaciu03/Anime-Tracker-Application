@@ -1,5 +1,6 @@
 using Logic.Animes;
 using Logic.Profiles;
+using Logic.Reviews;
 using Logic.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,6 +23,9 @@ namespace WebAppGraphic.Pages
 
         [BindProperty]
         public Anime Anime { get; set; }
+
+        [BindProperty]
+        public Review Review { get; set; }
 
         public List<CustomList> GetAllAnimeLists()
         {
@@ -78,9 +82,23 @@ namespace WebAppGraphic.Pages
                         listManager.AddContentToCustomList(Anime, temp);
                     }
                 }
-
                 return Page();
             }
+            else if (action == "Review")
+            {
+                OnGet(Anime.Id);
+                listManager.DeleteContentFromList(Anime, listManager.GetAnimeListByProfileId(GetProfile().Id)); //remove previously ticked lists
+                if (selectedOptions.Count() > 0)
+                {
+                    foreach (string option in selectedOptions)
+                    {
+                        CustomList temp = GetProfile().GetList(option, "Anime");
+                        listManager.AddContentToCustomList(Anime, temp);
+                    }
+                }
+                return Page();
+            }
+
             return Page();
         }
     }
