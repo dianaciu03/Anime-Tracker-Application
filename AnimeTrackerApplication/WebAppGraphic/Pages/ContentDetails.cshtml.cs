@@ -10,22 +10,27 @@ namespace WebAppGraphic.Pages
 {
     public class ContentDetailsModel : PageModel
     {
-        private IAnimeManager animeManager;
-        private IUserManager userManager;
-        private IListManager listManager;
+        private readonly IAnimeManager animeManager;
+        private readonly IUserManager userManager;
+        private readonly IListManager listManager;
+        private readonly IReviewManager reviewManager;
 
-        public ContentDetailsModel(IAnimeManager animeManager, IUserManager userManager, IListManager customListManager)
+        public ContentDetailsModel(IAnimeManager animeManager, IUserManager userManager, IListManager customListManager, IReviewManager reviewManager)
         {
             this.animeManager = animeManager;
             this.userManager = userManager;
             this.listManager = customListManager;
+            this.reviewManager = reviewManager;
         }
 
         [BindProperty]
         public Anime Anime { get; set; }
 
         [BindProperty]
-        public Review Review { get; set; }
+        public string ReviewDescription { get; set; }
+
+        [BindProperty]
+        public int ReviewRating { get; set; }
 
         public List<CustomList> GetAllAnimeLists()
         {
@@ -85,20 +90,22 @@ namespace WebAppGraphic.Pages
                 return Page();
             }
             else if (action == "Review")
-            {
-                OnGet(Anime.Id);
-                listManager.DeleteContentFromList(Anime, listManager.GetAnimeListByProfileId(GetProfile().Id)); //remove previously ticked lists
-                if (selectedOptions.Count() > 0)
+            {   
+                if(GetProfile() == null)
                 {
-                    foreach (string option in selectedOptions)
-                    {
-                        CustomList temp = GetProfile().GetList(option, "Anime");
-                        listManager.AddContentToCustomList(Anime, temp);
-                    }
+                    OnGet(Anime.Id);
+                    ModelState.AddModelError(string.Empty, "You need to be logged in to access this feature!");
                 }
-                return Page();
+                else
+                {
+                    OnGet(Anime.Id);
+                    reviewManager.AddReview(GetProfile().Id, ReviewRating, ReviewDescription, Anime.Id, "Anime", DateTime.Now);
+                    ReviewDescription = string.Empty;
+                    ReviewRating = 0;
+                }
             }
-
+            ReviewDescription = string.Empty;
+            ReviewRating = 0;
             return Page();
         }
     }

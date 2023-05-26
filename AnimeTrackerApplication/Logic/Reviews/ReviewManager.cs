@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Reviews
 {
-    public class ReviewManager : IReviewRepository
+    public class ReviewManager : IReviewManager
     {
         private readonly IReviewRepository reviewRepository;
 
@@ -16,8 +16,9 @@ namespace Logic.Reviews
             this.reviewRepository = reviewRepository;
         }
 
-        public void AddReview(Review review)
+        public void AddReview(int profileId, int rating, string description, int contentId, string contentType, DateTime date)
         {
+            Review review = new Review(profileId, rating, description, contentId, contentType, date);
             reviewRepository.AddReview(review);
         }
         public void DeleteReview(int reviewId)

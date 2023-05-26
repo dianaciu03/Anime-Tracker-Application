@@ -24,17 +24,17 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query1 = @"INSERT INTO Reviews (ReviewId, ProfileId, Rating, Description, ContentId, ContentType, Date)
-                                          VALUES (@ReviewId, @ProfileId, @Rating, @Description, @ContentId, @ContentType, @Date)";
+                        string query1 = @"INSERT INTO Reviews (ProfileId, Rating, Description, ContentId, ContentType, Date)
+                                          VALUES (@ProfileId, @Rating, @Description, @ContentId, @ContentType, @Date)";
                         using (SqlCommand command = new SqlCommand(query1, conn, transaction))
                         {
-                            command.Parameters.AddWithValue("@ReviewId", review.Id);
                             command.Parameters.AddWithValue("@ProfileId", review.ProfileId);
                             command.Parameters.AddWithValue("@Rating", review.Rating);
                             command.Parameters.AddWithValue("@Description", review.Description);
                             command.Parameters.AddWithValue("@ContentId", review.ContentId);
                             command.Parameters.AddWithValue("@ContentType", review.ContentType);
                             command.Parameters.AddWithValue("@Date", review.Date);
+                            command.ExecuteNonQuery();
                         }
                         transaction.Commit();
                     }

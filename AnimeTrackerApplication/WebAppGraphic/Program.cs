@@ -3,6 +3,7 @@ using Logic.Animes;
 using Logic.Characters;
 using Logic.Mangas;
 using Logic.Profiles;
+using Logic.Reviews;
 using Logic.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -37,6 +38,8 @@ builder.Services.AddScoped<IListManager, ListManager>();
 builder.Services.AddSingleton<ICustomListRepository, CustomListRepository>();
 builder.Services.AddScoped<IProfileManager, ProfileManager>();
 builder.Services.AddSingleton<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IReviewManager, ReviewManager>();
+builder.Services.AddSingleton<IReviewRepository, ReviewRepository>();
 
 var app = builder.Build();
 
