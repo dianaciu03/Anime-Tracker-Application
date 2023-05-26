@@ -28,5 +28,15 @@ namespace Factory
         {
             return new UserRepository();
         }
+
+        public static CustomListRepository CreateCustomListRepository()
+        {
+            return new CustomListRepository();
+        }
+
+        public static ReviewRepository CreateReviewRepository()
+        {
+            return new ReviewRepository();
+        }
     }
 }

@@ -34,7 +34,7 @@
 
             @if(list.ContentType == "Anime") 
             {
-                @foreach (object content in list.GetAllContent()) 
+                @foreach (object content in list.GetAllContent().Take(6)) 
                 {
                     Anime anime = (Anime)content;
                     <a asp-page="ContentDetails" asp-route-id="@anime.Id">
@@ -48,7 +48,7 @@
             }
             else if (list.ContentType == "Manga") 
             {
-                @foreach (object content in list.GetAllContent())
+                @foreach (object content in list.GetAllContent().Take(6))
                 {
                     Manga manga = (Manga)content;
                     <a asp-page="ContentDetailsManga" asp-route-id="@manga.Id">
@@ -62,7 +62,7 @@
             }
             else if (list.ContentType == "Character") 
             {
-                @foreach (object content in list.GetAllContent())
+                @foreach (object content in list.GetAllContent().Take(6))
                 {
                     Character character = (Character)content;
                 }

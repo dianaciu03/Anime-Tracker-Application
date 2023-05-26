@@ -15,9 +15,11 @@ namespace Logic.Reviews
         private int profileId;
         private int rating;
         private string description;
+        private DateTime date;
 
         public Review() { }
-        public Review(int reviewId, int contentId, int profileId, int rating, string description, string contentType)
+
+        public Review(int reviewId, int profileId, int rating, string description, int contentId, string contentType, DateTime date)
         {
             this.reviewId = reviewId;
             this.contentId = contentId;
@@ -25,14 +27,16 @@ namespace Logic.Reviews
             this.rating = rating;
             this.description = description;
             this.contentType = contentType;
+            this.date = date;
         }
-        public Review(int contentId, int profileId, int rating, string description, string contentType)
+        public Review(int profileId, int rating, string description, int contentId, string contentType, DateTime date)
         {
             this.contentId = contentId;
             this.profileId = profileId;
             this.rating = rating;
             this.description = description;
             this.contentType = contentType;
+            this.date = date;
         }
 
         public int Id { get { return reviewId; } set { this.reviewId = value; } }
@@ -41,5 +45,6 @@ namespace Logic.Reviews
         public string ContentType { get { return contentType; } set { this.contentType = value; } }
         public int Rating { get { return rating; } set { this.rating = value; } }
         public string Description { get { return description; } set { this.description = value; } }
+        public DateTime Date { get { return date; } set { this.date = value; } }
     }
 }
