@@ -106,6 +106,7 @@ namespace WebAppGraphic.Pages
             }
             ReviewDescription = string.Empty;
             ReviewRating = 0;
+            ModelState.Clear();
             return Page();
         }
     }
