@@ -152,7 +152,20 @@
             this.tbxCharacterName = new System.Windows.Forms.TextBox();
             this.labelCharacterName = new System.Windows.Forms.Label();
             this.tabCreateAccount = new System.Windows.Forms.TabPage();
+            this.btnRemoveAccount = new System.Windows.Forms.Button();
+            this.btnCreateMaintainer = new System.Windows.Forms.Button();
+            this.labelResetPassword = new System.Windows.Forms.Label();
+            this.lbxResetPassword = new System.Windows.Forms.ListBox();
+            this.lvwAccounts = new System.Windows.Forms.ListView();
+            this.columnHeader1Name = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2Username = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3JoinDate = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4Role = new System.Windows.Forms.ColumnHeader();
             this.groupBoxSearchAccount = new System.Windows.Forms.GroupBox();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.tbxUsername = new System.Windows.Forms.TextBox();
+            this.labelYears = new System.Windows.Forms.Label();
+            this.tbxYears = new System.Windows.Forms.TextBox();
             this.btnClearFieldsAccount = new System.Windows.Forms.Button();
             this.labelExperience = new System.Windows.Forms.Label();
             this.btnSearchAccount = new System.Windows.Forms.Button();
@@ -160,19 +173,6 @@
             this.labelRoles = new System.Windows.Forms.Label();
             this.tbxNameAccount = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
-            this.tbxYears = new System.Windows.Forms.TextBox();
-            this.labelYears = new System.Windows.Forms.Label();
-            this.lvwAccounts = new System.Windows.Forms.ListView();
-            this.columnHeader1Name = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2Username = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3JoinDate = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4Role = new System.Windows.Forms.ColumnHeader();
-            this.tbxUsername = new System.Windows.Forms.TextBox();
-            this.labelUsername = new System.Windows.Forms.Label();
-            this.lbxResetPassword = new System.Windows.Forms.ListBox();
-            this.labelResetPassword = new System.Windows.Forms.Label();
-            this.btnCreateMaintainer = new System.Windows.Forms.Button();
-            this.btnRemoveAccount = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -221,6 +221,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1805, 902);
             this.tabControl.TabIndex = 2;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabAnime
             // 
@@ -1562,6 +1563,89 @@
             this.tabCreateAccount.TabIndex = 3;
             this.tabCreateAccount.Text = "Accounts";
             // 
+            // btnRemoveAccount
+            // 
+            this.btnRemoveAccount.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnRemoveAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemoveAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveAccount.Location = new System.Drawing.Point(1273, 744);
+            this.btnRemoveAccount.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRemoveAccount.Name = "btnRemoveAccount";
+            this.btnRemoveAccount.Size = new System.Drawing.Size(406, 72);
+            this.btnRemoveAccount.TabIndex = 49;
+            this.btnRemoveAccount.Text = "Remove Account";
+            this.btnRemoveAccount.UseVisualStyleBackColor = false;
+            // 
+            // btnCreateMaintainer
+            // 
+            this.btnCreateMaintainer.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnCreateMaintainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCreateMaintainer.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateMaintainer.Location = new System.Drawing.Point(642, 744);
+            this.btnCreateMaintainer.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCreateMaintainer.Name = "btnCreateMaintainer";
+            this.btnCreateMaintainer.Size = new System.Drawing.Size(406, 72);
+            this.btnCreateMaintainer.TabIndex = 49;
+            this.btnCreateMaintainer.Text = "Create Maintainer Account";
+            this.btnCreateMaintainer.UseVisualStyleBackColor = false;
+            this.btnCreateMaintainer.Click += new System.EventHandler(this.btnCreateMaintainer_Click);
+            // 
+            // labelResetPassword
+            // 
+            this.labelResetPassword.AutoSize = true;
+            this.labelResetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelResetPassword.Location = new System.Drawing.Point(16, 373);
+            this.labelResetPassword.Name = "labelResetPassword";
+            this.labelResetPassword.Size = new System.Drawing.Size(316, 29);
+            this.labelResetPassword.TabIndex = 48;
+            this.labelResetPassword.Text = "Reset password requests:";
+            // 
+            // lbxResetPassword
+            // 
+            this.lbxResetPassword.FormattingEnabled = true;
+            this.lbxResetPassword.ItemHeight = 25;
+            this.lbxResetPassword.Location = new System.Drawing.Point(16, 413);
+            this.lbxResetPassword.Name = "lbxResetPassword";
+            this.lbxResetPassword.Size = new System.Drawing.Size(535, 304);
+            this.lbxResetPassword.TabIndex = 47;
+            // 
+            // lvwAccounts
+            // 
+            this.lvwAccounts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1Name,
+            this.columnHeader2Username,
+            this.columnHeader3JoinDate,
+            this.columnHeader4Role});
+            this.lvwAccounts.FullRowSelect = true;
+            this.lvwAccounts.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvwAccounts.Location = new System.Drawing.Point(642, 18);
+            this.lvwAccounts.MultiSelect = false;
+            this.lvwAccounts.Name = "lvwAccounts";
+            this.lvwAccounts.Size = new System.Drawing.Size(1037, 696);
+            this.lvwAccounts.TabIndex = 46;
+            this.lvwAccounts.UseCompatibleStateImageBehavior = false;
+            this.lvwAccounts.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1Name
+            // 
+            this.columnHeader1Name.Text = "Name";
+            this.columnHeader1Name.Width = 270;
+            // 
+            // columnHeader2Username
+            // 
+            this.columnHeader2Username.Text = "Username";
+            this.columnHeader2Username.Width = 270;
+            // 
+            // columnHeader3JoinDate
+            // 
+            this.columnHeader3JoinDate.Text = "Join Date";
+            this.columnHeader3JoinDate.Width = 240;
+            // 
+            // columnHeader4Role
+            // 
+            this.columnHeader4Role.Text = "Role";
+            this.columnHeader4Role.Width = 240;
+            // 
             // groupBoxSearchAccount
             // 
             this.groupBoxSearchAccount.Controls.Add(this.labelUsername);
@@ -1582,6 +1666,38 @@
             this.groupBoxSearchAccount.TabIndex = 3;
             this.groupBoxSearchAccount.TabStop = false;
             this.groupBoxSearchAccount.Text = "Account search:";
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Location = new System.Drawing.Point(21, 89);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(119, 26);
+            this.labelUsername.TabIndex = 48;
+            this.labelUsername.Text = "Username:";
+            // 
+            // tbxUsername
+            // 
+            this.tbxUsername.Location = new System.Drawing.Point(146, 86);
+            this.tbxUsername.Name = "tbxUsername";
+            this.tbxUsername.Size = new System.Drawing.Size(277, 32);
+            this.tbxUsername.TabIndex = 47;
+            // 
+            // labelYears
+            // 
+            this.labelYears.AutoSize = true;
+            this.labelYears.Location = new System.Drawing.Point(429, 184);
+            this.labelYears.Name = "labelYears";
+            this.labelYears.Size = new System.Drawing.Size(79, 26);
+            this.labelYears.TabIndex = 46;
+            this.labelYears.Text = "(years)";
+            // 
+            // tbxYears
+            // 
+            this.tbxYears.Location = new System.Drawing.Point(188, 181);
+            this.tbxYears.Name = "tbxYears";
+            this.tbxYears.Size = new System.Drawing.Size(235, 32);
+            this.tbxYears.TabIndex = 45;
             // 
             // btnClearFieldsAccount
             // 
@@ -1649,121 +1765,6 @@
             this.labelName.Size = new System.Drawing.Size(77, 26);
             this.labelName.TabIndex = 1;
             this.labelName.Text = "Name:";
-            // 
-            // tbxYears
-            // 
-            this.tbxYears.Location = new System.Drawing.Point(188, 181);
-            this.tbxYears.Name = "tbxYears";
-            this.tbxYears.Size = new System.Drawing.Size(235, 32);
-            this.tbxYears.TabIndex = 45;
-            // 
-            // labelYears
-            // 
-            this.labelYears.AutoSize = true;
-            this.labelYears.Location = new System.Drawing.Point(429, 184);
-            this.labelYears.Name = "labelYears";
-            this.labelYears.Size = new System.Drawing.Size(79, 26);
-            this.labelYears.TabIndex = 46;
-            this.labelYears.Text = "(years)";
-            // 
-            // lvwAccounts
-            // 
-            this.lvwAccounts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1Name,
-            this.columnHeader2Username,
-            this.columnHeader3JoinDate,
-            this.columnHeader4Role});
-            this.lvwAccounts.FullRowSelect = true;
-            this.lvwAccounts.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lvwAccounts.Location = new System.Drawing.Point(642, 18);
-            this.lvwAccounts.MultiSelect = false;
-            this.lvwAccounts.Name = "lvwAccounts";
-            this.lvwAccounts.Size = new System.Drawing.Size(1037, 696);
-            this.lvwAccounts.TabIndex = 46;
-            this.lvwAccounts.UseCompatibleStateImageBehavior = false;
-            this.lvwAccounts.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1Name
-            // 
-            this.columnHeader1Name.Text = "Name";
-            this.columnHeader1Name.Width = 270;
-            // 
-            // columnHeader2Username
-            // 
-            this.columnHeader2Username.Text = "Username";
-            this.columnHeader2Username.Width = 270;
-            // 
-            // columnHeader3JoinDate
-            // 
-            this.columnHeader3JoinDate.Text = "Join Date";
-            this.columnHeader3JoinDate.Width = 240;
-            // 
-            // columnHeader4Role
-            // 
-            this.columnHeader4Role.Text = "Role";
-            this.columnHeader4Role.Width = 240;
-            // 
-            // tbxUsername
-            // 
-            this.tbxUsername.Location = new System.Drawing.Point(146, 86);
-            this.tbxUsername.Name = "tbxUsername";
-            this.tbxUsername.Size = new System.Drawing.Size(277, 32);
-            this.tbxUsername.TabIndex = 47;
-            // 
-            // labelUsername
-            // 
-            this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(21, 89);
-            this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(119, 26);
-            this.labelUsername.TabIndex = 48;
-            this.labelUsername.Text = "Username:";
-            // 
-            // lbxResetPassword
-            // 
-            this.lbxResetPassword.FormattingEnabled = true;
-            this.lbxResetPassword.ItemHeight = 25;
-            this.lbxResetPassword.Location = new System.Drawing.Point(16, 413);
-            this.lbxResetPassword.Name = "lbxResetPassword";
-            this.lbxResetPassword.Size = new System.Drawing.Size(535, 304);
-            this.lbxResetPassword.TabIndex = 47;
-            // 
-            // labelResetPassword
-            // 
-            this.labelResetPassword.AutoSize = true;
-            this.labelResetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelResetPassword.Location = new System.Drawing.Point(16, 373);
-            this.labelResetPassword.Name = "labelResetPassword";
-            this.labelResetPassword.Size = new System.Drawing.Size(316, 29);
-            this.labelResetPassword.TabIndex = 48;
-            this.labelResetPassword.Text = "Reset password requests:";
-            // 
-            // btnCreateMaintainer
-            // 
-            this.btnCreateMaintainer.BackColor = System.Drawing.Color.MediumPurple;
-            this.btnCreateMaintainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCreateMaintainer.ForeColor = System.Drawing.Color.Black;
-            this.btnCreateMaintainer.Location = new System.Drawing.Point(642, 744);
-            this.btnCreateMaintainer.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCreateMaintainer.Name = "btnCreateMaintainer";
-            this.btnCreateMaintainer.Size = new System.Drawing.Size(406, 72);
-            this.btnCreateMaintainer.TabIndex = 49;
-            this.btnCreateMaintainer.Text = "Create Maintainer Account";
-            this.btnCreateMaintainer.UseVisualStyleBackColor = false;
-            this.btnCreateMaintainer.Click += new System.EventHandler(this.btnCreateMaintainer_Click);
-            // 
-            // btnRemoveAccount
-            // 
-            this.btnRemoveAccount.BackColor = System.Drawing.Color.MediumPurple;
-            this.btnRemoveAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnRemoveAccount.ForeColor = System.Drawing.Color.Black;
-            this.btnRemoveAccount.Location = new System.Drawing.Point(1273, 744);
-            this.btnRemoveAccount.Margin = new System.Windows.Forms.Padding(5);
-            this.btnRemoveAccount.Name = "btnRemoveAccount";
-            this.btnRemoveAccount.Size = new System.Drawing.Size(406, 72);
-            this.btnRemoveAccount.TabIndex = 49;
-            this.btnRemoveAccount.Text = "Remove Account";
-            this.btnRemoveAccount.UseVisualStyleBackColor = false;
             // 
             // MainPage
             // 

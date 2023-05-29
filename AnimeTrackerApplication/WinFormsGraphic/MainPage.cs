@@ -75,6 +75,19 @@ namespace WinFormsGraphic
             rbtnCharacterNameAsc.Checked = true;
         }
 
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab == tabCreateAccount)
+            {
+                if(currentUser is not Admin)
+                {
+                    tabControl.SelectedTab = tabAnime;
+                    MessageBox.Show("You don't have access to this page!");
+
+                }
+            }
+        }
+
         //
         //ANIME TAB
         //
@@ -496,5 +509,7 @@ namespace WinFormsGraphic
         {
 
         }
+
+        
     }
 }
