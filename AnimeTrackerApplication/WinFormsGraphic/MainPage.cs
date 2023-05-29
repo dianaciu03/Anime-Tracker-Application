@@ -485,5 +485,12 @@ namespace WinFormsGraphic
             tbxMangaCharacterSearch.Text = string.Empty;
         }
 
+        //
+        //ACCOUNT TAB
+        //
+        private void btnCreateMaintainer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

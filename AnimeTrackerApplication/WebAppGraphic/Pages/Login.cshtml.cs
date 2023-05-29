@@ -35,7 +35,7 @@ namespace WebAppGraphic.Pages
                 RegisteredWebUser? user = null;
                 user = userManager.GetWebUserByEmail(UserEmail);
 
-                if (user != null && user.HashedPassword == Security.CreateHash(user.Salt, UserPassword))
+                if (user != null && userManager.LoginUser(UserPassword, UserEmail) == true)
                 {
                     HttpContext.Session.SetInt32("userId", user.Id);
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(

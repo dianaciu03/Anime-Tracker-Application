@@ -152,13 +152,27 @@
             this.tbxCharacterName = new System.Windows.Forms.TextBox();
             this.labelCharacterName = new System.Windows.Forms.Label();
             this.tabCreateAccount = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.groupBoxSearchAccount = new System.Windows.Forms.GroupBox();
+            this.btnClearFieldsAccount = new System.Windows.Forms.Button();
+            this.labelExperience = new System.Windows.Forms.Label();
+            this.btnSearchAccount = new System.Windows.Forms.Button();
+            this.cbxRoles = new System.Windows.Forms.ComboBox();
+            this.labelRoles = new System.Windows.Forms.Label();
+            this.tbxNameAccount = new System.Windows.Forms.TextBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.tbxYears = new System.Windows.Forms.TextBox();
+            this.labelYears = new System.Windows.Forms.Label();
+            this.lvwAccounts = new System.Windows.Forms.ListView();
+            this.columnHeader1Name = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2Username = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3JoinDate = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4Role = new System.Windows.Forms.ColumnHeader();
+            this.tbxUsername = new System.Windows.Forms.TextBox();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.lbxResetPassword = new System.Windows.Forms.ListBox();
+            this.labelResetPassword = new System.Windows.Forms.Label();
+            this.btnCreateMaintainer = new System.Windows.Forms.Button();
+            this.btnRemoveAccount = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -178,6 +192,7 @@
             this.groupBoxSortCharacters.SuspendLayout();
             this.groupBoxSearchCharacters.SuspendLayout();
             this.tabCreateAccount.SuspendLayout();
+            this.groupBoxSearchAccount.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -1534,13 +1549,12 @@
             // tabCreateAccount
             // 
             this.tabCreateAccount.BackColor = System.Drawing.Color.Thistle;
-            this.tabCreateAccount.Controls.Add(this.label5);
-            this.tabCreateAccount.Controls.Add(this.label4);
-            this.tabCreateAccount.Controls.Add(this.label3);
-            this.tabCreateAccount.Controls.Add(this.label2);
-            this.tabCreateAccount.Controls.Add(this.label1);
-            this.tabCreateAccount.Controls.Add(this.button1);
-            this.tabCreateAccount.Controls.Add(this.textBox1);
+            this.tabCreateAccount.Controls.Add(this.btnRemoveAccount);
+            this.tabCreateAccount.Controls.Add(this.btnCreateMaintainer);
+            this.tabCreateAccount.Controls.Add(this.labelResetPassword);
+            this.tabCreateAccount.Controls.Add(this.lbxResetPassword);
+            this.tabCreateAccount.Controls.Add(this.lvwAccounts);
+            this.tabCreateAccount.Controls.Add(this.groupBoxSearchAccount);
             this.tabCreateAccount.Location = new System.Drawing.Point(4, 46);
             this.tabCreateAccount.Name = "tabCreateAccount";
             this.tabCreateAccount.Padding = new System.Windows.Forms.Padding(3);
@@ -1548,66 +1562,208 @@
             this.tabCreateAccount.TabIndex = 3;
             this.tabCreateAccount.Text = "Accounts";
             // 
-            // textBox1
+            // groupBoxSearchAccount
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 52);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(138, 32);
-            this.textBox1.TabIndex = 0;
+            this.groupBoxSearchAccount.Controls.Add(this.labelUsername);
+            this.groupBoxSearchAccount.Controls.Add(this.tbxUsername);
+            this.groupBoxSearchAccount.Controls.Add(this.labelYears);
+            this.groupBoxSearchAccount.Controls.Add(this.tbxYears);
+            this.groupBoxSearchAccount.Controls.Add(this.btnClearFieldsAccount);
+            this.groupBoxSearchAccount.Controls.Add(this.labelExperience);
+            this.groupBoxSearchAccount.Controls.Add(this.btnSearchAccount);
+            this.groupBoxSearchAccount.Controls.Add(this.cbxRoles);
+            this.groupBoxSearchAccount.Controls.Add(this.labelRoles);
+            this.groupBoxSearchAccount.Controls.Add(this.tbxNameAccount);
+            this.groupBoxSearchAccount.Controls.Add(this.labelName);
+            this.groupBoxSearchAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxSearchAccount.Location = new System.Drawing.Point(16, 18);
+            this.groupBoxSearchAccount.Name = "groupBoxSearchAccount";
+            this.groupBoxSearchAccount.Size = new System.Drawing.Size(535, 319);
+            this.groupBoxSearchAccount.TabIndex = 3;
+            this.groupBoxSearchAccount.TabStop = false;
+            this.groupBoxSearchAccount.Text = "Account search:";
             // 
-            // button1
+            // btnClearFieldsAccount
             // 
-            this.button1.Location = new System.Drawing.Point(77, 102);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 43);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnClearFieldsAccount.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnClearFieldsAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnClearFieldsAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnClearFieldsAccount.Location = new System.Drawing.Point(283, 242);
+            this.btnClearFieldsAccount.Name = "btnClearFieldsAccount";
+            this.btnClearFieldsAccount.Size = new System.Drawing.Size(225, 54);
+            this.btnClearFieldsAccount.TabIndex = 44;
+            this.btnClearFieldsAccount.Text = "Clear fields";
+            this.btnClearFieldsAccount.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // labelExperience
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(306, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 26);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "<minutes>";
+            this.labelExperience.AutoSize = true;
+            this.labelExperience.Location = new System.Drawing.Point(21, 184);
+            this.labelExperience.Name = "labelExperience";
+            this.labelExperience.Size = new System.Drawing.Size(127, 26);
+            this.labelExperience.TabIndex = 41;
+            this.labelExperience.Text = "Experience:";
             // 
-            // label2
+            // btnSearchAccount
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(306, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 26);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "<hours>";
+            this.btnSearchAccount.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnSearchAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSearchAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnSearchAccount.Location = new System.Drawing.Point(21, 242);
+            this.btnSearchAccount.Name = "btnSearchAccount";
+            this.btnSearchAccount.Size = new System.Drawing.Size(225, 54);
+            this.btnSearchAccount.TabIndex = 38;
+            this.btnSearchAccount.Text = "Search";
+            this.btnSearchAccount.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // cbxRoles
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(306, 151);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 26);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "<days>";
+            this.cbxRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxRoles.ItemHeight = 25;
+            this.cbxRoles.Location = new System.Drawing.Point(146, 134);
+            this.cbxRoles.Name = "cbxRoles";
+            this.cbxRoles.Size = new System.Drawing.Size(277, 33);
+            this.cbxRoles.TabIndex = 20;
             // 
-            // label4
+            // labelRoles
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(306, 203);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 26);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "<months>";
+            this.labelRoles.AutoSize = true;
+            this.labelRoles.Location = new System.Drawing.Point(21, 134);
+            this.labelRoles.Name = "labelRoles";
+            this.labelRoles.Size = new System.Drawing.Size(74, 26);
+            this.labelRoles.TabIndex = 19;
+            this.labelRoles.Text = "Roles:";
             // 
-            // label5
+            // tbxNameAccount
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(306, 254);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 26);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "<years>";
+            this.tbxNameAccount.Location = new System.Drawing.Point(146, 39);
+            this.tbxNameAccount.Name = "tbxNameAccount";
+            this.tbxNameAccount.Size = new System.Drawing.Size(277, 32);
+            this.tbxNameAccount.TabIndex = 4;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(21, 42);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(77, 26);
+            this.labelName.TabIndex = 1;
+            this.labelName.Text = "Name:";
+            // 
+            // tbxYears
+            // 
+            this.tbxYears.Location = new System.Drawing.Point(188, 181);
+            this.tbxYears.Name = "tbxYears";
+            this.tbxYears.Size = new System.Drawing.Size(235, 32);
+            this.tbxYears.TabIndex = 45;
+            // 
+            // labelYears
+            // 
+            this.labelYears.AutoSize = true;
+            this.labelYears.Location = new System.Drawing.Point(429, 184);
+            this.labelYears.Name = "labelYears";
+            this.labelYears.Size = new System.Drawing.Size(79, 26);
+            this.labelYears.TabIndex = 46;
+            this.labelYears.Text = "(years)";
+            // 
+            // lvwAccounts
+            // 
+            this.lvwAccounts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1Name,
+            this.columnHeader2Username,
+            this.columnHeader3JoinDate,
+            this.columnHeader4Role});
+            this.lvwAccounts.FullRowSelect = true;
+            this.lvwAccounts.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvwAccounts.Location = new System.Drawing.Point(642, 18);
+            this.lvwAccounts.MultiSelect = false;
+            this.lvwAccounts.Name = "lvwAccounts";
+            this.lvwAccounts.Size = new System.Drawing.Size(1037, 696);
+            this.lvwAccounts.TabIndex = 46;
+            this.lvwAccounts.UseCompatibleStateImageBehavior = false;
+            this.lvwAccounts.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1Name
+            // 
+            this.columnHeader1Name.Text = "Name";
+            this.columnHeader1Name.Width = 270;
+            // 
+            // columnHeader2Username
+            // 
+            this.columnHeader2Username.Text = "Username";
+            this.columnHeader2Username.Width = 270;
+            // 
+            // columnHeader3JoinDate
+            // 
+            this.columnHeader3JoinDate.Text = "Join Date";
+            this.columnHeader3JoinDate.Width = 240;
+            // 
+            // columnHeader4Role
+            // 
+            this.columnHeader4Role.Text = "Role";
+            this.columnHeader4Role.Width = 240;
+            // 
+            // tbxUsername
+            // 
+            this.tbxUsername.Location = new System.Drawing.Point(146, 86);
+            this.tbxUsername.Name = "tbxUsername";
+            this.tbxUsername.Size = new System.Drawing.Size(277, 32);
+            this.tbxUsername.TabIndex = 47;
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Location = new System.Drawing.Point(21, 89);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(119, 26);
+            this.labelUsername.TabIndex = 48;
+            this.labelUsername.Text = "Username:";
+            // 
+            // lbxResetPassword
+            // 
+            this.lbxResetPassword.FormattingEnabled = true;
+            this.lbxResetPassword.ItemHeight = 25;
+            this.lbxResetPassword.Location = new System.Drawing.Point(16, 413);
+            this.lbxResetPassword.Name = "lbxResetPassword";
+            this.lbxResetPassword.Size = new System.Drawing.Size(535, 304);
+            this.lbxResetPassword.TabIndex = 47;
+            // 
+            // labelResetPassword
+            // 
+            this.labelResetPassword.AutoSize = true;
+            this.labelResetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelResetPassword.Location = new System.Drawing.Point(16, 373);
+            this.labelResetPassword.Name = "labelResetPassword";
+            this.labelResetPassword.Size = new System.Drawing.Size(316, 29);
+            this.labelResetPassword.TabIndex = 48;
+            this.labelResetPassword.Text = "Reset password requests:";
+            // 
+            // btnCreateMaintainer
+            // 
+            this.btnCreateMaintainer.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnCreateMaintainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCreateMaintainer.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateMaintainer.Location = new System.Drawing.Point(642, 744);
+            this.btnCreateMaintainer.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCreateMaintainer.Name = "btnCreateMaintainer";
+            this.btnCreateMaintainer.Size = new System.Drawing.Size(406, 72);
+            this.btnCreateMaintainer.TabIndex = 49;
+            this.btnCreateMaintainer.Text = "Create Maintainer Account";
+            this.btnCreateMaintainer.UseVisualStyleBackColor = false;
+            this.btnCreateMaintainer.Click += new System.EventHandler(this.btnCreateMaintainer_Click);
+            // 
+            // btnRemoveAccount
+            // 
+            this.btnRemoveAccount.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnRemoveAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemoveAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveAccount.Location = new System.Drawing.Point(1273, 744);
+            this.btnRemoveAccount.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRemoveAccount.Name = "btnRemoveAccount";
+            this.btnRemoveAccount.Size = new System.Drawing.Size(406, 72);
+            this.btnRemoveAccount.TabIndex = 49;
+            this.btnRemoveAccount.Text = "Remove Account";
+            this.btnRemoveAccount.UseVisualStyleBackColor = false;
             // 
             // MainPage
             // 
@@ -1648,6 +1804,8 @@
             this.groupBoxSearchCharacters.PerformLayout();
             this.tabCreateAccount.ResumeLayout(false);
             this.tabCreateAccount.PerformLayout();
+            this.groupBoxSearchAccount.ResumeLayout(false);
+            this.groupBoxSearchAccount.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1778,12 +1936,26 @@
         private RadioButton rbtnNrDislikesAsc;
         private RadioButton rbtnNrLikesDesc;
         private RadioButton rbtnNrLikesAsc;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label label1;
-        private Button button1;
-        private TextBox textBox1;
+        private ListView lvwAccounts;
+        private ColumnHeader columnHeader1Name;
+        private ColumnHeader columnHeader2Username;
+        private ColumnHeader columnHeader3JoinDate;
+        private ColumnHeader columnHeader4Role;
+        private GroupBox groupBoxSearchAccount;
+        private Label labelUsername;
+        private TextBox tbxUsername;
+        private Label labelYears;
+        private TextBox tbxYears;
+        private Button btnClearFieldsAccount;
+        private Label labelExperience;
+        private Button btnSearchAccount;
+        private ComboBox cbxRoles;
+        private Label labelRoles;
+        private TextBox tbxNameAccount;
+        private Label labelName;
+        private Label labelResetPassword;
+        private ListBox lbxResetPassword;
+        private Button btnRemoveAccount;
+        private Button btnCreateMaintainer;
     }
 }

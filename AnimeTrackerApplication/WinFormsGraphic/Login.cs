@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Factory;
+using Logic.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,7 @@ namespace WinFormsGraphic
 {
     public partial class Login : Form
     {
+        private IUserManager userManager;
         public Login()
         {
             InitializeComponent();
@@ -23,16 +26,18 @@ namespace WinFormsGraphic
             //manually initialize some visual elements of the form
             this.BackgroundImageLayout = ImageLayout.Stretch;
             labelErorrMessage.Visible = false;
+
+            userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {//hardcode login
+        {
             try
             {
                 string email = tbEmail.Text;
                 string password = tbPassword.Text;
 
-                if (email == "main" && password == "123")
+                if(userManager.LoginUser(password, email))
                 {
                     this.Hide();
                     MainPage mainPage = new MainPage();

@@ -12,5 +12,6 @@ namespace Logic.Users
         User? GetUserById(int id);
         RegisteredWebUser? GetWebUserById(int id);
         Profile GetProfileByWebUserId(int id);
+        bool LoginUser(string password, string email);
     }
 }

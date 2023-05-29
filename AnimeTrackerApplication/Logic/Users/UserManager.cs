@@ -56,5 +56,17 @@ namespace Logic.Users
         {
             return _userDataHandler.GetProfileByWebUserId(id);
         }
+
+        public bool LoginUser(string password, string email)
+        {
+            foreach (User user in GetAllUsers())
+            {
+                if (user.HashedPassword == Security.CreateHash(user.Salt, password) && user.Email == email)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
