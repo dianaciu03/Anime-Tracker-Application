@@ -36,8 +36,8 @@ namespace WinFormsGraphic
                 if (email == "main" && password == "123")
                 {
                     this.Hide();
-                    MainPage mainPage = new MainPage();
-                    mainPage.ShowDialog();
+                    //MainPage mainPage = new MainPage();
+                    //mainPage.ShowDialog();
                     this.Close();
                 }
                 else

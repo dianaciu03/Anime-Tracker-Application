@@ -40,7 +40,7 @@ namespace WinFormsGraphic
                 if(userManager.LoginUser(password, email))
                 {
                     this.Hide();
-                    MainPage mainPage = new MainPage();
+                    MainPage mainPage = new MainPage(userManager.GetUserByEmail(email));
                     mainPage.ShowDialog();
                     this.Close();
                 }

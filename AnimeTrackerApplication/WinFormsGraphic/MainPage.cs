@@ -30,14 +30,16 @@ namespace WinFormsGraphic
         IMangaManager mangaManager;
         ICharacterManager characterManager;
         IUserManager userManager;
+        User currentUser;
         List<RadioButton> animeSort;
         List<RadioButton> mangaSort;
 
-        public MainPage()
+        public MainPage(User user)
         {
             InitializeComponent();
             InitializeForm();
-            InitializeManagers();   
+            InitializeManagers();
+            currentUser = user;
         }
 
         private void InitializeManagers()
@@ -239,7 +241,9 @@ namespace WinFormsGraphic
         {
             try
             {
-
+                //need to check for numbers
+                List<Anime> searchedAnime = animeManager.GetSearchedAnime(tbxNameSearchAnime.Text, tbxStudioSearchAnime.Text, Convert.ToInt32(numNrEpisodesFromSearchAnime.Text), Convert.ToInt32(numNrEpisodesToSearchAnime.Text), tbxReleaseYearSearchAnime.Text, cbxSeasonSearchAnime.Text, cbxGenreSearchAnime.Text, Convert.ToDecimal(numRatingLowerAnime.Text), Convert.ToDecimal(numRatingUpperAnime.Text));
+                UpdateAnimeListview(searchedAnime);
             }
             catch (Exception ex)
             {

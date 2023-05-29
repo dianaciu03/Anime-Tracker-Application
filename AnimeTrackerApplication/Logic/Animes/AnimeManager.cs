@@ -79,5 +79,14 @@ namespace Logic.Animes
             return _animeDataHandler.GetAnimeByName(name);
         }
 
+        public List<Anime> GetSearchedAnime(string nameA, string studioA, int nrEpFromA, int nrEpToA, string releaseYearA, string releaseSeasonA, string genreA, decimal ratingFromA, decimal ratingToA)
+        {
+            if (nrEpToA == 0)
+                nrEpToA = 99999;
+            if (ratingToA == 0)
+                ratingToA = 5;
+            return _animeDataHandler.GetSearchedAnime(nameA, studioA, nrEpFromA, nrEpToA, releaseYearA, releaseSeasonA, genreA, ratingFromA, ratingToA);
+        }
+
     }
 }
