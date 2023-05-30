@@ -630,5 +630,26 @@ namespace WinFormsGraphic
                 return;
             }
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login form = new Login();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void pbResetPassword_Click(object sender, EventArgs e)
+        {
+            //Display a confirmation message box
+            DialogResult result = MessageBox.Show("Are you sure you want to reset your password?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // If the user clicks Yes, remove the selected item
+            if (result == DialogResult.Yes)
+            {
+                //request password object is created
+                MessageBox.Show("Account has been successfully deleted!");
+            }
+        }
     }
 }

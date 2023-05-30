@@ -173,6 +173,8 @@
             this.labelRoles = new System.Windows.Forms.Label();
             this.tbxNameAccount = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbResetPassword = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -193,6 +195,8 @@
             this.groupBoxSearchCharacters.SuspendLayout();
             this.tabCreateAccount.SuspendLayout();
             this.groupBoxSearchAccount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbResetPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -1770,12 +1774,40 @@
             this.labelName.TabIndex = 1;
             this.labelName.Text = "Name:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Image = global::WinFormsGraphic.Properties.Resources.logout;
+            this.pictureBox1.Location = new System.Drawing.Point(1777, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 74);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pbResetPassword
+            // 
+            this.pbResetPassword.BackColor = System.Drawing.Color.Transparent;
+            this.pbResetPassword.Image = global::WinFormsGraphic.Properties.Resources.locket;
+            this.pbResetPassword.Location = new System.Drawing.Point(1679, 9);
+            this.pbResetPassword.Name = "pbResetPassword";
+            this.pbResetPassword.Size = new System.Drawing.Size(80, 74);
+            this.pbResetPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbResetPassword.TabIndex = 4;
+            this.pbResetPassword.TabStop = false;
+            this.pbResetPassword.Click += new System.EventHandler(this.pbResetPassword_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.Violet;
             this.BackgroundImage = global::WinFormsGraphic.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(1884, 1041);
+            this.Controls.Add(this.pbResetPassword);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.labelTitleWorldOfAnime);
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1811,6 +1843,8 @@
             this.tabCreateAccount.PerformLayout();
             this.groupBoxSearchAccount.ResumeLayout(false);
             this.groupBoxSearchAccount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbResetPassword)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1962,5 +1996,7 @@
         private ListBox lbxResetPassword;
         private Button btnRemoveAccount;
         private Button btnCreateMaintainer;
+        private PictureBox pictureBox1;
+        private PictureBox pbResetPassword;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Logic.Animes;
 using Logic.Contents;
 using Logic.Enums;
+using Logic.Profiles;
 using Logic.Users;
 using Microsoft.Data.SqlClient;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using static Azure.Core.HttpHeader;
@@ -453,6 +455,89 @@ namespace DAL.Repositories
                 throw new Exception("There were issues while trying to retrieve the anime!");
             }
             return animeList;
+        }
+
+        public Dictionary<Anime, int> GetRecommendedAnime(int profileId)
+        {
+            Dictionary<Anime, int> animeDictionary = new Dictionary<Anime, int>();
+            Anime anime = null;
+            int oldAnimeId = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT
+                                            A.*,
+                                            CG.Genre,
+                                            COALESCE(AG.NrOfGenreMatches, 0) AS NrOfGenreMatches
+                                      FROM
+                                            Anime AS A
+                                            LEFT JOIN (
+                                                SELECT
+                                                    AG.AnimeId,
+                                                    COUNT(*) AS NrOfGenreMatches
+                                                FROM
+                                                    Anime_Genre AS AG
+                                                    INNER JOIN Profile_Genre AS PG ON AG.GenreId = PG.GenreId
+                                                WHERE
+                                                    PG.ProfileId = @ProfileId
+                                                GROUP BY
+                                                    AG.AnimeId
+                                            ) AS AG ON A.AnimeId = AG.AnimeId
+                                            LEFT JOIN Anime_Genre AS AG2 ON A.AnimeId = AG2.AnimeId
+                                            LEFT JOIN ContentGenre AS CG ON AG2.GenreId = CG.GenreId
+                                      WHERE
+                                            COALESCE(AG.NrOfGenreMatches, 0) > 0
+                                      ORDER BY
+                                            NrOfGenreMatches DESC;";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@ProfileId", profileId);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int newAnimeId = reader.GetInt32(reader.GetOrdinal("AnimeId"));
+                            if (newAnimeId != oldAnimeId)
+                            {
+                                oldAnimeId = newAnimeId;
+
+                                string nameAnime = reader.GetString(reader.GetOrdinal("Name"));
+                                string studio = reader.GetString(reader.GetOrdinal("Studio"));
+                                int nrEpisodes = reader.GetInt32(reader.GetOrdinal("NrEpisodes"));
+                                int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                                string releaseSeason = reader.GetString(reader.GetOrdinal("ReleaseSeason"));
+                                decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                                string description = reader.GetString(reader.GetOrdinal("Description"));
+                                string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                                Season season = (Season)Enum.Parse(typeof(Season), releaseSeason);
+
+                                List<Genre> genres = new List<Genre>();
+                                string genreAnime = reader.GetString(reader.GetOrdinal("Genre"));
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreAnime);
+                                genres.Add(genre);
+                                anime = new Anime(oldAnimeId, nameAnime, description, rating, releaseYear, imageURL, season, nrEpisodes, studio, genres);
+                                int nrOfAppearences = reader.GetInt32(reader.GetOrdinal("NrOfGenreMatches"));
+                                animeDictionary[anime] = nrOfAppearences;
+                            }
+                            else if (newAnimeId == oldAnimeId)
+                            {
+                                string genreAnime = reader.GetString(9);
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreAnime);
+                                anime.AddGenre(genre);
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the anime!");
+            }
+            return animeDictionary;
         }
     }
 }

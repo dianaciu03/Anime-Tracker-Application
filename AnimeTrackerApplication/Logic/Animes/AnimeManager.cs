@@ -88,5 +88,10 @@ namespace Logic.Animes
             return _animeDataHandler.GetSearchedAnime(nameA, studioA, nrEpFromA, nrEpToA, releaseYearA, releaseSeasonA, genreA, ratingFromA, ratingToA);
         }
 
+        public Dictionary<Anime, int> GetRecommendedAnime(int profileId)
+        {
+            return _animeDataHandler.GetRecommendedAnime(profileId);
+        }
+
     }
 }
