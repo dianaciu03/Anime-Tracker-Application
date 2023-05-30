@@ -291,7 +291,7 @@ namespace DAL.Repositories
                     string query = @"SELECT * FROM [User]
                                        WHERE Name LIKE '%' + @Name + '%' 
                                        AND Role LIKE '%' + @Role + '%' 
-                                       AND DATEDIFF(year, Joindate, GETDATE()) >= @Years;"; 
+                                       AND DATEDIFF(year, Joindate, GETDATE()) >= @Years;";
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@Name", nameU);
@@ -384,7 +384,7 @@ namespace DAL.Repositories
                         }
                         reader.Close();
 
-                        foreach(CustomList custom in profile.GetAllCustomLists())
+                        foreach (CustomList custom in profile.GetAllCustomLists())
                         {
                             int nrContent = -1;
                             switch (custom.ContentType)
@@ -533,7 +533,7 @@ namespace DAL.Repositories
                                          VALUES (@UserId, @Username); 
                                          SELECT SCOPE_IDENTITY();";
                                 int profileId = 0;
-                                using(SqlCommand profileCommand = new SqlCommand(query2, conn, transaction))
+                                using (SqlCommand profileCommand = new SqlCommand(query2, conn, transaction))
                                 {
                                     profileCommand.Parameters.AddWithValue("@UserId", userId);
                                     profileCommand.Parameters.AddWithValue("@Username", webUser.Profile.Username);
@@ -607,7 +607,38 @@ namespace DAL.Repositories
                 throw new Exception($"An error occurred!");
             }
         }
-        //delete
 
+        public void DeleteAccount(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        string query2 = @"DELETE FROM [User] WHERE UserId=@UserId";
+                        using (SqlCommand command = new SqlCommand(query2, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@UserId", userId);
+                            command.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Account couldn't be deleted!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred!");
+            }
+        }
     }
 }

@@ -103,12 +103,17 @@ namespace Logic.Users
         {
             foreach (User user in GetAllUsers())
             {
-                if (user.HashedPassword == Security.CreateHash(user.Salt, password) && user.Email == email)
+                if (user.Email == email && user.HashedPassword == Security.CreateHash(user.Salt, password))
                 {
                     return true;
                 }
             }
             return false;
+        }
+
+        public void DeleteAccount(int userId)
+        {
+            _userDataHandler.DeleteAccount(userId);
         }
     }
 }

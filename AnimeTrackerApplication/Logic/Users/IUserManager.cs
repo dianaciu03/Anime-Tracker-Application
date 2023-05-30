@@ -17,5 +17,6 @@ namespace Logic.Users
         void AddUser(string name, string email, string password, string role);
         void UpdateUser(User user, string password);
         List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU);
+        void DeleteAccount(int userId);
     }
 }

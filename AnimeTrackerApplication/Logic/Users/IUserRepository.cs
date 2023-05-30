@@ -15,5 +15,6 @@ namespace Logic.Users
         Profile GetProfileByWebUserId(int id);
         void UpdateUser(User user);
         List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU);
+        void DeleteAccount(int userId);
     }
 }

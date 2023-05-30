@@ -579,7 +579,9 @@ namespace WinFormsGraphic
                 {
                     item.SubItems.Add("");
                 }
-                item.SubItems.Add(u.JoinDate.Date.ToString());
+                DateTime dateTime = u.JoinDate;
+                string formattedDate = dateTime.ToString("d MMMM yyyy");
+                item.SubItems.Add(formattedDate);
                 item.SubItems.Add(u.GetType().Name);
                 lvwAccounts.Items.Add(item);
             }
@@ -595,6 +597,32 @@ namespace WinFormsGraphic
                 }
                 List<User> searchedUsers = userManager.GetSearchedUsers(tbxNameAccount.Text, tbxUsername.Text, cbxRoles.Text, years);
                 UpdateAccountsListView(searchedUsers);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
+        private void btnRemoveAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                User user = (User)lvwAccounts.SelectedItems[0].Tag;
+                //Display a confirmation message box
+                DialogResult result = MessageBox.Show("Are you sure you want to remove " + user.Name + "?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // If the user clicks Yes, remove the selected item
+                if (result == DialogResult.Yes)
+                {
+                    userManager.DeleteAccount(user.Id);
+                    MessageBox.Show("Account has been successfully deleted!");
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select a user to remove!");
             }
             catch (Exception ex)
             {
