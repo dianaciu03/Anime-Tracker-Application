@@ -33,6 +33,7 @@ namespace WinFormsGraphic
         User currentUser;
         List<RadioButton> animeSort;
         List<RadioButton> mangaSort;
+        TabPage currentTab;
 
         public MainPage(User user)
         {
@@ -48,6 +49,7 @@ namespace WinFormsGraphic
             mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
             characterManager = ManagerFactory.CreateCharacterManager(RepositoryFactory.CreateCharacterRepository());
             userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
+            currentTab = tabControl.SelectedTab;
         }
 
         private void InitializeForm()
@@ -77,14 +79,18 @@ namespace WinFormsGraphic
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (tabControl.SelectedTab == tabCreateAccount)
             {
                 if(currentUser is not Admin)
                 {
-                    tabControl.SelectedTab = tabAnime;
+                    tabControl.SelectedTab = currentTab;
                     MessageBox.Show("You don't have access to this page!");
-
                 }
+            }
+            else
+            {
+                currentTab = tabControl.SelectedTab;
             }
         }
 
@@ -254,7 +260,6 @@ namespace WinFormsGraphic
         {
             try
             {
-                //need to check for numbers
                 List<Anime> searchedAnime = animeManager.GetSearchedAnime(tbxNameSearchAnime.Text, tbxStudioSearchAnime.Text, Convert.ToInt32(numNrEpisodesFromSearchAnime.Text), Convert.ToInt32(numNrEpisodesToSearchAnime.Text), tbxReleaseYearSearchAnime.Text, cbxSeasonSearchAnime.Text, cbxGenreSearchAnime.Text, Convert.ToDecimal(numRatingLowerAnime.Text), Convert.ToDecimal(numRatingUpperAnime.Text));
                 UpdateAnimeListview(searchedAnime);
             }
@@ -269,6 +274,7 @@ namespace WinFormsGraphic
             Anime anime = (Anime)lvwAnime.SelectedItems[0].Tag;
             MessageBox.Show(anime.GetInfoDetailed());
         }
+
 
         //
         //MANGA TAB
@@ -380,7 +386,8 @@ namespace WinFormsGraphic
         {
             try
             {
-                
+                List<Manga> searchedManga = mangaManager.GetSearchedManga(tbxNameManga.Text, tbxCreatorManga.Text, Convert.ToInt32(numChaptersFromManga.Text), Convert.ToInt32(numChaptersToManga.Text), tbxReleaseYearManga.Text, cbxMangaStatus.Text, cbxGenreManga.Text, Convert.ToDecimal(numRatingLowerManga.Text), Convert.ToDecimal(numRatingUpperManga.Text));
+                UpdateMangaListView(searchedManga);
             }
             catch (Exception ex)
             {

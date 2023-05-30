@@ -11,5 +11,6 @@ namespace Logic.Mangas
         List<Manga> GetMangaByName(string name);
         int GetNrManga();
         void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL, List<Genre> genres);
+        List<Manga> GetSearchedManga(string nameM, string creatorM, int nrChapFromM, int nrChapToM, string releaseYearM, string statusM, string genreM, decimal ratingFromM, decimal ratingToM);
     }
 }

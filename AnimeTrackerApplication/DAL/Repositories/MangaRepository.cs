@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static Azure.Core.HttpHeader;
 
 namespace DAL.Repositories
 {
@@ -328,6 +329,80 @@ namespace DAL.Repositories
                     using (SqlCommand command = new SqlCommand(query, conn))
                     {
                         command.Parameters.AddWithValue("@Name", name);
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int newMangaId = reader.GetInt32(reader.GetOrdinal("MangaId"));
+                            if (newMangaId != oldMangaId)
+                            {
+                                oldMangaId = newMangaId;
+                                string nameManga = reader.GetString(reader.GetOrdinal("Name"));
+                                string creator = reader.GetString(reader.GetOrdinal("Creator"));
+                                int nrChapters = reader.GetInt32(reader.GetOrdinal("NrChapters"));
+                                int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                                string status = reader.GetString(reader.GetOrdinal("Status"));
+                                decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                                string description = reader.GetString(reader.GetOrdinal("Description"));
+                                string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                                MangaStatus statusManga = (MangaStatus)Enum.Parse(typeof(MangaStatus), status);
+
+                                List<Genre> genres = new List<Genre>();
+                                string genreManga = reader.GetString(reader.GetOrdinal("Genre"));
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);
+                                genres.Add(genre);
+                                manga = new Manga(oldMangaId, nameManga, description, rating, releaseYear, imageURL, statusManga, nrChapters, creator, genres);
+                                mangaList.Add(manga);
+                            }
+                            else if (newMangaId == oldMangaId)
+                            {
+                                string genreManga = reader.GetString(9);
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);
+                                manga.AddGenre(genre);
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the manga!");
+            }
+            return mangaList;
+        }
+
+        public List<Manga> GetSearchedManga(string nameM, string creatorM, int nrChapFromM, int nrChapToM, string releaseYearM, string statusM, string genreM, decimal ratingFromM, decimal ratingToM)
+        {
+            List<Manga> mangaList = new List<Manga>();
+            Manga manga = null;
+            int oldMangaId = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT Manga.*, ContentGenre.Genre FROM Manga INNER JOIN Manga_Genre 
+                                       ON Manga.MangaId = Manga_Genre.MangaId INNER JOIN ContentGenre 
+                                       ON Manga_Genre.GenreId = ContentGenre.GenreId
+                                       WHERE Name LIKE '%' + @Name + '%' 
+                                       AND Creator LIKE '%' + @Creator + '%' 
+                                       AND NrChapters >= @NrChaptersFrom AND NrChapters <= @NrChaptersTo 
+                                       AND ReleaseYear LIKE '%' + @ReleaseYear + '%' 
+                                       AND Status LIKE '%' + @Status + '%'
+                                       AND Genre LIKE '%' + @Genre + '%' 
+                                       AND Rating >= @RatingFrom AND Rating <= @RatingTo";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@Name", nameM);
+                        command.Parameters.AddWithValue("@Creator", creatorM);
+                        command.Parameters.AddWithValue("@NrChaptersFrom", nrChapFromM);
+                        command.Parameters.AddWithValue("@NrChaptersTo", nrChapToM);
+                        command.Parameters.AddWithValue("@ReleaseYear", releaseYearM);
+                        command.Parameters.AddWithValue("@Status", statusM);
+                        command.Parameters.AddWithValue("@Genre", genreM);
+                        command.Parameters.AddWithValue("@RatingFrom", ratingFromM);
+                        command.Parameters.AddWithValue("@RatingTo", ratingToM);
                         SqlDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {

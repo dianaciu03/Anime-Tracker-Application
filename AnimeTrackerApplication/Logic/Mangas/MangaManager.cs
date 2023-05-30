@@ -78,5 +78,14 @@ namespace Logic.Mangas
             return _mangaDataHandler.GetMangaByName(name);
         }
 
+        public List<Manga> GetSearchedManga(string nameM, string creatorM, int nrChapFromM, int nrChapToM, string releaseYearM, string statusM, string genreM, decimal ratingFromM, decimal ratingToM)
+        {
+            if (nrChapToM == 0)
+                nrChapToM = 99999;
+            if (ratingToM == 0)
+                ratingToM = 5;
+            return _mangaDataHandler.GetSearchedManga(nameM, creatorM, nrChapFromM, nrChapToM, releaseYearM, statusM, genreM, ratingFromM, ratingToM);
+        }
+
     }   
 }
