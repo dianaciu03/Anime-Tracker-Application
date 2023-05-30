@@ -22,8 +22,10 @@ namespace Logic.Profiles
             this.username = username;
             customLists.Add(new CustomList("Watched", "Anime"));
             customLists.Add(new CustomList("Want to watch", "Anime"));
+            customLists.Add(new CustomList("Dropped Anime", "Anime"));
             customLists.Add(new CustomList("Read", "Manga"));
             customLists.Add(new CustomList("Want to read", "Manga"));
+            customLists.Add(new CustomList("Dropped Manga", "Manga"));
             customLists.Add(new CustomList("Favourite characters", "Character"));
             customLists.Add(new CustomList("Disliked characters", "Character"));
         }

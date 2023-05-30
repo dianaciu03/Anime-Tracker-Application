@@ -1587,7 +1587,7 @@
             this.btnCreateMaintainer.Name = "btnCreateMaintainer";
             this.btnCreateMaintainer.Size = new System.Drawing.Size(406, 72);
             this.btnCreateMaintainer.TabIndex = 49;
-            this.btnCreateMaintainer.Text = "Create Maintainer Account";
+            this.btnCreateMaintainer.Text = "Create Account";
             this.btnCreateMaintainer.UseVisualStyleBackColor = false;
             this.btnCreateMaintainer.Click += new System.EventHandler(this.btnCreateMaintainer_Click);
             // 

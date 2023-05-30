@@ -35,26 +35,13 @@ namespace WebAppGraphic.Pages
             {
                 if (RegistrationFormUser.Password == ConfirmPassword)
                 {
-                    bool userExists = false;
-                    foreach(User existUser in userManager.GetAllWebUsers())
+                    if(userManager.UserExists(RegistrationFormUser.Email) == false)
                     {
-                        if (existUser.Email == RegistrationFormUser.Email)
-                        {
-                            userExists = true;
-                            ModelState.AddModelError(string.Empty, "This email address is unavailable.");
-                        }
-                    }
-
-                    if(userExists == false)
-                    {
-                        (string salt, string hashedPassword) = Security.CreateSaltAndHash(RegistrationFormUser.Password);
-                        Profile webProfile = new Profile(RegistrationProfile.Username);
-                        RegisteredWebUser webUser = new RegisteredWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, hashedPassword, DateTime.Now.Date, salt, webProfile);
                         //TempData["WebUser"] = JsonSerializer.Serialize(webUser);
-                        userManager.AddUser(webUser);
+                        userManager.AddWebUser(RegistrationFormUser.Name, RegistrationFormUser.Email, RegistrationFormUser.Password, RegistrationProfile.Username);
 
                         //login newly created user
-                        RegisteredWebUser user = userManager.GetWebUserByEmail(webUser.Email);
+                        RegisteredWebUser user = userManager.GetWebUserByEmail(RegistrationFormUser.Email);
                         HttpContext.Session.SetInt32("userId", user.Id);
                         ClaimsIdentity claimsIdentity = new ClaimsIdentity(
                         new Claim[]

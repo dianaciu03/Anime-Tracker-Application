@@ -13,5 +13,7 @@ namespace Logic.Users
         RegisteredWebUser? GetWebUserById(int id);
         Profile GetProfileByWebUserId(int id);
         bool LoginUser(string password, string email);
+        bool UserExists(string email);
+        void AddWebUser(string name, string email, string password, string username);
     }
 }

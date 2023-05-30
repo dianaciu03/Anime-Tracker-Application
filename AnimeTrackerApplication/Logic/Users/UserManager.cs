@@ -32,6 +32,26 @@ namespace Logic.Users
             _userDataHandler.AddUser(user);
         }
 
+        public void AddWebUser(string name, string email, string password, string username)
+        {
+            (string salt, string hashedPassword) = Security.CreateSaltAndHash(password);
+            Profile webProfile = new Profile(username);
+            RegisteredWebUser webUser = new RegisteredWebUser(name, email, hashedPassword, DateTime.Now.Date, salt, webProfile);
+            _userDataHandler.AddUser(webUser);
+        }
+
+        public bool UserExists(string email)
+        {
+            foreach (User existUser in GetAllWebUsers())
+            {
+                if (existUser.Email == email)
+                {
+                    return true;
+                }   
+            }
+            return false;
+        }
+
         public User? GetUserByEmail(string email)
         {
             return _userDataHandler.GetUserByEmail(email);
