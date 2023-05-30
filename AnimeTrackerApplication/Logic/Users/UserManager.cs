@@ -57,6 +57,11 @@ namespace Logic.Users
             _userDataHandler.AddUser(webUser);
         }
 
+        public List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU)
+        {
+            return _userDataHandler.GetSearchedUsers(nameU, usernameU, roleU, yearsU);
+        }
+
         public bool UserExists(string email)
         {
             foreach (User existUser in GetAllWebUsers())

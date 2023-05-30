@@ -1711,6 +1711,7 @@
             this.btnClearFieldsAccount.TabIndex = 44;
             this.btnClearFieldsAccount.Text = "Clear fields";
             this.btnClearFieldsAccount.UseVisualStyleBackColor = false;
+            this.btnClearFieldsAccount.Click += new System.EventHandler(this.btnClearFieldsAccount_Click);
             // 
             // labelExperience
             // 
@@ -1732,6 +1733,7 @@
             this.btnSearchAccount.TabIndex = 38;
             this.btnSearchAccount.Text = "Search";
             this.btnSearchAccount.UseVisualStyleBackColor = false;
+            this.btnSearchAccount.Click += new System.EventHandler(this.btnSearchAccount_Click);
             // 
             // cbxRoles
             // 

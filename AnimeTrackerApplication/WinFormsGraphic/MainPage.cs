@@ -20,6 +20,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Xml.Linq;
 using System.Globalization;
 using Logic.Profiles;
+using Microsoft.VisualBasic.ApplicationServices;
+using User = Logic.Users.User;
 
 namespace WinFormsGraphic
 {
@@ -75,6 +77,10 @@ namespace WinFormsGraphic
 
             //initilize character search
             rbtnCharacterNameAsc.Checked = true;
+
+            //initilize account search
+            cbxRoles.DataSource = new string[] { "Admin", "Maintainer", "RegisteredWebUser"};
+            cbxRoles.SelectedIndex = -1;
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,11 +88,11 @@ namespace WinFormsGraphic
             
             if (tabControl.SelectedTab == tabCreateAccount)
             {
-                //if(currentUser is not Admin)
-                //{
-                //    tabControl.SelectedTab = currentTab;
-                //    MessageBox.Show("You don't have access to this page!");
-                //}
+                if (currentUser is not Admin)
+                {
+                    tabControl.SelectedTab = currentTab;
+                    MessageBox.Show("You don't have access to this page!");
+                }
             }
             else
             {
@@ -548,6 +554,53 @@ namespace WinFormsGraphic
             form.ShowDialog();
         }
 
-        
+        private void btnClearFieldsAccount_Click(object sender, EventArgs e)
+        {
+            tbxNameAccount.Text = string.Empty;
+            tbxUsername.Text = string.Empty;
+            cbxRoles.SelectedIndex = -1;
+            tbxYears.Text = string.Empty;
+        }
+
+        private void UpdateAccountsListView(List<User> users)
+        {
+            lvwAccounts.Items.Clear();
+            foreach (User u in users)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = u.Name;
+                item.Tag = u;
+                if(u is RegisteredWebUser)
+                {
+                    RegisteredWebUser user = (RegisteredWebUser)u;
+                    item.SubItems.Add(user.Profile.Username);
+                }
+                else
+                {
+                    item.SubItems.Add("");
+                }
+                item.SubItems.Add(u.JoinDate.Date.ToString());
+                item.SubItems.Add(u.GetType().Name);
+                lvwAccounts.Items.Add(item);
+            }
+        }
+        private void btnSearchAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int years = 0;
+                if(!String.IsNullOrEmpty(tbxYears.Text))
+                {
+                    years = Convert.ToInt32(tbxYears.Text);
+                }
+                List<User> searchedUsers = userManager.GetSearchedUsers(tbxNameAccount.Text, tbxUsername.Text, cbxRoles.Text, years);
+                UpdateAccountsListView(searchedUsers);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
     }
 }

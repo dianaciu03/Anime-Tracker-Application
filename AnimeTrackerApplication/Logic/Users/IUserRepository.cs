@@ -14,5 +14,6 @@ namespace Logic.Users
         RegisteredWebUser? GetWebUserById(int id);
         Profile GetProfileByWebUserId(int id);
         void UpdateUser(User user);
+        List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU);
     }
 }

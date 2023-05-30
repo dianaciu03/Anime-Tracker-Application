@@ -279,6 +279,69 @@ namespace DAL.Repositories
             return user;
         }
 
+        public List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU)
+        {
+            List<User> users = new List<User>();
+            User user = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM [User]
+                                       WHERE Name LIKE '%' + @Name + '%' 
+                                       AND Role LIKE '%' + @Role + '%' 
+                                       AND DATEDIFF(year, Joindate, GETDATE()) >= @Years;"; 
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@Name", nameU);
+                        command.Parameters.AddWithValue("@Role", roleU);
+                        command.Parameters.AddWithValue("@Years", yearsU);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("UserId"));
+                            string email = reader.GetString(reader.GetOrdinal("Email"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
+                            string salt = reader.GetString(reader.GetOrdinal("Salt"));
+                            DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
+                            string role = reader.GetString(reader.GetOrdinal("Role"));
+
+                            switch (role)
+                            {
+                                case "Admin":
+                                    user = new Admin(id, name, email, hashedPassword, joinDate, salt);
+                                    users.Add(user);
+                                    break;
+
+                                case "Maintainer":
+                                    user = new Maintainer(id, name, email, hashedPassword, joinDate, salt);
+                                    users.Add(user);
+                                    break;
+
+                                case "RegisteredWebUser":
+                                    user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt);
+                                    Profile profile = GetProfileByWebUserId(user.Id);
+                                    RegisteredWebUser webUser = (RegisteredWebUser)user;
+                                    webUser.Profile = profile;
+                                    users.Add(user);
+                                    break;
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the users!");
+            }
+            return users;
+        }
+
         public Profile GetProfileByWebUserId(int id)
         {
             Profile profile = null;

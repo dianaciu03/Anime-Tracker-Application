@@ -16,5 +16,6 @@ namespace Logic.Users
         void AddWebUser(string name, string email, string password, string username);
         void AddUser(string name, string email, string password, string role);
         void UpdateUser(User user, string password);
+        List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU);
     }
 }
