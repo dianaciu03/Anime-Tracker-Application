@@ -1,0 +1,24 @@
+﻿@page
+@using Logic.Reviews
+@model WebAppGraphic.Pages.AnimeReviewsModel
+@{
+}
+
+@foreach (Review review in Model.GetReviews()) 
+{
+    <div class="review-container text-white">
+        <div class="review-info">
+            <img src="anime_picture.jpg" alt="Anime Picture" class="anime-picture">
+            <div class="review-details">
+                <p class="anime-name">Anime Name</p>
+                <p class="username">@review.ProfileId</p>
+                <p class="time-ago">3 hours ago</p>
+            </div>
+        </div>
+        <div class="review-content">
+            <p class="rating">Rating: 4/5 ⭐</p>
+            <p class="review-description">@review.Description</p>
+        </div>
+    </div>
+}
+
