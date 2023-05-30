@@ -242,5 +242,86 @@ namespace DAL.Repositories
                 throw new Exception($"An error occurred: {ex.Message}");
             }
         }
+
+        public List<Character> GetSearchedCharacters(string nameC, string genderC, List<Anime> animes, List<Manga> mangas)
+        {
+            List<Character> listCharacters = new List<Character>();
+            List<Character> goodCharacters = new List<Character>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query1 = @$"SELECT * FROM Character WHERE Name LIKE '%' + @Name + '%' AND Gender LIKE '%' + @Gender + '%'";
+                    using (SqlCommand command1 = new SqlCommand(query1, conn))
+                    {
+                        command1.Parameters.AddWithValue("@Name", nameC);
+                        command1.Parameters.AddWithValue("@Gender", genderC);
+                        SqlDataReader reader = command1.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int characterId = reader.GetInt32(reader.GetOrdinal("CharacterId"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string gender = reader.GetString(reader.GetOrdinal("Gender"));
+                            string image = reader.GetString(reader.GetOrdinal("Image"));
+                            int nrLikes = reader.GetInt32(reader.GetOrdinal("NrLikes"));
+                            int nrDislikes = reader.GetInt32(reader.GetOrdinal("NrDislikes"));
+                            Character character = new Character(characterId, name, gender, image, nrLikes, nrDislikes);
+                            int? animeId = reader.IsDBNull(reader.GetOrdinal("AnimeId")) ? null : reader.GetInt32(reader.GetOrdinal("AnimeId"));
+                            if (animeId != null)
+                            {
+                                character.AnimeId = (int)animeId;
+                            }
+                            int? mangaId = reader.IsDBNull(reader.GetOrdinal("MangaId")) ? null : reader.GetInt32(reader.GetOrdinal("MangaId"));
+                            if (mangaId != null)
+                            {
+                                character.MangaId = (int)mangaId;
+                            }
+                            listCharacters.Add(character);
+                        }
+                        reader.Close();
+
+                    }
+                    conn.Close();
+                }
+
+                if(animes.Count == 0 && mangas.Count == 0)
+                {
+                    return listCharacters;
+                }
+                if (animes.Count != 0)
+                {
+                    foreach (Character character in listCharacters)
+                    {
+                        foreach (Anime anime in animes)
+                        {
+                            if (character.AnimeId == anime.Id)
+                            {
+                                goodCharacters.Add(character);
+                            }
+                        }
+                    }
+                }
+                if (mangas.Count != 0)
+                {
+                    foreach (Character character in listCharacters)
+                    {
+                        foreach (Manga manga in mangas)
+                        {
+                            if (character.MangaId == manga.Id)
+                            {
+                                goodCharacters.Add(character);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrive the characters!");
+            }
+            return goodCharacters;
+        }
     }
 }

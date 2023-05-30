@@ -1,4 +1,6 @@
-﻿using Logic.Characters;
+﻿using Logic.Animes;
+using Logic.Characters;
+using Logic.Mangas;
 
 namespace Logic.Characters
 {
@@ -9,5 +11,6 @@ namespace Logic.Characters
         List<Character> GetAllCharacters();
         void UpdateCharacter(Character character);
         Character? GetCharacterById(int id);
+        List<Character> GetSearchedCharacters(string nameC, string genderC, List<Anime> animes, List<Manga> mangas);
     }
 }

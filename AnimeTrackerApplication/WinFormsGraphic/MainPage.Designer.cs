@@ -1521,6 +1521,7 @@
             this.btnSearchCharacter.TabIndex = 38;
             this.btnSearchCharacter.Text = "Search";
             this.btnSearchCharacter.UseVisualStyleBackColor = false;
+            this.btnSearchCharacter.Click += new System.EventHandler(this.btnSearchCharacter_Click);
             // 
             // labelAnimeCharacter
             // 

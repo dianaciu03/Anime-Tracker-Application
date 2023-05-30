@@ -427,19 +427,6 @@ namespace WinFormsGraphic
         private void btnDisplayAllCharacters_Click(object sender, EventArgs e)
         {
             List<Character> characters = characterManager.GetAllCharacters();
-            foreach (Character c in characters)
-            {
-                if (c.AnimeId > 0)
-                {
-                    Anime anime = animeManager.GetAnimeById(c.AnimeId);
-                    c.FromAnime = anime;
-                }
-                if (c.MangaId > 0)
-                {
-                    Manga manga = mangaManager.GetMangaById(c.MangaId);
-                    c.FromManga = manga;
-                }
-            }
             UpdateCharactersListView(characters);
         }
 
@@ -452,17 +439,19 @@ namespace WinFormsGraphic
                 item.Text = c.Name;
                 item.Tag = c;
                 item.SubItems.Add(c.Gender);
-                if (c.FromAnime != null)
+                if (c.AnimeId != null && c.AnimeId != 0)
                 {
-                    item.SubItems.Add(c.FromAnime.Name);
+                    Anime anime = animeManager.GetAnimeById(c.AnimeId);
+                    item.SubItems.Add(anime.Name);
                 }
                 else
                 {
                     item.SubItems.Add(string.Empty);
                 }
-                if (c.FromManga != null)
+                if (c.MangaId != null && c.MangaId != 0)
                 {
-                    item.SubItems.Add(c.FromManga.Name);
+                    Manga manga = mangaManager.GetMangaById(c.MangaId);
+                    item.SubItems.Add(manga.Name);
                 }
                 else
                 {
@@ -508,6 +497,47 @@ namespace WinFormsGraphic
             tbxAnimeCharacterSearch.Text = string.Empty;
             tbxMangaCharacterSearch.Text = string.Empty;
         }
+
+        private void btnSearchCharacter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string gender = string.Empty;
+                if(rbtnMale.Checked)
+                {
+                    gender = rbtnMale.Text;
+                }
+                else if(rbtnFemale.Checked)
+                {
+                    gender = rbtnFemale.Text;
+                }
+                else if(rbtnUnknown.Checked)
+                {
+                    gender = rbtnUnknown.Text;
+                }
+
+                List<Anime> animes = new List<Anime>();
+                if (!String.IsNullOrEmpty(tbxAnimeCharacterSearch.Text))
+                {
+                    animes = animeManager.GetAnimeByName(tbxAnimeCharacterSearch.Text);
+                }
+
+                List<Manga> mangas = new List<Manga>();
+                if (!String.IsNullOrEmpty(tbxMangaCharacterSearch.Text))
+                {
+                    mangas = mangaManager.GetMangaByName(tbxMangaCharacterSearch.Text);
+                }
+
+                List<Character> searchedCharacters = characterManager.GetSearchedCharacters(tbxCharacterName.Text, gender, animes, mangas);
+                UpdateCharactersListView(searchedCharacters);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
 
         //
         //ACCOUNT TAB
