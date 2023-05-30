@@ -1,4 +1,5 @@
-﻿using Logic.Enums;
+﻿using Factory;
+using Logic.Enums;
 using Logic.Users;
 using System;
 using System.Collections.Generic;
@@ -16,20 +17,17 @@ namespace WinFormsGraphic
 {
     public partial class PopupAddAccount : Form
     {
+        private IUserManager userManager;
         public PopupAddAccount()
         {
             InitializeComponent();
 
             //fill combobox with data
-            // Get all types in the assembly
-            Type[] allTypes = Assembly.GetExecutingAssembly().GetTypes();
+            cbxRole.DataSource = new string[] { "Admin", "Maintainer" };
+            cbxRole.SelectedIndex = -1;
 
-            // Filter the types that are subclasses of ParentClass
-            Type[] subclasses = allTypes.Where(type => type.IsSubclassOf(typeof(User))).ToArray();
-
-            // Add the names of the subclasses to the ComboBox data source
-            cbxRole.DataSource = subclasses.Select(subclass => subclass.Name).ToList();
-
+            userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
+            tbxPassword.Text = "TempResetPass";
         }
 
         private void btnCancelAccountAddition_Click(object sender, EventArgs e)
@@ -39,7 +37,21 @@ namespace WinFormsGraphic
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string name = tbxName.Text;
+                string email = tbxEmail.Text;
+                string password = tbxPassword.Text;
+                string role = cbxRole.SelectedItem.ToString();
+                userManager.AddUser(name, email, password, role);
+                MessageBox.Show("Account was added successfully!");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
     }
 }

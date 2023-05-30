@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace WinFormsGraphic
 {
@@ -56,5 +57,32 @@ namespace WinFormsGraphic
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string email = tbEmail.Text;
+                if (!String.IsNullOrEmpty(email))
+                {
+                    User user = userManager.GetUserByEmail(email);
+                    {
+                        if (user != null)
+                        {
+                            if (user.Salt == "" && user.HashedPassword == "TempResetPass")
+                            {
+                                this.Hide();
+                                LoginResetPass form = new LoginResetPass(user);
+                                form.ShowDialog();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

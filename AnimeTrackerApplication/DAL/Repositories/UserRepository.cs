@@ -211,7 +211,6 @@ namespace DAL.Repositories
                         {
                             string email = reader.GetString(reader.GetOrdinal("Email"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
                             string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                             string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
@@ -508,8 +507,43 @@ namespace DAL.Repositories
             }
         }
 
-        //update
+        public void UpdateUser(User user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
 
+                    try
+                    {
+                        string query = @"UPDATE [User] SET Name=@Name, Email=@Email, Salt=@Salt, Password=@Password WHERE UserId=@UserId";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@UserId", user.Id);
+                            command.Parameters.AddWithValue("@Name", user.Name);
+                            command.Parameters.AddWithValue("@Email", user.Email);
+                            command.Parameters.AddWithValue("@Salt", user.Salt);
+                            command.Parameters.AddWithValue("@Password", user.HashedPassword);
+
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"User couldn't be updated!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred!");
+            }
+        }
         //delete
 
     }

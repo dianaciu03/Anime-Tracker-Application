@@ -222,7 +222,6 @@ namespace DAL.Repositories
             }
         }
 
-
         public void DeleteAnime(int animeId)
         {
             try

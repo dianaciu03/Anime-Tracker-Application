@@ -22,7 +22,7 @@ namespace TestProject
             // Arrange
             int totalMinutes = 78;
             // Act
-            int result = profile.CalculateAnimeMinutes(totalMinutes);
+            int result = profile.CalculateAnimeMinutes();
             // Assert
             Assert.Equal(18, result);
         }
@@ -33,7 +33,7 @@ namespace TestProject
             // Arrange
             int totalMinutes = 450;
             // Act
-            int result = profile.CalculateAnimeHours(totalMinutes);
+            int result = profile.CalculateAnimeHours();
             // Assert
             Assert.Equal(7, result);
         }
@@ -44,7 +44,7 @@ namespace TestProject
             // Arrange
             int totalMinutes = 4444;
             // Act
-            int result = profile.CalculateAnimeDays(totalMinutes);
+            int result = profile.CalculateAnimeDays();
             // Assert
             Assert.Equal(3, result);
         }
@@ -55,7 +55,7 @@ namespace TestProject
             // Arrange
             int totalMinutes = 172999;
             // Act
-            int result = profile.CalculateAnimeMonths(totalMinutes);
+            int result = profile.CalculateAnimeMonths();
             // Assert
             Assert.Equal(4, result);
         }
@@ -66,7 +66,7 @@ namespace TestProject
             // Arrange
             int totalMinutes = 2000002;
             // Act
-            int result = profile.CalculateAnimeYears(totalMinutes);
+            int result = profile.CalculateAnimeYears();
             // Assert
             Assert.Equal(3, result);
         }

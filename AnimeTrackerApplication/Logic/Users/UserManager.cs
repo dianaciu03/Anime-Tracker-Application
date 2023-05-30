@@ -27,9 +27,26 @@ namespace Logic.Users
             return _userDataHandler.GetAllWebUsers();
         }
 
-        public void AddUser(User user)
+        public void AddUser(string name, string email, string password, string role)
         {
-            _userDataHandler.AddUser(user);
+            if(role == "Maintainer")
+            {
+                User maintainer = new Maintainer(name, email, password, DateTime.Now.Date, "");
+                _userDataHandler.AddUser(maintainer);
+            }
+            else if(role == "Admin")
+            {
+                User admin = new Admin(name, email, password, DateTime.Now.Date, "");
+                _userDataHandler.AddUser(admin);
+            }
+        }
+
+        public void UpdateUser(User user, string password)
+        {
+            (string salt, string hashedPassword) = Security.CreateSaltAndHash(password);
+            user.Salt = salt;
+            user.HashedPassword = hashedPassword;
+            _userDataHandler.UpdateUser(user);
         }
 
         public void AddWebUser(string name, string email, string password, string username)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Factory;
+using Logic.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +14,13 @@ namespace WinFormsGraphic
 {
     public partial class LoginResetPass : Form
     {
-        public LoginResetPass()
+        private IUserManager userManager;
+        private User user;
+        public LoginResetPass(User user)
         {
             InitializeComponent();
             InitializeForm();
+            this.user = user;
         }
 
         private void InitializeForm()
@@ -23,27 +28,28 @@ namespace WinFormsGraphic
             //manually initialize some visual elements of the form
             this.BackgroundImageLayout = ImageLayout.Stretch;
             labelErorrMessage.Visible = false;
+
+            userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //hardcode login
             try
             {
                 string email = tbEmail.Text;
-                string password = tbPassword.Text;
+                if(user.Email == email)
+                {
+                    if(tbPassword.Text == tbxConfirmPassword.Text)
+                    {
+                        userManager.UpdateUser(user, tbxConfirmPassword.Text);
+                        User updatedUser = userManager.GetUserById(user.Id);
 
-                if (email == "main" && password == "123")
-                {
-                    this.Hide();
-                    //MainPage mainPage = new MainPage();
-                    //mainPage.ShowDialog();
-                    this.Close();
-                }
-                else
-                {
-                    labelErorrMessage.Visible = true;
-                }
+                        this.Hide();
+                        LoginResetPass form = new LoginResetPass(updatedUser);
+                        form.ShowDialog();
+                        this.Close();
+                    }
+                } 
             }
             catch (Exception)
             {

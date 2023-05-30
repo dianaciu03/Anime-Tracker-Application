@@ -82,11 +82,11 @@ namespace WinFormsGraphic
             
             if (tabControl.SelectedTab == tabCreateAccount)
             {
-                if(currentUser is not Admin)
-                {
-                    tabControl.SelectedTab = currentTab;
-                    MessageBox.Show("You don't have access to this page!");
-                }
+                //if(currentUser is not Admin)
+                //{
+                //    tabControl.SelectedTab = currentTab;
+                //    MessageBox.Show("You don't have access to this page!");
+                //}
             }
             else
             {

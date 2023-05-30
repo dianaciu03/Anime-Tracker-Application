@@ -1,3 +1,6 @@
+using Factory;
+using Logic.Users;
+
 namespace WinFormsGraphic
 {
     internal static class Program

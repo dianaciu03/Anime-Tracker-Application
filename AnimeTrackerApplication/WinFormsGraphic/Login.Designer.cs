@@ -36,6 +36,7 @@
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.loginLabelBox = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelErorrMessage
@@ -56,7 +57,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.MediumPurple;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnLogin.Location = new System.Drawing.Point(874, 405);
+            this.btnLogin.Location = new System.Drawing.Point(871, 367);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(158, 53);
             this.btnLogin.TabIndex = 14;
@@ -66,7 +67,7 @@
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(855, 331);
+            this.tbPassword.Location = new System.Drawing.Point(852, 301);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '●';
             this.tbPassword.Size = new System.Drawing.Size(314, 39);
@@ -74,7 +75,7 @@
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(855, 281);
+            this.tbEmail.Location = new System.Drawing.Point(852, 251);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(314, 39);
             this.tbEmail.TabIndex = 12;
@@ -83,7 +84,7 @@
             // 
             this.labelPassword.AutoSize = true;
             this.labelPassword.BackColor = System.Drawing.Color.Thistle;
-            this.labelPassword.Location = new System.Drawing.Point(724, 334);
+            this.labelPassword.Location = new System.Drawing.Point(721, 304);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(116, 32);
             this.labelPassword.TabIndex = 11;
@@ -93,7 +94,7 @@
             // 
             this.labelEmail.AutoSize = true;
             this.labelEmail.BackColor = System.Drawing.Color.Thistle;
-            this.labelEmail.Location = new System.Drawing.Point(724, 284);
+            this.labelEmail.Location = new System.Drawing.Point(721, 254);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(76, 32);
             this.labelEmail.TabIndex = 10;
@@ -104,7 +105,7 @@
             this.labelTitle.AutoSize = true;
             this.labelTitle.BackColor = System.Drawing.Color.Thistle;
             this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTitle.Location = new System.Drawing.Point(892, 209);
+            this.labelTitle.Location = new System.Drawing.Point(889, 179);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(116, 39);
             this.labelTitle.TabIndex = 9;
@@ -116,10 +117,22 @@
             this.loginLabelBox.BackColor = System.Drawing.Color.Thistle;
             this.loginLabelBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.loginLabelBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginLabelBox.Location = new System.Drawing.Point(668, 187);
+            this.loginLabelBox.Location = new System.Drawing.Point(665, 157);
             this.loginLabelBox.Name = "loginLabelBox";
-            this.loginLabelBox.Size = new System.Drawing.Size(558, 335);
+            this.loginLabelBox.Size = new System.Drawing.Size(558, 369);
             this.loginLabelBox.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Thistle;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(778, 432);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(358, 25);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Click here if you are resetting you password.";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Login
             // 
@@ -127,6 +140,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = global::WinFormsGraphic.Properties.Resources.loginbg;
             this.ClientSize = new System.Drawing.Size(1884, 1041);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelErorrMessage);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.tbPassword);
@@ -155,5 +169,6 @@
         private Label labelEmail;
         private Label labelTitle;
         private Label loginLabelBox;
+        private Label label1;
     }
 }
