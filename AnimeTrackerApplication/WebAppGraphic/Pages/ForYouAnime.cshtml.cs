@@ -40,8 +40,22 @@ namespace WebAppGraphic.Pages
             return animeManager.GetRecommendedAnime(profile.Id);
         }
 
-        public void OnGet()
+        public int GetPercent(int nrMatches)
         {
+            return animeManager.CalculateMatchPercent(nrMatches, GetProfile().GetAllPreferredGenres().Count());
+        }
+
+        public IActionResult OnGet()
+        {
+            int? id = HttpContext.Session.GetInt32("userId");
+            if (id != null)
+            {
+                return Page();
+            }
+            else
+            {
+                return RedirectToPage("Login");
+            }
         }
     }
 }

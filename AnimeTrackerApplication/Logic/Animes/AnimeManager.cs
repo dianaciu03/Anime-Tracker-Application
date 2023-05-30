@@ -93,5 +93,11 @@ namespace Logic.Animes
             return _animeDataHandler.GetRecommendedAnime(profileId);
         }
 
+        public int CalculateMatchPercent(int nrGenresAnime, int nrGenresProfile)
+        {
+            int nrPercent = (nrGenresAnime * 100) / nrGenresProfile;
+            return nrPercent;
+        }
+
     }
 }
