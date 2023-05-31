@@ -20,8 +20,12 @@ namespace WebAppGraphic.Pages
             this.reviewManager = reviewManager;
         }
 
+        [BindProperty]
+        public Review Review { get; set; }
+
         public List<Review> GetReviews()
         {
+            //I need to only get anime reviews
             return reviewManager.GetAllReviews();
         }
 

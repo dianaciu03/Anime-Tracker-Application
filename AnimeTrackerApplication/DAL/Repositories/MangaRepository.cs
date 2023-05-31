@@ -445,5 +445,88 @@ namespace DAL.Repositories
             }
             return mangaList;
         }
+
+        public Dictionary<Manga, int> GetRecommendedAnime(int profileId)
+        {
+            Dictionary<Manga, int> mangaDictionary = new Dictionary<Manga, int>();
+            Manga manga = null;
+            int oldMangaId = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    //fix sql query
+                    string query = @"SELECT
+                                            A.*,
+                                            CG.Genre,
+                                            COALESCE(AG.NrOfGenreMatches, 0) AS NrOfGenreMatches
+                                      FROM
+                                            Anime AS A
+                                            LEFT JOIN (
+                                                SELECT
+                                                    AG.AnimeId,
+                                                    COUNT(*) AS NrOfGenreMatches
+                                                FROM
+                                                    Anime_Genre AS AG
+                                                    INNER JOIN Profile_Genre AS PG ON AG.GenreId = PG.GenreId
+                                                WHERE
+                                                    PG.ProfileId = @ProfileId
+                                                GROUP BY
+                                                    AG.AnimeId
+                                            ) AS AG ON A.AnimeId = AG.AnimeId
+                                            LEFT JOIN Anime_Genre AS AG2 ON A.AnimeId = AG2.AnimeId
+                                            LEFT JOIN ContentGenre AS CG ON AG2.GenreId = CG.GenreId
+                                      WHERE
+                                            COALESCE(AG.NrOfGenreMatches, 0) > 0
+                                      ORDER BY
+                                            NrOfGenreMatches DESC;";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@ProfileId", profileId);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int newMangaId = reader.GetInt32(reader.GetOrdinal("MangaId"));
+                            if (newMangaId != oldMangaId)
+                            {
+                                oldMangaId = newMangaId;
+                                string nameManga = reader.GetString(reader.GetOrdinal("Name"));
+                                string creator = reader.GetString(reader.GetOrdinal("Creator"));
+                                int nrChapters = reader.GetInt32(reader.GetOrdinal("NrChapters"));
+                                int releaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                                string status = reader.GetString(reader.GetOrdinal("Status"));
+                                decimal rating = reader.GetDecimal(reader.GetOrdinal("Rating"));
+                                string description = reader.GetString(reader.GetOrdinal("Description"));
+                                string imageURL = reader.GetString(reader.GetOrdinal("Image"));
+                                MangaStatus statusManga = (MangaStatus)Enum.Parse(typeof(MangaStatus), status);
+
+                                List<Genre> genres = new List<Genre>();
+                                string genreManga = reader.GetString(reader.GetOrdinal("Genre"));
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);
+                                genres.Add(genre);
+                                manga = new Manga(oldMangaId, nameManga, description, rating, releaseYear, imageURL, statusManga, nrChapters, creator, genres);
+                                int nrOfAppearences = reader.GetInt32(reader.GetOrdinal("NrOfGenreMatches"));
+                                mangaDictionary[manga] = nrOfAppearences;
+                            }
+                            else if (newMangaId == oldMangaId)
+                            {
+                                string genreManga = reader.GetString(9);
+                                Genre genre = (Genre)Enum.Parse(typeof(Genre), genreManga);
+                                manga.AddGenre(genre);
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the anime!");
+            }
+            return mangaDictionary;
+        }
     }
 }

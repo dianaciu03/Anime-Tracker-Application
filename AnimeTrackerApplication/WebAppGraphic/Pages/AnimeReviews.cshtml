@@ -2,8 +2,20 @@
 @using Logic.Reviews
 @model WebAppGraphic.Pages.AnimeReviewsModel
 @{
+    ViewData["Title"] = "Anime reviews";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null)
+    {
+        Layout = "_LayoutLogout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
+<div class="background-img-community"></div>
 
+<div class="container-fluid display-reviews bg-dark">
 @foreach (Review review in Model.GetReviews()) 
 {
     <div class="review-container text-white">
@@ -11,7 +23,7 @@
             <img src="anime_picture.jpg" alt="Anime Picture" class="anime-picture">
             <div class="review-details">
                 <p class="anime-name">Anime Name</p>
-                <p class="username">@review.ProfileId</p>
+                <p class="username-review">@review.ProfileId</p>
                 <p class="time-ago">3 hours ago</p>
             </div>
         </div>
@@ -21,4 +33,4 @@
         </div>
     </div>
 }
-
+</div>

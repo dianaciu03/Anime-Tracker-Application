@@ -1,4 +1,15 @@
 ﻿@page
 @model WebAppGraphic.Pages.MangaReviewsModel
 @{
+    ViewData["Title"] = "Manga reviews";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null)
+    {
+        Layout = "_LayoutLogout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }
+<div class="background-img-community"></div>

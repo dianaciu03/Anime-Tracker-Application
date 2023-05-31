@@ -26,7 +26,12 @@
     if (prevNrOfAppearances != appearances) 
     {
         prevNrOfAppearances = appearances;
+
         <h4 class="second-subtitle text-white">Anime with @Model.GetPercent(appearances)% match</h4>
+    }
+    else 
+    {
+
     }
     
     <a asp-page="ContentDetails" asp-route-id="@anime.Id">
