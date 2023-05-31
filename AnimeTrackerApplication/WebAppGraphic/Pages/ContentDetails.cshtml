@@ -51,91 +51,92 @@
     int? userId = Model.IsUserLoggedIn();
     if(userId!=null)
     {
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content bg-dark text-white">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="myModalLabel">Pick a list</h3>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post">
-                            <ul class="list-group">
-                                @{
-                                    //For each list, if anime is in list, make it checked, otherwise unchecked
-                                    Profile profile = Model.GetProfile();
-                                    foreach (CustomList list in profile.GetAllCustomLists())
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Pick a list</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <ul class="list-group">
+                            @{
+                            //For each list, if anime is in list, make it checked, otherwise unchecked
+                            Profile profile = Model.GetProfile();
+                            foreach (CustomList list in profile.GetAllCustomLists())
+                            {
+                                if(list.ContentType == "Anime") 
+                                {
+                                    if(list.GetAllContent().Count() == 0) 
                                     {
-                                        if(list.ContentType == "Anime") 
-                                        {
-                                            if(list.GetAllContent().Count() == 0) 
-                                            {
-                                                string listName = list.Name;
+                                        string listName = list.Name;
                                                 <li class="list-group-item bg-dark text-white">
                                                     <input type="checkbox" name="options[]" value="@listName" />
                                                     <label>@listName</label>
                                                 </li>
-                                            }
-                                            else 
-                                            {
-                                                bool wasFound = false;
+                                    }
+                                    else 
+                                    {
+                                        bool wasFound = false;
                                                 @foreach (object content in list.GetAllContent())
-                                                {
-                                                    if (((Anime)content).Id == Model.Anime.Id)
-                                                    {
-                                                        wasFound = true;
-                                                        break;
-                                                    }
-                                                }
-                                                if(wasFound)
-                                                {
-                                                    string listName = list.Name;
+                                        {
+                                            if (((Anime)content).Id == Model.Anime.Id)
+                                            {
+                                                wasFound = true;
+                                                break;
+                                            }
+                                        }
+                                        if(wasFound)
+                                        {
+                                            string listName = list.Name;
                                                     <li class="list-group-item bg-dark text-white">
                                                         <input type="checkbox" name="options[]" value="@listName" checked />
                                                         <label>@listName</label>
                                                     </li>
-                                                }
-                                                else
-                                                {
-                                                    string listName = list.Name;
+                                        }
+                                        else
+                                        {
+                                            string listName = list.Name;
                                                     <li class="list-group-item bg-dark text-white">
                                                         <input type="checkbox" name="options[]" value="@listName" />
                                                         <label>@listName</label>
                                                     </li>
-                                                }
-                                            }
-                                             
                                         }
                                     }
+                                             
                                 }
-                            </ul>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-content-details" name="action" value="Submit">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                            }
+                            }
+                        </ul>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-content-details" name="action" value="Submit">Submit</button>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" style="color: #ff3333; font-size: 14px;"></div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
     }
     else 
     {
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content bg-dark text-white">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="myModalLabel">You need to be logged in to access this feature!</h3>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-footer">
-                    <form method="post">
-                        <button type="submit" class="btn btn-content-details" name = "action" value="Login">Login</button>
-                    </form>
-                    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">You need to be logged in to access this feature!</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-footer">
+                <form method="post">
+                    <button type="submit" class="btn btn-content-details" name = "action" value="Login">Login</button>
+                </form>
                 </div>
             </div>
         </div>
+    </div>
 
     }
 }

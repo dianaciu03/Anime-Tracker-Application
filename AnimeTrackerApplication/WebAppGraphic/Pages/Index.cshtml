@@ -64,7 +64,7 @@
 
     @foreach (Manga manga in Model.TopRatedManga)
     {
-        <a asp-page="ContentDetails" asp-route-id="@manga.Id">
+        <a asp-page="ContentDetailsManga" asp-route-id="@manga.Id">
             <div class="d-flex flex-column align-items-center">
                 <img src="@manga.ImageURL" style="width: 190px; height: 260px;" />
                 <p style=" padding-top: 8px">@positionManga. @manga.Name</p>
@@ -82,7 +82,7 @@
 
     @foreach (Manga manga in Model.NewReleasesManga())
     {
-        <a asp-page="ContentDetails" asp-route-id="@manga.Id">
+        <a asp-page="ContentDetailsManga" asp-route-id="@manga.Id">
             <div class="d-flex flex-column align-items-center">
                 <img src="@manga.ImageURL" style="width: 190px; height: 260px;" />
                 <p style=" padding-top: 8px">@manga.Name</p>

@@ -102,11 +102,11 @@ namespace WebAppGraphic.Pages
                     reviewManager.AddReview(GetProfile().Id, ReviewRating, ReviewDescription, Anime.Id, "Anime", DateTime.Now);
                     ReviewDescription = string.Empty;
                     ReviewRating = 0;
+                    ModelState.Clear();
                 }
             }
             ReviewDescription = string.Empty;
             ReviewRating = 0;
-            ModelState.Clear();
             return Page();
         }
     }
