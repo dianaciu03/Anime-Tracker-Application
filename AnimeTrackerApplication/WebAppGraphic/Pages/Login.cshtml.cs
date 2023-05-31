@@ -58,27 +58,5 @@ namespace WebAppGraphic.Pages
             }
             return Page();
         }
-
-        //public IActionResult OnPost()
-        //{
-        //    RegisteredWebUser? user = null;
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        user = (RegisteredWebUser)userManager.GetUserByEmail(UserEmail);
-        //    }
-
-        //    if(user != null)
-        //    {
-        //        if(user.Password == UserPassword)
-        //            return RedirectToPage("Privacy");
-        //        else
-        //            return Page();
-        //    }
-        //    else
-        //    {
-        //        return Page();
-        //    }
-        //}
     }
 }
