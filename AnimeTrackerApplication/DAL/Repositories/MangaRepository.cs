@@ -446,7 +446,7 @@ namespace DAL.Repositories
             return mangaList;
         }
 
-        public Dictionary<Manga, int> GetRecommendedAnime(int profileId)
+        public Dictionary<Manga, int> GetRecommendedManga(int profileId)
         {
             Dictionary<Manga, int> mangaDictionary = new Dictionary<Manga, int>();
             Manga manga = null;
@@ -458,27 +458,27 @@ namespace DAL.Repositories
                     conn.Open();
                     //fix sql query
                     string query = @"SELECT
-                                            A.*,
+                                            M.*,
                                             CG.Genre,
-                                            COALESCE(AG.NrOfGenreMatches, 0) AS NrOfGenreMatches
+                                            COALESCE(MG.NrOfGenreMatches, 0) AS NrOfGenreMatches
                                       FROM
-                                            Anime AS A
+                                            Manga AS M
                                             LEFT JOIN (
                                                 SELECT
-                                                    AG.AnimeId,
+                                                    MG.MangaId,
                                                     COUNT(*) AS NrOfGenreMatches
                                                 FROM
-                                                    Anime_Genre AS AG
-                                                    INNER JOIN Profile_Genre AS PG ON AG.GenreId = PG.GenreId
+                                                    Manga_Genre AS MG
+                                                    INNER JOIN Profile_Genre AS PG ON MG.GenreId = PG.GenreId
                                                 WHERE
                                                     PG.ProfileId = @ProfileId
                                                 GROUP BY
-                                                    AG.AnimeId
-                                            ) AS AG ON A.AnimeId = AG.AnimeId
-                                            LEFT JOIN Anime_Genre AS AG2 ON A.AnimeId = AG2.AnimeId
-                                            LEFT JOIN ContentGenre AS CG ON AG2.GenreId = CG.GenreId
+                                                    MG.MangaId
+                                            ) AS MG ON M.MangaId = MG.MangaId
+                                            LEFT JOIN Manga_Genre AS MG2 ON M.MangaId = MG2.MangaId
+                                            LEFT JOIN ContentGenre AS CG ON MG2.GenreId = CG.GenreId
                                       WHERE
-                                            COALESCE(AG.NrOfGenreMatches, 0) > 0
+                                            COALESCE(MG.NrOfGenreMatches, 0) > 0
                                       ORDER BY
                                             NrOfGenreMatches DESC;";
                     using (SqlCommand command = new SqlCommand(query, conn))

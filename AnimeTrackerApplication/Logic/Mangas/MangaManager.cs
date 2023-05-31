@@ -87,5 +87,16 @@ namespace Logic.Mangas
             return _mangaDataHandler.GetSearchedManga(nameM, creatorM, nrChapFromM, nrChapToM, releaseYearM, statusM, genreM, ratingFromM, ratingToM);
         }
 
+        public Dictionary<Manga, int> GetRecommendedManga(int profileId)
+        {
+            return _mangaDataHandler.GetRecommendedManga(profileId);
+        }
+
+        public int CalculateMatchPercent(int nrGenresManga, int nrGenresProfile)
+        {
+            int nrPercent = (nrGenresManga * 100) / nrGenresProfile;
+            return nrPercent;
+        }
+
     }   
 }

@@ -12,5 +12,7 @@ namespace Logic.Mangas
         int GetNrManga();
         void UpdateManga(int id, string name, string creator, int nrChapters, int releaseYear, MangaStatus status, decimal rating, string description, string imageURL, List<Genre> genres);
         List<Manga> GetSearchedManga(string nameM, string creatorM, int nrChapFromM, int nrChapToM, string releaseYearM, string statusM, string genreM, decimal ratingFromM, decimal ratingToM);
+        Dictionary<Manga, int> GetRecommendedManga(int profileId);
+        int CalculateMatchPercent(int nrGenresManga, int nrGenresProfile);
     }
 }

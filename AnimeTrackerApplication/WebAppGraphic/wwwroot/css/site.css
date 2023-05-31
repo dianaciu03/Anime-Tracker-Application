@@ -80,8 +80,8 @@
         grid-column: 1/-1;
         font-size: 36px;
         padding: 0;
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
         text-decoration: underline;
     }
 
