@@ -52,7 +52,7 @@ namespace DAL.Repositories
             }
         }
 
-        public List<Review> GetAllReviews()
+        public List<Review> GetAllReviews(string cType)
         {
             List<Review> reviews = new List<Review>();
             try
@@ -60,9 +60,10 @@ namespace DAL.Repositories
                 using (SqlConnection conn = new SqlConnection(Connection))
                 {
                     conn.Open();
-                    string query1 = @$"SELECT * FROM Reviews";
+                    string query1 = @$"SELECT * FROM Reviews WHERE ContentType = @ContentType";
                     using (SqlCommand command1 = new SqlCommand(query1, conn))
                     {
+                        command1.Parameters.AddWithValue("@ContentType", cType);
                         SqlDataReader reader = command1.ExecuteReader();
                         while (reader.Read())
                         {

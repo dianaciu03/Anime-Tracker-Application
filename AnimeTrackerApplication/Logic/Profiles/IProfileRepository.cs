@@ -7,5 +7,6 @@ namespace DAL.Repositories
     {
         void AddPreferredGenres(Genre[] genres, int profileId);
         void DeleteContentFromList(int profileId);
+        Profile GetProfileById(int id);
     }
 }

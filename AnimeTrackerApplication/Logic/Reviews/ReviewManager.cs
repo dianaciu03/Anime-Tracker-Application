@@ -25,13 +25,46 @@ namespace Logic.Reviews
         {
             reviewRepository.DeleteReview(reviewId);
         }
-        public List<Review> GetAllReviews()
+        public List<Review> GetAllReviews(string cType)
         {
-            return reviewRepository.GetAllReviews();
+            return reviewRepository.GetAllReviews(cType);
         }
         public List<Review> GetReviewsByUserId(int profileId)
         {
             return reviewRepository.GetReviewsByUserId(profileId);
+        }
+
+        public string CalculateTimeAgo(DateTime postDate)
+        {
+            TimeSpan timeElapsed = DateTime.Now - postDate;
+
+            if (timeElapsed.TotalSeconds < 60)
+            {
+                return $"{timeElapsed.Seconds} seconds ago";
+            }
+            else if (timeElapsed.TotalMinutes < 60)
+            {
+                return $"{timeElapsed.Minutes} minutes ago";
+            }
+            else if (timeElapsed.TotalHours < 24)
+            {
+                return $"{timeElapsed.Hours} hours ago";
+            }
+            else if (timeElapsed.TotalDays < 30)
+            {
+                int days = (int)timeElapsed.TotalDays;
+                return $"{days} {(days == 1 ? "day" : "days")} ago";
+            }
+            else if (timeElapsed.TotalDays < 365)
+            {
+                int months = (int)(timeElapsed.TotalDays / 30);
+                return $"{months} {(months == 1 ? "month" : "months")} ago";
+            }
+            else
+            {
+                int years = (int)(timeElapsed.TotalDays / 365);
+                return $"{years} {(years == 1 ? "year" : "years")} ago";
+            }
         }
     }
 }

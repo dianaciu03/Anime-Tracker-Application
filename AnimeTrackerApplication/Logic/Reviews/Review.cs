@@ -46,5 +46,6 @@ namespace Logic.Reviews
         public int Rating { get { return rating; } set { this.rating = value; } }
         public string Description { get { return description; } set { this.description = value; } }
         public DateTime Date { get { return date; } set { this.date = value; } }
+
     }
 }

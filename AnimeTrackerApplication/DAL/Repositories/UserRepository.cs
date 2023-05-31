@@ -358,7 +358,6 @@ namespace DAL.Repositories
                     {
                         command.Parameters.AddWithValue("@UserId", id);
                         SqlDataReader reader = command.ExecuteReader();
-
                         while (reader.Read())
                         {
                             int newProfileId = reader.GetInt32(reader.GetOrdinal("ProfileId"));

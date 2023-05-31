@@ -12,25 +12,58 @@
     {
         Layout = "_Layout";
     }
+    int countPersonalReviews = 0;
 }
-<div class="background-img-community"></div>
 
-<div class="container-fluid display-reviews bg-dark">
-@foreach (Review review in Model.GetReviews()) 
+<div class="background-img-community"></div>
+<h1 style="padding-bottom:-2rem; margin-bottom:0;" class="second-title text-white">Your contributions</h1>
+@if (Model.GetProfile() != null) 
 {
-    <div class="review-container text-white">
-        <div class="review-info">
-            <img src="anime_picture.jpg" alt="Anime Picture" class="anime-picture">
-            <div class="review-details">
-                <p class="anime-name">Anime Name</p>
-                <p class="username-review">@review.ProfileId</p>
-                <p class="time-ago">3 hours ago</p>
-            </div>
-        </div>
-        <div class="review-content">
-            <p class="rating">Rating: 4/5 ⭐</p>
-            <p class="review-description">@review.Description</p>
-        </div>
+    <div class="container-fluid display-reviews bg-dark">
+        @foreach (Review review in Model.GetReviews())
+        {
+            Model.GetProfileById(review.ProfileId);
+            if (Model.Profile.Id == Model.GetProfile().Id)
+            {
+                Model.GetAnimeById(review.ContentId);
+                countPersonalReviews++;
+                <div class="review-container text-white">
+                    <img src="@Model.Anime.ImageURL" alt="Anime Picture" class="anime-picture">
+                    <div>
+                        <p class="anime-name">User: @Model.Profile.Username</p>
+                        <p style="margin-top:15px;" class="anime-name">@Model.Anime.Name</p>
+                        <p class="time-ago">3 hours ago</p>
+                        <p class="rating">Rating: @review.Rating⭐</p>
+                        <p class="review-description">@review.Description</p>
+                    </div>
+                </div>
+            }
+        }
     </div>
 }
+@if (countPersonalReviews == 0)
+{
+    <h4 style="font-style:italic;" class="second-subtitle text-white">Seems like you don't have any contributions.</h4>
+}
+
+<div class="container-fluid display-reviews bg-dark">
+    <h1 style="padding-left:0;" class="second-title text-white">All reviews</h1>
+    @foreach (Review review in Model.GetReviews())
+    {
+        Model.GetProfileById(review.ProfileId);
+        @if (Model.GetProfile() == null || Model.Profile.Id != Model.GetProfile().Id) 
+        {
+            Model.GetAnimeById(review.ContentId);
+            <div class="review-container text-white">
+                <img src="@Model.Anime.ImageURL" alt="Anime Picture" class="anime-picture">
+                <div>
+                    <p class="anime-name">User: @Model.Profile.Username</p>
+                    <p style="margin-top:15px;" class="anime-name">@Model.Anime.Name</p>
+                    <p class="time-ago">@Model.CalculateTime(review.Date)</p>
+                    <p class="rating">Rating: @review.Rating⭐</p>
+                    <p class="review-description">@review.Description</p>
+                </div>
+            </div>
+        } 
+    }
 </div>

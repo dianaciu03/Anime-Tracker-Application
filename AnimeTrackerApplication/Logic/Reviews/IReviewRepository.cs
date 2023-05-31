@@ -6,7 +6,7 @@ namespace Logic.Reviews
     {
         void AddReview(Review review);
         void DeleteReview(int reviewId);
-        List<Review> GetAllReviews();
+        List<Review> GetAllReviews(string cType);
         List<Review> GetReviewsByUserId(int profileId);
     }
 }

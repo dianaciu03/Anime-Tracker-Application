@@ -214,12 +214,14 @@
             // 
             // tabControl
             // 
+            this.tabControl.AccessibleRole = System.Windows.Forms.AccessibleRole.Sound;
             this.tabControl.Controls.Add(this.tabAnime);
             this.tabControl.Controls.Add(this.tabManga);
             this.tabControl.Controls.Add(this.tabCharacters);
             this.tabControl.Controls.Add(this.tabCreateAccount);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabControl.Location = new System.Drawing.Point(56, 97);
+            this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Drawing.Point(80, 9);
             this.tabControl.SelectedIndex = 0;
@@ -1779,9 +1781,9 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Image = global::WinFormsGraphic.Properties.Resources.logout;
-            this.pictureBox1.Location = new System.Drawing.Point(1777, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(1793, 9);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 74);
+            this.pictureBox1.Size = new System.Drawing.Size(64, 56);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -1791,9 +1793,9 @@
             // 
             this.pbResetPassword.BackColor = System.Drawing.Color.Transparent;
             this.pbResetPassword.Image = global::WinFormsGraphic.Properties.Resources.locket;
-            this.pbResetPassword.Location = new System.Drawing.Point(1679, 9);
+            this.pbResetPassword.Location = new System.Drawing.Point(1696, 9);
             this.pbResetPassword.Name = "pbResetPassword";
-            this.pbResetPassword.Size = new System.Drawing.Size(80, 74);
+            this.pbResetPassword.Size = new System.Drawing.Size(63, 56);
             this.pbResetPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbResetPassword.TabIndex = 4;
             this.pbResetPassword.TabStop = false;

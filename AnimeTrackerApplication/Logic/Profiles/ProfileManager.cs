@@ -24,5 +24,10 @@ namespace Logic.Profiles
         {
             profileRepository.DeleteContentFromList(profile.Id);
         }
+
+        public Profile GetProfileById(int id)
+        {
+            return profileRepository.GetProfileById(id);
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Logic.Profiles
     {
         void AddPreferedGenres(Profile profile);
         void DeleteContentFromList(Profile profile);
+        Profile GetProfileById(int id);
     }
 }
