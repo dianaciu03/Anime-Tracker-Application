@@ -81,5 +81,10 @@ namespace Logic.Characters
         {
             return _characterDataHandler.GetSearchedCharacters(nameC, genderC, animes, mangas);
         }
+
+        public List<Character> GetCharactersByName(string nameC)
+        {
+            return _characterDataHandler.GetCharactersByName(nameC);
+        }
     }
 }

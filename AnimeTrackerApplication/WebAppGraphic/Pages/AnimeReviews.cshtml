@@ -30,11 +30,11 @@
                 <div class="review-container text-white">
                     <img src="@Model.Anime.ImageURL" alt="Anime Picture" class="anime-picture">
                     <div>
-                        <p class="anime-name">User: @Model.Profile.Username</p>
-                        <p style="margin-top:15px;" class="anime-name">@Model.Anime.Name</p>
-                        <p class="time-ago">3 hours ago</p>
-                        <p class="rating">Rating: @review.Rating⭐</p>
-                        <p class="review-description">@review.Description</p>
+                    <p class="anime-name">User: @Model.Profile.Username</p>
+                    <p style="margin-top:15px;" class="anime-name">@Model.Anime.Name</p>
+                    <p class="time-ago">@Model.CalculateTime(review.Date)</p>
+                    <p class="rating">Rating: @review.Rating⭐</p>
+                    <p class="review-description">@review.Description</p>
                     </div>
                 </div>
             }

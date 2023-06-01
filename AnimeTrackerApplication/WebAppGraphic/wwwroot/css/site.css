@@ -34,6 +34,13 @@
     background-position: center;
 }
 
+.background-img-characters {
+    background-image: url('/images/characters.png');
+    background-size: 100% 100%;
+    height: 17em;
+    background-position: center;
+}
+
 /*index page*/
 .masthead-heading {
     font-size: 36px;
@@ -76,14 +83,14 @@
     gap: 2rem 6rem;
 }
 
-    .container-display h4 {
-        grid-column: 1/-1;
-        font-size: 36px;
-        padding: 0;
-        padding-top: 2rem;
-        padding-bottom: 1rem;
-        text-decoration: underline;
-    }
+.container-display h4 {
+    grid-column: 1/-1;
+    font-size: 36px;
+    padding: 0;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    text-decoration: underline;
+}
 
 .container-display > a {
     height: 380px;
