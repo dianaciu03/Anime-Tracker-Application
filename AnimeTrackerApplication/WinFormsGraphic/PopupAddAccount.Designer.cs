@@ -34,9 +34,7 @@
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.cbxRole = new System.Windows.Forms.ComboBox();
             this.labelRole = new System.Windows.Forms.Label();
-            this.tbxPassword = new System.Windows.Forms.TextBox();
             this.tbxName = new System.Windows.Forms.TextBox();
-            this.labelPassword = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.groupBoxAccountDetails.SuspendLayout();
@@ -49,9 +47,7 @@
             this.groupBoxAccountDetails.Controls.Add(this.btnAddAccount);
             this.groupBoxAccountDetails.Controls.Add(this.cbxRole);
             this.groupBoxAccountDetails.Controls.Add(this.labelRole);
-            this.groupBoxAccountDetails.Controls.Add(this.tbxPassword);
             this.groupBoxAccountDetails.Controls.Add(this.tbxName);
-            this.groupBoxAccountDetails.Controls.Add(this.labelPassword);
             this.groupBoxAccountDetails.Controls.Add(this.labelEmail);
             this.groupBoxAccountDetails.Controls.Add(this.labelName);
             this.groupBoxAccountDetails.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -59,7 +55,7 @@
             this.groupBoxAccountDetails.Margin = new System.Windows.Forms.Padding(5);
             this.groupBoxAccountDetails.Name = "groupBoxAccountDetails";
             this.groupBoxAccountDetails.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBoxAccountDetails.Size = new System.Drawing.Size(557, 354);
+            this.groupBoxAccountDetails.Size = new System.Drawing.Size(537, 308);
             this.groupBoxAccountDetails.TabIndex = 5;
             this.groupBoxAccountDetails.TabStop = false;
             this.groupBoxAccountDetails.Text = "Account details";
@@ -69,7 +65,7 @@
             this.btnCancelAccountAddition.BackColor = System.Drawing.Color.Plum;
             this.btnCancelAccountAddition.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnCancelAccountAddition.ForeColor = System.Drawing.Color.Black;
-            this.btnCancelAccountAddition.Location = new System.Drawing.Point(307, 256);
+            this.btnCancelAccountAddition.Location = new System.Drawing.Point(283, 212);
             this.btnCancelAccountAddition.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancelAccountAddition.Name = "btnCancelAccountAddition";
             this.btnCancelAccountAddition.Size = new System.Drawing.Size(221, 72);
@@ -80,7 +76,7 @@
             // 
             // tbxEmail
             // 
-            this.tbxEmail.Location = new System.Drawing.Point(135, 88);
+            this.tbxEmail.Location = new System.Drawing.Point(111, 85);
             this.tbxEmail.Margin = new System.Windows.Forms.Padding(5);
             this.tbxEmail.Name = "tbxEmail";
             this.tbxEmail.Size = new System.Drawing.Size(393, 36);
@@ -91,7 +87,7 @@
             this.btnAddAccount.BackColor = System.Drawing.Color.Plum;
             this.btnAddAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnAddAccount.ForeColor = System.Drawing.Color.Black;
-            this.btnAddAccount.Location = new System.Drawing.Point(17, 256);
+            this.btnAddAccount.Location = new System.Drawing.Point(17, 212);
             this.btnAddAccount.Margin = new System.Windows.Forms.Padding(5);
             this.btnAddAccount.Name = "btnAddAccount";
             this.btnAddAccount.Size = new System.Drawing.Size(221, 72);
@@ -104,7 +100,7 @@
             // 
             this.cbxRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxRole.ItemHeight = 30;
-            this.cbxRole.Location = new System.Drawing.Point(135, 180);
+            this.cbxRole.Location = new System.Drawing.Point(111, 131);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(5);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(206, 38);
@@ -113,38 +109,20 @@
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Location = new System.Drawing.Point(17, 183);
+            this.labelRole.Location = new System.Drawing.Point(17, 142);
             this.labelRole.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelRole.Name = "labelRole";
             this.labelRole.Size = new System.Drawing.Size(60, 30);
             this.labelRole.TabIndex = 11;
             this.labelRole.Text = "Role:";
             // 
-            // tbxPassword
-            // 
-            this.tbxPassword.Location = new System.Drawing.Point(135, 134);
-            this.tbxPassword.Margin = new System.Windows.Forms.Padding(5);
-            this.tbxPassword.Name = "tbxPassword";
-            this.tbxPassword.Size = new System.Drawing.Size(393, 36);
-            this.tbxPassword.TabIndex = 4;
-            // 
             // tbxName
             // 
-            this.tbxName.Location = new System.Drawing.Point(135, 42);
+            this.tbxName.Location = new System.Drawing.Point(111, 39);
             this.tbxName.Margin = new System.Windows.Forms.Padding(5);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(393, 36);
             this.tbxName.TabIndex = 3;
-            // 
-            // labelPassword
-            // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(16, 137);
-            this.labelPassword.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(108, 30);
-            this.labelPassword.TabIndex = 2;
-            this.labelPassword.Text = "Password:";
             // 
             // labelEmail
             // 
@@ -171,7 +149,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(585, 382);
+            this.ClientSize = new System.Drawing.Size(567, 335);
             this.Controls.Add(this.groupBoxAccountDetails);
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -192,9 +170,7 @@
         private Button btnAddAccount;
         private ComboBox cbxRole;
         private Label labelRole;
-        private TextBox tbxPassword;
         private TextBox tbxName;
-        private Label labelPassword;
         private Label labelEmail;
         private Label labelName;
     }

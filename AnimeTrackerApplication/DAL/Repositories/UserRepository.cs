@@ -142,6 +142,10 @@ namespace DAL.Repositories
                                 case "Maintainer":
                                     user = new Maintainer(userId, name, email, hashedPassword, joinDate, salt);
                                     break;
+
+                                case "RegisteredWebUser":
+                                    user = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt);
+                                    break;
                             }
                         }
                         reader.Close();

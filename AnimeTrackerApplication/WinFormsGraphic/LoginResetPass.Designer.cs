@@ -46,7 +46,7 @@
             this.labelErorrMessage.BackColor = System.Drawing.Color.Thistle;
             this.labelErorrMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelErorrMessage.ForeColor = System.Drawing.Color.Red;
-            this.labelErorrMessage.Location = new System.Drawing.Point(783, 462);
+            this.labelErorrMessage.Location = new System.Drawing.Point(781, 453);
             this.labelErorrMessage.Name = "labelErorrMessage";
             this.labelErorrMessage.Size = new System.Drawing.Size(353, 29);
             this.labelErorrMessage.TabIndex = 23;
@@ -58,7 +58,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.MediumPurple;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnLogin.Location = new System.Drawing.Point(872, 391);
+            this.btnLogin.Location = new System.Drawing.Point(871, 381);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(158, 53);
             this.btnLogin.TabIndex = 22;
@@ -120,7 +120,7 @@
             this.loginLabelBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginLabelBox.Location = new System.Drawing.Point(649, 131);
             this.loginLabelBox.Name = "loginLabelBox";
-            this.loginLabelBox.Size = new System.Drawing.Size(603, 377);
+            this.loginLabelBox.Size = new System.Drawing.Size(603, 371);
             this.loginLabelBox.TabIndex = 16;
             // 
             // tbxConfirmPassword

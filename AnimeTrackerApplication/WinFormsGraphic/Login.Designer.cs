@@ -119,7 +119,7 @@
             this.loginLabelBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginLabelBox.Location = new System.Drawing.Point(665, 157);
             this.loginLabelBox.Name = "loginLabelBox";
-            this.loginLabelBox.Size = new System.Drawing.Size(558, 369);
+            this.loginLabelBox.Size = new System.Drawing.Size(558, 365);
             this.loginLabelBox.TabIndex = 8;
             // 
             // label1
@@ -127,11 +127,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Thistle;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(778, 432);
+            this.label1.Location = new System.Drawing.Point(742, 439);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(358, 25);
+            this.label1.Size = new System.Drawing.Size(434, 25);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Click here if you are resetting you password.";
+            this.label1.Text = "Forgot your password? Or need to set one? Click here.";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Login

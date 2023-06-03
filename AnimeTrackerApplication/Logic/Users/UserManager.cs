@@ -27,16 +27,16 @@ namespace Logic.Users
             return _userDataHandler.GetAllWebUsers();
         }
 
-        public void AddUser(string name, string email, string password, string role)
+        public void AddUser(string name, string email, string role)
         {
             if(role == "Maintainer")
             {
-                User maintainer = new Maintainer(name, email, password, DateTime.Now.Date, "");
+                User maintainer = new Maintainer(name, email, "", DateTime.Now.Date, "");
                 _userDataHandler.AddUser(maintainer);
             }
             else if(role == "Admin")
             {
-                User admin = new Admin(name, email, password, DateTime.Now.Date, "");
+                User admin = new Admin(name, email, "", DateTime.Now.Date, "");
                 _userDataHandler.AddUser(admin);
             }
         }

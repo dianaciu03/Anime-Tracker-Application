@@ -154,8 +154,6 @@
             this.tabCreateAccount = new System.Windows.Forms.TabPage();
             this.btnRemoveAccount = new System.Windows.Forms.Button();
             this.btnCreateMaintainer = new System.Windows.Forms.Button();
-            this.labelResetPassword = new System.Windows.Forms.Label();
-            this.lbxResetPassword = new System.Windows.Forms.ListBox();
             this.lvwAccounts = new System.Windows.Forms.ListView();
             this.columnHeader1Name = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2Username = new System.Windows.Forms.ColumnHeader();
@@ -174,7 +172,6 @@
             this.tbxNameAccount = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pbResetPassword = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -196,7 +193,6 @@
             this.tabCreateAccount.SuspendLayout();
             this.groupBoxSearchAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbResetPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -1559,8 +1555,6 @@
             this.tabCreateAccount.BackColor = System.Drawing.Color.Thistle;
             this.tabCreateAccount.Controls.Add(this.btnRemoveAccount);
             this.tabCreateAccount.Controls.Add(this.btnCreateMaintainer);
-            this.tabCreateAccount.Controls.Add(this.labelResetPassword);
-            this.tabCreateAccount.Controls.Add(this.lbxResetPassword);
             this.tabCreateAccount.Controls.Add(this.lvwAccounts);
             this.tabCreateAccount.Controls.Add(this.groupBoxSearchAccount);
             this.tabCreateAccount.Location = new System.Drawing.Point(4, 46);
@@ -1597,25 +1591,6 @@
             this.btnCreateMaintainer.Text = "Create Account";
             this.btnCreateMaintainer.UseVisualStyleBackColor = false;
             this.btnCreateMaintainer.Click += new System.EventHandler(this.btnCreateMaintainer_Click);
-            // 
-            // labelResetPassword
-            // 
-            this.labelResetPassword.AutoSize = true;
-            this.labelResetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelResetPassword.Location = new System.Drawing.Point(16, 373);
-            this.labelResetPassword.Name = "labelResetPassword";
-            this.labelResetPassword.Size = new System.Drawing.Size(316, 29);
-            this.labelResetPassword.TabIndex = 48;
-            this.labelResetPassword.Text = "Reset password requests:";
-            // 
-            // lbxResetPassword
-            // 
-            this.lbxResetPassword.FormattingEnabled = true;
-            this.lbxResetPassword.ItemHeight = 25;
-            this.lbxResetPassword.Location = new System.Drawing.Point(16, 413);
-            this.lbxResetPassword.Name = "lbxResetPassword";
-            this.lbxResetPassword.Size = new System.Drawing.Size(535, 304);
-            this.lbxResetPassword.TabIndex = 47;
             // 
             // lvwAccounts
             // 
@@ -1789,18 +1764,6 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // pbResetPassword
-            // 
-            this.pbResetPassword.BackColor = System.Drawing.Color.Transparent;
-            this.pbResetPassword.Image = global::WinFormsGraphic.Properties.Resources.locket;
-            this.pbResetPassword.Location = new System.Drawing.Point(1696, 9);
-            this.pbResetPassword.Name = "pbResetPassword";
-            this.pbResetPassword.Size = new System.Drawing.Size(63, 56);
-            this.pbResetPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbResetPassword.TabIndex = 4;
-            this.pbResetPassword.TabStop = false;
-            this.pbResetPassword.Click += new System.EventHandler(this.pbResetPassword_Click);
-            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1808,7 +1771,6 @@
             this.BackColor = System.Drawing.Color.Violet;
             this.BackgroundImage = global::WinFormsGraphic.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(1884, 1041);
-            this.Controls.Add(this.pbResetPassword);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.labelTitleWorldOfAnime);
@@ -1842,11 +1804,9 @@
             this.groupBoxSearchCharacters.ResumeLayout(false);
             this.groupBoxSearchCharacters.PerformLayout();
             this.tabCreateAccount.ResumeLayout(false);
-            this.tabCreateAccount.PerformLayout();
             this.groupBoxSearchAccount.ResumeLayout(false);
             this.groupBoxSearchAccount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbResetPassword)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1994,11 +1954,8 @@
         private Label labelRoles;
         private TextBox tbxNameAccount;
         private Label labelName;
-        private Label labelResetPassword;
-        private ListBox lbxResetPassword;
         private Button btnRemoveAccount;
         private Button btnCreateMaintainer;
         private PictureBox pictureBox1;
-        private PictureBox pbResetPassword;
     }
 }

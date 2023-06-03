@@ -41,9 +41,8 @@ namespace WinFormsGraphic
             {
                 string name = tbxName.Text;
                 string email = tbxEmail.Text;
-                string password = tbxPassword.Text;
                 string role = cbxRole.SelectedItem.ToString();
-                userManager.AddUser(name, email, password, role);
+                userManager.AddUser(name, email, role);
                 MessageBox.Show("Account was added successfully!");
                 this.Close();
             }

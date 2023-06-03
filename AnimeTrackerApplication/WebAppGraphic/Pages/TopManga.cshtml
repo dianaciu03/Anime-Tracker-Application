@@ -20,6 +20,16 @@
 
 <h1 class="second-title text-white">Top rated manga</h1>
 <h4 class="second-subtitle text-white">Here you can find the best rated manga available.</h4>
+<div class="container" style="margin-left: 7rem; margin-right: 7rem; margin-top:1rem; padding-left:0">
+    <form method="post">
+        <div class="form-group mb-3">
+            <div class="d-flex">
+                <input asp-for="MangaName" type="text" class="form-control rounded-pill mr-2" placeholder="Enter a name..." style="width: 50%;" />
+                <button type="submit" style="padding: 2px 20px 3px 20px; font-size: 20px; margin-left: 1rem;" class="btn btn-primary rounded-pill mt-0">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
 <div class="container-fluid container-display bg-dark">
 
     @foreach (Manga manga in Model.TopRatedManga)

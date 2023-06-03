@@ -61,23 +61,10 @@ namespace WinFormsGraphic
         {
             try
             {
-                string email = tbEmail.Text;
-                if (!String.IsNullOrEmpty(email))
-                {
-                    User user = userManager.GetUserByEmail(email);
-                    {
-                        if (user != null)
-                        {
-                            if (user.Salt == "" && user.HashedPassword == "TempResetPass")
-                            {
-                                this.Hide();
-                                LoginResetPass form = new LoginResetPass(user);
-                                form.ShowDialog();
-                                this.Close();
-                            }
-                        }
-                    }
-                }
+                this.Hide();
+                LoginResetPass form = new LoginResetPass();
+                form.ShowDialog();
+                this.Close();
             }
             catch (Exception)
             {
