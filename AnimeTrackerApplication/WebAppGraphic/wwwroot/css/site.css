@@ -191,8 +191,8 @@
 /*profile page design*/
 .profile-container {
     color: #fff;
-    padding: 4rem 7rem 4rem 7rem;
-
+    padding: 3rem 7rem 4rem 7rem;
+    /*height: calc(100vh - 9rem);*/
 }
 
 .username {
@@ -291,9 +291,8 @@
 .review-container {
     background-color: #444;
     border-radius: 5px;
-    padding: 40px;
-    display: flex;
-    margin: 3rem 0rem 3rem 0rem;
+    padding: 30px;
+    margin: 2rem 0rem 2rem 0rem;
     display: grid;
     grid-template-columns: 1fr 12fr;
     gap: 4rem;
