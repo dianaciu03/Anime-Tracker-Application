@@ -13,8 +13,12 @@ namespace WebAppGraphic.Pages
         [BindProperty]
         public List<Anime> AlLAnime { get; set; }
 
+        private IAnimeManager animeManager;
 
-        private static IAnimeManager animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
+        public NewReleasesAnimeModel(IAnimeManager animeManager)
+        {
+            this.animeManager = animeManager;
+        }
 
         public List<Anime> TopRatedAnime()
         {

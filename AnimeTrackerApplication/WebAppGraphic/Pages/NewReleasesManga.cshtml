@@ -31,7 +31,7 @@
 </div>
 <div class="container-fluid container-display bg-dark">
 
-    @foreach (Manga manga in Model.NewReleasesManga())
+    @foreach (Manga manga in Model.AlLManga)
     {
         <a asp-page="ContentDetailsManga" asp-route-id="@manga.Id">
             <div class="d-flex flex-column align-items-center">

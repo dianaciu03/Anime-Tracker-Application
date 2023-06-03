@@ -8,12 +8,18 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Logic.Profiles;
+using Logic.Animes;
 
 namespace WebAppGraphic.Pages
 {
     public class RegisterModel : PageModel
     {
-        private static IUserManager userManager= ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
+        private IUserManager userManager;
+
+        public RegisterModel(IUserManager userManager)
+        {
+            this.userManager = userManager;
+        }
 
         [BindProperty]
         public RegisteredWebUser RegistrationFormUser { get; set; }

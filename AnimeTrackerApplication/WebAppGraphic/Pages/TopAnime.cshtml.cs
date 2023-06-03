@@ -1,5 +1,6 @@
 using Factory;
 using Logic.Animes;
+using Logic.Mangas;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -13,7 +14,12 @@ namespace WebAppGraphic.Pages
         [BindProperty]
         public List<Anime> AlLAnime { get; set; }
 
-        private static IAnimeManager animeManager = ManagerFactory.CreateAnimeManager(RepositoryFactory.CreateAnimeRepository());
+        private IAnimeManager animeManager;
+
+        public TopAnimeModel(IAnimeManager animeManager)
+        {
+            this.animeManager = animeManager;
+        }
 
         public List<Anime> TopRatedAnime()
         {
