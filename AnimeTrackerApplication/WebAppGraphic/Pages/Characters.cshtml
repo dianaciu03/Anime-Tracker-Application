@@ -33,10 +33,13 @@
     @foreach (Character character in Model.AlLCharacters)
     {
         <a>
-            <div style="width: 200px;" class="d-flex flex-column align-items-center text-white">
+            <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
                 <img src="@character.Image" style="height: 260px;" />
-                <p style=" padding-top: 8px">@character.Name</p>
-                @if(character.AnimeId != 0) 
+                <form method="post" style="position: absolute; top: 10px; right: 10px;">
+                    <button type="submit" class="heart-button" name="characterId" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to favourites">&#x2764;</button>
+                </form>
+                <p style="padding-top: 8px">@character.Name</p>
+                @if (character.AnimeId != 0)
                 {
                     Anime anime = Model.GetAnimeById(character.AnimeId);
                     <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center;"> From anime: @anime.Name</p>
@@ -50,3 +53,10 @@
         </a>
     }
 </div>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+</script>
