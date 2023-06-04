@@ -127,6 +127,43 @@ namespace DAL.Repositories
             return reviews;
         }
 
+        public Review GetReviewById(int id)
+        {
+            Review review = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query1 = @$"SELECT * FROM Reviews WHERE ReviewId = @ReviewId";
+                    using (SqlCommand command1 = new SqlCommand(query1, conn))
+                    {
+                        command1.Parameters.AddWithValue("@ReviewId", id);
+                        SqlDataReader reader = command1.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int reviewId = reader.GetInt32(reader.GetOrdinal("ReviewId"));
+                            int profileId = reader.GetInt32(reader.GetOrdinal("ProfileId"));
+                            int rating = reader.GetInt32(reader.GetOrdinal("Rating"));
+                            string description = reader.GetString(reader.GetOrdinal("Description"));
+                            int contentId = reader.GetInt32(reader.GetOrdinal("ContentId"));
+                            string contentType = reader.GetString(reader.GetOrdinal("ContentType"));
+                            DateTime date = reader.GetDateTime(reader.GetOrdinal("Date"));
+
+                            review = new Review(reviewId, profileId, rating, description, contentId, contentType, date);
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrive the reviews!");
+            }
+            return review;
+        }
+
         public void DeleteReview(int reviewId)
         {
             try

@@ -8,5 +8,6 @@ namespace Logic.Reviews
         void DeleteReview(int reviewId);
         List<Review> GetAllReviews(string cType);
         List<Review> GetReviewsByUserId(int profileId);
+        Review GetReviewById(int id);
     }
 }

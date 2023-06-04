@@ -294,7 +294,7 @@
     padding: 30px;
     margin: 2rem 0rem 2rem 0rem;
     display: grid;
-    grid-template-columns: 1fr 12fr;
+    grid-template-columns: 1fr 9fr 2fr;
     gap: 4rem;
 }
 

@@ -4,6 +4,7 @@ using Logic.Reviews;
 using Logic.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 
 namespace WebAppGraphic.Pages
 {
@@ -30,6 +31,18 @@ namespace WebAppGraphic.Pages
 
         [BindProperty]
         public Profile Profile { get; set; }
+
+        [BindProperty]
+        public Profile CurrentProfile { get; set; }
+
+        [BindProperty]
+        public int ReviewRating { get; set; }
+
+        [BindProperty]
+        public string ReviewDescription { get; set; }
+
+        [BindProperty]
+        public int IdReviewInEditMode { get; set; }
 
         public List<Review> GetReviews()
         {
@@ -63,6 +76,46 @@ namespace WebAppGraphic.Pages
             {
                 return null;
             }
+        }
+
+        public IActionResult OnGet()
+        {
+            CurrentProfile = GetProfile();
+            int newId = 0;
+            if (TempData.ContainsKey("ReviewId"))
+            {
+                newId = JsonSerializer.Deserialize<int>(Convert.ToInt32(TempData["ReviewId"]))!;
+                IdReviewInEditMode = newId;
+                Review review = reviewManager.GetReviewById(newId);
+                InitializeReviewData(review);
+            }
+            
+            return Page();
+        }
+
+        private void InitializeReviewData(Review review)
+        {
+            ReviewRating = review.Rating;
+            ReviewDescription = review.Description;
+        }
+
+        public IActionResult OnPostEditReview(string action)
+        {
+            int id = Convert.ToInt32(action);
+            TempData["ReviewId"] = JsonSerializer.Serialize(id);
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostSubmitChanges(string action)
+        {
+            int id = Convert.ToInt32(action);
+            // Get the values from the form inputs
+            int updatedRating = ReviewRating;
+            string updatedDescription = ReviewDescription;
+
+            // ...
+
+            return RedirectToPage();
         }
     }
 }

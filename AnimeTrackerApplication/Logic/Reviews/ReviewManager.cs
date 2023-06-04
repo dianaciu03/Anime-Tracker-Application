@@ -66,5 +66,10 @@ namespace Logic.Reviews
                 return $"{years} {(years == 1 ? "year" : "years")} ago";
             }
         }
+
+        public Review GetReviewById(int id)
+        {
+            return reviewRepository.GetReviewById(id);
+        }
     }
 }

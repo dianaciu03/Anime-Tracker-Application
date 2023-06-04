@@ -7,5 +7,6 @@
         List<Review> GetAllReviews(string cType);
         List<Review> GetReviewsByUserId(int profileId);
         string CalculateTimeAgo(DateTime postDate);
+        Review GetReviewById(int id);
     }
 }
