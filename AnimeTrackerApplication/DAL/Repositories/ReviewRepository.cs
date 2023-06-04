@@ -52,6 +52,41 @@ namespace DAL.Repositories
             }
         }
 
+        public void UpdateReview(int ratingRev, string descriptionRev, int revId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        string query2 = @"UPDATE Reviews SET Rating=@Rating, Description=@Description WHERE ReviewId=@ReviewId";
+                        using (SqlCommand command = new SqlCommand(query2, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@ReviewId", revId);
+                            command.Parameters.AddWithValue("@Rating", ratingRev);
+                            command.Parameters.AddWithValue("@Description", descriptionRev);
+                            command.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Review couldn't be updated!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred!");
+            }
+        }
+
         public List<Review> GetAllReviews(string cType)
         {
             List<Review> reviews = new List<Review>();

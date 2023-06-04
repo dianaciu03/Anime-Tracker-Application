@@ -71,5 +71,10 @@ namespace Logic.Reviews
         {
             return reviewRepository.GetReviewById(id);
         }
+
+        public void UpdateReview(int ratingRev, string descriptionRev, int revId)
+        {
+            reviewRepository.UpdateReview(ratingRev, descriptionRev, revId);
+        }
     }
 }

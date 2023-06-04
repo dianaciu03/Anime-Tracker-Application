@@ -8,5 +8,6 @@
         List<Review> GetReviewsByUserId(int profileId);
         string CalculateTimeAgo(DateTime postDate);
         Review GetReviewById(int id);
+        void UpdateReview(int ratingRev, string descriptionRev, int revId);
     }
 }

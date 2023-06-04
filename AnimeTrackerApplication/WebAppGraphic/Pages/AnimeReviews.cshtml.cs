@@ -24,9 +24,6 @@ namespace WebAppGraphic.Pages
         }
 
         [BindProperty]
-        public Review Review { get; set; }
-
-        [BindProperty]
         public Anime Anime { get; set; }
 
         [BindProperty]
@@ -81,10 +78,9 @@ namespace WebAppGraphic.Pages
         public IActionResult OnGet()
         {
             CurrentProfile = GetProfile();
-            int newId = 0;
             if (TempData.ContainsKey("ReviewId"))
             {
-                newId = JsonSerializer.Deserialize<int>(Convert.ToInt32(TempData["ReviewId"]))!;
+                int newId = JsonSerializer.Deserialize<int>(Convert.ToInt32(TempData["ReviewId"]))!;
                 IdReviewInEditMode = newId;
                 Review review = reviewManager.GetReviewById(newId);
                 InitializeReviewData(review);
@@ -106,15 +102,18 @@ namespace WebAppGraphic.Pages
             return RedirectToPage();
         }
 
+        public IActionResult OnPostDeleteReview(string action)
+        {
+            int id = Convert.ToInt32(action);
+            reviewManager.DeleteReview(id);
+            return RedirectToPage();
+        }
+
         public IActionResult OnPostSubmitChanges(string action)
         {
             int id = Convert.ToInt32(action);
             // Get the values from the form inputs
-            int updatedRating = ReviewRating;
-            string updatedDescription = ReviewDescription;
-
-            // ...
-
+            reviewManager.UpdateReview(ReviewRating, ReviewDescription, id);
             return RedirectToPage();
         }
     }

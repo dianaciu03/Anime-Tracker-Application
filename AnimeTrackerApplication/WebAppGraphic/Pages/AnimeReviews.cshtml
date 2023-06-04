@@ -40,11 +40,11 @@
                             <p class="time-ago">@Model.CalculateTime(review.Date)</p>
                             <div class="form-group">
                                 <label asp-for="ReviewRating">Rating: (x/5 ⭐)</label>
-                                <input asp-for="ReviewRating" type="number" min="1" max="5" step="1" value="@Model.ReviewRating" required>
+                                    <input asp-for="ReviewRating" style="font-size:15px;" type="number" min="1" max="5" step="1" value="@Model.ReviewRating" required>
                             </div>
                             <div class="form-group">
                                 <label asp-for="ReviewDescription">Description:</label>
-                                <textarea asp-for="ReviewDescription" style="margin-bottom:0;" value="@Model.ReviewDescription" required></textarea>
+                                <textarea asp-for="ReviewDescription" style="margin-bottom:0; font-size:15px; height:150px;" value="@Model.ReviewDescription" required></textarea>
                             </div>
                         </div>
                         <div>
@@ -66,10 +66,16 @@
                         <p class="rating">Rating: @review.Rating⭐</p>
                         <p class="review-description">@review.Description</p>
                     </div>
-                    <form method="post" asp-page-handler="EditReview">
-                        <input type="hidden" name="action" value="@review.Id" />
-                        <button id="enableEdit" type="submit" class="btn btn-content-details">Edit</button>
-                    </form>
+                    <div>
+                        <form method="post" asp-page-handler="EditReview">
+                            <input type="hidden" name="action" value="@review.Id" />
+                            <button style="width:120px;"id="enableEdit" type="submit" class="btn btn-content-details">Edit</button>
+                        </form>
+                        <form style="margin-top:15px;" method="post" asp-page-handler="DeleteReview">
+                            <input type="hidden" name="action" value="@review.Id" />
+                            <button style="width:120px;" id="enableDelete" type="submit" class="btn btn-content-details">Delete</button>
+                        </form>
+                    </div>
                 </div>
                 }
             }

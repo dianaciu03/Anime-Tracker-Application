@@ -9,5 +9,6 @@ namespace Logic.Reviews
         List<Review> GetAllReviews(string cType);
         List<Review> GetReviewsByUserId(int profileId);
         Review GetReviewById(int id);
+        void UpdateReview(int ratingRev, string descriptionRev, int revId);
     }
 }
