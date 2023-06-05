@@ -51,8 +51,6 @@ namespace WebAppGraphic.Pages
             }
         }
 
-        public CustomList CList { get; set; }
-
         public void OnGet(int id)
         {
             Anime = animeManager.GetAnimeById(id);
