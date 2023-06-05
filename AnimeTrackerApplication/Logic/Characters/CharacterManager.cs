@@ -86,5 +86,10 @@ namespace Logic.Characters
         {
             return _characterDataHandler.GetCharactersByName(nameC);
         }
+
+        public void UpdateCharacterLikes(int characterId, int nrLikes)
+        {
+            _characterDataHandler.UpdateCharacterLikes(characterId, nrLikes);
+        }
     }
 }

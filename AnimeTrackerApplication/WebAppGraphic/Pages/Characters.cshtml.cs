@@ -116,6 +116,8 @@ namespace WebAppGraphic.Pages
             {
                 int characterId = Convert.ToInt32(action);
                 Character character = characterManager.GetCharacterById(characterId);
+                character.IncreaseLikes();
+                characterManager.UpdateCharacterLikes(character.Id, character.NrLikes);
                 CustomList custom = listManager.GetCharacterFavouritesByProfileId(CurrentProfile.Id);
                 listManager.AddContentToCustomList(character, custom);
                 return RedirectToPage();
@@ -133,6 +135,8 @@ namespace WebAppGraphic.Pages
             {
                 int characterId = Convert.ToInt32(action);
                 Character character = characterManager.GetCharacterById(characterId);
+                character.DecreaseLikes();
+                characterManager.UpdateCharacterLikes(character.Id, character.NrLikes);
                 CustomList custom = listManager.GetCharacterFavouritesByProfileId(CurrentProfile.Id);
                 List<CustomList> lists = new List<CustomList> { custom };
                 listManager.DeleteContentFromList(character, lists);
