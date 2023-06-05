@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic.Characters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,11 @@ namespace Logic.Profiles
             this.contentType = type;
         }
 
+        public CustomList()
+        {
+
+        }
+
         public string Name { get { return name; } set { name = value; } }
 
         public string ContentType { get { return contentType; } set { contentType = value; } }
@@ -36,6 +42,27 @@ namespace Logic.Profiles
         public void AddContent(object objectContent)
         {
             content.Add(objectContent);
+        }
+
+        //need to change to be specific
+        public bool IsContaining(object contentObject)
+        {
+            Character character = null;
+            if(contentObject is Character)
+            {
+                character = (Character)contentObject;
+            }
+            if(contentType == "Character")
+            {
+                foreach(Character charact in content)
+                {
+                    if(charact.Id == character.Id)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public List<object> GetAllContent()

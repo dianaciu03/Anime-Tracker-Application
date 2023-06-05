@@ -2,6 +2,7 @@
 @using Logic.Animes
 @using Logic.Characters
 @using Logic.Mangas
+@using Logic.Profiles
 @model WebAppGraphic.Pages.CharactersModel
 @{
     ViewData["Title"] = "Characters";
@@ -32,25 +33,79 @@
 <div class="container-fluid container-display bg-dark">
     @foreach (Character character in Model.AlLCharacters)
     {
-        <a>
-            <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
-                <img src="@character.Image" style="height: 260px;" />
-                <form method="post" style="position: absolute; top: 10px; right: 10px;">
-                    <button type="submit" class="heart-button" name="characterId" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to favourites">&#x2764;</button>
-                </form>
-                <p style="padding-top: 8px">@character.Name</p>
-                @if (character.AnimeId != 0)
+        if(Model.CurrentProfile != null) 
+        {
+            CustomList custom = Model.CurrentProfile.GetFavouriteCharacters();
+            if(custom != null) 
+            {
+                if (custom.IsContaining(character) == true)
                 {
-                    Anime anime = Model.GetAnimeById(character.AnimeId);
-                    <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center;"> From anime: @anime.Name</p>
+                    <a>
+                        <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center">
+                            <img src="@character.Image" style="height: 260px;" />
+                            <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="RemoveFromFavourites">
+                                <button type="submit" class="heart-button bg-transparent border-0 p-0" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove from favourites">&#x2764;</button>
+                            </form>
+                            <p style="padding-top: 8px; color: white;">@character.Name</p>
+                            @if (character.AnimeId != 0)
+                            {
+                                Anime anime = Model.GetAnimeById(character.AnimeId);
+                                <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center; color: white;">From anime: @anime.Name</p>
+                            }
+                            @if (character.MangaId != 0)
+                            {
+                                Model.Manga = Model.GetMangaById(character.MangaId);
+                                <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center; color: white;">From manga: @Model.Manga.Name</p>
+                            }
+                        </div>
+                    </a>
                 }
-                @if (character.MangaId != 0)
+                else
                 {
-                    Model.Manga = Model.GetMangaById(character.MangaId);
-                    <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center;"> From manga: @Model.Manga.Name</p>
+                    <a>
+                        <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
+                            <img src="@character.Image" style="height: 260px;" />
+                            <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="AddToFavourites">
+                                <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to favourites">&#x2764;</button>
+                            </form>
+                            <p style="padding-top: 8px">@character.Name</p>
+                            @if (character.AnimeId != 0)
+                            {
+                                Anime anime = Model.GetAnimeById(character.AnimeId);
+                                <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center;"> From anime: @anime.Name</p>
+                            }
+                            @if (character.MangaId != 0)
+                            {
+                                Model.Manga = Model.GetMangaById(character.MangaId);
+                                <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center;"> From manga: @Model.Manga.Name</p>
+                            }
+                        </div>
+                    </a>
                 }
-            </div>
-        </a>
+            }
+        }
+        else 
+        {
+            <a>
+                <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
+                    <img src="@character.Image" style="height: 260px;" />
+                    <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="AddToFavourites">
+                        <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to favourites">&#x2764;</button>
+                    </form>
+                    <p style="padding-top: 8px">@character.Name</p>
+                    @if (character.AnimeId != 0)
+                    {
+                        Anime anime = Model.GetAnimeById(character.AnimeId);
+                        <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center;"> From anime: @anime.Name</p>
+                    }
+                    @if (character.MangaId != 0)
+                    {
+                        Model.Manga = Model.GetMangaById(character.MangaId);
+                        <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center;"> From manga: @Model.Manga.Name</p>
+                    }
+                </div>
+            </a>
+        }
     }
 </div>
 

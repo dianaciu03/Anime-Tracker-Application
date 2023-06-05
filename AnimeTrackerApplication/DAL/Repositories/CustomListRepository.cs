@@ -3,7 +3,6 @@ using Logic.Characters;
 using Logic.Enums;
 using Logic.Mangas;
 using Logic.Profiles;
-using Logic.Users;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -173,6 +172,37 @@ namespace DAL.Repositories
                 throw new Exception("There were issues while trying to retrieve the anime lists!");
             }
             return animeLists;
+        }
+
+        public CustomList GetCharacterFavouritesByProfileId(int id)
+        {
+            CustomList likedCharacters = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM CustomList WHERE ProfileId=@ProfileId AND Name='Favourite characters' AND ContentType='Character'";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@ProfileId", id);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int listId = reader.GetInt32(reader.GetOrdinal("ListId"));
+                            likedCharacters = new CustomList(listId, "Favourite characters", "Character");
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the favourite characters lists!");
+            }
+            return likedCharacters;
         }
 
         public List<CustomList> GetMangaListByProfileId(int id)

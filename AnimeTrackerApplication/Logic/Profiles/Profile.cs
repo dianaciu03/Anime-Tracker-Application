@@ -56,6 +56,18 @@ namespace Logic.Profiles
             return customLists;
         }
 
+        public CustomList GetFavouriteCharacters()
+        {
+            foreach(CustomList list in customLists)
+            {
+                if (list.Name == "Favourite characters")
+                {
+                    return list;
+                }
+            }
+            return null;
+        }
+
         public void AddGenre(Genre gerne)
         {
             preferredGenres.Add(gerne);

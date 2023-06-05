@@ -5,8 +5,11 @@ using Logic.Mangas;
 using Logic.Profiles;
 using Logic.Reviews;
 using Logic.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Text.Json;
 
 namespace WebAppGraphic.Pages
 {
@@ -14,6 +17,9 @@ namespace WebAppGraphic.Pages
     {
         [BindProperty]
         public string CharacterName { get; set; }
+
+        [BindProperty]
+        public Profile CurrentProfile { get; set; }
 
         [BindProperty]
         public Anime Anime { get; set; }
@@ -27,17 +33,48 @@ namespace WebAppGraphic.Pages
         private readonly ICharacterManager characterManager;
         private readonly IAnimeManager animeManager;
         private readonly IMangaManager mangaManager;
+        private readonly IUserManager userManager;
+        private readonly IListManager listManager;
 
-        public CharactersModel(ICharacterManager characterManager, IAnimeManager animeManager, IMangaManager mangaManager)
+        public CharactersModel(ICharacterManager characterManager, IAnimeManager animeManager, IMangaManager mangaManager, IUserManager userManager, IListManager listManager)
         {
             this.characterManager = characterManager;
             this.animeManager = animeManager;
             this.mangaManager = mangaManager;
+            this.userManager = userManager;
+            this.listManager = listManager;
+        }
+
+        public Profile GetProfile()
+        {
+            int? id = HttpContext.Session.GetInt32("userId");
+            if (id != null)
+            {
+                Profile profile = userManager.GetProfileByWebUserId((int)id);
+                return profile;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Character> GetCharacters()
         {
             List<Character> characters = characterManager.GetAllCharacters();
+            List<Character> goodCharacters = new List<Character>();
+            if (TempData.ContainsKey("CharName"))
+            {
+                string name = JsonSerializer.Deserialize<string>(TempData["CharName"].ToString())!;
+                foreach (Character c in characters)
+                {
+                    if (c.Name.ToLower().Contains(name.ToLower()))
+                    {
+                        goodCharacters.Add(c);
+                    }
+                }
+                return goodCharacters;
+            }
             return characters;
         }
 
@@ -53,6 +90,7 @@ namespace WebAppGraphic.Pages
 
         public void OnGet()
         {
+            CurrentProfile = GetProfile();
             AlLCharacters = GetCharacters();
         }
 
@@ -62,17 +100,44 @@ namespace WebAppGraphic.Pages
             {
                 CharacterName = "";
             }
-            AlLCharacters.Clear();
-            foreach (Character character in GetCharacters())
-            {
-                if (character.Name.ToLower().Contains(CharacterName.ToLower()))
-                {
-                    AlLCharacters.Add(character);
-                }
-            }
-            CharacterName = string.Empty;
+            TempData["CharName"] = JsonSerializer.Serialize(CharacterName);
             ModelState.Clear();
-            return Page();
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostAddToFavourites(string action)
+        {
+            CurrentProfile = GetProfile();
+            if (CurrentProfile == null)
+            {
+                return RedirectToPage("Login");
+            }
+            else
+            {
+                int characterId = Convert.ToInt32(action);
+                Character character = characterManager.GetCharacterById(characterId);
+                CustomList custom = listManager.GetCharacterFavouritesByProfileId(CurrentProfile.Id);
+                listManager.AddContentToCustomList(character, custom);
+                return RedirectToPage();
+            } 
+        }
+
+        public IActionResult OnPostRemoveFromFavourites(string action)
+        {
+            CurrentProfile = GetProfile();
+            if (CurrentProfile == null)
+            {
+                return RedirectToPage("Login");
+            }
+            else
+            {
+                int characterId = Convert.ToInt32(action);
+                Character character = characterManager.GetCharacterById(characterId);
+                CustomList custom = listManager.GetCharacterFavouritesByProfileId(CurrentProfile.Id);
+                List<CustomList> lists = new List<CustomList> { custom };
+                listManager.DeleteContentFromList(character, lists);
+                return RedirectToPage();
+            }
         }
     }
 }

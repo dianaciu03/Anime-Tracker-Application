@@ -45,5 +45,10 @@ namespace Logic.Profiles
         {
             return _listDataHandler.GetMangaListByProfileId(id);
         }
+
+        public CustomList GetCharacterFavouritesByProfileId(int id)
+        {
+            return _listDataHandler.GetCharacterFavouritesByProfileId(id);
+        }
     }
 }
