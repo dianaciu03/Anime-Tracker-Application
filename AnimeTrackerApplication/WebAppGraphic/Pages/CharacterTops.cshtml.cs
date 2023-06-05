@@ -74,7 +74,7 @@ namespace WebAppGraphic.Pages
         public void OnGet()
         {
             CurrentProfile = GetProfile();
-            AlLFavouriteCharacters = GetFavouriteCharacters();
+            AlLFavouriteCharacters = GetFavouriteCharacters().Take(12).ToList();
         }
 
         public IActionResult OnPostAddToFavourites(string action)

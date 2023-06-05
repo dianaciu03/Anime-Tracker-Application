@@ -1,4 +1,5 @@
 using Factory;
+using Logic.Animes;
 using Logic.Enums;
 using Logic.Mangas;
 using Logic.Profiles;
@@ -14,11 +15,15 @@ namespace WebAppGraphic.Pages
     {
         private readonly IProfileManager profileManager;
         private readonly IUserManager userManager;
+        private readonly IAnimeManager animeManager;
+        private readonly IMangaManager mangaManager;
 
-        public ProfileModel(IProfileManager profileManager, IUserManager userManager)
+        public ProfileModel(IProfileManager profileManager, IUserManager userManager, IAnimeManager animeManager, IMangaManager mangaManager)
         {
             this.profileManager = profileManager;
             this.userManager = userManager;
+            this.animeManager = animeManager;
+            this.mangaManager = mangaManager;
         }
 
         [BindProperty]
@@ -44,6 +49,16 @@ namespace WebAppGraphic.Pages
             Genre[] genres = (Genre[])Enum.GetValues(typeof(Genre));
             List<Genre> genreList = new List<Genre>(genres);
             return genreList;
+        }
+
+        public Anime GetAnimeById(int id)
+        {
+            return animeManager.GetAnimeById(id);
+        }
+
+        public Manga GetMangaById(int id)
+        {
+            return mangaManager.GetMangaById(id);
         }
 
         public IActionResult OnPost(string action)

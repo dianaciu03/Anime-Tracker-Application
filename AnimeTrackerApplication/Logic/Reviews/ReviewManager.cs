@@ -10,16 +10,29 @@ namespace Logic.Reviews
     public class ReviewManager : IReviewManager
     {
         private readonly IReviewRepository reviewRepository;
+        private ReviewDataValidator rdv;
 
         public ReviewManager(IReviewRepository reviewRepository)
         {
             this.reviewRepository = reviewRepository;
+            rdv = new ReviewDataValidator();
         }
 
         public void AddReview(int profileId, int rating, string description, int contentId, string contentType, DateTime date)
         {
-            Review review = new Review(profileId, rating, description, contentId, contentType, date);
-            reviewRepository.AddReview(review);
+            try
+            {
+                if (rdv.IsRatingValid(rating.ToString()) && rdv.IsDescriptionValid(description))
+                {
+                    Review review = new Review(profileId, rating, description, contentId, contentType, date);
+                    reviewRepository.AddReview(review);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
         public void DeleteReview(int reviewId)
         {
