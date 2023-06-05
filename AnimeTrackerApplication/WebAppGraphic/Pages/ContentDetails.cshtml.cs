@@ -96,11 +96,19 @@ namespace WebAppGraphic.Pages
                 }
                 else
                 {
-                    OnGet(Anime.Id);
-                    reviewManager.AddReview(GetProfile().Id, ReviewRating, ReviewDescription, Anime.Id, "Anime", DateTime.Now);
-                    ReviewDescription = string.Empty;
-                    ReviewRating = 0;
-                    ModelState.Clear();
+                    try
+                    {
+                        OnGet(Anime.Id);
+                        reviewManager.AddReview(GetProfile().Id, ReviewRating, ReviewDescription, Anime.Id, "Anime", DateTime.Now);
+                        ReviewDescription = string.Empty;
+                        ReviewRating = 0;
+                        ModelState.Clear();
+                    }
+                    catch(Exception ex)
+                    {
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                    }
+                    
                 }
             }
             ReviewDescription = string.Empty;
