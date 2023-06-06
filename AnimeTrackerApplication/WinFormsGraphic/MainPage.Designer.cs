@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.labelTitleWorldOfAnime = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabAnime = new System.Windows.Forms.TabPage();
@@ -172,6 +173,28 @@
             this.tbxNameAccount = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeaderUsernameReview = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderRatingReview = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderDescriptionReview = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderPostDate = new System.Windows.Forms.ColumnHeader();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.numRatingReview = new System.Windows.Forms.NumericUpDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -193,6 +216,10 @@
             this.tabCreateAccount.SuspendLayout();
             this.groupBoxSearchAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingReview)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -214,6 +241,7 @@
             this.tabControl.Controls.Add(this.tabAnime);
             this.tabControl.Controls.Add(this.tabManga);
             this.tabControl.Controls.Add(this.tabCharacters);
+            this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabCreateAccount);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabControl.Location = new System.Drawing.Point(56, 97);
@@ -1764,6 +1792,255 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Thistle;
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 46);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1797, 852);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Reviews";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderUsernameReview,
+            this.columnHeaderRatingReview,
+            this.columnHeaderDescriptionReview,
+            this.columnHeaderPostDate});
+            this.listView1.FullRowSelect = true;
+            this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(458, 30);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1311, 696);
+            this.listView1.TabIndex = 48;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderUsernameReview
+            // 
+            this.columnHeaderUsernameReview.Text = "Username";
+            this.columnHeaderUsernameReview.Width = 270;
+            // 
+            // columnHeaderRatingReview
+            // 
+            this.columnHeaderRatingReview.Text = "Rating";
+            this.columnHeaderRatingReview.Width = 140;
+            // 
+            // columnHeaderDescriptionReview
+            // 
+            this.columnHeaderDescriptionReview.Text = "Description";
+            this.columnHeaderDescriptionReview.Width = 700;
+            // 
+            // columnHeaderPostDate
+            // 
+            this.columnHeaderPostDate.Text = "Post date";
+            this.columnHeaderPostDate.Width = 195;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.numRatingReview);
+            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Location = new System.Drawing.Point(18, 19);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(414, 220);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Review search:";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.MediumPurple;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(220, 147);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(175, 54);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "Clear fields";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.MediumPurple;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(21, 147);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(175, 54);
+            this.button2.TabIndex = 38;
+            this.button2.Text = "Search";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 26);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Rating:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 89);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 26);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Content:";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(146, 87);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(94, 30);
+            this.checkBox1.TabIndex = 49;
+            this.checkBox1.Text = "Anime";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(246, 87);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(97, 30);
+            this.checkBox2.TabIndex = 50;
+            this.checkBox2.Text = "Manga";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // numRatingReview
+            // 
+            this.numRatingReview.Location = new System.Drawing.Point(146, 40);
+            this.numRatingReview.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numRatingReview.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numRatingReview.Name = "numRatingReview";
+            this.numRatingReview.Size = new System.Drawing.Size(120, 32);
+            this.numRatingReview.TabIndex = 51;
+            this.numRatingReview.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButton4);
+            this.groupBox2.Controls.Add(this.radioButton5);
+            this.groupBox2.Controls.Add(this.radioButton6);
+            this.groupBox2.Controls.Add(this.radioButton7);
+            this.groupBox2.Controls.Add(this.radioButton8);
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Location = new System.Drawing.Point(18, 267);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(414, 244);
+            this.groupBox2.TabIndex = 49;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Sort reviews by:";
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(33, 116);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(76, 30);
+            this.radioButton4.TabIndex = 42;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "User";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(232, 80);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(139, 30);
+            this.radioButton5.TabIndex = 41;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Post date ↓";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(33, 80);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(139, 30);
+            this.radioButton6.TabIndex = 40;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Post date ↑";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Location = new System.Drawing.Point(232, 44);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(110, 30);
+            this.radioButton7.TabIndex = 39;
+            this.radioButton7.TabStop = true;
+            this.radioButton7.Text = "Rating ↓";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(33, 44);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(110, 30);
+            this.radioButton8.TabIndex = 38;
+            this.radioButton8.TabStop = true;
+            this.radioButton8.Text = "Rating ↑";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.MediumPurple;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(21, 171);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(374, 54);
+            this.button3.TabIndex = 37;
+            this.button3.Text = "Display all";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.MediumPurple;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button4.ForeColor = System.Drawing.Color.Black;
+            this.button4.Location = new System.Drawing.Point(921, 744);
+            this.button4.Margin = new System.Windows.Forms.Padding(5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(406, 72);
+            this.button4.TabIndex = 50;
+            this.button4.Text = "Remove Review";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1807,6 +2084,12 @@
             this.groupBoxSearchAccount.ResumeLayout(false);
             this.groupBoxSearchAccount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingReview)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1957,5 +2240,27 @@
         private Button btnRemoveAccount;
         private Button btnCreateMaintainer;
         private PictureBox pictureBox1;
+        private TabPage tabPage1;
+        private Button button4;
+        private GroupBox groupBox2;
+        private RadioButton radioButton4;
+        private RadioButton radioButton5;
+        private RadioButton radioButton6;
+        private RadioButton radioButton7;
+        private RadioButton radioButton8;
+        private Button button3;
+        private ListView listView1;
+        private ColumnHeader columnHeaderUsernameReview;
+        private ColumnHeader columnHeaderRatingReview;
+        private ColumnHeader columnHeaderDescriptionReview;
+        private ColumnHeader columnHeaderPostDate;
+        private GroupBox groupBox1;
+        private NumericUpDown numRatingReview;
+        private CheckBox checkBox2;
+        private CheckBox checkBox1;
+        private Label label1;
+        private Button button1;
+        private Button button2;
+        private Label label5;
     }
 }
