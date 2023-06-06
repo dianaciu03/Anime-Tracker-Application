@@ -726,5 +726,31 @@ namespace WinFormsGraphic
             }
             
         }
+
+        private void btnRemoveReview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Review review = (Review)lvwReviews.SelectedItems[0].Tag;
+                //Display a confirmation message box
+                DialogResult result = MessageBox.Show("Are you sure you want to remove this review?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // If the user clicks Yes, remove the selected item
+                if (result == DialogResult.Yes)
+                {
+                    reviewManager.DeleteReview(review.Id);
+                    MessageBox.Show("Review has been successfully deleted!");
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select a review to remove!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
     }
 }

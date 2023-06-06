@@ -1604,6 +1604,7 @@
             this.btnRemoveReview.TabIndex = 50;
             this.btnRemoveReview.Text = "Remove Review";
             this.btnRemoveReview.UseVisualStyleBackColor = false;
+            this.btnRemoveReview.Click += new System.EventHandler(this.btnRemoveReview_Click);
             // 
             // groupBoxSortReviews
             // 
