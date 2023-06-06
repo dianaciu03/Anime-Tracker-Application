@@ -22,6 +22,8 @@ using System.Globalization;
 using Logic.Profiles;
 using Microsoft.VisualBasic.ApplicationServices;
 using User = Logic.Users.User;
+using Logic.Reviews;
+using System.Reflection;
 
 namespace WinFormsGraphic
 {
@@ -32,6 +34,7 @@ namespace WinFormsGraphic
         IMangaManager mangaManager;
         ICharacterManager characterManager;
         IUserManager userManager;
+        IReviewManager reviewManager;
         User currentUser;
         List<RadioButton> animeSort;
         List<RadioButton> mangaSort;
@@ -51,6 +54,7 @@ namespace WinFormsGraphic
             mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
             characterManager = ManagerFactory.CreateCharacterManager(RepositoryFactory.CreateCharacterRepository());
             userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
+            reviewManager = ManagerFactory.CreateReviewManager(RepositoryFactory.CreateReviewRepository());
             currentTab = tabControl.SelectedTab;
         }
 
@@ -81,6 +85,9 @@ namespace WinFormsGraphic
             //initilize account search
             cbxRoles.DataSource = new string[] { "Admin", "Maintainer", "RegisteredWebUser"};
             cbxRoles.SelectedIndex = -1;
+
+            //initialize review sorting
+            rbtnPostDateDesc.Checked = true;
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -638,6 +645,86 @@ namespace WinFormsGraphic
             Login form = new Login();
             form.ShowDialog();
             this.Close();
+        }
+
+        //
+        //REVIEW TAB
+        //
+        private void UpdateReviewListView(Dictionary<Review, string> reviewDictionary)
+        {
+            lvwReviews.Items.Clear();
+            foreach (KeyValuePair<Review, string> kvp in reviewDictionary)
+            {
+                ListViewItem item = new ListViewItem();
+                Review review = kvp.Key;
+                item.Text = kvp.Value;
+                item.Tag = review;
+                item.SubItems.Add(review.Rating.ToString());
+                item.SubItems.Add(review.Description);
+                DateTime dateTime = review.Date;
+                string formattedDate = dateTime.ToString("d MMMM yyyy");
+                item.SubItems.Add(formattedDate);
+                lvwReviews.Items.Add(item);
+            }
+        }
+
+        private void btnSearchReview_Click(object sender, EventArgs e)
+        {
+            int rating = Convert.ToInt32(numRatingReview.Value);
+            string contentype = "";
+            if(cbxAnime.Checked)
+            {
+                contentype = cbxAnime.Text;
+            }
+            else if(cbxManga.Checked)
+            {
+                contentype = cbxManga.Text;
+            }
+            else if (cbxAnime.Checked && cbxManga.Checked)
+            {
+                contentype = "";
+            }
+
+            Dictionary<Review, string> reviewDictionary = reviewManager.GetSearchedReviews(rating, contentype);
+            UpdateReviewListView(reviewDictionary);
+        }
+
+        private void btnClearFieldsReview_Click(object sender, EventArgs e)
+        {
+            numRatingReview.Value = 0;
+            cbxAnime.Checked = false;
+            cbxManga.Checked = false;
+        }
+
+        private void btnDisplayAllReviews_Click(object sender, EventArgs e)
+        {
+            Dictionary<Review, string> reviewDictionary = reviewManager.GetSearchedReviews(0, "");
+            if(rbtnPostDateDesc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderByDescending(kv => kv.Key.Date);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnPostDateAsc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderBy(kv => kv.Key.Date);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnRatingDesc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderByDescending(kv => kv.Key.Rating);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnRatingAsc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderBy(kv => kv.Key.Rating);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnUser.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderBy(kv => kv.Value);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            
         }
     }
 }

@@ -55,6 +55,11 @@ namespace Logic.Reviews
             return reviewRepository.GetReviewsByUserId(profileId);
         }
 
+        public Dictionary<Review, string> GetSearchedReviews(int cRating, string cType)
+        {
+            return reviewRepository.GetSearchedReviews(cRating, cType);
+        }
+
         public string CalculateTimeAgo(DateTime postDate, DateTime currentDate)
         {
             if(currentDate < postDate)

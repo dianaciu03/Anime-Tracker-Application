@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DAL.Repositories
 {
@@ -123,6 +124,57 @@ namespace DAL.Repositories
                 throw new Exception("There were issues while trying to retrive the reviews!");
             }
             return reviews;
+        }
+
+        public Dictionary<Review, string> GetSearchedReviews(int cRating, string cType)
+        {
+            Dictionary<Review, string> reviewDictionary = new Dictionary<Review, string>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = "";
+                    if(cRating >= 1 && cRating <= 5)
+                    {
+                        query = @$"SELECT Reviews.*, Username FROM Reviews INNER JOIN Profile ON Reviews.ProfileId = Profile.Profileid
+                                   WHERE ContentType LIKE '%' + @ContentType + '%' AND Rating = @Rating";
+
+                    }
+                    else
+                    {
+                        query = @$"SELECT Reviews.*, Username FROM Reviews INNER JOIN Profile ON Reviews.ProfileId = Profile.Profileid
+                                   WHERE ContentType LIKE '%' + @ContentType + '%'";
+                    }
+                    using (SqlCommand command1 = new SqlCommand(query, conn))
+                    {
+                        command1.Parameters.AddWithValue("@ContentType", cType);
+                        command1.Parameters.AddWithValue("@Rating", cRating);
+                        SqlDataReader reader = command1.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int reviewId = reader.GetInt32(reader.GetOrdinal("ReviewId"));
+                            int profileId = reader.GetInt32(reader.GetOrdinal("ProfileId"));
+                            int rating = reader.GetInt32(reader.GetOrdinal("Rating"));
+                            string description = reader.GetString(reader.GetOrdinal("Description"));
+                            int contentId = reader.GetInt32(reader.GetOrdinal("ContentId"));
+                            string contentType = reader.GetString(reader.GetOrdinal("ContentType"));
+                            DateTime date = reader.GetDateTime(reader.GetOrdinal("Date"));
+                            string username = reader.GetString(reader.GetOrdinal("Username"));
+
+                            Review review1 = new Review(reviewId, profileId, rating, description, contentId, contentType, date);
+                            reviewDictionary[review1] = username;
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrive the reviews!");
+            }
+            return reviewDictionary;
         }
 
         public List<Review> GetReviewsByUserId(int profileId)

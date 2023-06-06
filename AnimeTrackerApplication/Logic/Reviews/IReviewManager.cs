@@ -9,5 +9,6 @@
         string CalculateTimeAgo(DateTime postDate, DateTime currentDate);
         Review GetReviewById(int id);
         void UpdateReview(int ratingRev, string descriptionRev, int revId);
+        Dictionary<Review, string> GetSearchedReviews(int cRating, string cType);
     }
 }

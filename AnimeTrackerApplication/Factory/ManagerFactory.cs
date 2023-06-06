@@ -39,9 +39,9 @@ namespace Factory
             return new ListManager(listRepository);
         }
 
-        //public static ReviewManager CreateReviewManager(IReviewRepository reviewRepository)
-        //{
-        //    return new ReviewManager(reviewRepository);
-        //}
+        public static ReviewManager CreateReviewManager(IReviewRepository reviewRepository)
+        {
+            return new ReviewManager(reviewRepository);
+        }
     }
 }
