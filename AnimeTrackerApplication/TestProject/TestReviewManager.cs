@@ -65,10 +65,10 @@ namespace TestProject
         {
             // Arrange
             DateTime postDate = new DateTime(2022, 5, 1);
-            DateTime currentDate = new DateTime(2022, 5, 17);
+            DateTime compareDate = new DateTime(2022, 5, 17);
 
             // Act
-            string actualTimeAgo = reviewManager.CalculateTimeAgo(postDate, currentDate);
+            string actualTimeAgo = reviewManager.CalculateTimeAgo(postDate, compareDate);
 
             // Assert
             Assert.Equal("16 days ago", actualTimeAgo);
@@ -79,12 +79,12 @@ namespace TestProject
         {
             // Arrange
             DateTime postDate = new DateTime(2022, 5, 17);
-            DateTime currentDate = new DateTime(2022, 5, 1);
+            DateTime compareDate = new DateTime(2022, 5, 1);
 
             // Act & Assert
             Assert.Throws<Exception>(() =>
             {
-                reviewManager.CalculateTimeAgo(postDate, currentDate);
+                reviewManager.CalculateTimeAgo(postDate, compareDate);
             });
         }
     }
