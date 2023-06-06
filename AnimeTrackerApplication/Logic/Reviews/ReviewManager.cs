@@ -22,11 +22,19 @@ namespace Logic.Reviews
         {
             try
             {
-                if (rdv.IsRatingValid(rating.ToString()) && rdv.IsDescriptionValid(description))
+                if(profileId != 0 && contentId != 0 && (contentType == "Anime" || contentType == "Manga") && date <= DateTime.Now)
                 {
-                    Review review = new Review(profileId, rating, description, contentId, contentType, date);
-                    reviewRepository.AddReview(review);
+                    if (rdv.IsRatingValid(rating.ToString()) && rdv.IsDescriptionValid(description))
+                    {
+                        Review review = new Review(profileId, rating, description, contentId, contentType, date);
+                        reviewRepository.AddReview(review);
+                    }
                 }
+                else
+                {
+                    throw new Exception("There were some issues with saving your review, please try again later");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -47,36 +55,42 @@ namespace Logic.Reviews
             return reviewRepository.GetReviewsByUserId(profileId);
         }
 
-        public string CalculateTimeAgo(DateTime postDate)
+        public string CalculateTimeAgo(DateTime postDate, DateTime currentDate)
         {
-            TimeSpan timeElapsed = DateTime.Now - postDate;
-
-            if (timeElapsed.TotalSeconds < 60)
+            if(currentDate < postDate)
             {
-                return $"{timeElapsed.Seconds} seconds ago";
-            }
-            else if (timeElapsed.TotalMinutes < 60)
-            {
-                return $"{timeElapsed.Minutes} minutes ago";
-            }
-            else if (timeElapsed.TotalHours < 24)
-            {
-                return $"{timeElapsed.Hours} hours ago";
-            }
-            else if (timeElapsed.TotalDays < 30)
-            {
-                int days = (int)timeElapsed.TotalDays;
-                return $"{days} {(days == 1 ? "day" : "days")} ago";
-            }
-            else if (timeElapsed.TotalDays < 365)
-            {
-                int months = (int)(timeElapsed.TotalDays / 30);
-                return $"{months} {(months == 1 ? "month" : "months")} ago";
+                throw new Exception("There were some issues with the dates provided");
             }
             else
             {
-                int years = (int)(timeElapsed.TotalDays / 365);
-                return $"{years} {(years == 1 ? "year" : "years")} ago";
+                TimeSpan timeElapsed = currentDate - postDate;
+                if (timeElapsed.TotalSeconds < 60)
+                {
+                    return $"{timeElapsed.Seconds} seconds ago";
+                }
+                else if (timeElapsed.TotalMinutes < 60)
+                {
+                    return $"{timeElapsed.Minutes} minutes ago";
+                }
+                else if (timeElapsed.TotalHours < 24)
+                {
+                    return $"{timeElapsed.Hours} hours ago";
+                }
+                else if (timeElapsed.TotalDays < 30)
+                {
+                    int days = (int)timeElapsed.TotalDays;
+                    return $"{days} {(days == 1 ? "day" : "days")} ago";
+                }
+                else if (timeElapsed.TotalDays < 365)
+                {
+                    int months = (int)(timeElapsed.TotalDays / 30);
+                    return $"{months} {(months == 1 ? "month" : "months")} ago";
+                }
+                else
+                {
+                    int years = (int)(timeElapsed.TotalDays / 365);
+                    return $"{years} {(years == 1 ? "year" : "years")} ago";
+                }
             }
         }
 

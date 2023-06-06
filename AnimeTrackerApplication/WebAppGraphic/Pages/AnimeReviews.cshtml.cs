@@ -43,7 +43,9 @@ namespace WebAppGraphic.Pages
 
         public List<Review> GetReviews()
         {
-            return reviewManager.GetAllReviews("Anime");
+            List<Review> reviews = reviewManager.GetAllReviews("Anime");
+            List<Review> orderedReviews = reviews.OrderByDescending(r => r.Date).ToList();
+            return orderedReviews;
         }
 
         public void GetProfileById(int id)
@@ -53,7 +55,7 @@ namespace WebAppGraphic.Pages
 
         public string CalculateTime(DateTime date)
         {
-            return reviewManager.CalculateTimeAgo(date);
+            return reviewManager.CalculateTimeAgo(date, DateTime.Now);
         }
 
         public void GetAnimeById(int id)

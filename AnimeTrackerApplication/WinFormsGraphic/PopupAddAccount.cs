@@ -27,7 +27,6 @@ namespace WinFormsGraphic
             cbxRole.SelectedIndex = -1;
 
             userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
-            tbxPassword.Text = "TempResetPass";
         }
 
         private void btnCancelAccountAddition_Click(object sender, EventArgs e)

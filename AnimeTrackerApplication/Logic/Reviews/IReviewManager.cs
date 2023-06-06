@@ -6,7 +6,7 @@
         void DeleteReview(int reviewId);
         List<Review> GetAllReviews(string cType);
         List<Review> GetReviewsByUserId(int profileId);
-        string CalculateTimeAgo(DateTime postDate);
+        string CalculateTimeAgo(DateTime postDate, DateTime currentDate);
         Review GetReviewById(int id);
         void UpdateReview(int ratingRev, string descriptionRev, int revId);
     }
