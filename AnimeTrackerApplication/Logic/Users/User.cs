@@ -50,7 +50,7 @@ namespace Logic.Users
         public string Email { get { return email; } set { this.email = value; } }
 
         [Required(ErrorMessage = "A password is required"),
-         MinLength(6, ErrorMessage = "Your password need to be at least 6 characters!")]
+         MinLength(5, ErrorMessage = "Your password need to be at least 5 characters!")]
         public string Password { get { return password; } set { this.password = value; } }
 
         public string HashedPassword { get { return hashedPassword; } set { this.hashedPassword = value; } }

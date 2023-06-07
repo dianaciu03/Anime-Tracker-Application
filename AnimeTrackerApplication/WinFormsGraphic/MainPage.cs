@@ -423,6 +423,16 @@ namespace WinFormsGraphic
             try
             {
                 Character character = (Character)lvwCharacters.SelectedItems[0].Tag;
+                if(character.AnimeId != 0)
+                {
+                    Anime anime = animeManager.GetAnimeById(character.AnimeId);
+                    character.FromAnime = anime;
+                }
+                if (character.MangaId != 0)
+                {
+                    Manga manga = mangaManager.GetMangaById(character.MangaId);
+                    character.FromManga = manga;
+                }
                 PopupEditCharacter form = new PopupEditCharacter(character);
                 form.ShowDialog();
             }

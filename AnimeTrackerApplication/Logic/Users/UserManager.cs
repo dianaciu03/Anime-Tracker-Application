@@ -29,16 +29,25 @@ namespace Logic.Users
 
         public void AddUser(string name, string email, string role)
         {
-            if(role == "Maintainer")
+            try
             {
-                User maintainer = new Maintainer(name, email, "", DateTime.Now.Date, "");
-                _userDataHandler.AddUser(maintainer);
+                //add regex for users, need data validator class
+                if (role == "Maintainer")
+                {
+                    User maintainer = new Maintainer(name, email, "", DateTime.Now.Date, "");
+                    _userDataHandler.AddUser(maintainer);
+                }
+                else if (role == "Admin")
+                {
+                    User admin = new Admin(name, email, "", DateTime.Now.Date, "");
+                    _userDataHandler.AddUser(admin);
+                }
             }
-            else if(role == "Admin")
+            catch(Exception) 
             {
-                User admin = new Admin(name, email, "", DateTime.Now.Date, "");
-                _userDataHandler.AddUser(admin);
+
             }
+            
         }
 
         public void UpdateUser(User user, string password)
