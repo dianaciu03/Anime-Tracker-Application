@@ -63,18 +63,18 @@
                         </a>
                     }
                 }
-                else if (list.ContentType == "Character")
+                else if (list.ContentType == "Character" && list.Name == "Favourite characters")
                 {
                     @foreach (object content in list.GetAllContent())
                     {
                         Character character = (Character)content;
                         <a>
-                            <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
+                            <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center">
                                 <img src="@character.Image" style="height: 260px;" />
                                 <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="RemoveFromFavourites">
                                     <button type="submit" class="heart-button bg-transparent border-0 p-0" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove from favourites">&#x2764;</button>
                                 </form>
-                                <p style="padding-top: 8px;">@character.Name</p>
+                                <p style="padding-top: 8px; color: white;">@character.Name</p>
                                 @if (character.AnimeId != 0)
                                 {
                                     Anime anime = Model.GetAnimeById(character.AnimeId);
@@ -83,7 +83,33 @@
                                 @if (character.MangaId != 0)
                                 {
                                     Manga manga = Model.GetMangaById(character.MangaId);
-                                    <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center; color: white;">From manga: @manga.Name</p>
+                                    <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center; color: white;">From manga: manga.Name</p>
+                                }
+                            </div>
+                        </a>
+                    }
+                }
+                else if (list.ContentType == "Character" && list.Name == "Disliked characters")
+                {
+                    @foreach (object content in list.GetAllContent())
+                    {
+                        Character character = (Character)content;
+                        <a>
+                            <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center">
+                                <img src="@character.Image" style="height: 260px;" />
+                                <form method="post" style="position: absolute; top: 10px; left: 10px;" asp-page-handler="RemoveFromDisliked">
+                                    <button type="submit" class="heart-button bg-transparent border-0 p-0" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove from disliked">&#x1F494;</button>
+                                </form>
+                                <p style="padding-top: 8px; color: white;">@character.Name</p>
+                                @if (character.AnimeId != 0)
+                                {
+                                    Anime anime = Model.GetAnimeById(character.AnimeId);
+                                    <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center; color: white;">From anime: @anime.Name</p>
+                                }
+                                @if (character.MangaId != 0)
+                                {
+                                    Manga manga = Model.GetMangaById(character.MangaId);
+                                    <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center; color: white;">From manga: manga.Name</p>
                                 }
                             </div>
                         </a>
@@ -122,11 +148,10 @@
                                     {
                                         Genre genre = Model.GetAllGenres()[i];
                                         string genreName = genre.ToString();
-
-                                                        <li class="list-group-item bg-dark text-white">
-                                                            <input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-                                                            <label>@genreName</label>
-                                                        </li>
+                                        <li class="list-group-item bg-dark text-white">
+                                            <input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+                                            <label>@genreName</label>
+                                        </li>
                                     }
                                 }
                             </ul>
@@ -139,11 +164,10 @@
                                     {
                                         Genre genre = Model.GetAllGenres()[i];
                                         string genreName = genre.ToString();
-
-                                                        <li class="list-group-item bg-dark text-white">
-                                                            <input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-                                                            <label>@genreName</label>
-                                                        </li>
+                                        <li class="list-group-item bg-dark text-white">
+                                            <input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+                                            <label>@genreName</label>
+                                        </li>
                                     }
                                 }
                             </ul>

@@ -68,6 +68,18 @@ namespace Logic.Profiles
             return null;
         }
 
+        public CustomList GetDislikedCharacters()
+        {
+            foreach (CustomList list in customLists)
+            {
+                if (list.Name == "Disliked characters")
+                {
+                    return list;
+                }
+            }
+            return null;
+        }
+
         public void AddGenre(Genre gerne)
         {
             preferredGenres.Add(gerne);
