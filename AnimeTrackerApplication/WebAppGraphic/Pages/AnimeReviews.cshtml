@@ -23,7 +23,7 @@
     <div class="container-fluid display-reviews bg-dark">
         @foreach (Review review in Model.GetReviews())
         {
-            Model.GetProfileById(review.ProfileId); @*might become a dictionary (Review, username)*@
+            Model.GetProfileById(review.ProfileId);
             if (review.ProfileId == Model.CurrentProfile.Id)
             {
                 Model.GetAnimeById(review.ContentId);
