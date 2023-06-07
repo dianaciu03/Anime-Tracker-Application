@@ -46,7 +46,7 @@
             this.labelErorrMessage.BackColor = System.Drawing.Color.Thistle;
             this.labelErorrMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelErorrMessage.ForeColor = System.Drawing.Color.Red;
-            this.labelErorrMessage.Location = new System.Drawing.Point(781, 453);
+            this.labelErorrMessage.Location = new System.Drawing.Point(681, 453);
             this.labelErorrMessage.Name = "labelErorrMessage";
             this.labelErorrMessage.Size = new System.Drawing.Size(353, 29);
             this.labelErorrMessage.TabIndex = 23;

@@ -11,10 +11,12 @@ namespace Logic.Users
     public class UserManager : IUserManager
     {
         private readonly IUserRepository _userDataHandler;
+        private UserDataValidator udv;
 
         public UserManager(IUserRepository iUser)
         {
             _userDataHandler = iUser;
+            udv = new UserDataValidator();
         }
 
         public List<User> GetAllUsers()
@@ -31,39 +33,60 @@ namespace Logic.Users
         {
             try
             {
-                //add regex for users, need data validator class
-                if (role == "Maintainer")
+                if(udv.IsNameValid(name) && udv.IsEmailValid(email))
                 {
-                    User maintainer = new Maintainer(name, email, "", DateTime.Now.Date, "");
-                    _userDataHandler.AddUser(maintainer);
-                }
-                else if (role == "Admin")
-                {
-                    User admin = new Admin(name, email, "", DateTime.Now.Date, "");
-                    _userDataHandler.AddUser(admin);
+                    if (role == "Maintainer")
+                    {
+                        User maintainer = new Maintainer(name, email, "", DateTime.Now.Date, "");
+                        _userDataHandler.AddUser(maintainer);
+                    }
+                    else if (role == "Admin")
+                    {
+                        User admin = new Admin(name, email, "", DateTime.Now.Date, "");
+                        _userDataHandler.AddUser(admin);
+                    }
                 }
             }
-            catch(Exception) 
+            catch(Exception ex) 
             {
-
+                throw new Exception(ex.Message);
             }
-            
         }
 
         public void UpdateUser(User user, string password)
         {
-            (string salt, string hashedPassword) = Security.CreateSaltAndHash(password);
-            user.Salt = salt;
-            user.HashedPassword = hashedPassword;
-            _userDataHandler.UpdateUser(user);
+            try
+            {
+                if(udv.IsPasswordValid(password))
+                {
+                    (string salt, string hashedPassword) = Security.CreateSaltAndHash(password);
+                    user.Salt = salt;
+                    user.HashedPassword = hashedPassword;
+                    _userDataHandler.UpdateUser(user);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void AddWebUser(string name, string email, string password, string username)
         {
-            (string salt, string hashedPassword) = Security.CreateSaltAndHash(password);
-            Profile webProfile = new Profile(username);
-            RegisteredWebUser webUser = new RegisteredWebUser(name, email, hashedPassword, DateTime.Now.Date, salt, webProfile);
-            _userDataHandler.AddUser(webUser);
+            try
+            {
+                if (udv.IsNameValid(name) && udv.IsEmailValid(email) && udv.IsPasswordValid(password))
+                {
+                    (string salt, string hashedPassword) = Security.CreateSaltAndHash(password);
+                    Profile webProfile = new Profile(username);
+                    RegisteredWebUser webUser = new RegisteredWebUser(name, email, hashedPassword, DateTime.Now.Date, salt, webProfile);
+                    _userDataHandler.AddUser(webUser);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU)

@@ -48,20 +48,13 @@ namespace WinFormsGraphic
                         form.ShowDialog();
                         this.Close();
                     }
-                    else
-                    {
-                        labelErorrMessage.Visible = true;
-                    }
-                }
-                else
-                {
-                    labelErorrMessage.Visible = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                labelErorrMessage.Text = ex.Message;
                 labelErorrMessage.Visible = true;
-                throw;
+                return;
             }
         }
     }
