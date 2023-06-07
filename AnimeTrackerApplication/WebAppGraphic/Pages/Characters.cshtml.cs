@@ -124,6 +124,25 @@ namespace WebAppGraphic.Pages
             } 
         }
 
+        public IActionResult OnPostAddToDisliked(string action)
+        {
+            CurrentProfile = GetProfile();
+            if (CurrentProfile == null)
+            {
+                return RedirectToPage("Login");
+            }
+            else
+            {
+                int characterId = Convert.ToInt32(action);
+                Character character = characterManager.GetCharacterById(characterId);
+                character.IncreaseDislikes();
+                characterManager.UpdateCharacterDislikes(character.Id, character.NrDislikes);
+                CustomList custom = listManager.GetCharacterDislikedByProfileId(CurrentProfile.Id);
+                listManager.AddContentToCustomList(character, custom);
+                return RedirectToPage();
+            }
+        }
+
         public IActionResult OnPostRemoveFromFavourites(string action)
         {
             CurrentProfile = GetProfile();
@@ -138,6 +157,26 @@ namespace WebAppGraphic.Pages
                 character.DecreaseLikes();
                 characterManager.UpdateCharacterLikes(character.Id, character.NrLikes);
                 CustomList custom = listManager.GetCharacterFavouritesByProfileId(CurrentProfile.Id);
+                List<CustomList> lists = new List<CustomList> { custom };
+                listManager.DeleteContentFromList(character, lists);
+                return RedirectToPage();
+            }
+        }
+
+        public IActionResult OnPostRemoveFromDisliked(string action)
+        {
+            CurrentProfile = GetProfile();
+            if (CurrentProfile == null)
+            {
+                return RedirectToPage("Login");
+            }
+            else
+            {
+                int characterId = Convert.ToInt32(action);
+                Character character = characterManager.GetCharacterById(characterId);
+                character.DecreaseDislikes();
+                characterManager.UpdateCharacterDislikes(character.Id, character.NrDislikes);
+                CustomList custom = listManager.GetCharacterDislikedByProfileId(CurrentProfile.Id);
                 List<CustomList> lists = new List<CustomList> { custom };
                 listManager.DeleteContentFromList(character, lists);
                 return RedirectToPage();

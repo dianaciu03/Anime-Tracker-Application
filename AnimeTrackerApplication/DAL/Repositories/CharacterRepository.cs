@@ -244,6 +244,40 @@ namespace DAL.Repositories
             }
         }
 
+        public void UpdateCharacterDislikes(int characterId, int nrDislikes)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        string query = @"UPDATE Character SET NrDislikes=@NrDislikes WHERE CharacterId=@CharacterId";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@CharacterId", characterId);
+                            command.Parameters.AddWithValue("@NrDislikes", nrDislikes);
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Character couldn't be updated!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred: {ex.Message}");
+            }
+        }
+
         public void DeleteCharacter(int characterId)
         {
             try

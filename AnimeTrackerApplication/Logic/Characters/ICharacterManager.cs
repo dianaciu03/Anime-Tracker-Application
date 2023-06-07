@@ -13,5 +13,6 @@ namespace Logic.Characters
         List<Character> GetSearchedCharacters(string nameC, string genderC, List<Anime> animes, List<Manga> mangas);
         List<Character> GetCharactersByName(string nameC);
         void UpdateCharacterLikes(int characterId, int nrLikes);
+        void UpdateCharacterDislikes(int characterId, int nrDislikes);
     }
 }

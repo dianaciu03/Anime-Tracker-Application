@@ -50,5 +50,10 @@ namespace Logic.Profiles
         {
             return _listDataHandler.GetCharacterFavouritesByProfileId(id);
         }
+
+        public CustomList GetCharacterDislikedByProfileId(int id)
+        {
+            return _listDataHandler.GetCharacterDislikedByProfileId(id);
+        }
     }
 }

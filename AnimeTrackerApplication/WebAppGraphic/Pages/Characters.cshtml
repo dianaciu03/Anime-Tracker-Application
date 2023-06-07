@@ -35,8 +35,9 @@
     {
         if(Model.CurrentProfile != null) 
         {
-            CustomList custom = Model.CurrentProfile.GetFavouriteCharacters();
-            if(custom != null) 
+            CustomList customLiked = Model.CurrentProfile.GetFavouriteCharacters();
+            CustomList customDisliked = Model.CurrentProfile.GetDislikedCharacters();
+            if (customLiked != null && customDisliked != null)
             {
                 if (custom.IsContaining(character) == true)
                 {
@@ -66,7 +67,10 @@
                         <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
                             <img src="@character.Image" style="height: 260px;" />
                             <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="AddToFavourites">
-                                <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to favourites">&#x2764;</button>
+                                <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I love this character" style="padding: 0 1px; margin: 0;">&#x2764;</button>
+                            </form>
+                            <form method="post" style="position: absolute; top: 10px; left: 10px;" asp-page-handler="RemoveFromFavourites">
+                                <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I hate this character" style="padding: 0 1px; margin: 0;">&#x1F494;</button>
                             </form>
                             <p style="padding-top: 8px">@character.Name</p>
                             @if (character.AnimeId != 0)
@@ -90,7 +94,10 @@
                 <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
                     <img src="@character.Image" style="height: 260px;" />
                     <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="AddToFavourites">
-                        <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to favourites">&#x2764;</button>
+                        <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I love this character" style="padding: 0 1px; margin: 0;">&#x2764;</button>
+                    </form>
+                    <form method="post" style="position: absolute; top: 10px; left: 10px;" asp-page-handler="RemoveFromFavourites">
+                        <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I hate this character" style="padding: 0 1px; margin: 0;">&#x1F494;</button>
                     </form>
                     <p style="padding-top: 8px">@character.Name</p>
                     @if (character.AnimeId != 0)

@@ -7,5 +7,6 @@
         List<CustomList> GetAnimeListByProfileId(int id);
         List<CustomList> GetMangaListByProfileId(int id);
         CustomList GetCharacterFavouritesByProfileId(int id);
+        CustomList GetCharacterDislikedByProfileId(int id);
     }
 }

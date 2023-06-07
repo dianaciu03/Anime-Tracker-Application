@@ -91,5 +91,10 @@ namespace Logic.Characters
         {
             _characterDataHandler.UpdateCharacterLikes(characterId, nrLikes);
         }
+
+        public void UpdateCharacterDislikes(int characterId, int nrDislikes)
+        {
+            _characterDataHandler.UpdateCharacterDislikes(characterId, nrDislikes);
+        }
     }
 }

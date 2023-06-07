@@ -200,9 +200,40 @@ namespace DAL.Repositories
             }
             catch (Exception)
             {
-                throw new Exception("There were issues while trying to retrieve the favourite characters lists!");
+                throw new Exception("There were issues while trying to retrieve the favourite characters list!");
             }
             return likedCharacters;
+        }
+
+        public CustomList GetCharacterDislikedByProfileId(int id)
+        {
+            CustomList dislikedCharacters = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM CustomList WHERE ProfileId=@ProfileId AND Name='Disliked characters' AND ContentType='Character'";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@ProfileId", id);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int listId = reader.GetInt32(reader.GetOrdinal("ListId"));
+                            dislikedCharacters = new CustomList(listId, "Disliked characters", "Character");
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the disliked characters list!");
+            }
+            return dislikedCharacters;
         }
 
         public List<CustomList> GetMangaListByProfileId(int id)
