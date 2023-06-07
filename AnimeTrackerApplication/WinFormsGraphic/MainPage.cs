@@ -627,15 +627,22 @@ namespace WinFormsGraphic
             try
             {
                 User user = (User)lvwAccounts.SelectedItems[0].Tag;
-                //Display a confirmation message box
-                DialogResult result = MessageBox.Show("Are you sure you want to remove " + user.Name + "?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                 if(currentUser.Id == user.Id)
+                 {
+                    MessageBox.Show("You can't delete your own account!");
+                 }
+                 else
+                 {
+                    //Display a confirmation message box
+                    DialogResult result = MessageBox.Show("Are you sure you want to remove " + user.Name + "?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // If the user clicks Yes, remove the selected item
-                if (result == DialogResult.Yes)
-                {
-                    userManager.DeleteAccount(user.Id);
-                    MessageBox.Show("Account has been successfully deleted!");
-                }
+                    // If the user clicks Yes, remove the selected item
+                    if (result == DialogResult.Yes)
+                    {
+                        userManager.DeleteAccount(user.Id);
+                        MessageBox.Show("Account has been successfully deleted!");
+                    }
+                 }
             }
             catch (ArgumentOutOfRangeException)
             {
