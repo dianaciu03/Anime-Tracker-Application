@@ -5,14 +5,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 using Logic.Users;
 using System.Text.Json;
-using DAL.Repositories;
-using Factory;
 
 namespace WebAppGraphic.Pages
 {
     public class LoginModel : PageModel
     {
-        private static IUserManager userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
+        private readonly IUserManager userManager;
+
+        public LoginModel(IUserManager userManager)
+        {
+            this.userManager = userManager;
+        }
 
         [BindProperty]
         public string UserEmail { get; set; }
@@ -22,10 +25,6 @@ namespace WebAppGraphic.Pages
 
         public void OnGet()
         {
-            //if (TempData.ContainsKey("WebUser"))
-            //{
-            //    RegisteredWebUser webUser = JsonSerializer.Deserialize<RegisteredWebUser>((string)TempData["WebUser"])!;
-            //}
         }
 
         public async Task<IActionResult> OnPostAsync()
