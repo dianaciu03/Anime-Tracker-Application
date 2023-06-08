@@ -40,10 +40,10 @@
 			@if(Model.CurrentUser.Profile.Username == Model.UsernameInEditMode) 
 			{
 				<form method="post" asp-page-handler="SubmitChanges">
-					<div class="row align-items-center">
-						<div class="col-auto">
-							<input type="text" value="@Model.UsernameInEditMode" asp-for="UsernameInEditMode" />
-							<button type="submit" class="btn btn-pencil">Submit</button>
+					<div class="row align-items-center" style="margin-bottom:16px">
+						<div class="col-auto d-flex align-items-center">
+							<input type="text" style="font-size: 24px; width:216px" value="@Model.UsernameInEditMode" asp-for="UsernameInEditMode" class="mr-2" />
+							<button type="submit" style="font-size: 22px; margin-left:5px" class="btn btn-pencil">Submit</button>
 						</div>
 					</div>
 				</form>
@@ -200,10 +200,10 @@
 									{
 										Genre genre = Model.GetAllGenres()[i];
 										string genreName = genre.ToString();
-										<li class="list-group-item bg-dark text-white">
-											<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-											<label>@genreName</label>
-										</li>
+													<li class="list-group-item bg-dark text-white">
+														<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+														<label>@genreName</label>
+													</li>
 									}
 								}
 							</ul>
@@ -216,10 +216,10 @@
 									{
 										Genre genre = Model.GetAllGenres()[i];
 										string genreName = genre.ToString();
-										<li class="list-group-item bg-dark text-white">
-											<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-											<label>@genreName</label>
-										</li>
+													<li class="list-group-item bg-dark text-white">
+														<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+														<label>@genreName</label>
+													</li>
 									}
 								}
 							</ul>
