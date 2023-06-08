@@ -122,18 +122,22 @@ namespace WebAppGraphic.Pages
 
         public IActionResult OnPostChangeProfilePicture()
         {
-
-                OnGet();
-                string name = ImageUpload.FileName;
-                string contentType = ImageUpload.ContentType;
-                using(MemoryStream ms = new MemoryStream())
+            OnGet();
+            string name = ImageUpload.FileName;
+            string contentType = ImageUpload.ContentType;
+            using(MemoryStream ms = new MemoryStream())
+            {
+                ImageUpload.CopyTo(ms);
+                try
                 {
-                    ImageUpload.CopyTo(ms);
-
-                    //need to add table and save to database
+                    profileManager.AddProfilePicture(CurrentUser.Profile.Id, name, ms, contentType);
                 }
-                return RedirectToPage();
-
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
+            }
+            return RedirectToPage();
         }
     }
 }

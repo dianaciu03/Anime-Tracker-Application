@@ -244,5 +244,41 @@ namespace DAL.Repositories
             }
             return profile;
         }
+
+        public void AddProfilePicture(int profileId, string name, MemoryStream ms, string contentType)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+                    try
+                    {
+                        string query = @"INSERT INTO Profile_Pictures (ProfileId, Name, Data, ContentType)
+                                        VALUES (@ProfileId, @Name, @Data, @ContentType)";
+                        using (SqlCommand profileCommand = new SqlCommand(query, conn, transaction))
+                        {
+                            profileCommand.Parameters.AddWithValue("@ProfileId", profileId);
+                            profileCommand.Parameters.AddWithValue("@Name", name);
+                            profileCommand.Parameters.AddWithValue("@Data", ms.ToArray());
+                            profileCommand.Parameters.AddWithValue("@ContentType", contentType);
+                            profileCommand.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Profile picture couldn't be added!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred");
+            }
+        }
     }
 }

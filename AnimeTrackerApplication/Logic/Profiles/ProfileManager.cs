@@ -29,5 +29,10 @@ namespace Logic.Profiles
         {
             return profileRepository.GetProfileById(id);
         }
+
+        public void AddProfilePicture(int profileId, string name, MemoryStream ms, string contentType)
+        {
+            profileRepository.AddProfilePicture(profileId, name, ms, contentType);
+        }
     }
 }
