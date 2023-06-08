@@ -584,12 +584,10 @@ namespace DAL.Repositories
 
                     try
                     {
-                        string query = @"UPDATE [User] SET Name=@Name, Email=@Email, Salt=@Salt, Password=@Password WHERE UserId=@UserId";
+                        string query = @"UPDATE [User] SET Salt=@Salt, Password=@Password WHERE UserId=@UserId";
                         using (SqlCommand command = new SqlCommand(query, conn, transaction))
                         {
                             command.Parameters.AddWithValue("@UserId", user.Id);
-                            command.Parameters.AddWithValue("@Name", user.Name);
-                            command.Parameters.AddWithValue("@Email", user.Email);
                             command.Parameters.AddWithValue("@Salt", user.Salt);
                             command.Parameters.AddWithValue("@Password", user.HashedPassword);
 

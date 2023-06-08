@@ -23,13 +23,15 @@ namespace WebAppGraphic.Pages
         public string UserEmail { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "A password is required"),
-         MinLength(5, ErrorMessage = "Your password need to be at least 5 characters!")]
+        [Required(ErrorMessage = "A password is required")]
+        [MinLength(6, ErrorMessage = "Your password needs to be at least 6 characters")]
+        [RegularExpression(@"^(?=.*\d)[\S\s]+$", ErrorMessage = "Your password must contain at least one digit")]
         public string UserPassword { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "A password is required"),
-         MinLength(5, ErrorMessage = "Your password need to be at least 5 characters!")]
+        [Required(ErrorMessage = "A password is required")]
+        [MinLength(6, ErrorMessage = "Your password needs to be at least 6 characters")]
+        [RegularExpression(@"^(?=.*\d)[\S\s]+$", ErrorMessage = "Your password must contain at least one digit")]
         public string ConfirmPassword { get; set; }
 
         public void OnGet()
@@ -40,29 +42,32 @@ namespace WebAppGraphic.Pages
         {
             if (ModelState.IsValid)
             {
-                if (UserPassword == ConfirmPassword)
+                try
                 {
-                    RegisteredWebUser? user = null;
-                    user = userManager.GetWebUserByEmail(UserEmail);
-
-                    if (user != null)
+                    if (UserPassword == ConfirmPassword)
                     {
-                        userManager.UpdateUser(user, UserPassword);
-                        User updatedUser = userManager.GetUserById(user.Id);
+                        RegisteredWebUser? user = null;
+                        user = userManager.GetWebUserByEmail(UserEmail);
 
-                        if(userManager.LoginUser(UserPassword, updatedUser.Email) == true)
+                        if (user != null)
                         {
-                            HttpContext.Session.SetInt32("userId", updatedUser.Id);
-                            ClaimsIdentity claimsIdentity = new ClaimsIdentity(
-                            new Claim[]
+                            userManager.UpdateUser(user, UserPassword);
+                            User updatedUser = userManager.GetUserById(user.Id);
+
+                            if (userManager.LoginUser(UserPassword, updatedUser.Email) == true)
                             {
+                                HttpContext.Session.SetInt32("userId", updatedUser.Id);
+                                ClaimsIdentity claimsIdentity = new ClaimsIdentity(
+                                new Claim[]
+                                {
                         new Claim("UserId", updatedUser.Id.ToString()),
                         //new Claim(ClaimTypes.Name, user.Profile.Username),
                         new Claim(ClaimTypes.Role, updatedUser.GetType().ToString())
-                            }, CookieAuthenticationDefaults.AuthenticationScheme);
-                            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                            await HttpContext.SignInAsync(claimsPrincipal);
-                            return RedirectToPage("Profile");
+                                }, CookieAuthenticationDefaults.AuthenticationScheme);
+                                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                                await HttpContext.SignInAsync(claimsPrincipal);
+                                return RedirectToPage("Profile");
+                            }
                         }
                     }
                     else
@@ -72,12 +77,11 @@ namespace WebAppGraphic.Pages
                         return Page();
                     }
                 }
-                else
+                catch(Exception ex)
                 {
-                    ModelState.AddModelError(string.Empty, "Credentials did not match!");
-                    //await HttpContext.ForbidAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                    return Page();
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
+                
             }
             return Page();
         }
