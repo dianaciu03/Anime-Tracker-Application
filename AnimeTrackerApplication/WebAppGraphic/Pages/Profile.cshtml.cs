@@ -53,6 +53,27 @@ namespace WebAppGraphic.Pages
             }     
         }
 
+        public void GetUserAndProfile()
+        {
+            int? id = HttpContext.Session.GetInt32("userId");
+            if (id != null)
+            {
+                CurrentUser = userManager.GetWebUserById((int)id);
+                CurrentUser.Profile = userManager.GetProfileByWebUserId((int)id);
+            }
+        }
+
+        public byte[] GetBase64Picture(int profileId)
+        {
+            FileContentResult image = profileManager.GetProfilePicture(profileId);
+            return image.FileContents;
+        }
+
+        public bool HasProfilePicture(int profileId)
+        {
+            return profileManager.HasProfilePicture(profileId);
+        }
+
         public List<Genre> GetAllGenres()
         {
             Genre[] genres = (Genre[])Enum.GetValues(typeof(Genre));
@@ -130,7 +151,15 @@ namespace WebAppGraphic.Pages
                 ImageUpload.CopyTo(ms);
                 try
                 {
-                    profileManager.AddProfilePicture(CurrentUser.Profile.Id, name, ms, contentType);
+                    int profileId = CurrentUser.Profile.Id;
+                    if (HasProfilePicture(profileId))
+                    {
+                        profileManager.UpdateProfilePicture(CurrentUser.Profile.Id, name, ms, contentType);
+                    }
+                    else
+                    {
+                        profileManager.AddProfilePicture(CurrentUser.Profile.Id, name, ms, contentType);
+                    }   
                 }
                 catch(Exception ex)
                 {

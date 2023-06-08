@@ -1,4 +1,5 @@
-﻿using Logic.Animes;
+﻿using Microsoft.AspNetCore.Mvc;
+using Logic.Animes;
 using Logic.Characters;
 using Logic.Enums;
 using Logic.Mangas;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DAL.Repositories
 {
@@ -279,6 +281,111 @@ namespace DAL.Repositories
             {
                 throw new Exception($"An error occurred");
             }
+        }
+
+        public void UpdateProfilePicture(int profileId, string name, MemoryStream ms, string contentType)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+                    try
+                    {
+                        string query = @"UPDATE Profile_Pictures SET Name=@Name, Data=@Data, ContentType=@ContentType WHERE ProfileId = @ProfileId";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@ProfileId", profileId);
+                            command.Parameters.AddWithValue("@Name", name);
+                            command.Parameters.AddWithValue("@Data", ms.ToArray());
+                            command.Parameters.AddWithValue("@ContentType", contentType);
+                            command.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Profile picture couldn't be updated!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred");
+            }
+        }
+
+
+        public FileContentResult GetProfilePicture(int profileId)
+        {
+            FileContentResult fileresult = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    try
+                    {
+                        string query = @"SELECT * FROM Profile_Pictures WHERE ProfileId=@ProfileId";
+                        using (SqlCommand command = new SqlCommand(query, conn))
+                        {
+                            command.Parameters.AddWithValue("@ProfileId", profileId);
+                            SqlDataReader reader = command.ExecuteReader();
+                            while (reader.Read())
+                            {
+                                byte[] data = reader["Data"] as byte[];
+                                string filename = reader["Name"].ToString();
+                                string contentType = reader["ContentType"].ToString();
+
+                                fileresult = new FileContentResult(data, contentType);
+                                fileresult.FileDownloadName = filename;
+                            }
+                            reader.Close();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception($"Profile picture couldn't be added!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred");
+            }
+            return fileresult;
+        }
+
+        public bool HasProfilePicture(int profileId)
+        {
+            bool hasProfilePicture = false;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT COUNT(*) FROM Profile_Pictures WHERE ProfileId = @ProfileId";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@ProfileId", profileId);
+                        int count = (int)command.ExecuteScalar();
+                        if(count > 0)
+                            hasProfilePicture = true;
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred");
+            }
+
+            return hasProfilePicture;
         }
     }
 }

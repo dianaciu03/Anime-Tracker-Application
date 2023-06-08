@@ -13,7 +13,17 @@
 	<div class="profile-header">
 		<div style="margin-left:10px;">
 			<div class="profile-picture-container">
-				<img src="/images/default-profile-picture.png" alt="Profile Picture">
+				@if(Model.HasProfilePicture(Model.CurrentUser.Profile.Id))
+				{
+					Model.GetUserAndProfile();
+					int id = Model.CurrentUser.Profile.Id;
+					var base64Img = Convert.ToBase64String(Model.GetBase64Picture(id));
+					<img src="data:image/png;base64,@base64Img" alt="Profile Picture">
+				}
+				else 
+				{
+					<img src="/images/default-profile-picture.png" alt="Profile Picture">
+				}
 				<div class="change-picture-overlay">
 					<form style="margin-left:100px;" method="post" enctype="multipart/form-data" asp-page-handler="ChangeProfilePicture" class="upload-form">
 						<div  class="mb-3">
@@ -163,10 +173,10 @@
 									{
 										Genre genre = Model.GetAllGenres()[i];
 										string genreName = genre.ToString();
-											<li class="list-group-item bg-dark text-white">
-												<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-												<label>@genreName</label>
-											</li>
+												<li class="list-group-item bg-dark text-white">
+													<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+													<label>@genreName</label>
+												</li>
 									}
 								}
 							</ul>
@@ -179,10 +189,10 @@
 									{
 										Genre genre = Model.GetAllGenres()[i];
 										string genreName = genre.ToString();
-											<li class="list-group-item bg-dark text-white">
-												<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-												<label>@genreName</label>
-											</li>
+												<li class="list-group-item bg-dark text-white">
+													<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+													<label>@genreName</label>
+												</li>
 									}
 								}
 							</ul>

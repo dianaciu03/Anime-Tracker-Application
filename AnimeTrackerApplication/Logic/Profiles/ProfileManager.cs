@@ -1,4 +1,5 @@
 ﻿using DAL.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,21 @@ namespace Logic.Profiles
         public void AddProfilePicture(int profileId, string name, MemoryStream ms, string contentType)
         {
             profileRepository.AddProfilePicture(profileId, name, ms, contentType);
+        }
+
+        public void UpdateProfilePicture(int profileId, string name, MemoryStream ms, string contentType)
+        {
+            profileRepository.UpdateProfilePicture(profileId, name, ms, contentType);
+        }
+
+        public FileContentResult GetProfilePicture(int profileId)
+        {
+            return profileRepository.GetProfilePicture(profileId);
+        }
+
+        public bool HasProfilePicture(int profileId)
+        {
+            return profileRepository.HasProfilePicture(profileId);
         }
     }
 }
