@@ -3,6 +3,7 @@
 @using Logic.Mangas
 @model IndexModel
 @{
+
     ViewData["Title"] = "Home page";
     int? id = HttpContext.Session.GetInt32("userId");
     if (id != null) {
@@ -13,6 +14,7 @@
     }
     int positionAnime = 1;
     int positionManga = 1;
+
 }
 
 <div class="background-img-landing-page">
@@ -27,17 +29,25 @@
 </a>
 <div class="container-fluid container-display bg-dark">
     
-    @foreach (Anime anime in Model.TopRatedAnime)
+    @try 
     {
-        <a asp-page="ContentDetails" asp-route-id="@anime.Id">
-            <div class="d-flex flex-column align-items-center">
-                <img src="@anime.ImageURL" style="width: 190px; height: 260px;" />
-                <p style=" padding-top: 8px">@positionAnime. @anime.Name</p>
-                <p>@anime.Rating / 5 ⭐</p>
-            </div>
-        </a>
-        positionAnime++;
+        @foreach (Anime anime in Model.TopRatedAnime)
+        {
+            <a asp-page="ContentDetails" asp-route-id="@anime.Id">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="@anime.ImageURL" style="width: 190px; height: 260px;" />
+                    <p style=" padding-top: 8px">@positionAnime. @anime.Name</p>
+                    <p>@anime.Rating / 5 ⭐</p>
+                </div>
+            </a>
+            positionAnime++;
+        }
     }
+    catch(Exception ex) 
+    {
+        Model.LogError(ex);
+    }
+    
 </div>
 
 <a asp-page="NewReleasesAnime">

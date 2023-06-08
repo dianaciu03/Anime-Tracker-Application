@@ -1,5 +1,6 @@
 ﻿using DAL.Repositories;
 using Factory;
+using log4net;
 using Logic.Animes;
 using Logic.Characters;
 using Logic.Mangas;
@@ -7,17 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static Azure.Core.HttpHeader;
 
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
+
 namespace WebAppGraphic.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-        private IAnimeManager animeManager;
-        private IMangaManager mangaManager;
+        private readonly IAnimeManager animeManager;
+        private readonly IMangaManager mangaManager;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public IndexModel(ILogger<IndexModel> logger, IAnimeManager animeManager, IMangaManager mangaManager)
+        public IndexModel(IAnimeManager animeManager, IMangaManager mangaManager)
         {
-            _logger = logger;
             this.animeManager = animeManager;
             this.mangaManager = mangaManager;
         }
@@ -45,9 +47,21 @@ namespace WebAppGraphic.Pages
             return mangas;
         }
 
+        public void LogError(Exception ex)
+        {
+            log.Error("An error occurred", ex);
+        }
+
         public void OnGet()
         {
+            try
+            {
 
+            }
+            catch(Exception ex)
+            {
+                log.Error("An error occurred", ex);
+            }
         }
     }
 }
