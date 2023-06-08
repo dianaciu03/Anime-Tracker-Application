@@ -195,6 +195,12 @@
     /*height: calc(100vh - 9rem);*/
 }
 
+.profile-header {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 20px;
+}
+
 .username {
     font-size: 40px;
     font-weight: bold;
@@ -332,3 +338,57 @@
 .review-description {
     font-size: 16px;
 }
+
+/*profile picture design*/
+.upload-form .upload-button {
+    background-color: #6544f3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-picture-container {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+    .profile-picture-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: filter 0.3s;
+    }
+
+    .profile-picture-container:hover img {
+        filter: brightness(0.8);
+    }
+
+    .profile-picture-container .change-picture-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+    }
+
+    .profile-picture-container:hover .change-picture-overlay {
+        opacity: 1;
+    }
+
+    .profile-picture-container .change-picture-overlay input {
+        margin-bottom: 10px;
+    }

@@ -8,6 +8,7 @@ using Logic.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebAppGraphic.Pages
 {
@@ -33,6 +34,9 @@ namespace WebAppGraphic.Pages
 
         [BindProperty]
         public RegisteredWebUser CurrentUser { get; set; }
+
+        [BindProperty]
+        public IFormFile ImageUpload { get; set; }
 
         public IActionResult OnGet()
         {
@@ -114,6 +118,22 @@ namespace WebAppGraphic.Pages
             List<CustomList> lists = new List<CustomList> { custom };
             listManager.DeleteContentFromList(character, lists);
             return RedirectToPage();
+        }
+
+        public IActionResult OnPostChangeProfilePicture()
+        {
+
+                OnGet();
+                string name = ImageUpload.FileName;
+                string contentType = ImageUpload.ContentType;
+                using(MemoryStream ms = new MemoryStream())
+                {
+                    ImageUpload.CopyTo(ms);
+
+                    //need to add table and save to database
+                }
+                return RedirectToPage();
+
         }
     }
 }
