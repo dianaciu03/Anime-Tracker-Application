@@ -13,5 +13,6 @@ namespace DAL.Repositories
         FileContentResult GetProfilePicture(int profileId);
         bool HasProfilePicture(int profileId);
         void UpdateProfilePicture(int profileId, string name, MemoryStream ms, string contentType);
+        void UpdateUsername(int profileId, string username);
     }
 }

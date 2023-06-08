@@ -4,11 +4,13 @@ using Logic.Characters;
 using Logic.Enums;
 using Logic.Mangas;
 using Logic.Profiles;
+using Logic.Reviews;
 using Logic.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 
 namespace WebAppGraphic.Pages
 {
@@ -38,6 +40,9 @@ namespace WebAppGraphic.Pages
         [BindProperty]
         public IFormFile ImageUpload { get; set; }
 
+        [BindProperty]
+        public string UsernameInEditMode { get; set; }
+
         public IActionResult OnGet()
         {
             int? id = HttpContext.Session.GetInt32("userId");
@@ -45,6 +50,11 @@ namespace WebAppGraphic.Pages
             {
                 CurrentUser = userManager.GetWebUserById((int)id);
                 CurrentUser.Profile = userManager.GetProfileByWebUserId((int)id);
+                if (TempData.ContainsKey("Username"))
+                {
+                    string newUn = JsonSerializer.Deserialize<string>(TempData["Username"].ToString())!;
+                    UsernameInEditMode = newUn;
+                }
                 return Page();
             }
             else
@@ -166,6 +176,21 @@ namespace WebAppGraphic.Pages
                     ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
+            return Page();
+        }
+
+        public IActionResult OnPostEditUsername(string action)
+        {
+            TempData["Username"] = JsonSerializer.Serialize(action);
+            UsernameInEditMode = action;
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostSubmitChanges()
+        {
+            GetUserAndProfile();
+            // Get the values from the form inputs
+            profileManager.UpdateUsername(CurrentUser.Profile.Id, UsernameInEditMode);
             return RedirectToPage();
         }
     }

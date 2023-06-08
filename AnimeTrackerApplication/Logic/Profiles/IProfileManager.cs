@@ -13,5 +13,6 @@ namespace Logic.Profiles
         void UpdateProfilePicture(int profileId, string name, MemoryStream ms, string contentType);
         FileContentResult GetProfilePicture(int profileId);
         bool HasProfilePicture(int profileId);
+        void UpdateUsername(int profileId, string username);
     }
 }

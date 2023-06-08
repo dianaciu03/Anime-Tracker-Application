@@ -318,7 +318,6 @@ namespace DAL.Repositories
             }
         }
 
-
         public FileContentResult GetProfilePicture(int profileId)
         {
             FileContentResult fileresult = null;
@@ -386,6 +385,39 @@ namespace DAL.Repositories
             }
 
             return hasProfilePicture;
+        }
+
+        public void UpdateUsername(int profileId, string username)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+                    try
+                    {
+                        string query = @"UPDATE Profile SET Username=@Username WHERE ProfileId = @ProfileId";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@ProfileId", profileId);
+                            command.Parameters.AddWithValue("@Username", username);;
+                            command.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Username couldn't be updated!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred");
+            }
         }
     }
 }

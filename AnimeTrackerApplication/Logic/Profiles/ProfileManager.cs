@@ -50,5 +50,10 @@ namespace Logic.Profiles
         {
             return profileRepository.HasProfilePicture(profileId);
         }
+
+        public void UpdateUsername(int profileId, string username)
+        {
+            profileRepository.UpdateUsername(profileId, username);
+        }
     }
 }

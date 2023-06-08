@@ -8,25 +8,26 @@
 @{
 	Layout = "_LayoutLogout";
 }
+
 <div class="background-img-profile"></div>
 <div class="profile-container">
 	<div class="profile-header">
 		<div style="margin-left:10px;">
 			<div class="profile-picture-container">
-				@if(Model.HasProfilePicture(Model.CurrentUser.Profile.Id))
+				@if (Model.HasProfilePicture(Model.CurrentUser.Profile.Id))
 				{
 					Model.GetUserAndProfile();
 					int id = Model.CurrentUser.Profile.Id;
 					var base64Img = Convert.ToBase64String(Model.GetBase64Picture(id));
 					<img src="data:image/png;base64,@base64Img" alt="Profile Picture">
 				}
-				else 
+				else
 				{
 					<img src="/images/default-profile-picture.png" alt="Profile Picture">
 				}
 				<div class="change-picture-overlay">
 					<form style="margin-left:100px;" method="post" enctype="multipart/form-data" asp-page-handler="ChangeProfilePicture" class="upload-form">
-						<div  class="mb-3">
+						<div class="mb-3">
 							<input asp-for="ImageUpload" />
 							<span asp-validation-for="ImageUpload"></span>
 						</div>
@@ -36,10 +37,36 @@
 			</div>
 		</div>
 		<div>
-			<label class="username" asp-for="CurrentUser.Profile.Username">@Model.CurrentUser.Profile.Username</label>
+			@if(Model.CurrentUser.Profile.Username == Model.UsernameInEditMode) 
+			{
+				<form method="post" asp-page-handler="SubmitChanges">
+					<div class="row align-items-center">
+						<div class="col-auto">
+							<input type="text" value="@Model.UsernameInEditMode" asp-for="UsernameInEditMode" />
+							<button type="submit" class="btn btn-pencil">Submit</button>
+						</div>
+					</div>
+				</form>
+			}
+			else 
+			{
+				<div class="row align-items-center">
+					<div class="col-auto">
+						<label class="username" asp-for="CurrentUser.Profile.Username">@Model.CurrentUser.Profile.Username</label>
+					</div>
+					<div class="col-auto">
+						<form method="post" asp-page-handler="EditUsername">
+							<input type="hidden" name="action" value="@Model.CurrentUser.Profile.Username" />
+							<button type="submit" class="btn btn-pencil">
+								<i class="fas fa-pencil-alt"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+			}
 			<p class="join-date" asp-for="CurrentUser.JoinDate">Joined: @Model.CurrentUser.JoinDateParsed()</p>
 			<div class="genres">Genres: @Model.CurrentUser.Profile.GetGenresString()</div>
-			<button style="margin-top:30px;"  id="openPopupBtn" class="btn btn-content-details" data-bs-toggle="modal" data-bs-target="#myModal">Preferred genres</button>
+			<button style="margin-top:30px;" id="openPopupBtn" class="btn btn-content-details" data-bs-toggle="modal" data-bs-target="#myModal">Preferred genres</button>
 		</div>
 	</div>
 	<div class="statistics-box text-white">
@@ -173,10 +200,10 @@
 									{
 										Genre genre = Model.GetAllGenres()[i];
 										string genreName = genre.ToString();
-												<li class="list-group-item bg-dark text-white">
-													<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-													<label>@genreName</label>
-												</li>
+										<li class="list-group-item bg-dark text-white">
+											<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+											<label>@genreName</label>
+										</li>
 									}
 								}
 							</ul>
@@ -189,10 +216,10 @@
 									{
 										Genre genre = Model.GetAllGenres()[i];
 										string genreName = genre.ToString();
-												<li class="list-group-item bg-dark text-white">
-													<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
-													<label>@genreName</label>
-												</li>
+										<li class="list-group-item bg-dark text-white">
+											<input type="checkbox" name="options[]" value="@genreName" @(Model.CurrentUser.Profile.GetAllPreferredGenres().Contains(genre) ? "checked" : "") />
+											<label>@genreName</label>
+										</li>
 									}
 								}
 							</ul>

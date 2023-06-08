@@ -87,7 +87,6 @@ namespace WebAppGraphic.Pages
                 Review review = reviewManager.GetReviewById(newId);
                 InitializeReviewData(review);
             }
-            
             return Page();
         }
 
