@@ -10,7 +10,7 @@ namespace WebAppGraphic.Pages
         public IActionResult OnGet()
         {
             HttpContext.Session.Clear();
-            //await HttpContext.SignOutAsync();
+            HttpContext.SignOutAsync();
             return RedirectToPage("Login");
         }
     }

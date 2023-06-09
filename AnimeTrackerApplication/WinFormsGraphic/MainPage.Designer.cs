@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.labelTitleWorldOfAnime = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabAnime = new System.Windows.Forms.TabPage();
@@ -151,10 +152,49 @@
             this.labelAnimeCharacter = new System.Windows.Forms.Label();
             this.tbxCharacterName = new System.Windows.Forms.TextBox();
             this.labelCharacterName = new System.Windows.Forms.Label();
+            this.tabReviews = new System.Windows.Forms.TabPage();
+            this.btnRemoveReview = new System.Windows.Forms.Button();
+            this.groupBoxSortReviews = new System.Windows.Forms.GroupBox();
+            this.rbtnUser = new System.Windows.Forms.RadioButton();
+            this.rbtnPostDateDesc = new System.Windows.Forms.RadioButton();
+            this.rbtnPostDateAsc = new System.Windows.Forms.RadioButton();
+            this.rbtnRatingDesc = new System.Windows.Forms.RadioButton();
+            this.rbtnRatingAsc = new System.Windows.Forms.RadioButton();
+            this.btnDisplayAllReviews = new System.Windows.Forms.Button();
+            this.lvwReviews = new System.Windows.Forms.ListView();
+            this.columnHeaderUsernameReview = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderRatingReview = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderDescriptionReview = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderPostDate = new System.Windows.Forms.ColumnHeader();
+            this.groupBoxSearchReview = new System.Windows.Forms.GroupBox();
+            this.numRatingReview = new System.Windows.Forms.NumericUpDown();
+            this.cbxManga = new System.Windows.Forms.CheckBox();
+            this.cbxAnime = new System.Windows.Forms.CheckBox();
+            this.labelContent = new System.Windows.Forms.Label();
+            this.btnClearFieldsReview = new System.Windows.Forms.Button();
+            this.btnSearchReview = new System.Windows.Forms.Button();
+            this.labelRating = new System.Windows.Forms.Label();
             this.tabCreateAccount = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnRemoveAccount = new System.Windows.Forms.Button();
+            this.btnCreateMaintainer = new System.Windows.Forms.Button();
+            this.lvwAccounts = new System.Windows.Forms.ListView();
+            this.columnHeader1Name = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2Username = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3JoinDate = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4Role = new System.Windows.Forms.ColumnHeader();
+            this.groupBoxSearchAccount = new System.Windows.Forms.GroupBox();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.tbxUsername = new System.Windows.Forms.TextBox();
+            this.labelYears = new System.Windows.Forms.Label();
+            this.tbxYears = new System.Windows.Forms.TextBox();
+            this.btnClearFieldsAccount = new System.Windows.Forms.Button();
+            this.labelExperience = new System.Windows.Forms.Label();
+            this.btnSearchAccount = new System.Windows.Forms.Button();
+            this.cbxRoles = new System.Windows.Forms.ComboBox();
+            this.labelRoles = new System.Windows.Forms.Label();
+            this.tbxNameAccount = new System.Windows.Forms.TextBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl.SuspendLayout();
             this.tabAnime.SuspendLayout();
             this.BroupBoxSortAnime.SuspendLayout();
@@ -173,8 +213,13 @@
             this.tabCharacters.SuspendLayout();
             this.groupBoxSortCharacters.SuspendLayout();
             this.groupBoxSearchCharacters.SuspendLayout();
+            this.tabReviews.SuspendLayout();
+            this.groupBoxSortReviews.SuspendLayout();
+            this.groupBoxSearchReview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingReview)).BeginInit();
             this.tabCreateAccount.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxSearchAccount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitleWorldOfAnime
@@ -192,17 +237,21 @@
             // 
             // tabControl
             // 
+            this.tabControl.AccessibleRole = System.Windows.Forms.AccessibleRole.Sound;
             this.tabControl.Controls.Add(this.tabAnime);
             this.tabControl.Controls.Add(this.tabManga);
             this.tabControl.Controls.Add(this.tabCharacters);
+            this.tabControl.Controls.Add(this.tabReviews);
             this.tabControl.Controls.Add(this.tabCreateAccount);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabControl.Location = new System.Drawing.Point(56, 97);
+            this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Drawing.Point(80, 9);
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1805, 902);
             this.tabControl.TabIndex = 2;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabAnime
             // 
@@ -1502,6 +1551,7 @@
             this.btnSearchCharacter.TabIndex = 38;
             this.btnSearchCharacter.Text = "Search";
             this.btnSearchCharacter.UseVisualStyleBackColor = false;
+            this.btnSearchCharacter.Click += new System.EventHandler(this.btnSearchCharacter_Click);
             // 
             // labelAnimeCharacter
             // 
@@ -1528,50 +1578,471 @@
             this.labelCharacterName.TabIndex = 1;
             this.labelCharacterName.Text = "Name:";
             // 
+            // tabReviews
+            // 
+            this.tabReviews.BackColor = System.Drawing.Color.Thistle;
+            this.tabReviews.Controls.Add(this.btnRemoveReview);
+            this.tabReviews.Controls.Add(this.groupBoxSortReviews);
+            this.tabReviews.Controls.Add(this.lvwReviews);
+            this.tabReviews.Controls.Add(this.groupBoxSearchReview);
+            this.tabReviews.Location = new System.Drawing.Point(4, 46);
+            this.tabReviews.Name = "tabReviews";
+            this.tabReviews.Padding = new System.Windows.Forms.Padding(3);
+            this.tabReviews.Size = new System.Drawing.Size(1797, 852);
+            this.tabReviews.TabIndex = 4;
+            this.tabReviews.Text = "Reviews";
+            // 
+            // btnRemoveReview
+            // 
+            this.btnRemoveReview.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnRemoveReview.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemoveReview.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveReview.Location = new System.Drawing.Point(921, 744);
+            this.btnRemoveReview.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRemoveReview.Name = "btnRemoveReview";
+            this.btnRemoveReview.Size = new System.Drawing.Size(406, 72);
+            this.btnRemoveReview.TabIndex = 50;
+            this.btnRemoveReview.Text = "Remove Review";
+            this.btnRemoveReview.UseVisualStyleBackColor = false;
+            this.btnRemoveReview.Click += new System.EventHandler(this.btnRemoveReview_Click);
+            // 
+            // groupBoxSortReviews
+            // 
+            this.groupBoxSortReviews.Controls.Add(this.rbtnUser);
+            this.groupBoxSortReviews.Controls.Add(this.rbtnPostDateDesc);
+            this.groupBoxSortReviews.Controls.Add(this.rbtnPostDateAsc);
+            this.groupBoxSortReviews.Controls.Add(this.rbtnRatingDesc);
+            this.groupBoxSortReviews.Controls.Add(this.rbtnRatingAsc);
+            this.groupBoxSortReviews.Controls.Add(this.btnDisplayAllReviews);
+            this.groupBoxSortReviews.Location = new System.Drawing.Point(18, 267);
+            this.groupBoxSortReviews.Name = "groupBoxSortReviews";
+            this.groupBoxSortReviews.Size = new System.Drawing.Size(414, 244);
+            this.groupBoxSortReviews.TabIndex = 49;
+            this.groupBoxSortReviews.TabStop = false;
+            this.groupBoxSortReviews.Text = "Sort reviews by:";
+            // 
+            // rbtnUser
+            // 
+            this.rbtnUser.AutoSize = true;
+            this.rbtnUser.Location = new System.Drawing.Point(33, 116);
+            this.rbtnUser.Name = "rbtnUser";
+            this.rbtnUser.Size = new System.Drawing.Size(76, 30);
+            this.rbtnUser.TabIndex = 42;
+            this.rbtnUser.TabStop = true;
+            this.rbtnUser.Text = "User";
+            this.rbtnUser.UseVisualStyleBackColor = true;
+            // 
+            // rbtnPostDateDesc
+            // 
+            this.rbtnPostDateDesc.AutoSize = true;
+            this.rbtnPostDateDesc.Location = new System.Drawing.Point(232, 44);
+            this.rbtnPostDateDesc.Name = "rbtnPostDateDesc";
+            this.rbtnPostDateDesc.Size = new System.Drawing.Size(139, 30);
+            this.rbtnPostDateDesc.TabIndex = 41;
+            this.rbtnPostDateDesc.TabStop = true;
+            this.rbtnPostDateDesc.Text = "Post date ↓";
+            this.rbtnPostDateDesc.UseVisualStyleBackColor = true;
+            // 
+            // rbtnPostDateAsc
+            // 
+            this.rbtnPostDateAsc.AutoSize = true;
+            this.rbtnPostDateAsc.Location = new System.Drawing.Point(33, 44);
+            this.rbtnPostDateAsc.Name = "rbtnPostDateAsc";
+            this.rbtnPostDateAsc.Size = new System.Drawing.Size(139, 30);
+            this.rbtnPostDateAsc.TabIndex = 40;
+            this.rbtnPostDateAsc.TabStop = true;
+            this.rbtnPostDateAsc.Text = "Post date ↑";
+            this.rbtnPostDateAsc.UseVisualStyleBackColor = true;
+            // 
+            // rbtnRatingDesc
+            // 
+            this.rbtnRatingDesc.AutoSize = true;
+            this.rbtnRatingDesc.Location = new System.Drawing.Point(232, 80);
+            this.rbtnRatingDesc.Name = "rbtnRatingDesc";
+            this.rbtnRatingDesc.Size = new System.Drawing.Size(110, 30);
+            this.rbtnRatingDesc.TabIndex = 39;
+            this.rbtnRatingDesc.TabStop = true;
+            this.rbtnRatingDesc.Text = "Rating ↓";
+            this.rbtnRatingDesc.UseVisualStyleBackColor = true;
+            // 
+            // rbtnRatingAsc
+            // 
+            this.rbtnRatingAsc.AutoSize = true;
+            this.rbtnRatingAsc.Location = new System.Drawing.Point(33, 80);
+            this.rbtnRatingAsc.Name = "rbtnRatingAsc";
+            this.rbtnRatingAsc.Size = new System.Drawing.Size(110, 30);
+            this.rbtnRatingAsc.TabIndex = 38;
+            this.rbtnRatingAsc.TabStop = true;
+            this.rbtnRatingAsc.Text = "Rating ↑";
+            this.rbtnRatingAsc.UseVisualStyleBackColor = true;
+            // 
+            // btnDisplayAllReviews
+            // 
+            this.btnDisplayAllReviews.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnDisplayAllReviews.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnDisplayAllReviews.ForeColor = System.Drawing.Color.Black;
+            this.btnDisplayAllReviews.Location = new System.Drawing.Point(21, 171);
+            this.btnDisplayAllReviews.Name = "btnDisplayAllReviews";
+            this.btnDisplayAllReviews.Size = new System.Drawing.Size(374, 54);
+            this.btnDisplayAllReviews.TabIndex = 37;
+            this.btnDisplayAllReviews.Text = "Display all";
+            this.btnDisplayAllReviews.UseVisualStyleBackColor = false;
+            this.btnDisplayAllReviews.Click += new System.EventHandler(this.btnDisplayAllReviews_Click);
+            // 
+            // lvwReviews
+            // 
+            this.lvwReviews.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderUsernameReview,
+            this.columnHeaderRatingReview,
+            this.columnHeaderDescriptionReview,
+            this.columnHeaderPostDate});
+            this.lvwReviews.FullRowSelect = true;
+            this.lvwReviews.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvwReviews.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.lvwReviews.Location = new System.Drawing.Point(458, 30);
+            this.lvwReviews.MultiSelect = false;
+            this.lvwReviews.Name = "lvwReviews";
+            this.lvwReviews.Size = new System.Drawing.Size(1311, 696);
+            this.lvwReviews.TabIndex = 48;
+            this.lvwReviews.UseCompatibleStateImageBehavior = false;
+            this.lvwReviews.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderUsernameReview
+            // 
+            this.columnHeaderUsernameReview.Text = "Username";
+            this.columnHeaderUsernameReview.Width = 270;
+            // 
+            // columnHeaderRatingReview
+            // 
+            this.columnHeaderRatingReview.Text = "Rating";
+            this.columnHeaderRatingReview.Width = 140;
+            // 
+            // columnHeaderDescriptionReview
+            // 
+            this.columnHeaderDescriptionReview.Text = "Description";
+            this.columnHeaderDescriptionReview.Width = 700;
+            // 
+            // columnHeaderPostDate
+            // 
+            this.columnHeaderPostDate.Text = "Post date";
+            this.columnHeaderPostDate.Width = 195;
+            // 
+            // groupBoxSearchReview
+            // 
+            this.groupBoxSearchReview.Controls.Add(this.numRatingReview);
+            this.groupBoxSearchReview.Controls.Add(this.cbxManga);
+            this.groupBoxSearchReview.Controls.Add(this.cbxAnime);
+            this.groupBoxSearchReview.Controls.Add(this.labelContent);
+            this.groupBoxSearchReview.Controls.Add(this.btnClearFieldsReview);
+            this.groupBoxSearchReview.Controls.Add(this.btnSearchReview);
+            this.groupBoxSearchReview.Controls.Add(this.labelRating);
+            this.groupBoxSearchReview.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxSearchReview.Location = new System.Drawing.Point(18, 19);
+            this.groupBoxSearchReview.Name = "groupBoxSearchReview";
+            this.groupBoxSearchReview.Size = new System.Drawing.Size(414, 220);
+            this.groupBoxSearchReview.TabIndex = 47;
+            this.groupBoxSearchReview.TabStop = false;
+            this.groupBoxSearchReview.Text = "Review search:";
+            // 
+            // numRatingReview
+            // 
+            this.numRatingReview.Location = new System.Drawing.Point(146, 40);
+            this.numRatingReview.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numRatingReview.Name = "numRatingReview";
+            this.numRatingReview.Size = new System.Drawing.Size(120, 32);
+            this.numRatingReview.TabIndex = 51;
+            // 
+            // cbxManga
+            // 
+            this.cbxManga.AutoSize = true;
+            this.cbxManga.Location = new System.Drawing.Point(246, 87);
+            this.cbxManga.Name = "cbxManga";
+            this.cbxManga.Size = new System.Drawing.Size(97, 30);
+            this.cbxManga.TabIndex = 50;
+            this.cbxManga.Text = "Manga";
+            this.cbxManga.UseVisualStyleBackColor = true;
+            // 
+            // cbxAnime
+            // 
+            this.cbxAnime.AutoSize = true;
+            this.cbxAnime.Location = new System.Drawing.Point(146, 87);
+            this.cbxAnime.Name = "cbxAnime";
+            this.cbxAnime.Size = new System.Drawing.Size(94, 30);
+            this.cbxAnime.TabIndex = 49;
+            this.cbxAnime.Text = "Anime";
+            this.cbxAnime.UseVisualStyleBackColor = true;
+            // 
+            // labelContent
+            // 
+            this.labelContent.AutoSize = true;
+            this.labelContent.Location = new System.Drawing.Point(21, 89);
+            this.labelContent.Name = "labelContent";
+            this.labelContent.Size = new System.Drawing.Size(94, 26);
+            this.labelContent.TabIndex = 48;
+            this.labelContent.Text = "Content:";
+            // 
+            // btnClearFieldsReview
+            // 
+            this.btnClearFieldsReview.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnClearFieldsReview.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnClearFieldsReview.ForeColor = System.Drawing.Color.Black;
+            this.btnClearFieldsReview.Location = new System.Drawing.Point(220, 147);
+            this.btnClearFieldsReview.Name = "btnClearFieldsReview";
+            this.btnClearFieldsReview.Size = new System.Drawing.Size(175, 54);
+            this.btnClearFieldsReview.TabIndex = 44;
+            this.btnClearFieldsReview.Text = "Clear fields";
+            this.btnClearFieldsReview.UseVisualStyleBackColor = false;
+            this.btnClearFieldsReview.Click += new System.EventHandler(this.btnClearFieldsReview_Click);
+            // 
+            // btnSearchReview
+            // 
+            this.btnSearchReview.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnSearchReview.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSearchReview.ForeColor = System.Drawing.Color.Black;
+            this.btnSearchReview.Location = new System.Drawing.Point(21, 147);
+            this.btnSearchReview.Name = "btnSearchReview";
+            this.btnSearchReview.Size = new System.Drawing.Size(175, 54);
+            this.btnSearchReview.TabIndex = 38;
+            this.btnSearchReview.Text = "Search";
+            this.btnSearchReview.UseVisualStyleBackColor = false;
+            this.btnSearchReview.Click += new System.EventHandler(this.btnSearchReview_Click);
+            // 
+            // labelRating
+            // 
+            this.labelRating.AutoSize = true;
+            this.labelRating.Location = new System.Drawing.Point(21, 42);
+            this.labelRating.Name = "labelRating";
+            this.labelRating.Size = new System.Drawing.Size(81, 26);
+            this.labelRating.TabIndex = 1;
+            this.labelRating.Text = "Rating:";
+            // 
             // tabCreateAccount
             // 
             this.tabCreateAccount.BackColor = System.Drawing.Color.Thistle;
-            this.tabCreateAccount.Controls.Add(this.groupBox1);
+            this.tabCreateAccount.Controls.Add(this.btnRemoveAccount);
+            this.tabCreateAccount.Controls.Add(this.btnCreateMaintainer);
+            this.tabCreateAccount.Controls.Add(this.lvwAccounts);
+            this.tabCreateAccount.Controls.Add(this.groupBoxSearchAccount);
             this.tabCreateAccount.Location = new System.Drawing.Point(4, 46);
             this.tabCreateAccount.Name = "tabCreateAccount";
             this.tabCreateAccount.Padding = new System.Windows.Forms.Padding(3);
             this.tabCreateAccount.Size = new System.Drawing.Size(1797, 852);
             this.tabCreateAccount.TabIndex = 3;
-            this.tabCreateAccount.Text = "Create account";
+            this.tabCreateAccount.Text = "Accounts";
             // 
-            // groupBox1
+            // btnRemoveAccount
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 17);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(527, 306);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Create account for maintainer";
+            this.btnRemoveAccount.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnRemoveAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemoveAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnRemoveAccount.Location = new System.Drawing.Point(1273, 744);
+            this.btnRemoveAccount.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRemoveAccount.Name = "btnRemoveAccount";
+            this.btnRemoveAccount.Size = new System.Drawing.Size(406, 72);
+            this.btnRemoveAccount.TabIndex = 49;
+            this.btnRemoveAccount.Text = "Remove Account";
+            this.btnRemoveAccount.UseVisualStyleBackColor = false;
+            this.btnRemoveAccount.Click += new System.EventHandler(this.btnRemoveAccount_Click);
             // 
-            // textBox1
+            // btnCreateMaintainer
             // 
-            this.textBox1.Location = new System.Drawing.Point(78, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(431, 32);
-            this.textBox1.TabIndex = 5;
+            this.btnCreateMaintainer.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnCreateMaintainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCreateMaintainer.ForeColor = System.Drawing.Color.Black;
+            this.btnCreateMaintainer.Location = new System.Drawing.Point(642, 744);
+            this.btnCreateMaintainer.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCreateMaintainer.Name = "btnCreateMaintainer";
+            this.btnCreateMaintainer.Size = new System.Drawing.Size(406, 72);
+            this.btnCreateMaintainer.TabIndex = 49;
+            this.btnCreateMaintainer.Text = "Create Account";
+            this.btnCreateMaintainer.UseVisualStyleBackColor = false;
+            this.btnCreateMaintainer.Click += new System.EventHandler(this.btnCreateMaintainer_Click);
             // 
-            // label1
+            // lvwAccounts
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 26);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Name:";
+            this.lvwAccounts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1Name,
+            this.columnHeader2Username,
+            this.columnHeader3JoinDate,
+            this.columnHeader4Role});
+            this.lvwAccounts.FullRowSelect = true;
+            this.lvwAccounts.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lvwAccounts.Location = new System.Drawing.Point(642, 18);
+            this.lvwAccounts.MultiSelect = false;
+            this.lvwAccounts.Name = "lvwAccounts";
+            this.lvwAccounts.Size = new System.Drawing.Size(1037, 696);
+            this.lvwAccounts.TabIndex = 46;
+            this.lvwAccounts.UseCompatibleStateImageBehavior = false;
+            this.lvwAccounts.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1Name
+            // 
+            this.columnHeader1Name.Text = "Name";
+            this.columnHeader1Name.Width = 270;
+            // 
+            // columnHeader2Username
+            // 
+            this.columnHeader2Username.Text = "Username";
+            this.columnHeader2Username.Width = 270;
+            // 
+            // columnHeader3JoinDate
+            // 
+            this.columnHeader3JoinDate.Text = "Join Date";
+            this.columnHeader3JoinDate.Width = 240;
+            // 
+            // columnHeader4Role
+            // 
+            this.columnHeader4Role.Text = "Role";
+            this.columnHeader4Role.Width = 240;
+            // 
+            // groupBoxSearchAccount
+            // 
+            this.groupBoxSearchAccount.Controls.Add(this.labelUsername);
+            this.groupBoxSearchAccount.Controls.Add(this.tbxUsername);
+            this.groupBoxSearchAccount.Controls.Add(this.labelYears);
+            this.groupBoxSearchAccount.Controls.Add(this.tbxYears);
+            this.groupBoxSearchAccount.Controls.Add(this.btnClearFieldsAccount);
+            this.groupBoxSearchAccount.Controls.Add(this.labelExperience);
+            this.groupBoxSearchAccount.Controls.Add(this.btnSearchAccount);
+            this.groupBoxSearchAccount.Controls.Add(this.cbxRoles);
+            this.groupBoxSearchAccount.Controls.Add(this.labelRoles);
+            this.groupBoxSearchAccount.Controls.Add(this.tbxNameAccount);
+            this.groupBoxSearchAccount.Controls.Add(this.labelName);
+            this.groupBoxSearchAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBoxSearchAccount.Location = new System.Drawing.Point(16, 18);
+            this.groupBoxSearchAccount.Name = "groupBoxSearchAccount";
+            this.groupBoxSearchAccount.Size = new System.Drawing.Size(535, 319);
+            this.groupBoxSearchAccount.TabIndex = 3;
+            this.groupBoxSearchAccount.TabStop = false;
+            this.groupBoxSearchAccount.Text = "Account search:";
+            // 
+            // labelUsername
+            // 
+            this.labelUsername.AutoSize = true;
+            this.labelUsername.Location = new System.Drawing.Point(21, 89);
+            this.labelUsername.Name = "labelUsername";
+            this.labelUsername.Size = new System.Drawing.Size(119, 26);
+            this.labelUsername.TabIndex = 48;
+            this.labelUsername.Text = "Username:";
+            // 
+            // tbxUsername
+            // 
+            this.tbxUsername.Location = new System.Drawing.Point(146, 86);
+            this.tbxUsername.Name = "tbxUsername";
+            this.tbxUsername.Size = new System.Drawing.Size(277, 32);
+            this.tbxUsername.TabIndex = 47;
+            // 
+            // labelYears
+            // 
+            this.labelYears.AutoSize = true;
+            this.labelYears.Location = new System.Drawing.Point(429, 184);
+            this.labelYears.Name = "labelYears";
+            this.labelYears.Size = new System.Drawing.Size(79, 26);
+            this.labelYears.TabIndex = 46;
+            this.labelYears.Text = "(years)";
+            // 
+            // tbxYears
+            // 
+            this.tbxYears.Location = new System.Drawing.Point(188, 181);
+            this.tbxYears.Name = "tbxYears";
+            this.tbxYears.Size = new System.Drawing.Size(235, 32);
+            this.tbxYears.TabIndex = 45;
+            // 
+            // btnClearFieldsAccount
+            // 
+            this.btnClearFieldsAccount.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnClearFieldsAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnClearFieldsAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnClearFieldsAccount.Location = new System.Drawing.Point(283, 242);
+            this.btnClearFieldsAccount.Name = "btnClearFieldsAccount";
+            this.btnClearFieldsAccount.Size = new System.Drawing.Size(225, 54);
+            this.btnClearFieldsAccount.TabIndex = 44;
+            this.btnClearFieldsAccount.Text = "Clear fields";
+            this.btnClearFieldsAccount.UseVisualStyleBackColor = false;
+            this.btnClearFieldsAccount.Click += new System.EventHandler(this.btnClearFieldsAccount_Click);
+            // 
+            // labelExperience
+            // 
+            this.labelExperience.AutoSize = true;
+            this.labelExperience.Location = new System.Drawing.Point(21, 184);
+            this.labelExperience.Name = "labelExperience";
+            this.labelExperience.Size = new System.Drawing.Size(127, 26);
+            this.labelExperience.TabIndex = 41;
+            this.labelExperience.Text = "Experience:";
+            // 
+            // btnSearchAccount
+            // 
+            this.btnSearchAccount.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnSearchAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSearchAccount.ForeColor = System.Drawing.Color.Black;
+            this.btnSearchAccount.Location = new System.Drawing.Point(21, 242);
+            this.btnSearchAccount.Name = "btnSearchAccount";
+            this.btnSearchAccount.Size = new System.Drawing.Size(225, 54);
+            this.btnSearchAccount.TabIndex = 38;
+            this.btnSearchAccount.Text = "Search";
+            this.btnSearchAccount.UseVisualStyleBackColor = false;
+            this.btnSearchAccount.Click += new System.EventHandler(this.btnSearchAccount_Click);
+            // 
+            // cbxRoles
+            // 
+            this.cbxRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxRoles.ItemHeight = 25;
+            this.cbxRoles.Location = new System.Drawing.Point(146, 134);
+            this.cbxRoles.Name = "cbxRoles";
+            this.cbxRoles.Size = new System.Drawing.Size(277, 33);
+            this.cbxRoles.TabIndex = 20;
+            // 
+            // labelRoles
+            // 
+            this.labelRoles.AutoSize = true;
+            this.labelRoles.Location = new System.Drawing.Point(21, 134);
+            this.labelRoles.Name = "labelRoles";
+            this.labelRoles.Size = new System.Drawing.Size(74, 26);
+            this.labelRoles.TabIndex = 19;
+            this.labelRoles.Text = "Roles:";
+            // 
+            // tbxNameAccount
+            // 
+            this.tbxNameAccount.Location = new System.Drawing.Point(146, 39);
+            this.tbxNameAccount.Name = "tbxNameAccount";
+            this.tbxNameAccount.Size = new System.Drawing.Size(277, 32);
+            this.tbxNameAccount.TabIndex = 4;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(21, 42);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(77, 26);
+            this.labelName.TabIndex = 1;
+            this.labelName.Text = "Name:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Image = global::WinFormsGraphic.Properties.Resources.logout;
+            this.pictureBox1.Location = new System.Drawing.Point(1793, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 56);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.Violet;
             this.BackgroundImage = global::WinFormsGraphic.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(1884, 1041);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.labelTitleWorldOfAnime);
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -1603,9 +2074,16 @@
             this.groupBoxSortCharacters.PerformLayout();
             this.groupBoxSearchCharacters.ResumeLayout(false);
             this.groupBoxSearchCharacters.PerformLayout();
+            this.tabReviews.ResumeLayout(false);
+            this.groupBoxSortReviews.ResumeLayout(false);
+            this.groupBoxSortReviews.PerformLayout();
+            this.groupBoxSearchReview.ResumeLayout(false);
+            this.groupBoxSearchReview.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatingReview)).EndInit();
             this.tabCreateAccount.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxSearchAccount.ResumeLayout(false);
+            this.groupBoxSearchAccount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1647,9 +2125,6 @@
         private TabPage tabManga;
         private TabPage tabCharacters;
         private TabPage tabCreateAccount;
-        private GroupBox groupBox1;
-        private TextBox textBox1;
-        private Label label1;
         private Button btnRemoveAnime;
         private GroupBox BroupBoxSortAnime;
         private RadioButton rbtnAnimeNameAsc;
@@ -1739,5 +2214,47 @@
         private RadioButton rbtnNrDislikesAsc;
         private RadioButton rbtnNrLikesDesc;
         private RadioButton rbtnNrLikesAsc;
+        private ListView lvwAccounts;
+        private ColumnHeader columnHeader1Name;
+        private ColumnHeader columnHeader2Username;
+        private ColumnHeader columnHeader3JoinDate;
+        private ColumnHeader columnHeader4Role;
+        private GroupBox groupBoxSearchAccount;
+        private Label labelUsername;
+        private TextBox tbxUsername;
+        private Label labelYears;
+        private TextBox tbxYears;
+        private Button btnClearFieldsAccount;
+        private Label labelExperience;
+        private Button btnSearchAccount;
+        private ComboBox cbxRoles;
+        private Label labelRoles;
+        private TextBox tbxNameAccount;
+        private Label labelName;
+        private Button btnRemoveAccount;
+        private Button btnCreateMaintainer;
+        private PictureBox pictureBox1;
+        private TabPage tabReviews;
+        private Button btnRemoveReview;
+        private GroupBox groupBoxSortReviews;
+        private RadioButton rbtnUser;
+        private RadioButton rbtnPostDateDesc;
+        private RadioButton rbtnPostDateAsc;
+        private RadioButton rbtnRatingDesc;
+        private RadioButton rbtnRatingAsc;
+        private Button btnDisplayAllReviews;
+        private ListView lvwReviews;
+        private ColumnHeader columnHeaderUsernameReview;
+        private ColumnHeader columnHeaderRatingReview;
+        private ColumnHeader columnHeaderDescriptionReview;
+        private ColumnHeader columnHeaderPostDate;
+        private GroupBox groupBoxSearchReview;
+        private NumericUpDown numRatingReview;
+        private CheckBox cbxManga;
+        private CheckBox cbxAnime;
+        private Label labelContent;
+        private Button btnClearFieldsReview;
+        private Button btnSearchReview;
+        private Label labelRating;
     }
 }

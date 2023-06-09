@@ -1,6 +1,8 @@
 ﻿using Logic.Animes;
 using Logic.Characters;
 using Logic.Mangas;
+using Logic.Profiles;
+using Logic.Reviews;
 using Logic.Users;
 using System;
 using System.Collections.Generic;
@@ -30,6 +32,16 @@ namespace Factory
         public static UserManager CreateUserManager(IUserRepository userRepository)
         {
             return new UserManager(userRepository);
+        }
+
+        public static ListManager CreateListManager(ICustomListRepository listRepository)
+        {
+            return new ListManager(listRepository);
+        }
+
+        public static ReviewManager CreateReviewManager(IReviewRepository reviewRepository)
+        {
+            return new ReviewManager(reviewRepository);
         }
     }
 }

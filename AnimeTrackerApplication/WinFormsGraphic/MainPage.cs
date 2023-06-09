@@ -19,6 +19,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Xml.Linq;
 using System.Globalization;
+using Logic.Profiles;
+using Microsoft.VisualBasic.ApplicationServices;
+using User = Logic.Users.User;
+using Logic.Reviews;
+using System.Reflection;
 
 namespace WinFormsGraphic
 {
@@ -29,14 +34,18 @@ namespace WinFormsGraphic
         IMangaManager mangaManager;
         ICharacterManager characterManager;
         IUserManager userManager;
+        IReviewManager reviewManager;
+        User currentUser;
         List<RadioButton> animeSort;
         List<RadioButton> mangaSort;
+        TabPage currentTab;
 
-        public MainPage()
+        public MainPage(User user)
         {
             InitializeComponent();
             InitializeForm();
-            InitializeManagers();   
+            InitializeManagers();
+            currentUser = user;
         }
 
         private void InitializeManagers()
@@ -45,6 +54,8 @@ namespace WinFormsGraphic
             mangaManager = ManagerFactory.CreateMangaManager(RepositoryFactory.CreateMangaRepository());
             characterManager = ManagerFactory.CreateCharacterManager(RepositoryFactory.CreateCharacterRepository());
             userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
+            reviewManager = ManagerFactory.CreateReviewManager(RepositoryFactory.CreateReviewRepository());
+            currentTab = tabControl.SelectedTab;
         }
 
         private void InitializeForm()
@@ -70,6 +81,30 @@ namespace WinFormsGraphic
 
             //initilize character search
             rbtnCharacterNameAsc.Checked = true;
+
+            //initilize account search
+            cbxRoles.DataSource = new string[] { "Admin", "Maintainer", "RegisteredWebUser"};
+            cbxRoles.SelectedIndex = -1;
+
+            //initialize review sorting
+            rbtnPostDateDesc.Checked = true;
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (tabControl.SelectedTab == tabCreateAccount)
+            {
+                if (currentUser is not Admin)
+                {
+                    tabControl.SelectedTab = currentTab;
+                    MessageBox.Show("You don't have access to this page!");
+                }
+            }
+            else
+            {
+                currentTab = tabControl.SelectedTab;
+            }
         }
 
         //
@@ -238,7 +273,8 @@ namespace WinFormsGraphic
         {
             try
             {
-
+                List<Anime> searchedAnime = animeManager.GetSearchedAnime(tbxNameSearchAnime.Text, tbxStudioSearchAnime.Text, Convert.ToInt32(numNrEpisodesFromSearchAnime.Text), Convert.ToInt32(numNrEpisodesToSearchAnime.Text), tbxReleaseYearSearchAnime.Text, cbxSeasonSearchAnime.Text, cbxGenreSearchAnime.Text, Convert.ToDecimal(numRatingLowerAnime.Text), Convert.ToDecimal(numRatingUpperAnime.Text));
+                UpdateAnimeListview(searchedAnime);
             }
             catch (Exception ex)
             {
@@ -251,6 +287,7 @@ namespace WinFormsGraphic
             Anime anime = (Anime)lvwAnime.SelectedItems[0].Tag;
             MessageBox.Show(anime.GetInfoDetailed());
         }
+
 
         //
         //MANGA TAB
@@ -362,7 +399,8 @@ namespace WinFormsGraphic
         {
             try
             {
-                
+                List<Manga> searchedManga = mangaManager.GetSearchedManga(tbxNameManga.Text, tbxCreatorManga.Text, Convert.ToInt32(numChaptersFromManga.Text), Convert.ToInt32(numChaptersToManga.Text), tbxReleaseYearManga.Text, cbxMangaStatus.Text, cbxGenreManga.Text, Convert.ToDecimal(numRatingLowerManga.Text), Convert.ToDecimal(numRatingUpperManga.Text));
+                UpdateMangaListView(searchedManga);
             }
             catch (Exception ex)
             {
@@ -385,6 +423,16 @@ namespace WinFormsGraphic
             try
             {
                 Character character = (Character)lvwCharacters.SelectedItems[0].Tag;
+                if(character.AnimeId != 0)
+                {
+                    Anime anime = animeManager.GetAnimeById(character.AnimeId);
+                    character.FromAnime = anime;
+                }
+                if (character.MangaId != 0)
+                {
+                    Manga manga = mangaManager.GetMangaById(character.MangaId);
+                    character.FromManga = manga;
+                }
                 PopupEditCharacter form = new PopupEditCharacter(character);
                 form.ShowDialog();
             }
@@ -402,19 +450,6 @@ namespace WinFormsGraphic
         private void btnDisplayAllCharacters_Click(object sender, EventArgs e)
         {
             List<Character> characters = characterManager.GetAllCharacters();
-            foreach (Character c in characters)
-            {
-                if (c.AnimeId > 0)
-                {
-                    Anime anime = animeManager.GetAnimeById(c.AnimeId);
-                    c.FromAnime = anime;
-                }
-                if (c.MangaId > 0)
-                {
-                    Manga manga = mangaManager.GetMangaById(c.MangaId);
-                    c.FromManga = manga;
-                }
-            }
             UpdateCharactersListView(characters);
         }
 
@@ -427,17 +462,19 @@ namespace WinFormsGraphic
                 item.Text = c.Name;
                 item.Tag = c;
                 item.SubItems.Add(c.Gender);
-                if (c.FromAnime != null)
+                if (c.AnimeId != null && c.AnimeId != 0)
                 {
-                    item.SubItems.Add(c.FromAnime.Name);
+                    Anime anime = animeManager.GetAnimeById(c.AnimeId);
+                    item.SubItems.Add(anime.Name);
                 }
                 else
                 {
                     item.SubItems.Add(string.Empty);
                 }
-                if (c.FromManga != null)
+                if (c.MangaId != null && c.MangaId != 0)
                 {
-                    item.SubItems.Add(c.FromManga.Name);
+                    Manga manga = mangaManager.GetMangaById(c.MangaId);
+                    item.SubItems.Add(manga.Name);
                 }
                 else
                 {
@@ -484,5 +521,253 @@ namespace WinFormsGraphic
             tbxMangaCharacterSearch.Text = string.Empty;
         }
 
+        private void btnSearchCharacter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string gender = string.Empty;
+                if(rbtnMale.Checked)
+                {
+                    gender = rbtnMale.Text;
+                }
+                else if(rbtnFemale.Checked)
+                {
+                    gender = rbtnFemale.Text;
+                }
+                else if(rbtnUnknown.Checked)
+                {
+                    gender = rbtnUnknown.Text;
+                }
+
+                List<Anime> animes = new List<Anime>();
+                if (!String.IsNullOrEmpty(tbxAnimeCharacterSearch.Text))
+                {
+                    animes = animeManager.GetAnimeByName(tbxAnimeCharacterSearch.Text);
+                }
+
+                List<Manga> mangas = new List<Manga>();
+                if (!String.IsNullOrEmpty(tbxMangaCharacterSearch.Text))
+                {
+                    mangas = mangaManager.GetMangaByName(tbxMangaCharacterSearch.Text);
+                }
+
+                List<Character> searchedCharacters = characterManager.GetSearchedCharacters(tbxCharacterName.Text, gender, animes, mangas);
+                UpdateCharactersListView(searchedCharacters);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
+
+        //
+        //ACCOUNT TAB
+        //
+        private void btnCreateMaintainer_Click(object sender, EventArgs e)
+        {
+            PopupAddAccount form = new PopupAddAccount();
+            form.ShowDialog();
+        }
+
+        private void btnClearFieldsAccount_Click(object sender, EventArgs e)
+        {
+            tbxNameAccount.Text = string.Empty;
+            tbxUsername.Text = string.Empty;
+            cbxRoles.SelectedIndex = -1;
+            tbxYears.Text = string.Empty;
+        }
+
+        private void UpdateAccountsListView(List<User> users)
+        {
+            lvwAccounts.Items.Clear();
+            foreach (User u in users)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = u.Name;
+                item.Tag = u;
+                if(u is RegisteredWebUser)
+                {
+                    RegisteredWebUser user = (RegisteredWebUser)u;
+                    item.SubItems.Add(user.Profile.Username);
+                }
+                else
+                {
+                    item.SubItems.Add("");
+                }
+                DateTime dateTime = u.JoinDate;
+                string formattedDate = dateTime.ToString("d MMMM yyyy");
+                item.SubItems.Add(formattedDate);
+                item.SubItems.Add(u.GetType().Name);
+                lvwAccounts.Items.Add(item);
+            }
+        }
+        private void btnSearchAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int years = 0;
+                if(!String.IsNullOrEmpty(tbxYears.Text))
+                {
+                    years = Convert.ToInt32(tbxYears.Text);
+                }
+                List<User> searchedUsers = userManager.GetSearchedUsers(tbxNameAccount.Text, tbxUsername.Text, cbxRoles.Text, years);
+                UpdateAccountsListView(searchedUsers);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
+        private void btnRemoveAccount_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                User user = (User)lvwAccounts.SelectedItems[0].Tag;
+                 if(currentUser.Id == user.Id)
+                 {
+                    MessageBox.Show("You can't delete your own account!");
+                 }
+                 else
+                 {
+                    //Display a confirmation message box
+                    DialogResult result = MessageBox.Show("Are you sure you want to remove " + user.Name + "?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // If the user clicks Yes, remove the selected item
+                    if (result == DialogResult.Yes)
+                    {
+                        userManager.DeleteAccount(user.Id);
+                        MessageBox.Show("Account has been successfully deleted!");
+                    }
+                 }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select a user to remove!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            currentUser = null;
+            Login form = new Login();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        //
+        //REVIEW TAB
+        //
+        private void UpdateReviewListView(Dictionary<Review, string> reviewDictionary)
+        {
+            lvwReviews.Items.Clear();
+            foreach (KeyValuePair<Review, string> kvp in reviewDictionary)
+            {
+                ListViewItem item = new ListViewItem();
+                Review review = kvp.Key;
+                item.Text = kvp.Value;
+                item.Tag = review;
+                item.SubItems.Add(review.Rating.ToString());
+                item.SubItems.Add(review.Description);
+                DateTime dateTime = review.Date;
+                string formattedDate = dateTime.ToString("d MMMM yyyy");
+                item.SubItems.Add(formattedDate);
+                lvwReviews.Items.Add(item);
+            }
+        }
+
+        private void btnSearchReview_Click(object sender, EventArgs e)
+        {
+            int rating = Convert.ToInt32(numRatingReview.Value);
+            string contentype = "";
+            if(cbxAnime.Checked)
+            {
+                contentype = cbxAnime.Text;
+            }
+            else if(cbxManga.Checked)
+            {
+                contentype = cbxManga.Text;
+            }
+            else if (cbxAnime.Checked && cbxManga.Checked)
+            {
+                contentype = "";
+            }
+
+            Dictionary<Review, string> reviewDictionary = reviewManager.GetSearchedReviews(rating, contentype);
+            UpdateReviewListView(reviewDictionary);
+        }
+
+        private void btnClearFieldsReview_Click(object sender, EventArgs e)
+        {
+            numRatingReview.Value = 0;
+            cbxAnime.Checked = false;
+            cbxManga.Checked = false;
+        }
+
+        private void btnDisplayAllReviews_Click(object sender, EventArgs e)
+        {
+            Dictionary<Review, string> reviewDictionary = reviewManager.GetSearchedReviews(0, "");
+            if(rbtnPostDateDesc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderByDescending(kv => kv.Key.Date);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnPostDateAsc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderBy(kv => kv.Key.Date);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnRatingDesc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderByDescending(kv => kv.Key.Rating);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnRatingAsc.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderBy(kv => kv.Key.Rating);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            else if (rbtnUser.Checked)
+            {
+                var orderedReviews = reviewDictionary.OrderBy(kv => kv.Value);
+                UpdateReviewListView(orderedReviews.ToDictionary(kv => kv.Key, kv => kv.Value));
+            }
+            
+        }
+
+        private void btnRemoveReview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Review review = (Review)lvwReviews.SelectedItems[0].Tag;
+                //Display a confirmation message box
+                DialogResult result = MessageBox.Show("Are you sure you want to remove this review?", "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // If the user clicks Yes, remove the selected item
+                if (result == DialogResult.Yes)
+                {
+                    reviewManager.DeleteReview(review.Id);
+                    MessageBox.Show("Review has been successfully deleted!");
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select a review to remove!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
     }
 }

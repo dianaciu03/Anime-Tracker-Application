@@ -1,6 +1,7 @@
 ﻿using Logic.Animes;
 using Logic.Characters;
 using Logic.Contents;
+using Logic.Enums;
 using Logic.Mangas;
 using Logic.Profiles;
 using Logic.Users;
@@ -141,6 +142,10 @@ namespace DAL.Repositories
                                 case "Maintainer":
                                     user = new Maintainer(userId, name, email, hashedPassword, joinDate, salt);
                                     break;
+
+                                case "RegisteredWebUser":
+                                    user = new RegisteredWebUser(userId, name, email, hashedPassword, joinDate, salt);
+                                    break;
                             }
                         }
                         reader.Close();
@@ -210,7 +215,6 @@ namespace DAL.Repositories
                         {
                             string email = reader.GetString(reader.GetOrdinal("Email"));
                             string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string? username = reader.IsDBNull(reader.GetOrdinal("Username")) ? null : reader.GetString(reader.GetOrdinal("Username"));
                             string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
                             string salt = reader.GetString(reader.GetOrdinal("Salt"));
                             DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
@@ -279,6 +283,69 @@ namespace DAL.Repositories
             return user;
         }
 
+        public List<User> GetSearchedUsers(string nameU, string usernameU, string roleU, int yearsU)
+        {
+            List<User> users = new List<User>();
+            User user = null;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    string query = @"SELECT * FROM [User]
+                                       WHERE Name LIKE '%' + @Name + '%' 
+                                       AND Role LIKE '%' + @Role + '%' 
+                                       AND DATEDIFF(year, Joindate, GETDATE()) >= @Years;";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.Parameters.AddWithValue("@Name", nameU);
+                        command.Parameters.AddWithValue("@Role", roleU);
+                        command.Parameters.AddWithValue("@Years", yearsU);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("UserId"));
+                            string email = reader.GetString(reader.GetOrdinal("Email"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
+                            string salt = reader.GetString(reader.GetOrdinal("Salt"));
+                            DateTime joinDate = reader.GetDateTime(reader.GetOrdinal("JoinDate"));
+                            string role = reader.GetString(reader.GetOrdinal("Role"));
+
+                            switch (role)
+                            {
+                                case "Admin":
+                                    user = new Admin(id, name, email, hashedPassword, joinDate, salt);
+                                    users.Add(user);
+                                    break;
+
+                                case "Maintainer":
+                                    user = new Maintainer(id, name, email, hashedPassword, joinDate, salt);
+                                    users.Add(user);
+                                    break;
+
+                                case "RegisteredWebUser":
+                                    user = new RegisteredWebUser(id, name, email, hashedPassword, joinDate, salt);
+                                    Profile profile = GetProfileByWebUserId(user.Id);
+                                    RegisteredWebUser webUser = (RegisteredWebUser)user;
+                                    webUser.Profile = profile;
+                                    users.Add(user);
+                                    break;
+                            }
+                        }
+                        reader.Close();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("There were issues while trying to retrieve the users!");
+            }
+            return users;
+        }
+
         public Profile GetProfileByWebUserId(int id)
         {
             Profile profile = null;
@@ -295,7 +362,6 @@ namespace DAL.Repositories
                     {
                         command.Parameters.AddWithValue("@UserId", id);
                         SqlDataReader reader = command.ExecuteReader();
-
                         while (reader.Read())
                         {
                             int newProfileId = reader.GetInt32(reader.GetOrdinal("ProfileId"));
@@ -321,7 +387,7 @@ namespace DAL.Repositories
                         }
                         reader.Close();
 
-                        foreach(CustomList custom in profile.GetAllCustomLists())
+                        foreach (CustomList custom in profile.GetAllCustomLists())
                         {
                             int nrContent = -1;
                             switch (custom.ContentType)
@@ -346,6 +412,7 @@ namespace DAL.Repositories
                                                 Anime anime = ar.GetAnimeById(animeId);
                                                 custom.AddContent(anime);
                                             }
+                                            readerAnime.Close();
                                         }
                                     }
                                     break;
@@ -370,6 +437,7 @@ namespace DAL.Repositories
                                                 Manga manga = mr.GetMangaById(mangaId);
                                                 custom.AddContent(manga);
                                             }
+                                            readerManga.Close();
                                         }
                                     }
                                     break;
@@ -394,9 +462,35 @@ namespace DAL.Repositories
                                                 Character character = cr.GetCharacterById(characterId);
                                                 custom.AddContent(character);
                                             }
+                                            readerCharacters.Close();
                                         }
                                     }
                                     break;
+                            }
+                        }
+
+                        int nrGenre = 0;
+                        string queryGenre = @$"SELECT COUNT(*) FROM Profile_Genre INNER JOIN Profile 
+                                                               ON Profile_Genre.ProfileId = Profile.ProfileId WHERE Profile.ProfileId = {oldProfileId}";
+                        using (SqlCommand commandList = new SqlCommand(queryGenre, conn))
+                        {
+                            nrGenre = (int)commandList.ExecuteScalar();
+                        }
+
+                        if (nrGenre > 0)
+                        {
+                            string getGenre = @$"SELECT * FROM Profile_Genre INNER JOIN ContentGenre 
+                                                 ON Profile_Genre.GenreId = ContentGenre.GenreId WHERE ProfileId = {oldProfileId}";
+                            using (SqlCommand commandGenre = new SqlCommand(getGenre, conn))
+                            {
+                                SqlDataReader readerGenre = commandGenre.ExecuteReader();
+                                while (readerGenre.Read())
+                                {
+                                    string genreString = readerGenre.GetString(readerGenre.GetOrdinal("Genre"));
+                                    Genre genre = (Genre)Enum.Parse(typeof(Genre), genreString);
+                                    profile.AddGenre(genre);
+                                }
+                                readerGenre.Close();
                             }
                         }
                     }
@@ -442,7 +536,7 @@ namespace DAL.Repositories
                                          VALUES (@UserId, @Username); 
                                          SELECT SCOPE_IDENTITY();";
                                 int profileId = 0;
-                                using(SqlCommand profileCommand = new SqlCommand(query2, conn, transaction))
+                                using (SqlCommand profileCommand = new SqlCommand(query2, conn, transaction))
                                 {
                                     profileCommand.Parameters.AddWithValue("@UserId", userId);
                                     profileCommand.Parameters.AddWithValue("@Username", webUser.Profile.Username);
@@ -462,7 +556,6 @@ namespace DAL.Repositories
                                     }
                                 }
                             }
-                            //command.ExecuteNonQuery();
                             transaction.Commit();
                         }
                     }
@@ -480,9 +573,73 @@ namespace DAL.Repositories
             }
         }
 
-        //update
+        public void UpdateUser(User user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
 
-        //delete
+                    try
+                    {
+                        string query = @"UPDATE [User] SET Salt=@Salt, Password=@Password WHERE UserId=@UserId";
+                        using (SqlCommand command = new SqlCommand(query, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@UserId", user.Id);
+                            command.Parameters.AddWithValue("@Salt", user.Salt);
+                            command.Parameters.AddWithValue("@Password", user.HashedPassword);
 
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"User couldn't be updated!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred!");
+            }
+        }
+
+        public void DeleteAccount(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        string query2 = @"DELETE FROM [User] WHERE UserId=@UserId";
+                        using (SqlCommand command = new SqlCommand(query2, conn, transaction))
+                        {
+                            command.Parameters.AddWithValue("@UserId", userId);
+                            command.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw new Exception($"Account couldn't be deleted!");
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception($"An error occurred!");
+            }
+        }
     }
 }

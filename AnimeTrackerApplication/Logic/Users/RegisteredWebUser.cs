@@ -12,7 +12,6 @@ namespace Logic.Users
     public class RegisteredWebUser : User
     {
         private Profile profile;
-        private string username;
 
         public RegisteredWebUser(string name, string email, string hashedPassword, DateTime joinDate, string salt, Profile profile) : base(name, email, hashedPassword, joinDate, salt)
         {

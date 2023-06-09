@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Factory;
+using Logic.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace WinFormsGraphic
 {
     public partial class Login : Form
     {
+        private IUserManager userManager;
         public Login()
         {
             InitializeComponent();
@@ -23,19 +27,21 @@ namespace WinFormsGraphic
             //manually initialize some visual elements of the form
             this.BackgroundImageLayout = ImageLayout.Stretch;
             labelErorrMessage.Visible = false;
+
+            userManager = ManagerFactory.CreateUserManager(RepositoryFactory.CreateUserRepository());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {//hardcode login
+        {
             try
             {
                 string email = tbEmail.Text;
                 string password = tbPassword.Text;
 
-                if (email == "main" && password == "123")
+                if(userManager.LoginUser(password, email))
                 {
                     this.Hide();
-                    MainPage mainPage = new MainPage();
+                    MainPage mainPage = new MainPage(userManager.GetUserByEmail(email));
                     mainPage.ShowDialog();
                     this.Close();
                 }
@@ -51,5 +57,19 @@ namespace WinFormsGraphic
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Hide();
+                LoginResetPass form = new LoginResetPass();
+                form.ShowDialog();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

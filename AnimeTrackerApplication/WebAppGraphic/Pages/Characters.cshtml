@@ -1,0 +1,117 @@
+﻿@page
+@using Logic.Animes
+@using Logic.Characters
+@using Logic.Mangas
+@using Logic.Profiles
+@model WebAppGraphic.Pages.CharactersModel
+@{
+    ViewData["Title"] = "All Characters";
+    int? id = HttpContext.Session.GetInt32("userId");
+    if (id != null)
+    {
+        Layout = "_LayoutLogout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
+
+<div class="background-img-characters"></div>
+<h1 class="second-title text-white">Anime & Manga Characters</h1>
+<h4 class="second-subtitle text-white">Here you can find all you favourite characters.</h4>
+<div class="container" style="margin-left: 7rem; margin-right: 7rem; margin-top:1rem; padding-left:0">
+    <form method="post">
+        <div class="form-group mb-3">
+            <div class="d-flex">
+                <input asp-for="CharacterName" type="text" class="form-control rounded-pill mr-2" placeholder="Enter a name..." style="width: 50%;" />
+                <button type="submit" style="padding: 2px 20px 3px 20px; font-size: 20px; margin-left: 1rem;" class="btn btn-primary rounded-pill mt-0">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container-fluid container-display bg-dark">
+    @foreach (Character character in Model.AlLCharacters)
+    {
+        if(Model.CurrentProfile != null) 
+        {
+            CustomList customLiked = Model.CurrentProfile.GetFavouriteCharacters();
+            CustomList customDisliked = Model.CurrentProfile.GetDislikedCharacters();
+            if (customLiked != null && customDisliked != null)
+            {
+                <a>
+                    <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center">
+                        <img src="@character.Image" style="height: 260px;" />
+                        @if(customLiked.IsContaining(character)) 
+                        {
+                        <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="RemoveFromFavourites">
+                            <button type="submit" class="heart-button bg-transparent border-0 p-0" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove from favourites">&#x2764;</button>
+                        </form>
+                        }
+                        else 
+                        {
+                        <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="AddToFavourites">
+                            <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I love this character" style="padding: 0 1px; margin: 0;">&#x2764;</button>
+                        </form>
+                        }
+                        @if(customDisliked.IsContaining(character))
+                        {
+                        <form method="post" style="position: absolute; top: 10px; left: 10px;" asp-page-handler="RemoveFromDisliked">
+                            <button type="submit" class="heart-button bg-transparent border-0 p-0" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove from disliked">&#x1F494;</button>
+                        </form>
+                        }
+                        else
+                        {
+                        <form method="post" style="position: absolute; top: 10px; left: 10px;" asp-page-handler="AddToDisliked">
+                            <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I hate this character" style="padding: 0 1px; margin: 0;">&#x1F494;</button>
+                        </form>
+                        } 
+                        <p style="padding-top: 8px; color: white;">@character.Name</p>
+                        @if (character.AnimeId != 0)
+                        {
+                            Anime anime = Model.GetAnimeById(character.AnimeId);
+                            <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center; color: white;">From anime: @anime.Name</p>
+                        }
+                        @if (character.MangaId != 0)
+                        {
+                            Model.Manga = Model.GetMangaById(character.MangaId);
+                            <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center; color: white;">From manga: @Model.Manga.Name</p>
+                        }
+                    </div>
+                </a>
+            }
+        }
+        else 
+        {
+            <a>
+                <div style="width: 200px; position: relative;" class="d-flex flex-column align-items-center text-white">
+                    <img src="@character.Image" style="height: 260px;" />
+                    <form method="post" style="position: absolute; top: 10px; right: 10px;" asp-page-handler="AddToFavourites">
+                        <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I love this character" style="padding: 0 1px; margin: 0;">&#x2764;</button>
+                    </form>
+                    <form method="post" style="position: absolute; top: 10px; left: 10px;" asp-page-handler="AddToDisliked">
+                        <button type="submit" class="heart-button" name="action" value="@character.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="I hate this character" style="padding: 0 1px; margin: 0;">&#x1F494;</button>
+                    </form>
+                    <p style="padding-top: 8px">@character.Name</p>
+                    @if (character.AnimeId != 0)
+                    {
+                        Anime anime = Model.GetAnimeById(character.AnimeId);
+                        <p style="padding-top: 8px; display: flex; justify-content: center; text-align: center;"> From anime: @anime.Name</p>
+                    }
+                    @if (character.MangaId != 0)
+                    {
+                        Model.Manga = Model.GetMangaById(character.MangaId);
+                        <p style="padding-top: 4px; display: flex; justify-content: center; text-align: center;"> From manga: @Model.Manga.Name</p>
+                    }
+                </div>
+            </a>
+        }
+    }
+</div>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+</script>

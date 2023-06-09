@@ -46,7 +46,6 @@ namespace WinFormsGraphic
 
             if(character.FromAnime != null)
             {
-                tbxAnimeTitle.Text = character.FromAnime.Name;
                 ListViewItem item = new ListViewItem();
                 item.Text = character.FromAnime.Name;
                 item.Tag = character.FromAnime;
@@ -56,7 +55,6 @@ namespace WinFormsGraphic
 
             if (character.FromManga != null)
             {
-                tbxMangaTitle.Text = character.FromManga.Name;
                 ListViewItem item = new ListViewItem();
                 item.Text = character.FromManga.Name;
                 item.Tag = character.FromManga;

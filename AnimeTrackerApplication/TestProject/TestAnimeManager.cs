@@ -106,5 +106,19 @@ namespace TestProject
                 animeManager.UpdateAnime(id, animeName, animeDescription, animeRating, animeReleaseYear, animeImageUrl, animeSeason, animeNrEpisodes, animeStudio, animeGenres);
             });
         }
+
+        [Fact]
+        public void Check_We_Calculate_Percent()
+        {
+            // Arrange
+            int nrMatches = 5;
+            int nrGenresProfile = 8;
+
+            // Act
+            int result = animeManager.CalculateMatchPercent(nrMatches, nrGenresProfile);
+
+            // Assert
+            Assert.Equal(62, result);
+        }
     }
 }

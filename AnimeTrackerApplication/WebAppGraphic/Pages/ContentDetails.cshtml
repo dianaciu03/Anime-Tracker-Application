@@ -1,4 +1,6 @@
 ﻿@page
+@using Logic.Animes
+@using Logic.Profiles
 @model WebAppGraphic.Pages.ContentDetailsModel
 @{
     ViewData["Title"] = "Content details";
@@ -22,10 +24,122 @@
     <div>
         <div class="text-white">Studio: @Model.Anime.Studio</div>
         <div class="text-white">Number of episodes: @Model.Anime.NrEpisodes</div>
+        <div class="text-white">Genres: @Model.Anime.GetGenresString()</div>
         <p style="padding-top: 3rem;">Description:</p>
         <p class="text-white">@Model.Anime.Description</p>
+        <button id="openPopupBtn" style="margin-top:20px" class="btn btn-content-details" data-bs-toggle="modal" data-bs-target="#myModal">Add to Library</button>
     </div>
     <div>
         <p class="text-white">Leave a review:</p>
+        <form class="review-box" method="post">
+            <div class="form-group">
+                <label asp-for="ReviewRating">Rating: (x/5 ⭐)</label>
+                <input asp-for="ReviewRating" type="number" min="1" max="5" step="1" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewDescription">Description:</label>
+                <textarea asp-for="ReviewDescription" required></textarea>
+            </div>
+            <button id="submitReview" type="submit" class="btn btn-content-details" name="action" value="Review">Submit review</button>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        </form>
+        
     </div>
 </div>
+<!-- Modal -->
+@{
+    int? userId = Model.IsUserLoggedIn();
+    if(userId!=null)
+    {
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Pick a list</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <ul class="list-group">
+                            @{
+                            //For each list, if anime is in list, make it checked, otherwise unchecked
+                            Profile profile = Model.GetProfile();
+                            foreach (CustomList list in profile.GetAllCustomLists())
+                            {
+                                if(list.ContentType == "Anime") 
+                                {
+                                    if(list.GetAllContent().Count() == 0) 
+                                    {
+                                        string listName = list.Name;
+                                                <li class="list-group-item bg-dark text-white">
+                                                    <input type="checkbox" name="options[]" value="@listName" />
+                                                    <label>@listName</label>
+                                                </li>
+                                    }
+                                    else 
+                                    {
+                                        bool wasFound = false;
+                                                @foreach (object content in list.GetAllContent())
+                                        {
+                                            if (((Anime)content).Id == Model.Anime.Id)
+                                            {
+                                                wasFound = true;
+                                                break;
+                                            }
+                                        }
+                                        if(wasFound)
+                                        {
+                                            string listName = list.Name;
+                                                    <li class="list-group-item bg-dark text-white">
+                                                        <input type="checkbox" name="options[]" value="@listName" checked />
+                                                        <label>@listName</label>
+                                                    </li>
+                                        }
+                                        else
+                                        {
+                                            string listName = list.Name;
+                                                    <li class="list-group-item bg-dark text-white">
+                                                        <input type="checkbox" name="options[]" value="@listName" />
+                                                        <label>@listName</label>
+                                                    </li>
+                                        }
+                                    }
+                                             
+                                }
+                            }
+                            }
+                        </ul>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-content-details" name="action" value="Submit">Submit</button>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" style="color: #ff3333; font-size: 14px;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+    else 
+    {
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">You need to be logged in to access this feature!</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-labelledby="myModal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-footer">
+                <form method="post">
+                    <button type="submit" class="btn btn-content-details" name = "action" value="Login">Login</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+}
+
+
+

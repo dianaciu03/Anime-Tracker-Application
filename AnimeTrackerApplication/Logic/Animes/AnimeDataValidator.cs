@@ -78,7 +78,7 @@ namespace Logic.Animes
                 }
             }
             else
-                throw new Exception("You need to provide a number for episodes!");
+                throw new Exception("You need to provide a number for rating!");
         }
 
         public bool IsYearValid(string year)
