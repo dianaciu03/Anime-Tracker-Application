@@ -8,9 +8,14 @@ Hera database server connection string: Server=mssqlstud.fhict.local;Database=db
 
 ### Important credentials
 Desktop application login data:
-email: main
-password: 123
+Maintainer:
+email: main@gmail.com
+password: main123
+
+Admin:
+email: admin@gmail.com
+password: admin123
 
 Web application login data:
 email: dianaciu@gmail.com
-password: dianaciu
+password: dianac69
