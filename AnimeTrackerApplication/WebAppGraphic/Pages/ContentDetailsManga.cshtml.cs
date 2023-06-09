@@ -100,7 +100,7 @@ namespace WebAppGraphic.Pages
                 else
                 {
                     OnGet(Manga.Id);
-                    reviewManager.AddReview(GetProfile().Id, ReviewRating, ReviewDescription, Manga.Id, "Anime", DateTime.Now);
+                    reviewManager.AddReview(GetProfile().Id, ReviewRating, ReviewDescription, Manga.Id, "Manga", DateTime.Now);
                     ReviewDescription = string.Empty;
                     ReviewRating = 0;
                     ModelState.Clear();
