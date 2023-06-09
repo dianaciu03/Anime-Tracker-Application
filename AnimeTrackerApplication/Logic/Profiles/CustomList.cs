@@ -44,7 +44,6 @@ namespace Logic.Profiles
             content.Add(objectContent);
         }
 
-        //need to change to be specific
         public bool IsContaining(object contentObject)
         {
             Character character = null;

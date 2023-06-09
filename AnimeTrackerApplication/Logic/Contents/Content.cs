@@ -72,11 +72,6 @@ namespace Logic.Contents
             genres.Add(genre);
         }
 
-        public void RemoveGenre(Genre genre)
-        {
-            genres.Remove(genre);
-        }
-
         public virtual string GetInfoDetailed()
         {
             string genresString = string.Join(", ", genres.Select(genre => genre.ToString()));

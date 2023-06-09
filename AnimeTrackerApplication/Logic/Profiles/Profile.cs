@@ -85,11 +85,6 @@ namespace Logic.Profiles
             preferredGenres.Add(gerne);
         }
 
-        public void RemoveGenre(Genre gerne)
-        {
-            preferredGenres.Remove(gerne);
-        }
-
         public List<Genre> GetAllPreferredGenres()
         {
             return preferredGenres;
