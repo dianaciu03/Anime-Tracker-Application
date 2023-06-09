@@ -44,7 +44,7 @@ namespace Logic.Users
 
         [Required(ErrorMessage = "A name is required!")]
         [RegularExpression(@"^[a-zA-Z\-'\s]+$", ErrorMessage = "Your name must be valid!")]
-        public string Name { get; set; }
+        public string Name { get { return name; } set { this.name = value; } }
 
         [Required(ErrorMessage = "An email is required"),
          EmailAddress(ErrorMessage = "Your email address must be valid!")]
@@ -53,7 +53,7 @@ namespace Logic.Users
         [Required(ErrorMessage = "A password is required")]
         [MinLength(6, ErrorMessage = "Your password needs to be at least 6 characters")]
         [RegularExpression(@"^(?=.*\d)[\S\s]+$", ErrorMessage = "Your password must contain a number!")]
-        public string Password { get; set; }
+        public string Password { get { return password; } set { this.password = value; } }
 
         public string HashedPassword { get { return hashedPassword; } set { this.hashedPassword = value; } }
 
@@ -62,6 +62,7 @@ namespace Logic.Users
         public DateTime JoinDate { get { return joinDate; } set { this.joinDate = value; } }
 
         public int Id { get { return id; } set { id = value; } }
+
 
         public string JoinDateParsed()
         {
