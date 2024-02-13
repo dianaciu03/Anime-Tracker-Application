@@ -36,11 +36,12 @@ The web application supports one account type as well as anonymous activity for 
 * C# .NET Framework for backend
 * Windows Forms Library for the desktop application
 * ASP.NET Razor Pages for the web application
-* MS SQL for data persistance
+* MS SQL for data persistance (easily generate the database by running the script.sql)
 
 ## Application Development
 - The project was developed using the Waterfall Methodology (see Binaries/Project Plan)
 - It followed a clean 3-layer architecture consisting of presentation layer, logic layer and data layer
 - The code strictly abides the SOLID design principles, making the application future proof and maintainable, offering the possibility of easily adding new features or account types
+- The database uses a table-per-type approach
 
 For other details, please check the Binaries folder as it contains important documents and diagrams related to the project's development.
